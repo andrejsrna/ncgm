@@ -55,8 +55,13 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
+  		},
+			spotify: '#1DB954',
+			// Add other custom colors if needed
+  	},
+	  transitionProperty: {
+		'max-height': 'max-height',
+	  },
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
