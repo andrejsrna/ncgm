@@ -6,6 +6,7 @@ import WhoIsBehind from "@/components/WhoIsBehind";
 import CallToAction from "@/components/CallToAction";
 import FeaturedTrack from "@/components/FeaturedTrack";
 import PickYourGenre from "@/components/PickYourGenre";
+import Support from "@/components/Support";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <CallToAction/>
       <WhoIsBehind/>
       <PickYourGenre/>
+      <Support/>
       <Footer/>
     </div>
   );
