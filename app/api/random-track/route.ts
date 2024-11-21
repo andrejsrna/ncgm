@@ -8,13 +8,27 @@ interface FeaturedTrackData {
   embedUrl: string;
 }
 
+interface SpotifyTrack {
+  id: string;
+  name: string;
+  external_urls: {
+    spotify: string;
+  };
+  // Add other fields if necessary
+}
+
+interface SpotifyResponse {
+  tracks: SpotifyTrack[];
+  // Add other fields if necessary
+}
+
 // Environment Variables
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 const artistId = process.env.SPOTIFY_ARTIST_ID;
 
 // Simple in-memory cache
-let cachedTracks: any[] | null = null;
+let cachedTracks: SpotifyTrack[] | null = null;
 let cacheTimestamp: number | null = null;
 const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
 
@@ -65,7 +79,7 @@ export async function GET() {
 
     const apiUrl = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`;
 
-    const response = await axios.get(apiUrl, {
+    const response = await axios.get<SpotifyResponse>(apiUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
