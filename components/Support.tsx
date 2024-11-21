@@ -11,7 +11,7 @@ const Support: React.FC = () => {
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Need Assistance?</h2>
           <p className="text-lg text-gray-600">
-            We're here to help! Please fill out the form below, and our support team will get back to you as soon as possible.
+            We are here to help! Please fill out the form below, and our support team will get back to you as soon as possible.
           </p>
         </div>
 
