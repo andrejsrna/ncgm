@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import WhoIsBehind from "@/components/WhoIsBehind";
 import CallToAction from "@/components/CallToAction";
 import FeaturedTrack from "@/components/FeaturedTrack";
+import PickYourGenre from "@/components/PickYourGenre";
 
 export default function Home() {
   return (
@@ -13,8 +14,9 @@ export default function Home() {
       <FeaturedTrack/>
       <MusicProfile/>
       <Accordion/>
-      <WhoIsBehind/>
       <CallToAction/>
+      <WhoIsBehind/>
+      <PickYourGenre/>
       <Footer/>
     </div>
   );
