@@ -3,8 +3,16 @@
 
 import { ChevronDown } from "lucide-react";
 
-export default function AccordionItem({ title, children, isOpen, onClick, id }) {
-  return (
+interface AccordionItemProps {
+    id: number;
+    title: string;
+    content: React.ReactNode;
+    isOpen: boolean;
+    onClick: () => void;
+  }
+  
+  const AccordionItem: React.FC<AccordionItemProps> = ({ title, content, isOpen, onClick, id }) => {
+     return (
     <div className="border-b border-gray-700">
       <button
         onClick={onClick}
@@ -28,10 +36,11 @@ export default function AccordionItem({ title, children, isOpen, onClick, id }) 
           isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="p-4 text-gray-300">
-          {children}
+        <div className="p-4 text-gray-300 ">
+          {content}
         </div>
       </div>
     </div>
   );
 }
+export default AccordionItem;

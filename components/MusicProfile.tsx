@@ -5,55 +5,73 @@ import React from 'react';
 import { FaSpotify, FaApple, FaAmazon, FaYoutube, FaDeezer } from 'react-icons/fa';
 import Image from 'next/image';
 
-interface MusicService {
+// Define interfaces for discriminated unions
+interface MusicServiceWithIconComponent {
   name: string;
   url: string;
   color: string;
   icon: React.ReactNode;
-  isCustomIcon?: boolean; // Flag to identify custom SVG icons
+  isCustomIcon: false;
 }
 
+interface MusicServiceWithCustomIcon {
+  name: string;
+  url: string;
+  color: string;
+  icon: string; // Path to the custom SVG
+  isCustomIcon: true;
+}
+
+// Union type for MusicService
+type MusicService = MusicServiceWithIconComponent | MusicServiceWithCustomIcon;
+
+// Define the music services array with proper typings
 const musicServices: MusicService[] = [
   {
     name: 'Spotify',
     url: 'https://open.spotify.com/artist/702mas8Kyj9BGvD6dZGML8?si=uZ9C0L8pQC2sxBD90DhA0Q',
     color: '#1DB954', // Spotify Green
     icon: <FaSpotify />,
+    isCustomIcon: false,
   },
   {
     name: 'Apple Music',
     url: 'https://music.apple.com/sk/artist/no-copyright-gaming-music/1699748922',
     color: '#FA2C5A', // Apple Music Pink
     icon: <FaApple />,
+    isCustomIcon: false,
   },
   {
     name: 'Amazon Music',
     url: 'https://www.amazon.com/music/player/artists/B0CD2BDVWG/no-copyright-gaming-music',
     color: '#FF9900', // Amazon Orange
     icon: <FaAmazon />,
+    isCustomIcon: false,
   },
   {
     name: 'YouTube Music',
     url: 'https://music.youtube.com/channel/UC6FzeY54doTLkzPJYaapmnQ?si=Xfoi99V6BLEr6-x_',
     color: '#FF0000', // YouTube Red
     icon: <FaYoutube />,
+    isCustomIcon: false,
   },
   {
     name: 'Deezer',
     url: 'https://www.deezer.com/en/artist/223452715',
     color: '#00C300', // Deezer Green
     icon: <FaDeezer />,
+    isCustomIcon: false,
   },
   {
     name: 'Tidal',
     url: 'https://tidal.com/browse/artist/41512847?u',
     color: '#00BFFF', // Tidal Blue
     icon: '/icons/tidal.svg', // Path to the custom SVG
-    isCustomIcon: true, // Indicates that this uses a custom SVG
+    isCustomIcon: true,
   },
 ];
 
-export default function MusicProfiles() {
+const MusicProfiles: React.FC = () => {
   return (
     <section id="services" className="py-12 bg-gray-900">
       <div className="max-w-4xl mx-auto px-4">
@@ -92,4 +110,6 @@ export default function MusicProfiles() {
       </div>
     </section>
   );
-}
+};
+
+export default MusicProfiles;

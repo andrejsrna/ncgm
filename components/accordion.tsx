@@ -151,7 +151,7 @@ export default function Accordion() {
       content: (
         <>
           <p>
-            At <strong>No Copyright Gaming Music</strong>, we believe in empowering content creators by providing high-quality music that enhances their projects without breaking the bank. Here's how our licensing and fee structure works:
+            At <strong>No Copyright Gaming Music</strong>, we believe in empowering content creators by providing high-quality music that enhances their projects without breaking the bank. Here&apos;s how our licensing and fee structure works:
           </p>
           <ul className="list-disc pl-6">
             <li>
@@ -172,12 +172,12 @@ export default function Accordion() {
             <li>
               <strong>No Hidden Fees</strong>
               <br />
-              Transparency is key to our licensing model. There are no hidden fees or recurring charges. The only cost involved is the one-time purchase for high-quality downloads, ensuring you know exactly what you're paying for.
+              Transparency is key to our licensing model. There are no hidden fees or recurring charges. The only cost involved is the one-time purchase for high-quality downloads, ensuring you know exactly what you&apos;re paying for.
             </li>
             <li>
               <strong>Flexible Licensing Terms</strong>
               <br />
-              Our licensing terms are designed to be flexible and creator-friendly. Whether you're a small streamer or a large content creator, our licensing options accommodate your needs without imposing restrictive limitations.
+              Our licensing terms are designed to be flexible and creator-friendly. Whether you&apos;re a small streamer or a large content creator, our licensing options accommodate your needs without imposing restrictive limitations.
             </li>
             <li>
               <strong>Support Independent Artists</strong>
@@ -224,7 +224,7 @@ export default function Accordion() {
         content: (
           <>
             <p>
-              One of the biggest concerns for content creators is whether using music can affect their monetization on platforms like YouTube and Twitch. With <strong>No Copyright Gaming Music</strong>, you can rest assured that your monetization won't be restricted. Here's why:
+              One of the biggest concerns for content creators is whether using music can affect their monetization on platforms like YouTube and Twitch. With <strong>No Copyright Gaming Music</strong>, you can rest assured that your monetization won&apos;t be restricted. Here&apos;s why:
             </p>
             <ul className="list-disc pl-6">
               <li>
@@ -259,7 +259,7 @@ export default function Accordion() {
               </li>
             </ul>
             <p>
-              By choosing <strong>No Copyright Gaming Music</strong>, you're making a smart decision to safeguard your content's monetization potential. Focus on creating amazing videos and streams without the worry of unexpected restrictions or revenue loss.
+              By choosing <strong>No Copyright Gaming Music</strong>, you&apos;re making a smart decision to safeguard your content&apos;s monetization potential. Focus on creating amazing videos and streams without the worry of unexpected restrictions or revenue loss.
             </p>
           </>
         ),
@@ -269,7 +269,7 @@ export default function Accordion() {
         content: (
           <>
             <p>
-              At <strong>No Copyright Gaming Music</strong>, we pride ourselves on offering a diverse library of tracks tailored to suit every gaming atmosphere and content creator's needs. Our collection spans a wide range of genres to ensure that you find the perfect soundtrack for your projects.
+              At <strong>No Copyright Gaming Music</strong>, we pride ourselves on offering a diverse library of tracks tailored to suit every gaming atmosphere and content creator&apos;s needs. Our collection spans a wide range of genres to ensure that you find the perfect soundtrack for your projects.
             </p>
             <ul className="list-disc pl-5 space-y-2">
               <li>
@@ -292,7 +292,7 @@ export default function Accordion() {
               </li>
             </ul>
             <p className="mt-4 text-gray-200">
-              Whether you're looking to set a serene mood or pump up the energy levels, our extensive range ensures that your gaming content resonates with your audience. Explore our collection and find the perfect tracks that align with your creative vision.
+              Whether you&apos;re looking to set a serene mood or pump up the energy levels, our extensive range ensures that your gaming content resonates with your audience. Explore our collection and find the perfect tracks that align with your creative vision.
             </p>
           </>
         ),
@@ -303,16 +303,15 @@ export default function Accordion() {
     <div id="more" className="max-w-4xl mx-auto px-4 py-12">
       <h2 className="text-3xl font-bold text-center text-destructive mb-8">Frequently Asked Questions</h2>
       <div className="bg-gray-800 rounded-lg shadow-lg">
-        {accordions.map((accordion, index) => (
+      {accordions.map((accordion, index) => (
           <AccordionItem
             key={index}
             id={index}
             title={accordion.title}
             isOpen={openIndex === index}
             onClick={() => toggleAccordion(index)}
-          >
-            {accordion.content}
-          </AccordionItem>
+            content={accordion.content}
+          />
         ))}
       </div>
     </div>

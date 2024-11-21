@@ -15,7 +15,6 @@ export default function FeaturedTrack() {
               width="100%"
               height="352"
               frameBorder="0"
-              allowtransparency="true"
               allow="encrypted-media"
               title="Featured Track on Spotify"
               className="rounded-lg shadow-lg"
