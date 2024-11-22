@@ -4,27 +4,30 @@
 
 ## 📄 Project Description
 
-Welcome to the **NoCopyrightGamingMusic (NCGM)** repository! This project powers the [nocopyrightgamingmusic.com](https://nocopyrightgamingmusic.com) website, providing a seamless and enjoyable experience for gamers seeking high-quality, royalty-free music for their gaming sessions and content creation.
+Welcome to the **NoCopyrightGamingMusic (NCGM)** repository! This project powers the [nocopyrightgamingmusic.com](https://nocopyrightgamingmusic.com) website, which serves as a platform for our music label dedicated to providing free, high-quality tracks for gamers and content creators. 
 
-NCGM leverages the **Spotify API** to curate and stream a vast library of gaming music, ensuring that users have access to the best tracks without any copyright issues. The project is built using **Next.js** for a robust and scalable frontend, **Shadcn** components for a sleek and modern UI, and **Tailwind CSS** for efficient and responsive styling.
+NCGM is a static website built with **Next.js**, **Tailwind CSS**, and **Shadcn** components, offering a seamless and visually appealing experience. The site integrates the **Spotify API** to feature a randomly selected track from our Spotify profile, ensuring that visitors always discover new music tailored for their gaming sessions.
 
 ## 🚀 Features
 
-- **Royalty-Free Gaming Music:** Access a wide range of music tracks specifically curated for gaming.
-- **Spotify API Integration:** Seamlessly integrates with Spotify to stream and manage music playlists.
+- **Static Website:** Fast and reliable performance with pre-rendered pages.
+- **Music Label Presentation:** Showcases our label, mission, and available free tracks.
+- **Free Tracks:** Access and download a curated selection of royalty-free music.
+- **Spotify API Integration:** Automatically selects and displays a featured track randomly from our Spotify profile.
 - **Responsive Design:** Optimized for all devices, ensuring a great user experience on mobile, tablet, and desktop.
 - **Modern UI Components:** Utilizes **Shadcn** components for a clean and intuitive interface.
-- **User Authentication:** Secure login and registration system for personalized user experiences.
-- **Search and Filter:** Easily find your favorite tracks with advanced search and filtering options.
-- **Playlist Management:** Create, edit, and manage your own music playlists.
+- **SEO Optimization:** Implemented best practices to enhance visibility on search engines.
+- **Animations:** Smooth animations and transitions using **Framer Motion** for an engaging user experience.
 
 ## 🛠️ Technologies Used
 
-- **[Next.js](https://nextjs.org/):** A React framework for production.
-- **[Spotify API](https://developer.spotify.com/documentation/web-api/):** For music streaming and playlist management.
-- **[Shadcn Components](https://ui.shadcn.com/):** A collection of beautifully designed React components.
+- **[Next.js](https://nextjs.org/):** A React framework for building static and server-rendered applications.
 - **[Tailwind CSS](https://tailwindcss.com/):** Utility-first CSS framework for rapid UI development.
+- **[Shadcn Components](https://ui.shadcn.com/):** A collection of beautifully designed React components.
+- **[Spotify API](https://developer.spotify.com/documentation/web-api/):** For fetching and displaying featured tracks.
+- **[Framer Motion](https://www.framer.com/motion/):** For smooth animations and transitions.
 - **[React Icons](https://react-icons.github.io/react-icons/):** Icon library for React applications.
+- **[next-sitemap](https://github.com/iamvishnusankar/next-sitemap):** Generates sitemap for Next.js projects.
 
 ## 📥 Installation
 
