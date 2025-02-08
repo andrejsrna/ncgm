@@ -66,5 +66,5 @@ export default {
 		'max-height': 'max-height',
 	  },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 } satisfies Config;
