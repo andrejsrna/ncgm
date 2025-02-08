@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
       }
     ],
     domains: ['admin.nocopyrightgamingmusic.com'],
+    unoptimized: true,
   },
   //output: "export",
 
