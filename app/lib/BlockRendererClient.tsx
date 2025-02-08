@@ -1,7 +1,6 @@
 'use client';
 
 import { BlocksContent, BlocksRenderer } from '@strapi/blocks-react-renderer';
-import { Link } from 'lucide-react';
 
 const BlockRendererClient = ({ content }: { content: BlocksContent }) => {
   return (
