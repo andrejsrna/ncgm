@@ -18,14 +18,14 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'admin.nocopyrightgaminmusic.com',
+        hostname: 'admin.nocopyrightgamingmusic.com',
         port: '',
         pathname: '/**',
       },
       // If you also have HTTPS version, add it too
       {
         protocol: 'https',
-        hostname: 'admin.nocopyrightgaminmusic.com',
+        hostname: 'admin.nocopyrightgamingmusic.com',
         port: '',
         pathname: '/**',
       },
