@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, cache } from 'react';
 
 interface Track {
   id: number;
@@ -34,6 +34,45 @@ interface StrapiResponse {
     };
   };
 }
+
+export interface Post {
+  id: number;
+  Title: string;
+  Description: string;
+  Content: string;
+  slug: string;
+  Category: string;
+  Cover: {
+    formats: {
+      large: {
+        url: string;
+      };
+    };
+  };
+  publishedAt: string;
+  updatedAt: string;
+}
+
+export const getPosts = cache(async () => {
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/posts?populate=*`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: 'no-store',
+    }
+  );
+
+  if (!response.ok) {
+    console.error('API Error:', await response.text());
+    throw new Error('Failed to fetch posts');
+  }
+
+  const data = await response.json();
+  return data.data || [];
+});
 
 export function useClientMusic(count: number = 3) {
   const [tracks, setTracks] = useState<Track[]>([]);

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { pressStart2P } from '@/lib/fonts'
-import { Providers } from './providers';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/footer';
 export const metadata: Metadata = {
@@ -54,9 +53,7 @@ export default function RootLayout({
         className={pressStart2P.className}
       >
         <Header />
-        <Providers>
           {children}
-        </Providers>
         <Footer />
       </body>
     </html>

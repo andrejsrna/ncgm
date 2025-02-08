@@ -49,7 +49,7 @@ export default function Footer() {
     }
   };
 
-  return (
+    return (
     <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-400">
       {/* Newsletter section */}
       <div className="border-b border-gray-800">
@@ -246,8 +246,8 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-center md:text-left mb-4 md:mb-0">
-              © {new Date().getFullYear()} No Copyright Gaming Music. All rights reserved.
-            </p>
+          © {new Date().getFullYear()} No Copyright Gaming Music. All rights reserved.
+        </p>
             <div className="flex space-x-6">
               <Link href="/privacy" className="text-sm hover:text-white transition-colors">
                 Privacy
@@ -262,7 +262,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
-  );
-}
+      </footer>
+    );
+  }
   
