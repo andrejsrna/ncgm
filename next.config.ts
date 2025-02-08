@@ -15,26 +15,23 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    domains: ['admin.nocopyrightgamingmusic.com'], // Simpler approach
     remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: 'admin.nocopyrightgamingmusic.com',
-        port: '',
-        pathname: '/**',
-      },
-      // If you also have HTTPS version, add it too
       {
         protocol: 'https',
         hostname: 'admin.nocopyrightgamingmusic.com',
-        port: '',
-        pathname: '/**',
+        pathname: '/uploads/**',
       },
-      // For local development
+      {
+        protocol: 'http',
+        hostname: 'admin.nocopyrightgamingmusic.com',
+        pathname: '/uploads/**',
+      },
       {
         protocol: 'http',
         hostname: 'localhost',
         port: '1337',
-        pathname: '/**',
+        pathname: '/uploads/**',
       }
     ],
   },
