@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { pressStart2P } from '@/lib/fonts'
 import { Providers } from './providers';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/footer';
 export const metadata: Metadata = {
   title: "No Copyright Gaming Music",
   description: "Discover free and high-quality music for your gaming content. Perfect for YouTube, Twitch, and other platforms without any copyright concerns.",
@@ -51,9 +53,11 @@ export default function RootLayout({
       <body
         className={pressStart2P.className}
       >
+        <Header />
         <Providers>
           {children}
         </Providers>
+        <Footer />
       </body>
     </html>
   );

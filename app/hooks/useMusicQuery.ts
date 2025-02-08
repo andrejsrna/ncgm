@@ -1,65 +1,89 @@
-import { useState, useEffect } from 'react';
+import { cache } from 'react';
 
 // Define the type for your music data
-interface MusicData {
-  id: string;
-  attributes: {
-    title: string;
-    spotify: string;
-    appleMusic: string;
-    iTunes: string;
-    youtubeMusic: string;
-    amazon: string;
-    pandora: string;
-    deezer: string;
-    tidal: string;
-    iHeartRadio: string;
-    boomplay: string;
-    beatport: string;
-    cover: {
-      data: {
-        attributes: {
-          url: string;
-        };
+export interface MusicData {
+  id: number;
+  documentId: string;
+  Title: string;
+  Spotify: string | null;
+  AppleMusic: string | null;
+  iTunes: string | null;
+  YouTubeMusic: string | null;
+  Amazon: string | null;
+  Pandora: string | null;
+  slug: string;
+  Deezer: string | null;
+  Tidal: string | null;
+  iHeartRadio: string | null;
+  Boomplay: string | null;
+  Beatport: string | null;
+  Description: string | null;
+  Cover: {
+    name: string;
+    url: string;
+    formats: {
+      large: {
+        url: string;
       };
     };
-    description: string;
-    genre: string;
+  };
+  genre: {
+    Genres: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+interface ApiResponse {
+  data: MusicData[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
   };
 }
 
-export const useMusicQuery = () => {
-  const [music, setMusic] = useState<MusicData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+export const getMusicData = cache(async () => {
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/musicm?populate=*`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: 'no-store',
+  });
 
-  useEffect(() => {
-    const fetchMusic = async () => {
-      try {
-        const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/musicm?populate=*`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  if (!response.ok) {
+    console.error('API Error:', await response.text());
+    throw new Error('Failed to fetch music data');
+  }
 
-        if (!response.ok) {
-          throw new Error('Failed to fetch music data');
-        }
+  const responseData: ApiResponse = await response.json();
+  console.log('Raw API response:', responseData);
+  
+  return responseData.data || [];
+});
 
-        const data = await response.json();
-        console.log('Fetched data:', data);
-        setMusic(data.data);
-      } catch (err) {
-        setError(err instanceof Error ? err : new Error('An error occurred'));
-        console.error('Fetch error:', err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+export const getMusicBySlug = cache(async (slug: string) => {
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/musicm?filters[slug][$eq]=${slug}&populate=*`, 
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: 'no-store',
+    }
+  );
 
-    fetchMusic();
-  }, []);
+  if (!response.ok) {
+    console.error('API Error:', await response.text());
+    throw new Error('Failed to fetch music data', { cause: response.status });
+  }
 
-  return { music, isLoading, error };
-};
+  const responseData = await response.json();
+  return responseData.data[0]; // Return first matching item since slug should be unique
+});
