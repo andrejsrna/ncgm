@@ -39,9 +39,8 @@ export default function LicensePage() {
             </div>
             <div className="p-4 bg-gray-800/50 rounded-lg">
               <div className="text-yellow-400 mb-2">⚠</div>
-              <h3 className="text-white font-medium mb-2">Credit Required</h3>
+              <h3 className="text-white font-medium mb-2">Credit (optional)</h3>
               <ul className="text-sm text-gray-400 space-y-2">
-                <li>Artist Name</li>
                 <li>Song Title</li>
                 <li>Link to No Copyright Gaming Music</li>
               </ul>
@@ -93,7 +92,7 @@ export default function LicensePage() {
             <h2 className="text-2xl font-semibold text-white mb-6">3. Attribution Requirements</h2>
             <div className="prose prose-invert max-w-none">
               <p className="text-gray-400 mb-4">
-                When using our music, you must provide proper attribution:
+                When using our music, you may provide attribution:
               </p>
               <div className="bg-gray-800/30 p-4 rounded-lg border border-gray-700 mb-4">
                 <code className="text-sm text-gray-300">
