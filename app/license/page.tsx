@@ -89,7 +89,7 @@ export default function LicensePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-6">3. Attribution Requirements</h2>
+            <h2 className="text-2xl font-semibold text-white mb-6">3. Attribution</h2>
             <div className="prose prose-invert max-w-none">
               <p className="text-gray-400 mb-4">
                 When using our music, you may provide attribution:
