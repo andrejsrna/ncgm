@@ -8,11 +8,15 @@ function Loading() {
 
 async function MusicGrid() {
   const music = await getMusicData();
-  console.log('Fetched music data:', music); // Pre debugovanie
+  
+  // Sort music by date (newest first)
+  const sortedMusic = [...music].sort((a, b) => 
+    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {music?.map((track: MusicData) => (
+      {sortedMusic?.map((track: MusicData) => (
         <MusicCard key={track.documentId} track={track} />
       ))}
     </div>

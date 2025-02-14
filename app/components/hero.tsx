@@ -6,7 +6,7 @@ import { FaPlay, FaMusic, FaArrowRight } from 'react-icons/fa';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden">
       {/* Background Video/Image */}
       <div className="absolute inset-0 z-0">
         <video
@@ -25,7 +25,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 text-center">
         {/* Logo */}
         <div className="flex justify-center mb-8 animate-fade-in">
           <div className="relative w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full p-1">
@@ -38,7 +38,7 @@ export default function Hero() {
 
         {/* Main Content */}
         <div className="space-y-8">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up">
+          <h1 className="text-5xl md:text-4xl lg:text-4xl font-bold text-white mb-6 animate-fade-in-up">
             Free High-Quality Music for Your{' '}
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Gaming Content
@@ -48,25 +48,6 @@ export default function Hero() {
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto animate-fade-in-up delay-100">
             No Copyright. Free to Use. Just Download & Create.
           </p>
-
-          {/* Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-12 animate-fade-in-up delay-200">
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6">
-              <FaPlay className="w-8 h-8 text-blue-400 mb-4 mx-auto" />
-              <h3 className="text-white font-semibold mb-2">Ready to Use</h3>
-              <p className="text-gray-400 text-sm">No complicated licenses or attributions needed</p>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6">
-              <FaMusic className="w-8 h-8 text-purple-400 mb-4 mx-auto" />
-              <h3 className="text-white font-semibold mb-2">High Quality</h3>
-              <p className="text-gray-400 text-sm">Professional grade music for your content</p>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6">
-              <FaArrowRight className="w-8 h-8 text-green-400 mb-4 mx-auto" />
-              <h3 className="text-white font-semibold mb-2">Instant Access</h3>
-              <p className="text-gray-400 text-sm">Download and start using immediately</p>
-            </div>
-          </div>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12 animate-fade-in-up delay-300">
