@@ -79,7 +79,7 @@ export default async function MusicDetailPage({
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                {track.spotify && (
+                {track.Spotify && (
                   <a href={track.spotify} target="_blank" rel="noopener noreferrer" 
                      className="flex items-center justify-center space-x-3 bg-[#1DB954]/10 text-[#1DB954] px-6 py-4 rounded-xl hover:bg-[#1DB954]/20 transition-all duration-300">
                     <FaSpotify className="text-xl" />
