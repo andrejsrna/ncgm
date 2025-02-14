@@ -1,10 +1,9 @@
 import { getMusicBySlug } from "@/app/hooks/useMusicQuery";
 import Image from "next/image";
 import Link from "next/link";
-import { FaSpotify, FaApple, FaYoutube, FaAmazon, FaHeadphones, FaDownload, FaArrowLeft } from 'react-icons/fa';
+import { FaSpotify, FaApple, FaYoutube, FaAmazon, FaHeadphones, FaDownload, FaArrowLeft, FaMusic, FaSoundcloud } from 'react-icons/fa';
 import { SiTidal, SiPandora, SiIheartradio, SiBeatport } from 'react-icons/si';
 import { FaDeezer } from 'react-icons/fa';
-
 
 export default async function MusicDetailPage({
   params,
@@ -125,6 +124,20 @@ export default async function MusicDetailPage({
                   <a href={track.iHeartRadio} target="_blank" rel="noopener noreferrer"
                      className="flex items-center justify-center space-x-3 bg-[#C6002B]/10 text-[#C6002B] px-6 py-4 rounded-xl hover:bg-[#C6002B]/20 transition-all duration-300">
                     <SiIheartradio className="text-xl" />
+                    <span>iHeartRadio</span>
+                  </a>
+                )}
+                {track.Boomplay && (
+                  <a href={track.Boomplay} target="_blank" rel="noopener noreferrer"
+                     className="flex items-center justify-center space-x-3 bg-[#000000]/10 text-[#000000] px-6 py-4 rounded-xl hover:bg-[#000000]/20 transition-all duration-300">
+                    <FaMusic className="text-xl" />
+                    <span>Boomplay</span>
+                  </a>
+                )}
+                {track.iHeartRadio && (
+                  <a href={track.iHeartRadio} target="_blank" rel="noopener noreferrer"
+                     className="flex items-center justify-center space-x-3 bg-[#FF7700]/10 text-[#FF7700] px-6 py-4 rounded-xl hover:bg-[#FF7700]/20 transition-all duration-300">
+                    <FaMusic className="text-xl" />
                     <span>iHeartRadio</span>
                   </a>
                 )}
