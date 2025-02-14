@@ -129,7 +129,7 @@ export default async function MusicDetailPage({
                 )}
                 {track.Boomplay && (
                   <a href={track.Boomplay} target="_blank" rel="noopener noreferrer"
-                     className="flex items-center justify-center space-x-3 bg-[#000000]/10 text-[#000000] px-6 py-4 rounded-xl hover:bg-[#000000]/20 transition-all duration-300">
+                     className="flex items-center justify-center space-x-3 bg-[#000000]/10 text-[#ffffff] px-6 py-4 rounded-xl hover:bg-[#000000]/20 transition-all duration-300">
                     <FaMusic className="text-xl" />
                     <span>Boomplay</span>
                   </a>
