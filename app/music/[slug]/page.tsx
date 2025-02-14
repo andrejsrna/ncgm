@@ -1,7 +1,7 @@
 import { getMusicBySlug } from "@/app/hooks/useMusicQuery";
 import Image from "next/image";
 import Link from "next/link";
-import { FaSpotify, FaApple, FaYoutube, FaAmazon, FaHeadphones, FaDownload, FaArrowLeft, FaMusic, FaSoundcloud } from 'react-icons/fa';
+import { FaSpotify, FaApple, FaYoutube, FaAmazon, FaHeadphones, FaDownload, FaArrowLeft, FaMusic } from 'react-icons/fa';
 import { SiTidal, SiPandora, SiIheartradio, SiBeatport } from 'react-icons/si';
 import { FaDeezer } from 'react-icons/fa';
 
