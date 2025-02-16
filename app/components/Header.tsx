@@ -15,17 +15,11 @@ const navigation = [
 
 const musicProfiles = [
   {
-    name: 'Beatport',
-    href: 'https://www.beatport.com/artist/nocopyrightgamingmusic',
+    name: 'Spotify',
+    href: 'https://open.spotify.com/artist/702mas8Kyj9BGvD6dZGML8?si=uZ9C0L8pQC2sxBD90DhA0Q',
     icon: '🎵',
     color: 'bg-green-500'
   },
-  {
-    name: 'iTunes',
-    href: 'https://music.apple.com/artist/nocopyrightgamingmusic',
-    icon: '🎧',
-    color: 'bg-blue-500'
-  }
 ];
 
 export default function Header() {

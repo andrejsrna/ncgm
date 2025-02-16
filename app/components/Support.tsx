@@ -3,7 +3,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { FaHeadset, FaBook, FaEnvelope, FaDiscord } from 'react-icons/fa';
+import { FaHeadset, FaBook, FaEnvelope } from 'react-icons/fa';
 
 const supportOptions = [
   {
@@ -31,12 +31,6 @@ const quickLinks = [
     icon: <FaEnvelope />,
     href: 'mailto:support@nocopyrightgamingmusic.com'
   },
-  {
-    title: 'Discord Community',
-    description: 'Join our Discord server',
-    icon: <FaDiscord />,
-    href: 'https://discord.gg/nocopyrightgamingmusic'
-  }
 ];
 
 const Support: React.FC = () => {

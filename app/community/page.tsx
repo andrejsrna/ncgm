@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
-import { FaDiscord, FaYoutube, FaTwitch, FaTwitter, FaInstagram, FaUsers, FaComments, FaHeart } from 'react-icons/fa';
-import { SiTiktok } from 'react-icons/si';
+import { FaYoutube, FaApple, FaComments, FaHeart } from 'react-icons/fa';
 
 export const metadata: Metadata = {
   title: 'Community | No Copyright Gaming Music',
@@ -9,50 +8,20 @@ export const metadata: Metadata = {
 
 const socialLinks = [
   {
-    name: 'Discord',
-    icon: <FaDiscord className="w-6 text-white   h-6" />,
-    url: 'https://discord.gg/yourserver',
-    color: 'from-[#5865F2] to-[#7289DA]'
-  },
-  {
     name: 'YouTube',
     icon: <FaYoutube className="w-6 text-white h-6" />,
-    url: 'https://youtube.com/@yourchannel',
+    url: 'https://music.youtube.com/channel/UC6FzeY54doTLkzPJYaapmnQ',
     color: 'from-[#FF0000] to-[#CC0000]'
   },
   {
-    name: 'Twitch',
-    icon: <FaTwitch className="w-6 text-white h-6" />,
-    url: 'https://twitch.tv/yourchannel',
+    name: 'Apple Music',
+    icon: <FaApple className="w-6 text-white h-6" />,
+    url: 'https://music.apple.com/sk/artist/no-copyright-gaming-music/1699748922?l=sk',
     color: 'from-[#9146FF] to-[#6441A5]'
   },
-  {
-    name: 'Twitter',
-    icon: <FaTwitter className="w-6 text-white h-6" />,
-    url: 'https://twitter.com/yourhandle',
-    color: 'from-[#1DA1F2] to-[#0D8ECD]'
-  },
-  {
-    name: 'TikTok',
-    icon: <SiTiktok className="w-6 text-white h-6" />,
-    url: 'https://tiktok.com/@yourhandle',
-    color: 'from-[#000000] to-[#333333]'
-  },
-  {
-    name: 'Instagram',
-    icon: <FaInstagram className="w-6 text-white h-6" />,
-    url: 'https://instagram.com/yourhandle',
-    color: 'from-[#E4405F] to-[#BD1E59]'
-  }
 ];
 
 const features = [
-  {
-    icon: <FaUsers className="w-8 text-white h-8" />,
-    title: 'Join Our Discord',
-    description: 'Connect with thousands of content creators, share your work, and get instant feedback.',
-    color: 'from-purple-500 to-blue-500'
-  },
   {
     icon: <FaComments className="w-8 h-8" />,
     title: 'Community Support',
@@ -129,27 +98,6 @@ export default function CommunityPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 relative">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Get Started?
-          </h2>
-          <p className="text-gray-400 mb-8">
-            Join our Discord server and become part of our growing community of content creators.
-          </p>
-          <a
-            href="https://discord.gg/yourserver"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-4 rounded-xl bg-[#5865F2] text-white font-medium hover:bg-[#4752C4] transition-colors duration-300"
-          >
-            <FaDiscord className="w-6 h-6 mr-2" />
-            Join Our Discord
-          </a>
         </div>
       </section>
     </div>

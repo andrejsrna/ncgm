@@ -6,7 +6,7 @@ interface Track {
   id: number;
     Title: string;
     Genre: string;
-    spotify: string;
+    Spotify: string;
     spotify_embed: string;
     Cover: {
         name: string;
@@ -20,7 +20,7 @@ interface Track {
     createdAt: string;
     updatedAt: string;
     slug: string;
-    beatport: string;
+    Beatport: string;
 }
 
 interface StrapiResponse {
@@ -119,11 +119,11 @@ export function useClientMusic(count: number = 3) {
   const formattedTracks = tracks.map(track => ({
     title: track.Title,
     genre: track.Genre,
-    trackUrl: track.spotify,
+    trackUrl: track.Spotify,
     embedUrl: track.spotify_embed,
     imageUrl: track.Cover.formats.large.url,
     slug: track.slug,
-    beatportUrl: track.beatport
+    beatportUrl: track.Beatport
   }));
 
   return { 
