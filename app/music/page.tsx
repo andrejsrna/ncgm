@@ -11,7 +11,7 @@ async function MusicGrid() {
   
   // Sort music by date (newest first)
   const sortedMusic = [...music].sort((a, b) => 
-    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
   );
 
   return (

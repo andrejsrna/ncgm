@@ -2,6 +2,7 @@ import { cache } from 'react';
 
 // Define the type for your music data
 export interface MusicData {
+  pubDate: string | number | Date;
   id: number;
   documentId: string;
   Title: string;

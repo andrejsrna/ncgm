@@ -32,7 +32,7 @@ export default async function MusicDetailPage({
               <div className="relative h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl">
                 {track.Cover && (
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${track.Cover.formats.large.url}`}
+                    src={`${track.Cover.formats.large.url}`}
                     alt={track.Title}
                     fill
                     className="object-cover transform group-hover:scale-105 transition-transform duration-700"

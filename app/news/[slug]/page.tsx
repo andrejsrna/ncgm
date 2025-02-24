@@ -51,7 +51,7 @@ export default async function NewsDetailPage({ params }: Props): Promise<React.R
         {post.image && (
           <div className="absolute top-0 left-0 w-full h-96 overflow-hidden">
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_URL}${post.image.formats.large.url}`}
+              src={`${post.image.formats.large.url}`}
               alt={post.title}
               fill
               className="object-cover"
@@ -66,14 +66,10 @@ export default async function NewsDetailPage({ params }: Props): Promise<React.R
           {/* Meta info */}
           <div className="flex items-center gap-4 mb-6 text-sm">
             <time 
-              dateTime={post.publishedAt}
+              dateTime={post.pubDate}
               className="text-gray-400"
             >
-              {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
+              {post.pubDate}
             </time>
             {post.category && (
               <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400">

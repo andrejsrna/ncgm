@@ -16,7 +16,7 @@ export default function MusicCard({ track }: MusicCardProps) {
       {track.Cover && (
         <div className="relative h-96 w-full">
           <Image
-            src={`${process.env.NEXT_PUBLIC_API_URL}${track.Cover.formats.large.url}`}
+            src={`${track.Cover.formats.large.url}`}
             alt={track.Title || 'Music cover'}
             fill
             className="object-cover"

@@ -41,7 +41,7 @@ export default async function NewsPage() {
                 {post.image && (
                   <div className="relative h-48 w-full">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${post.image.formats.large.url}`}
+                      src={`${post.image.formats.large.url}`}
                       alt={post.title}
                       fill
                       className="object-cover"
@@ -52,11 +52,7 @@ export default async function NewsPage() {
                 <div className="p-6">
                   <div className="flex items-center gap-4 mb-4">
                     <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm">
-                      {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric'
-                      })}
+                      {post.pubDate}
                     </span>
                     {post.category && (
                       <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-sm">

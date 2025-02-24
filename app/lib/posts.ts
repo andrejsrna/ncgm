@@ -1,6 +1,7 @@
 import { cache } from 'react';
 
 export interface Post {
+  pubDate: string;
   id: number;
   title: string;
   description: string;
