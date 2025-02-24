@@ -2,7 +2,7 @@ import { getMusicBySlug } from "@/app/hooks/useMusicQuery";
 import Image from "next/image";
 import Link from "next/link";
 import { FaSpotify, FaApple, FaYoutube, FaAmazon, FaHeadphones, FaDownload, FaArrowLeft, FaMusic } from 'react-icons/fa';
-import { SiTidal, SiPandora, SiIheartradio, SiBeatport } from 'react-icons/si';
+import { SiTidal, SiPandora, SiIheartradio, SiBeatport, SiBandcamp } from 'react-icons/si';
 import { FaDeezer } from 'react-icons/fa';
 
 export default async function MusicDetailPage({
@@ -183,6 +183,13 @@ export default async function MusicDetailPage({
                     <span>Beatport</span>
                   </a>
                 )}
+				{track.Bandcamp && (
+					<a href={track.Bandcamp} target="_blank" rel="noopener noreferrer"
+						className="flex items-center justify-center space-x-3 bg-[#1DA1F2]/10 text-[#1DA1F2] px-6 py-4 rounded-xl hover:bg-[#1DA1F2]/20 transition-all duration-300">
+						<SiBandcamp className="text-xl" />
+						<span>Bandcamp</span>
+					</a>
+				)}
               </div>
             </div>
           </div>
