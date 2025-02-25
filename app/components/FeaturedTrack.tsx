@@ -90,7 +90,7 @@ const FeaturedTrack: React.FC = () => {
               <div className="relative">
                 <div className="aspect-w-16 aspect-h-9 relative">
                   <Image
-                    src={process.env.NEXT_PUBLIC_API_URL + track.imageUrl}
+                    src={track.imageUrl}
                     alt={track.title}
                     width={500}
                     height={400}
