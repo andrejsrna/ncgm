@@ -1,27 +1,26 @@
 // components/WhoIsBehind.jsx
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaSoundcloud, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaInstagram, FaSoundcloud, FaYoutube } from 'react-icons/fa';
 
 const socialLinks = [
   {
     name: 'SoundCloud',
-    url: 'https://soundcloud.com/asanadnb',
+    url: 'https://soundcloud.com/asana_dnb',
     icon: <FaSoundcloud />,
     color: '#ff5500'
   },
   {
     name: 'Instagram',
-    url: 'https://instagram.com/asanadnb',
+    url: 'https://instagram.com/asana.dnb',
     icon: <FaInstagram />,
     color: '#E4405F'
   },
   {
     name: 'YouTube',
-    url: 'https://youtube.com/@asanadnb',
+    url: 'https://www.youtube.com/@asana7958',
     icon: <FaYoutube />,
     color: '#FF0000'
   }
@@ -77,25 +76,25 @@ export default function WhoIsBehind() {
                   <h2 className="text-4xl font-bold text-white mb-6">
                     Who is Behind the Project
                   </h2>
-                  
+
                   <div className="prose prose-invert">
                     <p className="text-lg text-gray-300">
-                      Hi there! I&apos;m <span className="text-blue-400 font-semibold">Asana</span>, 
+                      Hi there! I&apos;m <span className="text-blue-400 font-semibold">Asana</span>,
                       a passionate Drum and Bass DJ and Producer. I manage the label
-                      <span className="text-purple-400 font-semibold"> DnB Doctor</span>, 
+                      <span className="text-purple-400 font-semibold"> DnB Doctor</span>,
                       a cutting-edge record label devoted to the exhilarating world of Neurofunk Drum and Bass.
                     </p>
-                    
+
                     <p className="text-lg text-gray-300">
-                      When I&apos;m not immersed in the world of music production, you&apos;ll find me 
-                      indulging in my love for gaming. I started this project as a way to support my 
-                      gamer friends, providing them with legal and worry-free music to elevate their 
+                      When I&apos;m not immersed in the world of music production, you&apos;ll find me
+                      indulging in my love for gaming. I started this project as a way to support my
+                      gamer friends, providing them with legal and worry-free music to elevate their
                       streams, videos, and gaming sessions.
                     </p>
-                    
+
                     <p className="text-lg text-gray-300">
-                      Combining my two passions—music and gaming—has been an incredible journey, and 
-                      I&apos;m excited to continue growing this community. Thank you for being a part of 
+                      Combining my two passions—music and gaming—has been an incredible journey, and
+                      I&apos;m excited to continue growing this community. Thank you for being a part of
                       <span className="text-blue-400 font-semibold"> No Copyright Gaming Music</span>!
                     </p>
                   </div>

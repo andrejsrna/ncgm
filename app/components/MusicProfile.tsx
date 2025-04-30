@@ -1,9 +1,9 @@
 // components/MusicProfiles.tsx
 'use client';
 
-import React from 'react';
-import { FaSpotify, FaApple, FaAmazon, FaYoutube, FaDeezer, FaPlay } from 'react-icons/fa';
 import Image from 'next/image';
+import React from 'react';
+import { FaAmazon, FaApple, FaDeezer, FaPlay, FaSpotify, FaYoutube } from 'react-icons/fa';
 
 interface MusicServiceBase {
   name: string;
@@ -26,7 +26,7 @@ interface MusicServiceWithCustomIcon extends MusicServiceBase {
 
 type MusicService = MusicServiceWithIconComponent | MusicServiceWithCustomIcon;
 
-const musicServices: MusicService[] = [
+export const musicServices: MusicService[] = [
   {
     name: 'Spotify',
     url: 'https://open.spotify.com/artist/702mas8Kyj9BGvD6dZGML8?si=uZ9C0L8pQC2sxBD90DhA0Q',
@@ -100,67 +100,63 @@ const MusicProfiles: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {musicServices.map((service, index) => (
             <a
               key={index}
               href={service.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden rounded-xl bg-gray-800/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300 p-6"
+              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-800 to-gray-900
+                         hover:from-gray-700 hover:to-gray-800 transition-all duration-300 p-6
+                         transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black"
               style={{
-                boxShadow: `0 0 20px ${service.color}15`,
-              }}
+                boxShadow: `0 0 15px ${service.color}30, 0 0 30px ${service.color}20`,
+                '--tw-ring-color': service.color,
+              } as React.CSSProperties}
             >
-              <div className="absolute top-0 left-0 w-1 h-full" style={{ backgroundColor: service.color }} />
-              
-              <div className="flex items-start space-x-4">
+              <div className="absolute top-0 left-0 w-3 h-3 rounded-br-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                   style={{ backgroundColor: service.color }} />
+
+              <div className="flex items-center space-x-4 relative z-10">
                 <div className="flex-shrink-0">
-                  {service.isCustomIcon ? (
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center" 
-                         style={{ backgroundColor: `${service.color}15` }}>
-                      <Image
-                        src={service.icon}
-                        alt={`${service.name} Logo`}
-                        width={24}
-                        height={24}
-                        className="opacity-90 group-hover:opacity-100 transition-opacity"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center" 
-                         style={{ backgroundColor: `${service.color}15` }}>
-                      <span className="text-2xl opacity-90 group-hover:opacity-100 transition-opacity" 
-                            style={{ color: service.color }}>
-                        {service.icon}
-                      </span>
-                    </div>
-                  )}
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors duration-300"
+                       style={{ boxShadow: `0 0 10px ${service.color}40` }}>
+                    {service.isCustomIcon ? (
+                        <Image
+                          src={service.icon}
+                          alt={`${service.name} Logo`}
+                          width={28}
+                          height={28}
+                          className="opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                        />
+                    ) : (
+                        <span className="text-3xl opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                              style={{ color: service.color }}>
+                          {service.icon}
+                        </span>
+                    )}
+                  </div>
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-white/90">
+                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-white/95 transition-colors">
                     {service.name}
                   </h3>
-                  <p className="text-gray-400 text-sm mb-2">
+                  <p className="text-gray-300 text-sm mb-2 group-hover:text-gray-200 transition-colors">
                     {service.description}
                   </p>
                   {service.listeners && (
-                    <p className="text-sm font-medium" style={{ color: service.color }}>
+                    <p className="text-sm font-semibold" style={{ color: service.color }}>
                       {service.listeners}
                     </p>
                   )}
                 </div>
 
-                <div className="flex-shrink-0 self-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <FaPlay className="text-white" />
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transform translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                  <FaPlay className="text-white/70" size={18} />
                 </div>
               </div>
-
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r"
-                   style={{ 
-                     backgroundImage: `linear-gradient(to right, ${service.color}, transparent)` 
-                   }} />
             </a>
           ))}
         </div>
