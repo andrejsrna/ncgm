@@ -1,4 +1,3 @@
-// utils/spotifyAuth.ts
 import axios from 'axios';
 
 const clientId = process.env.SPOTIFY_CLIENT_ID;
@@ -15,8 +14,7 @@ export const getSpotifyAccessToken = async (): Promise<string> => {
 
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
-    Authorization:
-      'Basic ' + Buffer.from(`${clientId}:${clientSecret}`).toString('base64'),
+    Authorization: 'Basic ' + Buffer.from(`${clientId}:${clientSecret}`).toString('base64'),
   };
 
   try {

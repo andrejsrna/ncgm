@@ -1,76 +1,77 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { FaEnvelope, FaFileAlt, FaQuestionCircle } from 'react-icons/fa';
 
 export const metadata: Metadata = {
-  title: 'Help Center | No Copyright Gaming Music',
-  description: 'Get help with using No Copyright Gaming Music. Find guides, tutorials, and support resources.',
+  title: 'System Support | No Copyright Gaming Music',
+  description: 'Access system protocols, troubleshooting guides, and neural support networks for No Copyright Gaming Music.',
 };
 
 const guides = [
   {
-    category: "Getting Started",
+    category: "System Initialization",
     articles: [
       {
-        title: "How to Purchase Music",
-        description: "Learn how to buy tracks through our partner platforms",
+        title: "Data Acquisition Protocol",
+        description: "Access protocols for track acquisition through partner networks",
         icon: "🛒",
         link: "/help/purchase-guide"
       },
       {
-        title: "Attribution Guide",
-        description: "Proper ways to credit music in your content",
+        title: "Attribution Matrix",
+        description: "Neural pathways for content crediting",
         icon: "✍️",
         link: "/help/attribution"
       },
       {
-        title: "Platform Compatibility",
-        description: "Where you can use our music",
+        title: "Network Compatibility",
+        description: "Authorized distribution channels",
         icon: "🎮",
         link: "/help/platforms"
       }
     ]
   },
   {
-    category: "Music Usage",
+    category: "Signal Processing",
     articles: [
       {
-        title: "Content ID Guide",
-        description: "Handle copyright claims and Content ID matches",
+        title: "Content ID Matrix",
+        description: "Navigate copyright algorithms and ID matches",
         icon: "📝",
         link: "/help/content-id"
       },
       {
-        title: "Monetization Guide",
-        description: "Using music in monetized content",
+        title: "Revenue Protocols",
+        description: "Monetization algorithms and procedures",
         icon: "💰",
         link: "/help/monetization"
       },
       {
-        title: "Platform Guidelines",
-        description: "Platform-specific usage guidelines",
+        title: "Network Protocols",
+        description: "Platform-specific usage matrices",
         icon: "📋",
         link: "/help/guidelines"
       }
     ]
   },
   {
-    category: "Troubleshooting",
+    category: "System Diagnostics",
     articles: [
       {
-        title: "Purchase Issues",
-        description: "Common purchase and download problems",
+        title: "Transaction Debug",
+        description: "Common acquisition and download anomalies",
         icon: "🔧",
         link: "/help/purchase-issues"
       },
       {
-        title: "Copyright Claims",
-        description: "Resolving false copyright claims",
+        title: "Copyright Override",
+        description: "False claim resolution protocols",
         icon: "⚠️",
         link: "/help/copyright-claims"
       },
       {
-        title: "Technical Support",
-        description: "Technical issues and solutions",
+        title: "Technical Matrix",
+        description: "System anomalies and solutions",
         icon: "🔨",
         link: "/help/technical"
       }
@@ -80,75 +81,97 @@ const guides = [
 
 const quickLinks = [
   {
-    title: "License Terms",
-    description: "Review our music licensing terms",
-    icon: "📜",
+    title: "License Matrix",
+    description: "Access music licensing protocols",
+    icon: <FaFileAlt className="w-6 h-6" />,
     link: "/license"
   },
   {
-    title: "FAQ",
-    description: "Frequently asked questions",
-    icon: "❓",
+    title: "Neural FAQ",
+    description: "Common query responses",
+    icon: <FaQuestionCircle className="w-6 h-6" />,
     link: "/faq"
   },
   {
-    title: "Contact Support",
-    description: "Get in touch with our team",
-    icon: "📧",
+    title: "Support Link",
+    description: "Connect with our network",
+    icon: <FaEnvelope className="w-6 h-6" />,
     link: "/contact"
   }
 ];
 
 export default function HelpPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="min-h-screen bg-black relative">
+      {/* Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
+            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
+          `,
+          backgroundSize: '24px 24px, 24px 24px',
+          backgroundPosition: '0 0, 12px 12px'
+        }}
+      />
+
       {/* Hero section */}
-      <div className="bg-gray-800/50 border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white text-center mb-4">
-            Help Center
+      <div className="relative border-b border-red-900/30">
+        <div className="max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+          <h1 className="relative inline-block mb-6 mx-auto text-center w-full">
+            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
+            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
+              System Support Matrix
+            </span>
           </h1>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto">
-            Find guides, tutorials, and answers to help you make the most of No Copyright Gaming Music.
+          <p className="text-red-200/70 text-center max-w-2xl mx-auto font-light tracking-wider">
+            Access neural pathways, system protocols, and support networks to optimize your experience.
           </p>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
         {/* Quick links */}
-        <div className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-8">Quick Links</h2>
-          <div className="grid gap-6 md:grid-cols-3">
+        <div className="mb-24">
+          <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-12">Quick Access Nodes</h2>
+          <div className="grid gap-8 md:grid-cols-3">
             {quickLinks.map((link) => (
               <Link
                 key={link.title}
                 href={link.link}
-                className="bg-gray-800/30 rounded-xl p-6 hover:bg-gray-800/40 transition-all hover:transform hover:-translate-y-1"
+                className="group relative h-full"
               >
-                <div className="text-3xl mb-4">{link.icon}</div>
-                <h3 className="text-lg font-medium text-white mb-2">{link.title}</h3>
-                <p className="text-gray-400 text-sm">{link.description}</p>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500 animate-pulse-slow"></div>
+                <div className="relative h-full bg-black border border-red-900/30 p-8 flex flex-col">
+                  <div className="text-red-500 mb-6">{link.icon}</div>
+                  <h3 className="text-lg font-mono font-bold text-red-500 mb-3">{link.title}</h3>
+                  <p className="text-red-200/70 text-sm font-light tracking-wide">{link.description}</p>
+                </div>
               </Link>
             ))}
           </div>
         </div>
 
         {/* Help guides */}
-        <div className="space-y-16">
+        <div className="space-y-24">
           {guides.map((section) => (
             <section key={section.category}>
-              <h2 className="text-2xl font-semibold text-white mb-8">{section.category}</h2>
-              <div className="grid gap-6 md:grid-cols-3">
+              <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-12">{section.category}</h2>
+              <div className="grid gap-8 md:grid-cols-3">
                 {section.articles.map((article) => (
                   <Link
                     key={article.title}
                     href={article.link}
-                    className="bg-gray-800/30 rounded-xl p-6 hover:bg-gray-800/40 transition-all hover:transform hover:-translate-y-1"
+                    className="group relative h-full"
                   >
-                    <div className="text-3xl mb-4">{article.icon}</div>
-                    <h3 className="text-lg font-medium text-white mb-2">{article.title}</h3>
-                    <p className="text-gray-400 text-sm">{article.description}</p>
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500 animate-pulse-slow"></div>
+                    <div className="relative h-full bg-black border border-red-900/30 p-8 flex flex-col">
+                      <div className="text-3xl mb-6">{article.icon}</div>
+                      <h3 className="text-lg font-mono font-bold text-red-500 mb-3">{article.title}</h3>
+                      <p className="text-red-200/70 text-sm font-light tracking-wide">{article.description}</p>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -157,31 +180,47 @@ export default function HelpPage() {
         </div>
 
         {/* Contact support */}
-        <div className="mt-16 p-8 bg-blue-900/20 rounded-xl border border-blue-700/30">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              Need More Help?
-            </h2>
-            <p className="text-gray-400 mb-8">
-              Our support team is available to help you with any questions or issues you might have.
-              We typically respond within 24 hours.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:support@nocopyrightgamingmusic.com"
-                className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Email Support
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
-              >
-                Contact Form
-              </Link>
+        <div className="mt-32 relative">
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
+          <div className="relative bg-black border border-red-900/30 p-12">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-6">
+                Additional Support Required?
+              </h2>
+              <p className="text-red-200/70 mb-12 font-light tracking-wide">
+                Our neural support network stands ready to assist with system anomalies and inquiries.
+                Average response time: 24 cycles.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <a
+                  href="mailto:support@nocopyrightgamingmusic.com"
+                  className="group relative inline-flex"
+                >
+                  <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+                  <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
+                    <FaEnvelope className="w-5 h-5 text-red-500" />
+                    <span className="font-mono text-red-500">Neural Link</span>
+                  </div>
+                </a>
+                <Link
+                  href="/contact"
+                  className="group relative inline-flex"
+                >
+                  <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+                  <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
+                    <span className="font-mono text-red-500">Access Support Matrix</span>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Gradient Overlays */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
       </div>
     </div>
   );

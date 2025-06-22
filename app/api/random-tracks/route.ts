@@ -1,54 +1,34 @@
 import { NextResponse } from 'next/server';
+import { getMusicData, MusicData } from '../../../hooks/useMusicQuery';
 
-// Simulované dáta - neskôr nahradiť reálnou DB
-const tracks = [
-  {
-    title: "Neon Nights",
-    genre: "Synthwave",
-    trackUrl: "https://open.spotify.com/track/...",
-    embedUrl: "https://open.spotify.com/embed/track/...",
-    imageUrl: "/images/tracks/neon-nights.jpg"
-  },
-  {
-    title: "Cyber Rush",
-    genre: "DnB",
-    trackUrl: "https://open.spotify.com/track/...",
-    embedUrl: "https://open.spotify.com/embed/track/...",
-    imageUrl: "/images/tracks/cyber-rush.jpg"
-  },
-  {
-    title: "Digital Dreams",
-    genre: "Ambient",
-    trackUrl: "https://open.spotify.com/track/...",
-    embedUrl: "https://open.spotify.com/embed/track/...",
-    imageUrl: "/images/tracks/digital-dreams.jpg"
-  },
-  {
-    title: "Future Beats",
-    genre: "Electronic",
-    trackUrl: "https://open.spotify.com/track/...",
-    embedUrl: "https://open.spotify.com/embed/track/...",
-    imageUrl: "/images/tracks/future-beats.jpg"
-  },
-  {
-    title: "Night Drive",
-    genre: "Chillwave",
-    trackUrl: "https://open.spotify.com/track/...",
-    embedUrl: "https://open.spotify.com/embed/track/...",
-    imageUrl: "/images/tracks/night-drive.jpg"
-  }
-];
+interface TrackData {
+  title: string;
+  genre: string;
+  trackUrl: string;
+  embedUrl: string;
+  imageUrl: string;
+}
+
+const transformMusicData = (musicData: MusicData): TrackData => ({
+  title: musicData.Title,
+  genre: musicData.genre?.Genres || 'Unknown',
+  trackUrl: musicData.Spotify || '#',
+  embedUrl: musicData.Spotify ? 
+    `https://open.spotify.com/embed/track/${musicData.Spotify.split('/').pop()}` : '#',
+  imageUrl: musicData.Cover?.formats?.large?.url || '/images/default-track.jpg'
+});
 
 export async function GET(request: Request) {
   try {
-    // Získať count parameter z URL
     const { searchParams } = new URL(request.url);
     const count = parseInt(searchParams.get('count') || '3', 10);
-
-    // Náhodne premiešať pole a vziať prvých N skladieb
-    const shuffledTracks = [...tracks]
+    
+    const musicData = await getMusicData();
+    const transformedTracks = musicData.map(transformMusicData);
+    
+    const shuffledTracks = transformedTracks
       .sort(() => Math.random() - 0.5)
-      .slice(0, Math.min(count, tracks.length));
+      .slice(0, Math.min(count, transformedTracks.length));
 
     return NextResponse.json(shuffledTracks);
   } catch (error) {
@@ -58,4 +38,4 @@ export async function GET(request: Request) {
       { status: 500 }
     );
   }
-} 
+}

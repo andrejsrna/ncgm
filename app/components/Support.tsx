@@ -3,30 +3,28 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { FaHeadset, FaBook, FaEnvelope } from 'react-icons/fa';
+import { FaTerminal, FaNetworkWired, FaEnvelope } from 'react-icons/fa';
 
 const supportOptions = [
   {
-    title: 'Help Center',
-    description: 'Browse through our comprehensive guides and documentation',
-    icon: <FaBook className="w-6 h-6" />,
+    title: 'Neural Database',
+    description: 'Access the mainframe knowledge core for instant protocol guidance',
+    icon: <FaTerminal className="w-6 h-6" />,
     href: '/help',
-    color: 'from-blue-600 to-blue-400',
-    buttonText: 'View Guides'
+    buttonText: 'Initialize Connection'
   },
   {
-    title: 'Contact Support',
-    description: 'Get in touch with our dedicated support team',
-    icon: <FaHeadset className="w-6 h-6" />,
+    title: 'Direct Neural Link',
+    description: 'Establish real-time synaptic connection with our support matrix',
+    icon: <FaNetworkWired className="w-6 h-6" />,
     href: '/contact',
-    color: 'from-purple-600 to-purple-400',
-    buttonText: 'Contact Us'
+    buttonText: 'Open Channel'
   }
 ];
 
 const quickLinks = [
   {
-    title: 'Email Support',
+    title: 'Quantum Transmission',
     description: 'support@nocopyrightgamingmusic.com',
     icon: <FaEnvelope />,
     href: 'mailto:support@nocopyrightgamingmusic.com'
@@ -35,15 +33,37 @@ const quickLinks = [
 
 const Support: React.FC = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="relative py-32 bg-black overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-red-900/10 via-black to-black" />
+        
+        {/* Noir Grid Pattern */}
+        <div 
+          className="absolute inset-0 mix-blend-color-burn opacity-20"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
+            `,
+            backgroundSize: '24px 24px'
+          }}
+        />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Need Assistance?
+          <h2 className="relative text-4xl font-bold font-mono text-white mb-6 inline-block">
+            <span className="absolute -left-0.5 -top-0.5 text-red-600 opacity-80 blur-[1px]">
+              System Assistance Protocol
+            </span>
+            <span className="relative">
+              System Assistance Protocol
+            </span>
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            We&apos;re here to help! Choose the support option that works best for you.
+          <p className="text-lg text-red-200/70 font-mono max-w-2xl mx-auto">
+            Neural support matrix online. Select your preferred connection interface.
           </p>
         </div>
 
@@ -53,27 +73,37 @@ const Support: React.FC = () => {
             <Link
               key={option.title}
               href={option.href}
-              className="group relative overflow-hidden rounded-2xl bg-gray-800/50 hover:bg-gray-800/70 transition-all duration-300"
+              className="group relative"
             >
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r opacity-75 group-hover:opacity-100 transition-opacity"
-                   style={{ backgroundImage: `linear-gradient(to right, ${option.color})` }} />
+              {/* Card Glow Effect */}
+              <div className="absolute -inset-px bg-gradient-to-r from-red-800/50 via-red-600/50 to-red-800/50 opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
               
-              <div className="p-8">
-                <div className="flex items-start space-x-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${option.color}`}>
-                    {option.icon}
+              {/* Card Content */}
+              <div className="relative p-8 bg-black border border-red-900/30 backdrop-blur-sm">
+                <div className="flex items-start space-x-6">
+                  {/* Icon Container */}
+                  <div className="relative">
+                    <div className="absolute -inset-px bg-gradient-to-r from-red-800 to-red-600 blur-sm opacity-75" />
+                    <div className="relative p-3 bg-black border border-red-800/50">
+                      <div className="text-red-500">
+                        {option.icon}
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Content */}
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-2">
+                    <h3 className="text-xl font-mono font-medium text-red-400 mb-2">
                       {option.title}
                     </h3>
-                    <p className="text-gray-400 mb-6">
+                    <p className="text-gray-400 font-mono text-sm mb-6">
                       {option.description}
                     </p>
-                    <span className="inline-flex items-center text-white font-medium group-hover:translate-x-1 transition-transform">
+                    <span className="inline-flex items-center font-mono text-red-200/70 group-hover:text-red-200 transition-colors">
+                      <span className="text-xs text-red-800 mr-2">[SYS]</span>
                       {option.buttonText}
                       <svg
-                        className="ml-2 w-4 h-4"
+                        className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -101,30 +131,36 @@ const Support: React.FC = () => {
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="flex items-center space-x-4 p-6 rounded-xl bg-gray-800/30 hover:bg-gray-800/50 transition-all duration-300"
+              className="group relative flex items-center"
             >
-              <div className="text-2xl text-gray-400">
-                {link.icon}
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-white">
-                  {link.title}
-                </h3>
-                <p className="text-sm text-gray-400">
-                  {link.description}
-                </p>
+              {/* Link Glow Effect */}
+              <div className="absolute -inset-px bg-gradient-to-r from-red-900/30 to-red-800/30 opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
+              
+              {/* Link Content */}
+              <div className="relative flex items-center space-x-4 p-6 bg-black border border-red-900/20 w-full">
+                <div className="text-2xl text-red-800 group-hover:text-red-500 transition-colors">
+                  {link.icon}
+                </div>
+                <div>
+                  <h3 className="text-lg font-mono font-medium text-red-400">
+                    {link.title}
+                  </h3>
+                  <p className="text-sm font-mono text-gray-500">
+                    {link.description}
+                  </p>
+                </div>
               </div>
             </a>
           ))}
         </div>
 
         {/* Additional Info */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-400 text-sm">
-            Our support team typically responds within 24 hours during business days.
-            For immediate assistance, check our{' '}
-            <Link href="/help" className="text-blue-400 hover:text-blue-300 transition-colors">
-              help documentation
+        <div className="mt-16 text-center font-mono">
+          <p className="text-gray-500 text-sm">
+            Neural response time: ~24 cycles (business days).
+            For instant protocol access, connect to our{' '}
+            <Link href="/help" className="text-red-500 hover:text-red-400 transition-colors">
+              knowledge matrix
             </Link>
             .
           </p>

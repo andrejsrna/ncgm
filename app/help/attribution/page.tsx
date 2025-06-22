@@ -1,51 +1,55 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { FaChevronLeft, FaYoutube, FaTwitch, FaHashtag, FaCode, FaExclamationTriangle, FaShieldAlt, FaEnvelope, FaCheck, FaTimes } from 'react-icons/fa';
 
 export const metadata: Metadata = {
-  title: 'Attribution Guide | No Copyright Gaming Music',
-  description: 'Learn how to properly credit and attribute music from No Copyright Gaming Music in your content.',
+  title: 'Neural Attribution Matrix | No Copyright Gaming Music',
+  description: 'Neural protocol guide for signal source attribution across digital matrices.',
 };
 
 const platforms = [
   {
-    name: "YouTube",
-    format: "Music: [Song Title] by No Copyright Gaming Music (nocopyrightgamingmusic.com) - Purchased through [Store]",
-    location: "Video description",
+    name: "YouTube Matrix",
+    icon: <FaYoutube className="w-8 h-8" />,
+    format: "Signal: [Pattern ID] by Neural Core NCGM (nocopyrightgamingmusic.com) - Acquired via [Node]",
+    location: "Signal description matrix",
     example: {
-      title: "Epic Gaming Montage",
-      description: "Music: Neon Nights by No Copyright Gaming Music (nocopyrightgamingmusic.com) - Purchased through Beatport",
+      title: "Neural Gaming Sequence",
+      description: "Signal: Neon Protocol by Neural Core NCGM (nocopyrightgamingmusic.com) - Acquired via Beatport Node",
       tips: [
-        "Place at the beginning of description",
-        "Make the website URL clickable",
-        "Include all song titles used"
+        "Initialize at matrix entry point",
+        "Enable neural link to core domain",
+        "Include all pattern identifiers"
       ]
     }
   },
   {
-    name: "Twitch",
-    format: "!song command or panel with: Music from No Copyright Gaming Music (nocopyrightgamingmusic.com)",
-    location: "Stream panels or chat commands",
+    name: "Twitch Neural Grid",
+    icon: <FaTwitch className="w-8 h-8" />,
+    format: "!signal protocol or neural panel with: Signals from Neural Core NCGM (nocopyrightgamingmusic.com)",
+    location: "Stream neural panels or command matrix",
     example: {
-      title: "Live Stream",
-      description: "!song → Now Playing: Cyber Drive by No Copyright Gaming Music - Licensed through nocopyrightgamingmusic.com",
+      title: "Live Neural Stream",
+      description: "!signal → Active Pattern: Cyber Protocol by Neural Core NCGM - Licensed via nocopyrightgamingmusic.com",
       tips: [
-        "Set up automatic !song command",
-        "Create dedicated music info panel",
-        "Update song info regularly"
+        "Configure automated !signal protocol",
+        "Initialize dedicated signal panel",
+        "Maintain real-time pattern updates"
       ]
     }
   },
   {
-    name: "Social Media",
-    format: "🎵: [Song Title] - No Copyright Gaming Music",
-    location: "Post caption or comments",
+    name: "Social Neural Network",
+    icon: <FaHashtag className="w-8 h-8" />,
+    format: "⚡: [Pattern ID] - Neural Core NCGM",
+    location: "Neural feed or response matrix",
     example: {
-      title: "Instagram Reel",
-      description: "🎵: Midnight Rush - No Copyright Gaming Music\nLicensed through nocopyrightgamingmusic.com",
+      title: "Neural Grid Transmission",
+      description: "⚡: Midnight Protocol - Neural Core NCGM\nLicensed via nocopyrightgamingmusic.com",
       tips: [
-        "Use music emoji for visibility",
-        "Keep format consistent",
-        "Tag our official accounts"
+        "Utilize neural marker for visibility",
+        "Maintain protocol consistency",
+        "Link to official neural nodes"
       ]
     }
   }
@@ -53,94 +57,126 @@ const platforms = [
 
 const commonMistakes = [
   {
-    mistake: "Missing Purchase Source",
-    correct: "Include where you purchased the track",
-    wrong: "Music: Epic Track by No Copyright Gaming Music",
-    right: "Music: Epic Track by No Copyright Gaming Music - Purchased through Beatport"
+    mistake: "Node Source Missing",
+    correct: "Include acquisition node identifier",
+    wrong: "Signal: Neural Pattern by Core NCGM",
+    right: "Signal: Neural Pattern by Core NCGM - Acquired via Beatport Node"
   },
   {
-    mistake: "Incorrect Website URL",
-    correct: "Always use nocopyrightgamingmusic.com",
-    wrong: "Music from ncgm.com",
-    right: "Music from nocopyrightgamingmusic.com"
+    mistake: "Invalid Neural Link",
+    correct: "Use authorized domain: nocopyrightgamingmusic.com",
+    wrong: "Signal from ncgm.com",
+    right: "Signal from nocopyrightgamingmusic.com"
   },
   {
-    mistake: "Incomplete Attribution",
-    correct: "Include all required elements",
-    wrong: "Music by NCGM",
-    right: "Music: [Song Title] by No Copyright Gaming Music (nocopyrightgamingmusic.com) - Purchased through [Store]"
+    mistake: "Incomplete Neural Tag",
+    correct: "Include all required neural markers",
+    wrong: "Signal by NCGM",
+    right: "Signal: [Pattern ID] by Neural Core NCGM (nocopyrightgamingmusic.com) - Acquired via [Node]"
   }
 ];
 
 export default function AttributionPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="min-h-screen bg-black relative">
+      {/* Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
+            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
+          `,
+          backgroundSize: '24px 24px, 24px 24px',
+          backgroundPosition: '0 0, 12px 12px'
+        }}
+      />
+
       {/* Hero section */}
-      <div className="bg-gray-800/50 border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center mb-8">
+      <div className="relative border-b border-red-900/30">
+        <div className="max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center mb-12">
             <Link
               href="/help"
-              className="text-blue-400 hover:text-blue-300 transition-colors"
+              className="group relative inline-flex items-center gap-2 text-red-500 hover:text-red-400 transition-colors"
             >
-              ← Back to Help Center
+              <FaChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+              <span className="font-mono">Return to Support Matrix</span>
             </Link>
           </div>
-          <h1 className="text-4xl font-bold text-white text-center mb-4">
-            Attribution Guide
+          <h1 className="relative inline-block mb-6 mx-auto text-center w-full">
+            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
+            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
+              Neural Attribution Matrix
+            </span>
           </h1>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto">
-            Learn how to properly credit our music in your content across different platforms.
+          <p className="text-red-200/70 text-center max-w-2xl mx-auto font-light tracking-wider">
+            Protocol guide for proper signal source attribution across digital matrices.
           </p>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
         {/* Quick reference */}
-        <div className="bg-blue-900/20 rounded-xl p-6 mb-16 border border-blue-700/30">
-          <h2 className="text-xl font-semibold text-white mb-4">Quick Reference Format</h2>
-          <div className="bg-gray-800/50 p-4 rounded-lg">
-            <code className="text-sm text-gray-300">
-              Music: [Song Title] by No Copyright Gaming Music (nocopyrightgamingmusic.com) - Purchased through [Store]
-            </code>
+        <div className="relative mb-32">
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
+          <div className="relative bg-black border border-red-900/30 p-8">
+            <div className="flex items-center gap-4 mb-6">
+              <FaCode className="w-6 h-6 text-red-500" />
+              <h2 className="text-2xl font-mono font-bold text-red-500">Core Protocol Reference</h2>
+            </div>
+            <div className="bg-black/50 p-6 border border-red-500/20">
+              <code className="text-sm text-red-200/70 font-mono">
+                Signal: [Pattern ID] by Neural Core NCGM (nocopyrightgamingmusic.com) - Acquired via [Node]
+              </code>
+            </div>
           </div>
         </div>
 
         {/* Platform-specific guides */}
-        <div className="space-y-16">
+        <div className="space-y-32">
           {platforms.map((platform) => (
             <section key={platform.name}>
-              <h2 className="text-2xl font-semibold text-white mb-8">
-                {platform.name} Attribution
-              </h2>
+              <div className="flex items-center gap-4 mb-16">
+                <div className="text-red-500">{platform.icon}</div>
+                <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider">
+                  {platform.name}
+                </h2>
+              </div>
               <div className="grid gap-8 md:grid-cols-2">
-                <div className="bg-gray-800/30 rounded-xl p-6">
-                  <h3 className="text-lg font-medium text-white mb-4">Format & Location</h3>
-                  <p className="text-gray-400 mb-2">Format:</p>
-                  <div className="bg-gray-800/50 p-3 rounded-lg mb-4">
-                    <code className="text-sm text-gray-300">{platform.format}</code>
-                  </div>
-                  <p className="text-gray-400 mb-2">Where to place:</p>
-                  <p className="text-sm text-gray-300">{platform.location}</p>
-                </div>
-                <div className="bg-gray-800/30 rounded-xl p-6">
-                  <h3 className="text-lg font-medium text-white mb-4">Example</h3>
-                  <div className="space-y-4">
-                    <p className="text-gray-400 text-sm">Title: {platform.example.title}</p>
-                    <div className="bg-gray-800/50 p-3 rounded-lg">
-                      <code className="text-sm text-gray-300">{platform.example.description}</code>
+                <div className="group relative">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
+                  <div className="relative h-full bg-black border border-red-900/30 p-8">
+                    <h3 className="text-xl font-mono font-bold text-red-500 mb-6">Protocol & Location</h3>
+                    <p className="text-red-200/70 mb-3 tracking-wide">Protocol Format:</p>
+                    <div className="bg-black/50 p-4 border border-red-500/20 mb-6">
+                      <code className="text-sm text-red-200/70 font-mono">{platform.format}</code>
                     </div>
-                    <div className="mt-4">
-                      <p className="text-gray-400 mb-2">Tips:</p>
-                      <ul className="space-y-2">
-                        {platform.example.tips.map((tip, index) => (
-                          <li key={index} className="text-sm text-gray-400 flex items-center">
-                            <span className="text-green-400 mr-2">✓</span>
-                            {tip}
-                          </li>
-                        ))}
-                      </ul>
+                    <p className="text-red-200/70 mb-3 tracking-wide">Neural Placement:</p>
+                    <p className="text-sm text-red-200/70 font-mono">{platform.location}</p>
+                  </div>
+                </div>
+                <div className="group relative">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
+                  <div className="relative h-full bg-black border border-red-900/30 p-8">
+                    <h3 className="text-xl font-mono font-bold text-red-500 mb-6">Neural Example</h3>
+                    <div className="space-y-6">
+                      <p className="text-red-200/70 text-sm tracking-wide">Pattern: {platform.example.title}</p>
+                      <div className="bg-black/50 p-4 border border-red-500/20">
+                        <code className="text-sm text-red-200/70 font-mono">{platform.example.description}</code>
+                      </div>
+                      <div>
+                        <p className="text-red-200/70 mb-3 tracking-wide">Protocol Tips:</p>
+                        <ul className="space-y-3">
+                          {platform.example.tips.map((tip, index) => (
+                            <li key={index} className="text-sm text-red-200/70 tracking-wide flex items-center gap-3">
+                              <FaCheck className="w-4 h-4 text-red-500 flex-shrink-0" />
+                              <span className="font-mono">{tip}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -150,21 +186,30 @@ export default function AttributionPage() {
         </div>
 
         {/* Common mistakes */}
-        <div className="mt-16">
-          <h2 className="text-2xl font-semibold text-white mb-8">Common Mistakes to Avoid</h2>
-          <div className="grid gap-6 md:grid-cols-3">
+        <div className="mt-32">
+          <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider mb-16">Protocol Anomalies</h2>
+          <div className="grid gap-8 md:grid-cols-3">
             {commonMistakes.map((item) => (
-              <div key={item.mistake} className="bg-gray-800/30 rounded-xl p-6">
-                <h3 className="text-lg font-medium text-white mb-4">{item.mistake}</h3>
-                <p className="text-gray-400 mb-4 text-sm">{item.correct}</p>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-red-400 text-xs mb-1">❌ Wrong:</p>
-                    <p className="text-gray-400 text-sm">{item.wrong}</p>
-                  </div>
-                  <div>
-                    <p className="text-green-400 text-xs mb-1">✓ Correct:</p>
-                    <p className="text-gray-400 text-sm">{item.right}</p>
+              <div key={item.mistake} className="group relative">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
+                <div className="relative h-full bg-black border border-red-900/30 p-8">
+                  <h3 className="text-xl font-mono font-bold text-red-500 mb-4">{item.mistake}</h3>
+                  <p className="text-red-200/70 mb-6 text-sm tracking-wide">{item.correct}</p>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <FaTimes className="w-4 h-4 text-red-500" />
+                        <p className="text-red-500 text-xs font-mono">Invalid Protocol:</p>
+                      </div>
+                      <p className="text-red-200/70 text-sm tracking-wide font-mono">{item.wrong}</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <FaCheck className="w-4 h-4 text-red-500" />
+                        <p className="text-red-500 text-xs font-mono">Valid Protocol:</p>
+                      </div>
+                      <p className="text-red-200/70 text-sm tracking-wide font-mono">{item.right}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -173,28 +218,48 @@ export default function AttributionPage() {
         </div>
 
         {/* Warning notice */}
-        <div className="mt-16 p-8 bg-yellow-900/20 rounded-xl border border-yellow-700/30 text-center">
-          <h2 className="text-xl font-semibold text-white mb-4">
-            ⚠️ Important Notice
-          </h2>
-          <p className="text-gray-400 mb-6">
-            Proper attribution is required to maintain your license to use our music. 
-            Failure to provide correct attribution may result in copyright claims.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/license"
-              className="inline-flex items-center justify-center px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
-            >
-              Review License Terms
-            </Link>
-            <a
-              href="mailto:support@nocopyrightgamingmusic.com"
-              className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Contact Support
-            </a>
+        <div className="relative mt-32">
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
+          <div className="relative bg-black border border-red-900/30 p-12 text-center">
+            <div className="flex justify-center mb-6">
+              <FaExclamationTriangle className="w-12 h-12 text-red-500" />
+            </div>
+            <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-6">
+              Critical Protocol Notice
+            </h2>
+            <p className="text-red-200/70 mb-12 tracking-wide max-w-2xl mx-auto">
+              Neural attribution protocols are required to maintain signal usage license.
+              Protocol violations may trigger automated copyright protection systems.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link
+                href="/license"
+                className="group relative inline-flex"
+              >
+                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
+                  <FaShieldAlt className="w-5 h-5 text-red-500" />
+                  <span className="font-mono text-red-500">Review License Matrix</span>
+                </div>
+              </Link>
+              <a
+                href="mailto:support@nocopyrightgamingmusic.com"
+                className="group relative inline-flex"
+              >
+                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
+                  <FaEnvelope className="w-5 h-5 text-red-500" />
+                  <span className="font-mono text-red-500">Neural Support Link</span>
+                </div>
+              </a>
+            </div>
           </div>
+        </div>
+
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
         </div>
       </div>
     </div>

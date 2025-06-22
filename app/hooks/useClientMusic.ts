@@ -4,23 +4,23 @@ import { useState, useEffect, useCallback, cache } from 'react';
 
 interface Track {
   id: number;
-    Title: string;
-    Genre: string;
-    Spotify: string;
-    spotify_embed: string;
-    Cover: {
-        name: string;
+  Title: string;
+  Genre: string;
+  Spotify: string;
+  spotify_embed: string;
+  Cover: {
+    name: string;
+    url: string;
+    formats: {
+      large: {
         url: string;
-        formats: {
-            large: {
-                url: string;
-            }
-        }
-    }
-    createdAt: string;
-    updatedAt: string;
-    slug: string;
-    Beatport: string;
+      };
+    };
+  };
+  createdAt: string;
+  updatedAt: string;
+  slug: string;
+  Beatport: string;
 }
 
 interface StrapiResponse {
@@ -66,7 +66,6 @@ export const getPosts = cache(async () => {
   );
 
   if (!response.ok) {
-    console.error('API Error:', await response.text());
     throw new Error('Failed to fetch posts');
   }
 
@@ -83,7 +82,7 @@ export function useClientMusic(count: number = 3) {
     try {
       const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/musicm?pagination[pageSize]=${count}&pagination[page]=1&populate=*`, 
+        `${process.env.NEXT_PUBLIC_API_URL}/api/musicm?pagination[pageSize]=${count}&pagination[page]=1&populate=*`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -96,8 +95,6 @@ export function useClientMusic(count: number = 3) {
       }
 
       const data: StrapiResponse = await response.json();
-      
-      // Náhodne premiešať a vybrať požadovaný počet skladieb
       const shuffledTracks = [...data.data]
         .sort(() => Math.random() - 0.5)
         .slice(0, count);
@@ -105,8 +102,7 @@ export function useClientMusic(count: number = 3) {
       setTracks(shuffledTracks);
       setLoading(false);
     } catch (err) {
-      console.error('Error fetching tracks:', err);
-      setError('Failed to load tracks');
+      setError(`Failed to load tracks: ${err}`);
       setLoading(false);
     }
   }, [count]);
@@ -114,8 +110,7 @@ export function useClientMusic(count: number = 3) {
   useEffect(() => {
     fetchTracks();
   }, [fetchTracks]);
-  console.log(tracks);
-  // Transformujeme Strapi dáta do formátu, ktorý očakáva FeaturedTrack komponent
+
   const formattedTracks = tracks.map(track => ({
     title: track.Title,
     genre: track.Genre,
@@ -126,10 +121,10 @@ export function useClientMusic(count: number = 3) {
     beatportUrl: track.Beatport
   }));
 
-  return { 
-    tracks: formattedTracks, 
-    loading, 
+  return {
+    tracks: formattedTracks,
+    loading,
     error,
-    refetch: fetchTracks // Pridané pre prípad, že by sme chceli manuálne obnoviť dáta
+    refetch: fetchTracks
   };
-} 
+}

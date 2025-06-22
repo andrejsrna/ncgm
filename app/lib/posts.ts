@@ -1,5 +1,3 @@
-import { cache } from 'react';
-
 export interface Post {
   pubDate: string;
   id: number;
@@ -19,82 +17,60 @@ export interface Post {
   updatedAt: string;
 }
 
-export const getPosts = cache(async () => {
+interface ApiResponse {
+  data: Post[];
+  meta?: {
+    pagination?: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
+
+const createApiRequest = (endpoint: string) => {
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  
+  return fetch(`${apiUrl}/api/posts${endpoint}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    next: { revalidate: 3600 },
+  });
+};
+
+const handleApiError = async (response: Response, context: string) => {
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`${context}: ${response.status} ${errorText}`);
+  }
+};
+
+export const getPosts = async (): Promise<Post[]> => {
   try {
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await createApiRequest('?populate=*');
+    await handleApiError(response, 'Failed to fetch posts');
     
-    console.log('Fetching from:', `${apiUrl}/api/posts?populate=*`); // Debug log
-    
-    const response = await fetch(
-      `${apiUrl}/api/posts?populate=*`,
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        cache: 'no-store',
-      }
-    );
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('API Error Status:', response.status);
-      console.error('API Error Text:', errorText);
-      throw new Error(`Failed to fetch posts: ${response.status} ${errorText}`);
-    }
-
-    const data = await response.json();
-    console.log('API Response:', data); // Debug log
-    
-    if (!data.data) {
-      console.error('Unexpected API response structure:', data);
-      return [];
-    }
-
-    return data.data as Post[];
+    const data: ApiResponse = await response.json();
+    return data.data || [];
   } catch (error) {
     console.error('Error fetching posts:', error);
-    return []; // Return empty array instead of throwing
+    return [];
   }
-});
+};
 
-export const getPostBySlug = cache(async (slug: string) => {
+export const getPostBySlug = async (slug: string): Promise<Post | null> => {
   try {
-    const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await createApiRequest(`?filters[slug][$eq]=${slug}&populate=*`);
+    await handleApiError(response, 'Failed to fetch post');
     
-    console.log('Fetching post by slug:', slug);
-    
-    const response = await fetch(
-      `${apiUrl}/api/posts?filters[slug][$eq]=${slug}&populate=*`,
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        cache: 'no-store',
-      }
-    );
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('API Error Status:', response.status);
-      console.error('API Error Text:', errorText);
-      return null;
-    }
-
-    const data = await response.json();
-    console.log('API Response:', data);
-    
-    if (!data.data || !data.data[0]) {
-      console.log('Post not found');
-      return null;
-    }
-
-    return data.data[0] as Post;
+    const data: ApiResponse = await response.json();
+    return data.data?.[0] || null;
   } catch (error) {
     console.error('Error fetching post:', error);
     return null;
   }
-}); 
+};

@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { FaAmazon, FaApple, FaDeezer, FaPlay, FaSpotify, FaYoutube } from 'react-icons/fa';
+import { FiHeadphones } from 'react-icons/fi';
 
 interface MusicServiceBase {
   name: string;
@@ -11,7 +12,6 @@ interface MusicServiceBase {
   color: string;
   hoverColor: string;
   description: string;
-  listeners?: string;
 }
 
 interface MusicServiceWithIconComponent extends MusicServiceBase {
@@ -34,8 +34,7 @@ export const musicServices: MusicService[] = [
     hoverColor: '#1ed760',
     icon: <FaSpotify />,
     isCustomIcon: false,
-    description: 'Stream our music on Spotify',
-    listeners: '10K+ monthly listeners'
+    description: 'Stream our music on Spotify'
   },
   {
     name: 'Apple Music',
@@ -44,8 +43,7 @@ export const musicServices: MusicService[] = [
     hoverColor: '#ff375f',
     icon: <FaApple />,
     isCustomIcon: false,
-    description: 'Listen on Apple Music',
-    listeners: 'Featured Artist'
+    description: 'Listen on Apple Music'
   },
   {
     name: 'Amazon Music',
@@ -54,8 +52,7 @@ export const musicServices: MusicService[] = [
     hoverColor: '#ffaa22',
     icon: <FaAmazon />,
     isCustomIcon: false,
-    description: 'Available on Amazon Music',
-    listeners: 'Prime Music Included'
+    description: 'Available on Amazon Music'
   },
   {
     name: 'YouTube Music',
@@ -64,8 +61,7 @@ export const musicServices: MusicService[] = [
     hoverColor: '#ff1a1a',
     icon: <FaYoutube />,
     isCustomIcon: false,
-    description: 'Subscribe on YouTube Music',
-    listeners: '50K+ subscribers'
+    description: 'Subscribe on YouTube Music'
   },
   {
     name: 'Deezer',
@@ -74,8 +70,7 @@ export const musicServices: MusicService[] = [
     hoverColor: '#00d600',
     icon: <FaDeezer />,
     isCustomIcon: false,
-    description: 'Find us on Deezer',
-    listeners: 'Trending Artist'
+    description: 'Find us on Deezer'
   },
   {
     name: 'Tidal',
@@ -84,19 +79,45 @@ export const musicServices: MusicService[] = [
     hoverColor: '#33ccff',
     icon: '/icons/tidal.svg',
     isCustomIcon: true,
-    description: 'High Fidelity on TIDAL',
-    listeners: 'HiFi Quality'
+    description: 'High Fidelity on TIDAL'
   }
 ];
 
 const MusicProfiles: React.FC = () => {
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-900 to-black">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">Listen Everywhere</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Find our music on all major streaming platforms. Choose your preferred service and start listening today.
+    <section className="py-24 bg-black relative">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-noise opacity-[0.15]"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-900/5 to-transparent"></div>
+      
+      {/* Halftone Pattern */}
+      <div 
+        className="absolute inset-0 mix-blend-soft-light opacity-20"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.9) 2px, transparent 2px),
+            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.9) 2px, transparent 2px)
+          `,
+          backgroundSize: '24px 24px, 24px 24px',
+          backgroundPosition: '0 0, 12px 12px'
+        }}
+      />
+
+      <div className="max-w-6xl mx-auto px-4 relative">
+        <div className="text-center mb-16">
+          <div className="inline-block p-3 rounded-full bg-red-900/20 mb-4">
+            <FiHeadphones className="w-6 h-6 text-red-500" />
+          </div>
+          <h2 
+            className="text-4xl font-bold text-white mb-4 tracking-tight"
+            style={{ 
+              textShadow: '2px 2px 0px rgba(185, 28, 28, 0.3)'
+            }}
+          >
+            Access All Frequencies
+          </h2>
+          <p className="text-lg text-red-200/70 max-w-2xl mx-auto font-light tracking-wide">
+            Tune in to your preferred digital wavelength. Our signal reaches every corner of the sonic grid.
           </p>
         </div>
 
@@ -107,22 +128,28 @@ const MusicProfiles: React.FC = () => {
               href={service.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-800 to-gray-900
-                         hover:from-gray-700 hover:to-gray-800 transition-all duration-300 p-6
-                         transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black"
-              style={{
-                boxShadow: `0 0 15px ${service.color}30, 0 0 30px ${service.color}20`,
-                '--tw-ring-color': service.color,
-              } as React.CSSProperties}
+              className="group relative"
             >
-              <div className="absolute top-0 left-0 w-3 h-3 rounded-br-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                   style={{ backgroundColor: service.color }} />
-
-              <div className="flex items-center space-x-4 relative z-10">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors duration-300"
-                       style={{ boxShadow: `0 0 10px ${service.color}40` }}>
-                    {service.isCustomIcon ? (
+              {/* Card Glow Effect */}
+              <div 
+                className="absolute -inset-0.5 opacity-0 group-hover:opacity-100 blur transition duration-300"
+                style={{
+                  background: `linear-gradient(to right, ${service.color}, ${service.hoverColor})`
+                }}
+              />
+              
+              {/* Card Content */}
+              <div className="relative bg-black border border-red-900/30 group-hover:border-opacity-0 transition-colors duration-300">
+                <div className="p-6 relative">
+                  {/* Service Icon */}
+                  <div className="flex items-center space-x-4">
+                    <div 
+                      className="w-12 h-12 rounded flex items-center justify-center bg-black/20"
+                      style={{ 
+                        boxShadow: `0 0 20px ${service.color}20`
+                      }}
+                    >
+                      {service.isCustomIcon ? (
                         <Image
                           src={service.icon}
                           alt={`${service.name} Logo`}
@@ -130,31 +157,39 @@ const MusicProfiles: React.FC = () => {
                           height={28}
                           className="opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                         />
-                    ) : (
-                        <span className="text-3xl opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                              style={{ color: service.color }}>
+                      ) : (
+                        <span 
+                          className="text-3xl transition-colors duration-300"
+                          style={{ 
+                            color: service.color,
+                          }}
+                        >
                           {service.icon}
                         </span>
-                    )}
+                      )}
+                    </div>
+
+                    <div className="flex-1">
+                      <h3 
+                        className="text-xl font-medium mb-1 transition-colors duration-300"
+                        style={{ color: service.color }}
+                      >
+                        {service.name}
+                      </h3>
+                      <p className="text-red-200/70 text-sm font-light">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-white/95 transition-colors">
-                    {service.name}
-                  </h3>
-                  <p className="text-gray-300 text-sm mb-2 group-hover:text-gray-200 transition-colors">
-                    {service.description}
-                  </p>
-                  {service.listeners && (
-                    <p className="text-sm font-semibold" style={{ color: service.color }}>
-                      {service.listeners}
-                    </p>
-                  )}
-                </div>
-
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transform translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-                  <FaPlay className="text-white/70" size={18} />
+                  {/* Play Icon */}
+                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                    <FaPlay 
+                      className="transition-colors duration-300"
+                      style={{ color: service.color }}
+                      size={18} 
+                    />
+                  </div>
                 </div>
               </div>
             </a>
@@ -162,10 +197,13 @@ const MusicProfiles: React.FC = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-gray-400 text-sm">
-            Don&apos;t see your preferred platform? Check our{' '}
-            <a href="/help" className="text-blue-400 hover:text-blue-300 transition-colors">
-              help center
+          <p className="text-red-300/60 text-sm font-light tracking-wider">
+            Can&apos;t find your platform?{' '}
+            <a 
+              href="/help" 
+              className="text-red-400 hover:text-red-300 transition-colors underline decoration-red-800/50 hover:decoration-red-700/50"
+            >
+              Check our help center
             </a>
             {' '}for more options.
           </p>

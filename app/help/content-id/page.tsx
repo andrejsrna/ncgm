@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import ContentIdPageClient from './ContentIdPageClient';
 
 export const metadata: Metadata = {
-  title: 'Content ID Guide | No Copyright Gaming Music',
-  description: 'Learn how to handle Content ID claims and protect your content when using No Copyright Gaming Music.',
+  title: 'Neural Pattern Protection Matrix | No Copyright Gaming Music',
+  description: 'Protocol guide for handling neural pattern protection claims and securing your digital signal matrix.',
 };
 
 export default function ContentIdPage() {

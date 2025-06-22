@@ -1,44 +1,66 @@
 'use client';
 
 import { FaSearch, FaDownload, FaHeart } from 'react-icons/fa';
+import { FiCpu } from 'react-icons/fi';
 import Link from 'next/link';
 
 const steps = [
   {
     icon: <FaSearch className="w-8 h-8" />,
-    title: "Browse Music",
-    description: "Find the perfect track for your content from our curated collection.",
-    color: "from-blue-500 to-blue-600"
+    title: "Scan the Grid",
+    description: "Navigate our neural network of curated tracks to find your sonic signature.",
+    color: "from-red-800 to-red-600"
   },
   {
     icon: <FaDownload className="w-8 h-8" />,
-    title: "Download & Use",
-    description: "Get instant access to high-quality tracks ready for your projects.",
-    color: "from-purple-500 to-purple-600"
+    title: "Extract Data",
+    description: "Download high-fidelity audio files directly to your local matrix.",
+    color: "from-red-800 to-red-600"
   },
   {
     icon: <FaHeart className="w-8 h-8" />,
-    title: "Credit the Artist",
-    description: "Support the community by adding a simple credit (Optional).",
-    color: "from-pink-500 to-pink-600"
+    title: "Amplify the Signal",
+    description: "Boost the collective by linking back to the source (Optional).",
+    color: "from-red-800 to-red-600"
   }
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-20" />
-      <div className="absolute inset-0 bg-gradient-radial from-blue-500/10 via-transparent to-transparent" />
+    <section className="py-24 bg-black relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-noise opacity-[0.15]"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-900/5 to-transparent"></div>
+      
+      {/* Halftone Pattern */}
+      <div 
+        className="absolute inset-0 mix-blend-soft-light opacity-20"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.9) 2px, transparent 2px),
+            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.9) 2px, transparent 2px)
+          `,
+          backgroundSize: '24px 24px, 24px 24px',
+          backgroundPosition: '0 0, 12px 12px'
+        }}
+      />
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 relative">
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            How It Works
+        <div className="text-center mb-16">
+          <div className="inline-block p-3 rounded-full bg-red-900/20 mb-4">
+            <FiCpu className="w-6 h-6 text-red-500" />
+          </div>
+          <h2 
+            className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight"
+            style={{ 
+              textShadow: '2px 2px 0px rgba(185, 28, 28, 0.3)'
+            }}
+          >
+            System Protocols
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Get started with No Copyright Gaming Music in three simple steps
+          <p className="text-lg text-red-200/70 max-w-2xl mx-auto font-light tracking-wide">
+            Initialize your connection to the network in three encrypted steps
           </p>
         </div>
 
@@ -47,27 +69,38 @@ export default function HowItWorks() {
           {steps.map((step, index) => (
             <div
               key={step.title}
-              className={`relative group animate-fade-in-up delay-${index + 1}00`}
+              className="group relative"
             >
-              {/* Step Card */}
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 h-full transform hover:scale-105 transition-all duration-300">
+              {/* Card Glow Effect */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-red-900 to-red-800 opacity-75 blur transition duration-500"></div>
+              
+              {/* Card Content */}
+              <div className="relative bg-black border border-red-900/30 p-8 h-full">
                 {/* Step Number */}
-                <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm">
-                  {index + 1}
+                <div className="absolute -top-4 -left-4">
+                  <div className="relative">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-red-800 to-red-600 opacity-75 blur"></div>
+                    <div className="relative w-8 h-8 rounded-full bg-black border border-red-800/50 flex items-center justify-center">
+                      <span className="text-red-500 font-bold text-sm">{index + 1}</span>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Icon */}
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${step.color} p-4 mb-6 transform group-hover:scale-110 transition-transform duration-300`}>
-                  <div className="text-white">
-                    {step.icon}
+                <div className="relative group/icon mb-6">
+                  <div className="absolute -inset-2 bg-gradient-to-r from-red-800 to-red-600 opacity-0 group-hover/icon:opacity-75 blur transition duration-300"></div>
+                  <div className="relative w-16 h-16 rounded bg-black border border-red-800/50 p-4 group-hover/icon:border-red-600/50 transition-colors duration-300">
+                    <div className="text-red-500 group-hover/icon:text-red-400 transition-colors duration-300">
+                      {step.icon}
+                    </div>
                   </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-semibold text-white mb-4">
+                <h3 className="text-xl font-medium text-red-300 group-hover:text-red-200 transition-colors duration-300 mb-4">
                   {step.title}
                 </h3>
-                <p className="text-gray-400">
+                <p className="text-red-200/70 font-light">
                   {step.description}
                 </p>
               </div>
@@ -76,15 +109,31 @@ export default function HowItWorks() {
         </div>
 
         {/* CTA */}
-        <div className="text-center animate-fade-in-up delay-400">
+        <div className="text-center">
           <Link 
             href="/music"
-            className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            className="group relative inline-block"
           >
-            Browse Tracks
+            <div className="absolute -inset-1 bg-gradient-to-r from-red-800 to-red-600 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
+            <div className="relative flex items-center gap-2 px-8 py-4 bg-black border border-red-800/50 group-hover:border-red-600/50 transition-colors duration-500">
+              <span className="text-red-400 font-medium tracking-wide">Initialize Connection</span>
+              <svg
+                className="w-5 h-5 text-red-500 group-hover:translate-x-1 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </div>
           </Link>
-          <p className="mt-4 text-gray-400 text-sm">
-            No registration required. Start downloading instantly.
+          <p className="mt-6 text-red-300/60 text-sm font-light tracking-wider">
+            No authentication required. Direct neural interface available.
           </p>
         </div>
       </div>

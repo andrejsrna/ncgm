@@ -1,237 +1,259 @@
-import { Metadata } from 'next';
+'use client';
+
 import Link from 'next/link';
+import { FaChevronLeft, FaCheck, FaCircle, FaExclamationTriangle, FaWaveSquare, FaServer, FaFile, FaGamepad } from 'react-icons/fa';
+import { RiShieldKeyholeFill, RiSettings4Fill } from 'react-icons/ri';
+import { MdMemory, MdOutlineIntegrationInstructions } from 'react-icons/md';
 
-export const metadata: Metadata = {
-  title: 'Technical Support | No Copyright Gaming Music',
-  description: 'Technical support and troubleshooting guide for using No Copyright Gaming Music.',
-};
-
-const commonIssues = [
+const neuralAnomalies = [
   {
-    category: "Audio Quality",
-    icon: "🎧",
+    category: "Signal Fidelity",
+    icon: <FaWaveSquare className="w-8 h-8" />,
     problems: [
       {
-        title: "Low Audio Quality",
+        title: "Neural Degradation",
         symptoms: [
-          "Distorted sound",
-          "Low bitrate audio",
-          "Compression artifacts"
+          "Signal distortion matrix",
+          "Low bandwidth neural stream",
+          "Pattern compression artifacts"
         ],
         solutions: [
-          "Verify you downloaded the high-quality version",
-          "Check if using correct format (WAV/320kbps MP3)",
-          "Re-download from original source",
-          "Ensure proper audio export settings"
+          "Verify high-fidelity neural pattern",
+          "Confirm protocol format (Neural/320kbps)",
+          "Re-sync from primary node",
+          "Optimize neural export parameters"
         ]
       },
       {
-        title: "Volume Issues",
+        title: "Amplitude Anomalies",
         symptoms: [
-          "Too quiet/loud",
-          "Inconsistent levels",
-          "Clipping audio"
+          "Signal strength variance",
+          "Inconsistent neural levels",
+          "Pattern overflow detected"
         ],
         solutions: [
-          "Use audio normalization",
-          "Check master volume levels",
-          "Apply proper gain staging",
-          "Use audio limiters if needed"
+          "Execute neural normalization",
+          "Calibrate master signal levels",
+          "Apply quantum gain protocols",
+          "Implement neural limiters"
         ]
       }
     ]
   },
   {
-    category: "File Formats",
-    icon: "📁",
+    category: "Data Protocols",
+    icon: <FaFile className="w-8 h-8" />,
     problems: [
       {
-        title: "Format Compatibility",
+        title: "Protocol Compatibility",
         symptoms: [
-          "File won&apos;t play",
-          "Editor doesn&apos;t recognize format",
-          "Conversion errors"
+          "Neural pattern rejection",
+          "Matrix recognition failure",
+          "Protocol conversion errors"
         ],
         solutions: [
-          "Use supported format for your platform",
-          "Convert using professional tools",
-          "Download correct format version",
-          "Update media software/codecs"
+          "Use node-compatible protocols",
+          "Execute professional conversion",
+          "Sync correct protocol version",
+          "Update neural codecs"
         ]
       },
       {
-        title: "Metadata Issues",
+        title: "Neural Metadata",
         symptoms: [
-          "Missing track info",
-          "Incorrect tags",
-          "File organization problems"
+          "Pattern data corruption",
+          "Neural tag misalignment",
+          "Data structure anomalies"
         ],
         solutions: [
-          "Use metadata editing software",
-          "Re-download with full metadata",
-          "Manually add correct information",
-          "Organize files systematically"
+          "Deploy metadata optimization",
+          "Re-sync with full neural data",
+          "Manual data reconstruction",
+          "Implement systematic protocols"
         ]
       }
     ]
   },
   {
-    category: "Software Integration",
-    icon: "🎮",
+    category: "Matrix Integration",
+    icon: <FaGamepad className="w-8 h-8" />,
     problems: [
       {
-        title: "DAW Compatibility",
+        title: "Neural DAW Sync",
         symptoms: [
-          "Import failures",
-          "Plugin conflicts",
-          "Playback issues"
+          "Integration failure",
+          "Plugin neural conflict",
+          "Pattern sync issues"
         ],
         solutions: [
-          "Update DAW software",
-          "Check format compatibility",
-          "Clear software cache",
-          "Use supported sample rate"
+          "Update neural matrix",
+          "Verify protocol compatibility",
+          "Clear neural cache",
+          "Sync quantum rate"
         ]
       },
       {
-        title: "Streaming Software",
+        title: "Neural Stream Matrix",
         symptoms: [
-          "Audio desync",
-          "Streaming artifacts",
-          "OBS integration issues"
+          "Neural desynchronization",
+          "Stream pattern artifacts",
+          "OBS neural conflicts"
         ],
         solutions: [
-          "Configure correct audio settings",
-          "Use appropriate bitrate",
-          "Set proper audio buffer",
-          "Update streaming software"
+          "Configure neural parameters",
+          "Optimize bandwidth protocol",
+          "Set neural buffer matrix",
+          "Update stream protocols"
         ]
       }
     ]
   }
 ];
 
-const technicalSpecs = [
+const neuralSpecs = [
   {
-    title: "Supported Formats",
+    title: "Neural Protocols",
     specs: [
-      "WAV (48kHz/24-bit)",
-      "MP3 (320kbps)",
-      "AIFF (48kHz/24-bit)",
-      "FLAC (lossless)"
+      "Quantum WAV (48kHz/24-bit)",
+      "Neural MP3 (320kbps)",
+      "Quantum AIFF (48kHz/24-bit)",
+      "Neural FLAC (lossless)"
     ],
-    icon: "📊"
+    icon: <FaServer className="w-8 h-8" />
   },
   {
-    title: "System Requirements",
+    title: "System Matrix",
     specs: [
-      "Modern web browser",
-      "Audio playback capability",
-      "Sufficient storage space",
-      "Stable internet connection"
+      "Advanced neural browser",
+      "Pattern playback matrix",
+      "Quantum storage array",
+      "Stable neural uplink"
     ],
-    icon: "💻"
+    icon: <MdMemory className="w-8 h-8" />
   },
   {
-    title: "Software Compatibility",
+    title: "Matrix Compatibility",
     specs: [
-      "Major DAWs supported",
-      "Common video editors",
-      "Streaming software",
-      "Media players"
+      "Neural DAW integration",
+      "Visual pattern editors",
+      "Stream matrix protocols",
+      "Neural pattern players"
     ],
-    icon: "🔧"
+    icon: <MdOutlineIntegrationInstructions className="w-8 h-8" />
   }
 ];
 
 export default function TechnicalPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="min-h-screen bg-black relative">
+      {/* Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
+            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
+          `,
+          backgroundSize: '24px 24px, 24px 24px',
+          backgroundPosition: '0 0, 12px 12px'
+        }}
+      />
+
       {/* Hero section */}
-      <div className="bg-gray-800/50 border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center mb-8">
+      <div className="relative border-b border-red-900/30">
+        <div className="max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center mb-12">
             <Link
               href="/help"
-              className="text-blue-400 hover:text-blue-300 transition-colors"
+              className="group relative inline-flex items-center gap-2 text-red-500 hover:text-red-400 transition-colors"
             >
-              ← Back to Help Center
+              <FaChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+              <span className="font-mono">Return to Support Matrix</span>
             </Link>
           </div>
-          <h1 className="text-4xl font-bold text-white text-center mb-4">
-            Technical Support
+          <h1 className="relative inline-block mb-6 mx-auto text-center w-full">
+            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
+            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
+              Neural Signal Diagnostics Matrix
+            </span>
           </h1>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto">
-            Find solutions to technical issues and learn about our supported formats and specifications.
+          <p className="text-red-200/70 text-center max-w-2xl mx-auto font-light tracking-wider">
+            Access advanced neural signal diagnostics and optimization protocols for seamless signal integration.
           </p>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        {/* Technical Specifications */}
-        <div className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-8">Technical Specifications</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {technicalSpecs.map((spec) => (
+      <div className="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+        {/* Neural Specifications */}
+        <div className="mb-32">
+          <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider mb-12">Neural Matrix Specifications</h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            {neuralSpecs.map((spec) => (
               <div
                 key={spec.title}
-                className="bg-gray-800/30 rounded-xl p-6"
+                className="group relative"
               >
-                <div className="text-3xl mb-4">{spec.icon}</div>
-                <h3 className="text-xl font-medium text-white mb-4">{spec.title}</h3>
-                <ul className="space-y-2">
-                  {spec.specs.map((item, index) => (
-                    <li key={index} className="text-gray-400 text-sm flex items-center">
-                      <span className="text-blue-400 mr-2">•</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
+                <div className="relative h-full bg-black border border-red-900/30 p-8">
+                  <div className="text-red-500 mb-6">{spec.icon}</div>
+                  <h3 className="text-xl font-mono font-bold text-red-500 mb-6">{spec.title}</h3>
+                  <ul className="space-y-3">
+                    {spec.specs.map((item, index) => (
+                      <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
+                        <FaCircle className="w-2 h-2 text-red-500 flex-shrink-0" />
+                        <span className="tracking-wide">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Common Issues */}
-        <div className="space-y-16">
-          {commonIssues.map((category) => (
-            <section key={category.category}>
-              <div className="flex items-center mb-8">
-                <span className="text-3xl mr-3">{category.icon}</span>
-                <h2 className="text-2xl font-semibold text-white">
-                  {category.category} Issues
+        {/* Neural Anomalies */}
+        <div className="space-y-32">
+          {neuralAnomalies.map((category) => (
+            <section key={category.category} className="relative">
+              <div className="flex items-center gap-4 mb-12">
+                <div className="text-red-500">{category.icon}</div>
+                <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider">
+                  {category.category} Matrix
                 </h2>
               </div>
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="grid gap-8 md:grid-cols-2">
                 {category.problems.map((problem) => (
                   <div
                     key={problem.title}
-                    className="bg-gray-800/30 rounded-xl p-6"
+                    className="group relative"
                   >
-                    <h3 className="text-xl font-medium text-white mb-4">{problem.title}</h3>
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-white font-medium mb-2">Symptoms:</h4>
-                        <ul className="space-y-1">
-                          {problem.symptoms.map((symptom, index) => (
-                            <li key={index} className="text-gray-400 text-sm flex items-center">
-                              <span className="text-red-400 mr-2">⚠</span>
-                              {symptom}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="text-white font-medium mb-2">Solutions:</h4>
-                        <ul className="space-y-1">
-                          {problem.solutions.map((solution, index) => (
-                            <li key={index} className="text-gray-400 text-sm flex items-center">
-                              <span className="text-green-400 mr-2">✓</span>
-                              {solution}
-                            </li>
-                          ))}
-                        </ul>
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
+                    <div className="relative h-full bg-black border border-red-900/30 p-8">
+                      <h3 className="text-xl font-mono font-bold text-red-500 mb-8">{problem.title}</h3>
+                      <div className="space-y-8">
+                        <div>
+                          <h4 className="text-lg font-mono font-bold text-red-500 mb-4">Neural Symptoms:</h4>
+                          <ul className="space-y-2">
+                            {problem.symptoms.map((symptom, index) => (
+                              <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
+                                <FaExclamationTriangle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                                <span className="tracking-wide">{symptom}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-mono font-bold text-red-500 mb-4">Neural Solutions:</h4>
+                          <ul className="space-y-2">
+                            {problem.solutions.map((solution, index) => (
+                              <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
+                                <FaCheck className="w-4 h-4 text-red-500 flex-shrink-0" />
+                                <span className="tracking-wide">{solution}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -241,28 +263,45 @@ export default function TechnicalPage() {
           ))}
         </div>
 
-        {/* Help section */}
-        <div className="mt-16 text-center">
-          <h2 className="text-2xl font-semibold text-white mb-4">
-            Still Having Issues?
-          </h2>
-          <p className="text-gray-400 mb-8">
-            Our technical support team is here to help you resolve any technical problems.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/help/platforms"
-              className="inline-flex items-center justify-center px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
-            >
-              Platform Guidelines
-            </Link>
-            <a
-              href="mailto:support@nocopyrightgamingmusic.com"
-              className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Contact Support
-            </a>
+        {/* Support Matrix */}
+        <div className="relative mt-32">
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
+          <div className="relative bg-black border border-red-900/30 p-12 text-center">
+            <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-6">
+              Neural Anomaly Detected?
+            </h2>
+            <p className="text-red-200/70 mb-12 font-light tracking-wide max-w-2xl mx-auto">
+              Our neural support matrix stands ready to assist with advanced diagnostics and anomaly resolution.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link
+                href="/help/attribution"
+                className="group relative inline-flex"
+              >
+                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
+                  <RiShieldKeyholeFill className="w-5 h-5 text-red-500" />
+                  <span className="font-mono text-red-500">Attribution Matrix</span>
+                </div>
+              </Link>
+              <Link
+                href="/contact"
+                className="group relative inline-flex"
+              >
+                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
+                  <RiSettings4Fill className="w-5 h-5 text-red-500" />
+                  <span className="font-mono text-red-500">Neural Support</span>
+                </div>
+              </Link>
+            </div>
           </div>
+        </div>
+
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
         </div>
       </div>
     </div>

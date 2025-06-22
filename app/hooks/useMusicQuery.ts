@@ -1,4 +1,4 @@
-import { cache } from 'react';
+import { unstable_cache as cache } from 'next/cache';
 
 // Define the type for your music data
 export interface MusicData {
@@ -58,12 +58,10 @@ export const getMusicData = cache(async () => {
   });
 
   if (!response.ok) {
-    console.error('API Error:', await response.text());
     throw new Error('Failed to fetch music data');
   }
 
   const responseData: ApiResponse = await response.json();
-  console.log('Raw API response:', responseData);
   
   return responseData.data || [];
 });

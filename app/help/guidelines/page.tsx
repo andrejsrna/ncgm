@@ -1,91 +1,89 @@
-import { Metadata } from 'next';
+'use client';
+
 import Link from 'next/link';
+import { FaChevronLeft, FaCheck, FaTimes, FaCircle, FaChevronRight, FaHeadphones, FaGamepad, FaCrosshairs, FaExclamationTriangle } from 'react-icons/fa';
+import { RiVideoFill, RiPencilRuler2Fill, RiSettings5Fill, RiShieldKeyholeFill } from 'react-icons/ri';
 
-export const metadata: Metadata = {
-  title: 'Platform Guidelines | No Copyright Gaming Music',
-  description: 'Detailed guidelines and requirements for using No Copyright Gaming Music on different content platforms.',
-};
-
-const guidelines = [
+const protocols = [
   {
-    platform: "Content Creation",
-    icon: "🎥",
-    rules: [
+    sector: "Signal Integration",
+    icon: <RiVideoFill className="w-8 h-8" />,
+    directives: [
       {
-        title: "Permitted Uses",
+        title: "Authorized Signal Paths",
         items: [
-          "Gaming videos and streams",
-          "Video blogs and tutorials",
-          "Background music for content",
-          "Personal projects",
-          "Educational content"
+          "Neural gaming streams",
+          "Digital consciousness logs",
+          "Background signal patterns",
+          "Personal neural projects",
+          "Knowledge matrix uploads"
         ],
         type: "allowed"
       },
       {
-        title: "Prohibited Uses",
+        title: "Restricted Operations",
         items: [
-          "Reselling or redistributing tracks",
-          "Creating music compilations",
-          "NFT or digital asset creation",
-          "Commercial advertising without license",
-          "Claiming ownership of music"
+          "Signal pattern redistribution",
+          "Neural compilation creation",
+          "Digital asset tokenization",
+          "Unauthorized signal amplification",
+          "Pattern ownership claims"
         ],
         type: "prohibited"
       }
     ]
   },
   {
-    platform: "Attribution",
-    icon: "✏️",
-    rules: [
+    sector: "Neural Attribution",
+    icon: <RiPencilRuler2Fill className="w-8 h-8" />,
+    directives: [
       {
-        title: "Required Elements",
+        title: "Required Neural Markers",
         items: [
-          "Song title and artist name",
-          "Website link (nocopyrightgamingmusic.com)",
-          "Purchase platform mention",
-          "Proper formatting",
-          "Visible placement"
+          "Signal pattern designation",
+          "Core matrix link (nocopyrightgamingmusic.com)",
+          "Acquisition node reference",
+          "Protocol-compliant formatting",
+          "High-visibility placement"
         ],
         type: "required"
       },
       {
-        title: "Placement Guidelines",
+        title: "Integration Protocols",
         items: [
-          "Video descriptions",
-          "Stream information panels",
-          "Credit sections",
-          "Social media captions",
-          "End credits where applicable"
+          "Signal matrix descriptions",
+          "Stream data panels",
+          "Neural credit sequences",
+          "Social node captions",
+          "Terminal credit markers"
         ],
         type: "info"
       }
     ]
   },
   {
-    platform: "Technical Usage",
-    icon: "⚙️",
-    rules: [
+    sector: "Technical Protocols",
+    icon: <RiSettings5Fill className="w-8 h-8" />,
+    directives: [
       {
-        title: "Allowed Modifications",
+        title: "Authorized Modifications",
         items: [
-          "Volume adjustment",
-          "Basic audio editing",
-          "Fading in/out",
-          "Length trimming",
-          "Basic mixing"
+          "Amplitude calibration",
+          "Basic signal processing",
+          "Transition algorithms",
+          "Duration optimization",
+          "Signal harmonization"
         ],
         type: "allowed"
       },
       {
-        title: "Prohibited Modifications",
+        title: "Restricted Operations",
         items: [
-          "Remixing without permission",
-          "Creating derivative works",
-          "Altering core composition",
-          "Removing watermarks",
-          "Changing metadata"
+          "Unauthorized pattern remixing",
+          "Derivative signal creation",
+          "Core pattern alteration",
+          "Neural marker removal",
+          "Metadata manipulation"
         ],
         type: "prohibited"
       }
@@ -93,101 +91,120 @@ const guidelines = [
   }
 ];
 
-const qualityStandards = [
+const signalStandards = [
   {
-    title: "Audio Quality",
-    description: "Maintain high audio standards in your content",
+    title: "Signal Fidelity",
+    description: "Maintain optimal neural signal clarity in your matrix",
     requirements: [
-      "Use original quality files",
-      "Proper volume balancing",
-      "Clean audio mixing",
-      "No distortion or artifacts"
+      "Use source-quality patterns",
+      "Neural amplitude calibration",
+      "Clean signal integration",
+      "Zero pattern corruption"
     ],
-    icon: "🎧"
+    icon: <FaHeadphones className="w-8 h-8" />
   },
   {
-    title: "Content Integration",
-    description: "Integrate music appropriately with your content",
+    title: "Matrix Integration",
+    description: "Optimize signal pattern synchronization",
     requirements: [
-      "Suitable volume levels",
-      "Appropriate song selection",
-      "Professional transitions",
-      "Proper synchronization"
+      "Precise amplitude ratios",
+      "Strategic pattern selection",
+      "Professional phase transitions",
+      "Neural synchronization"
     ],
-    icon: "🎮"
+    icon: <FaGamepad className="w-8 h-8" />
   },
   {
-    title: "Professional Presentation",
-    description: "Maintain professional standards in your content",
+    title: "Protocol Execution",
+    description: "Maintain strict neural protocol standards",
     requirements: [
-      "Clear attribution",
-      "Professional editing",
-      "Consistent quality",
-      "Platform compliance"
+      "Clear attribution markers",
+      "Professional signal editing",
+      "Consistent neural quality",
+      "Node compliance verification"
     ],
-    icon: "🎯"
+    icon: <FaCrosshairs className="w-8 h-8" />
   }
 ];
 
 export default function GuidelinesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="min-h-screen bg-black relative">
+      {/* Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
+            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
+          `,
+          backgroundSize: '24px 24px, 24px 24px',
+          backgroundPosition: '0 0, 12px 12px'
+        }}
+      />
+
       {/* Hero section */}
-      <div className="bg-gray-800/50 border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center mb-8">
+      <div className="relative border-b border-red-900/30">
+        <div className="max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center mb-12">
             <Link
               href="/help"
-              className="text-blue-400 hover:text-blue-300 transition-colors"
+              className="group relative inline-flex items-center gap-2 text-red-500 hover:text-red-400 transition-colors"
             >
-              ← Back to Help Center
+              <FaChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+              <span className="font-mono">Return to Support Matrix</span>
             </Link>
           </div>
-          <h1 className="text-4xl font-bold text-white text-center mb-4">
-            Platform Guidelines
+          <h1 className="relative inline-block mb-6 mx-auto text-center w-full">
+            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
+            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
+              Neural Signal Protocol Matrix
+            </span>
           </h1>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto">
-            Comprehensive guidelines for using our music across different content platforms.
+          <p className="text-red-200/70 text-center max-w-2xl mx-auto font-light tracking-wider">
+            Core protocols for neural signal integration across digital matrices.
           </p>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        {/* Guidelines sections */}
-        <div className="space-y-16">
-          {guidelines.map((section) => (
-            <section key={section.platform}>
-              <div className="flex items-center mb-8">
-                <span className="text-3xl mr-3">{section.icon}</span>
-                <h2 className="text-2xl font-semibold text-white">
-                  {section.platform} Guidelines
+      <div className="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+        {/* Protocol sections */}
+        <div className="space-y-32">
+          {protocols.map((section) => (
+            <section key={section.sector}>
+              <div className="flex items-center gap-4 mb-12">
+                <div className="text-red-500">{section.icon}</div>
+                <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider">
+                  {section.sector} Protocols
                 </h2>
               </div>
-              <div className="grid gap-6 md:grid-cols-2">
-                {section.rules.map((rule) => (
+              <div className="grid gap-8 md:grid-cols-2">
+                {section.directives.map((directive) => (
                   <div
-                    key={rule.title}
-                    className="bg-gray-800/30 rounded-xl p-6"
+                    key={directive.title}
+                    className="group relative"
                   >
-                    <h3 className="text-xl font-medium text-white mb-4">{rule.title}</h3>
-                    <ul className="space-y-2">
-                      {rule.items.map((item, index) => (
-                        <li key={index} className="text-gray-400 text-sm flex items-center">
-                          <span className={`mr-2 ${
-                            rule.type === 'prohibited' ? 'text-red-400' : 
-                            rule.type === 'allowed' ? 'text-green-400' :
-                            rule.type === 'required' ? 'text-blue-400' :
-                            'text-yellow-400'
-                          }`}>
-                            {rule.type === 'prohibited' ? '✗' :
-                             rule.type === 'allowed' ? '✓' :
-                             rule.type === 'required' ? '•' : '↳'}
-                          </span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
+                    <div className="relative h-full bg-black border border-red-900/30 p-8">
+                      <h3 className="text-xl font-mono font-bold text-red-500 mb-6">{directive.title}</h3>
+                      <ul className="space-y-3">
+                        {directive.items.map((item, index) => (
+                          <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
+                            {directive.type === 'prohibited' ? (
+                              <FaTimes className="w-4 h-4 text-red-500 flex-shrink-0" />
+                            ) : directive.type === 'allowed' ? (
+                              <FaCheck className="w-4 h-4 text-red-500 flex-shrink-0" />
+                            ) : directive.type === 'required' ? (
+                              <FaCircle className="w-2 h-2 text-red-500 flex-shrink-0" />
+                            ) : (
+                              <FaChevronRight className="w-3 h-3 text-red-500 flex-shrink-0" />
+                            )}
+                            <span className="tracking-wide">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -195,67 +212,93 @@ export default function GuidelinesPage() {
           ))}
         </div>
 
-        {/* Quality Standards */}
-        <div className="mt-16">
-          <h2 className="text-2xl font-semibold text-white mb-8">Quality Standards</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {qualityStandards.map((standard) => (
+        {/* Signal Standards */}
+        <div className="mt-32">
+          <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider mb-12">Neural Signal Standards</h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            {signalStandards.map((standard) => (
               <div
                 key={standard.title}
-                className="bg-gray-800/30 rounded-xl p-6"
+                className="group relative"
               >
-                <div className="text-3xl mb-4">{standard.icon}</div>
-                <h3 className="text-xl font-medium text-white mb-2">{standard.title}</h3>
-                <p className="text-gray-400 text-sm mb-4">{standard.description}</p>
-                <ul className="space-y-2">
-                  {standard.requirements.map((req, index) => (
-                    <li key={index} className="text-gray-400 text-sm flex items-center">
-                      <span className="text-blue-400 mr-2">{index + 1}.</span>
-                      {req}
-                    </li>
-                  ))}
-                </ul>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
+                <div className="relative h-full bg-black border border-red-900/30 p-8">
+                  <div className="text-red-500 mb-6">{standard.icon}</div>
+                  <h3 className="text-xl font-mono font-bold text-red-500 mb-4">{standard.title}</h3>
+                  <p className="text-red-200/70 text-sm mb-6 tracking-wide">{standard.description}</p>
+                  <ul className="space-y-3">
+                    {standard.requirements.map((req, index) => (
+                      <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
+                        <span className="text-red-500 font-mono">{(index + 1).toString().padStart(2, '0')}</span>
+                        <span className="tracking-wide">{req}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Important Notice */}
-        <div className="mt-16 p-8 bg-blue-900/20 rounded-xl border border-blue-700/30">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-xl font-semibold text-white mb-4">
-              Compliance Note
-            </h2>
-            <p className="text-gray-400">
-              Following these guidelines ensures proper usage of our music and helps maintain 
-              high-quality standards across all content platforms. Failure to comply may result 
-              in license termination or content claims.
-            </p>
+        {/* Critical Notice */}
+        <div className="relative mt-32">
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
+          <div className="relative bg-black border border-red-900/30 p-12">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="flex justify-center mb-6">
+                <FaExclamationTriangle className="w-8 h-8 text-red-500" />
+              </div>
+              <h2 className="text-2xl font-mono font-bold text-red-500 mb-6">
+                Protocol Compliance Alert
+              </h2>
+              <p className="text-red-200/70 tracking-wide">
+                Strict adherence to these protocols ensures optimal neural signal integration and maintains 
+                matrix integrity across all nodes. Protocol violations may result in immediate license 
+                termination or signal interference claims.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Help section */}
-        <div className="mt-16 text-center">
-          <h2 className="text-2xl font-semibold text-white mb-4">
-            Need Clarification?
-          </h2>
-          <p className="text-gray-400 mb-8">
-            Our support team is here to help you understand and follow these guidelines.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/help/attribution"
-              className="inline-flex items-center justify-center px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
-            >
-              Attribution Guide
-            </Link>
-            <a
-              href="mailto:support@nocopyrightgamingmusic.com"
-              className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Contact Support
-            </a>
+        {/* Support Section */}
+        <div className="relative mt-32">
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
+          <div className="relative bg-black border border-red-900/30 p-12 text-center">
+            <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-6">
+              Neural Protocol Assistance
+            </h2>
+            <p className="text-red-200/70 mb-12 font-light tracking-wide max-w-2xl mx-auto">
+              Our neural support matrix stands ready to assist with protocol interpretation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link
+                href="/help/attribution"
+                className="group relative inline-flex"
+              >
+                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
+                  <RiShieldKeyholeFill className="w-5 h-5 text-red-500" />
+                  <span className="font-mono text-red-500">Attribution Matrix</span>
+                </div>
+              </Link>
+              <Link
+                href="/contact"
+                className="group relative inline-flex"
+              >
+                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
+                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
+                  <FaChevronRight className="w-5 h-5 text-red-500" />
+                  <span className="font-mono text-red-500">Initialize Support</span>
+                </div>
+              </Link>
+            </div>
           </div>
+        </div>
+
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
         </div>
       </div>
     </div>
