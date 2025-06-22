@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getLatestVideos, YouTubeVideo } from '@/app/lib/youtube';
+import { getLatestVideos } from '@/app/lib/youtube';
 import { FaYoutube, FaPlay } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 

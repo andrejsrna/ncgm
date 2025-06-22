@@ -6,6 +6,22 @@ export interface YouTubeVideo {
   url: string;
 }
 
+interface YouTubePlaylistItem {
+  id: string;
+  snippet: {
+    title: string;
+    publishedAt: string;
+    thumbnails: {
+      high: {
+        url: string;
+      };
+    };
+    resourceId: {
+      videoId: string;
+    };
+  };
+}
+
 export async function getLatestVideos(channelId: string, maxResults: number = 12): Promise<YouTubeVideo[]> {
   const apiKey = process.env.YOUTUBE_API_KEY;
 
@@ -28,7 +44,7 @@ export async function getLatestVideos(channelId: string, maxResults: number = 12
     
     const data = await response.json();
 
-    return data.items.map((item: any): YouTubeVideo => ({
+    return data.items.map((item: YouTubePlaylistItem): YouTubeVideo => ({
       id: item.id,
       title: item.snippet.title,
       thumbnailUrl: item.snippet.thumbnails.high.url,
