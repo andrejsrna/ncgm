@@ -52,7 +52,7 @@ export default async function MusicDetailPage({
               
               {/* Image Container */}
               <div className="relative h-[600px] w-full overflow-hidden bg-black">
-                {track.Cover && (
+                {track.Cover && track.Cover.formats && track.Cover.formats.large && (
                   <Image
                     src={`${track.Cover.formats.large.url}`}
                     alt={track.Title}
