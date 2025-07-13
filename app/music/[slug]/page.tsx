@@ -1,4 +1,4 @@
-import { getMusicBySlug } from "@/hooks/useMusicQuery";
+import { getMusicBySlug } from "@/app/hooks/useMusicQuery";
 import Image from "next/image";
 import Link from "next/link";
 import { FaSpotify, FaApple, FaYoutube, FaDeezer, FaDownload, FaHeadphones } from 'react-icons/fa';

@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: post.title,
       description: post.description,
-      images: post.image ? [`${process.env.NEXT_PUBLIC_API_URL}${post.image.formats.large.url}`] : [],
+      images: post.image && post.image.formats && post.image.formats.large ? [`${process.env.NEXT_PUBLIC_API_URL}${post.image.formats.large.url}`] : [],
     },
   };
 }
@@ -64,7 +64,7 @@ export default async function NewsDetailPage({ params }: Props): Promise<React.R
 
       <article className="relative py-32">
         {/* Hero Section with Cover Image */}
-        {post.image && (
+        {post.image && post.image.formats && post.image.formats.large && (
           <div className="absolute top-0 left-0 w-full h-[500px] overflow-hidden">
             <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur" />
             <div className="relative h-full">

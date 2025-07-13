@@ -54,7 +54,7 @@ export default async function NewsPage() {
                 
                 {/* Main card */}
                 <div className="relative bg-black border border-red-900/30 overflow-hidden h-full flex flex-col">
-                  {post.image && (
+                  {post.image && post.image.formats && post.image.formats.large && (
                     <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black z-10" />
                       <Image

@@ -1,4 +1,4 @@
-import { unstable_cache as cache } from 'next/cache';
+
 
 // Define the type for your music data
 export interface MusicData {
@@ -48,7 +48,7 @@ interface ApiResponse {
   };
 }
 
-export const getMusicData = cache(async () => {
+export const getMusicData = async () => {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/musicm?populate=*`, {
     headers: {
@@ -64,9 +64,9 @@ export const getMusicData = cache(async () => {
   const responseData: ApiResponse = await response.json();
   
   return responseData.data || [];
-});
+};
 
-export const getMusicBySlug = cache(async (slug: string) => {
+export const getMusicBySlug = async (slug: string) => {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/musicm?filters[slug][$eq]=${slug}&populate=*`, 
@@ -85,4 +85,4 @@ export const getMusicBySlug = cache(async (slug: string) => {
 
   const responseData = await response.json();
   return responseData.data[0]; // Return first matching item since slug should be unique
-});
+};

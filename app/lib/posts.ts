@@ -55,7 +55,14 @@ export const getPosts = async (): Promise<Post[]> => {
     await handleApiError(response, 'Failed to fetch posts');
     
     const data: ApiResponse = await response.json();
-    return data.data || [];
+    const posts = data.data || [];
+    
+    // Sort posts by publishedAt date (newest first)
+    return posts.sort((a, b) => {
+      const dateA = new Date(a.publishedAt).getTime();
+      const dateB = new Date(b.publishedAt).getTime();
+      return dateB - dateA;
+    });
   } catch (error) {
     console.error('Error fetching posts:', error);
     return [];

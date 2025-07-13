@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { MusicData } from "@/hooks/useMusicQuery";
+import { MusicData } from "@/app/hooks/useMusicQuery";
 import Image from "next/image";
 import { FaSpotify, FaApple, FaYoutube, FaAmazon } from 'react-icons/fa';
 
@@ -18,7 +18,7 @@ export default function MusicCard({ track }: MusicCardProps) {
       {/* Main card */}
       <div className="relative bg-black border border-red-900/30 overflow-hidden h-full flex flex-col">
         {/* Cover Image with Effects */}
-        {track.Cover && (
+        {track.Cover && track.Cover.formats && track.Cover.formats.large && (
           <div className="relative h-72 w-full overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black z-10" />
             <Image

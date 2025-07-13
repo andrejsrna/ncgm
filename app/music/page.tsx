@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getMusicData, MusicData } from "@/hooks/useMusicQuery";
+import { getMusicData, MusicData } from "@/app/hooks/useMusicQuery";
 import MusicCard from "@/app/music/MusicCard";
 import { FiLoader } from 'react-icons/fi';
 
