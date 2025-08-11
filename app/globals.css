@@ -1,7 +1,11 @@
 @config "../tailwind.config.ts";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@source "../app/**/*.{ts,tsx}";
+@source "../components/**/*.{ts,tsx}";
+@source "../hooks/**/*.{ts,tsx}";
+@source "../lib/**/*.{ts,tsx}";
+@source "../src/**/*.{ts,tsx}";
+@source "../pages/**/*.{ts,tsx}";
+@import "tailwindcss";
 
 body {
   font-family: Arial, Helvetica, sans-serif;
