@@ -1,15 +1,9 @@
 import type { Config } from "tailwindcss";
 import typography from '@tailwindcss/typography';
-import tailwindcssAnimate from "tailwindcss-animate";
+import animate from 'tailwindcss-animate';
 
 const config: Config = {
-  darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  darkMode: "class",
   theme: {
     container: {
       center: true,
@@ -110,7 +104,7 @@ const config: Config = {
   },
   plugins: [
     typography,
-    tailwindcssAnimate,
+    animate,
   ],
 } satisfies Config;
 

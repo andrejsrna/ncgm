@@ -1,4 +1,5 @@
 import { getMusicBySlug } from "@/app/hooks/useMusicQuery";
+import { resolveStrapiImageUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { FaSpotify, FaApple, FaYoutube, FaDeezer, FaDownload, FaHeadphones } from 'react-icons/fa';
@@ -12,6 +13,7 @@ export default async function MusicDetailPage({
 }) {
   const { slug } = await params;
   const track = await getMusicBySlug(slug);
+  const coverUrl = resolveStrapiImageUrl(track?.Cover);
 
   return (
     <div className="min-h-screen bg-black relative">
@@ -52,11 +54,12 @@ export default async function MusicDetailPage({
               
               {/* Image Container */}
               <div className="relative h-[600px] w-full overflow-hidden bg-black">
-                {track.Cover && track.Cover.formats && track.Cover.formats.large && (
+                {coverUrl && (
                   <Image
-                    src={`${track.Cover.formats.large.url}`}
+                    src={coverUrl}
                     alt={track.Title}
                     fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
                     className="object-cover transform group-hover:scale-105 transition-transform duration-700 group-hover:saturate-150"
                     priority
                   />

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { getMusicData, MusicData } from '../../../hooks/useMusicQuery';
+import { getMusicData, type MusicData } from '@/app/hooks/useMusicQuery';
+import { resolveStrapiImageUrl } from '@/lib/utils';
 
 interface TrackData {
   title: string;
@@ -15,7 +16,7 @@ const transformMusicData = (musicData: MusicData): TrackData => ({
   trackUrl: musicData.Spotify || '#',
   embedUrl: musicData.Spotify ? 
     `https://open.spotify.com/embed/track/${musicData.Spotify.split('/').pop()}` : '#',
-  imageUrl: musicData.Cover?.formats?.large?.url || '/images/default-track.jpg'
+  imageUrl: resolveStrapiImageUrl(musicData.Cover) || '/images/default-track.jpg'
 });
 
 export async function GET(request: Request) {

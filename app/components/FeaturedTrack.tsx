@@ -110,12 +110,13 @@ const FeaturedTrack: React.FC = () => {
               {/* Card Content */}
               <div className="relative bg-black border border-red-900/30 group-hover:border-red-800/50 transition-colors duration-500">
                 <div className="relative">
-                  <div className="aspect-w-16 aspect-h-9 relative">
+                  <div className="relative" style={{ aspectRatio: '16 / 9' }}>
                     <Image
                       src={track.imageUrl}
                       alt={track.title}
                       width={500}
                       height={400}
+              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover brightness-75 saturate-50"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-80" />

@@ -4,12 +4,14 @@ import Link from "next/link";
 import { MusicData } from "@/app/hooks/useMusicQuery";
 import Image from "next/image";
 import { FaSpotify, FaApple, FaYoutube, FaAmazon } from 'react-icons/fa';
+import { resolveStrapiImageUrl } from "@/lib/utils";
 
 interface MusicCardProps {
   track: MusicData;
 }
 
 export default function MusicCard({ track }: MusicCardProps) {
+  const imageUrl = resolveStrapiImageUrl(track?.Cover)
   return (
     <div className="group relative h-full">
       {/* Glowing border effect */}
@@ -18,13 +20,14 @@ export default function MusicCard({ track }: MusicCardProps) {
       {/* Main card */}
       <div className="relative bg-black border border-red-900/30 overflow-hidden h-full flex flex-col">
         {/* Cover Image with Effects */}
-        {track.Cover && track.Cover.formats && track.Cover.formats.large && (
+        {imageUrl && (
           <div className="relative h-72 w-full overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black z-10" />
             <Image
-              src={`${track.Cover.formats.large.url}`}
+              src={imageUrl}
               alt={track.Title || 'Music cover'}
               fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
               className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:saturate-150"
             />
             {/* Scanline effect */}
