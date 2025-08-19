@@ -169,12 +169,13 @@ const FeaturedTrack: React.FC = () => {
                       href={track.beatportUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/btn relative block"
+                      className="group/btn relative block transform hover:scale-105 transition-all duration-300"
                     >
-                      <div className="absolute -inset-0.5 bg-[#02FF77]/30 opacity-0 group-hover/btn:opacity-100 blur transition duration-300"></div>
-                      <div className="relative flex items-center justify-center py-2 px-4 bg-black border border-[#02FF77]/20 group-hover/btn:border-[#02FF77]/40 transition-colors duration-300">
-                        <SiBeatport className="mr-2 text-lg text-[#02FF77]" />
-                        <span className="text-sm font-medium text-[#02FF77]/90">Download on Beatport</span>
+                      <div className="absolute -inset-1 bg-gradient-to-r from-[#02FF77]/40 to-[#02FF77]/60 opacity-80 group-hover/btn:opacity-100 blur transition duration-500 animate-pulse-slow"></div>
+                      <div className="relative flex items-center justify-center py-3 px-6 bg-black border-2 border-[#02FF77]/50 group-hover/btn:border-[#02FF77]/70 transition-all duration-300">
+                        <SiBeatport className="mr-3 text-xl text-[#02FF77]" />
+                        <span className="text-base font-semibold text-[#02FF77] tracking-wider">Download on Beatport</span>
+                        <div className="absolute top-2 right-2 w-2 h-2 bg-[#02FF77] rounded-full animate-pulse"></div>
                       </div>
                     </a>
 

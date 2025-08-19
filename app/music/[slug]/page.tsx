@@ -185,53 +185,84 @@ export default async function MusicDetailPage({
             <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="absolute -inset-1 bg-red-500/20 blur" />
-                  <FaDownload className="relative text-2xl text-red-500" />
+                  <div className="absolute -inset-2 bg-red-500/30 blur animate-pulse" />
+                  <FaDownload className="relative text-3xl text-red-500" />
                 </div>
-                <h2 className="text-2xl font-mono font-semibold text-red-500 tracking-wider">Data Extraction</h2>
+                <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider">Data Extraction</h2>
               </div>
 
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-800 to-red-600 opacity-50 blur" />
-                <div className="relative bg-black p-6 border border-red-800/30">
-                  <h3 className="text-xl font-mono font-semibold text-red-400 mb-4 tracking-wider">Protocol Information</h3>
-                  <p className="text-red-200/70 mb-6 tracking-wide">
-                    All tracks are available for content creation with proper attribution. 
-                    Purchase once, use forever in your content.
-                  </p>
-                  <Link 
-                    href="/license"
-                    className="group/link inline-flex items-center text-red-500 hover:text-red-400 transition-colors duration-300 font-mono"
-                  >
-                    Access Full Protocol Documentation
-                    <svg className="w-5 h-5 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
 
-              <div className="grid grid-cols-2 gap-4">
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {track.Beatport && (
                   <a href={track.Beatport} target="_blank" rel="noopener noreferrer"
-                     className="group relative">
-                    <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300" />
-                    <div className="relative flex items-center justify-center gap-3 bg-black px-6 py-4 border border-red-500/30">
-                      <SiBeatport className="text-xl text-red-500" />
-                      <span className="font-mono text-red-500">Beatport</span>
+                     className="group relative transform hover:scale-105 transition-all duration-300">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-red-600 to-red-800 opacity-80 group-hover:opacity-100 blur transition duration-500 animate-pulse-slow" />
+                    <div className="relative flex items-center justify-center gap-4 bg-black px-8 py-6 border-2 border-red-500/50 group-hover:border-red-400/70 transition-all duration-300">
+                      <SiBeatport className="text-3xl text-red-500 group-hover:text-red-400 transition-colors duration-300" />
+                      <span className="font-mono text-red-500 group-hover:text-red-400 transition-colors duration-300 text-lg font-semibold tracking-wider">Beatport</span>
+                      <div className="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                     </div>
                   </a>
                 )}
                 {track.Bandcamp && (
                   <a href={track.Bandcamp} target="_blank" rel="noopener noreferrer"
-                     className="group relative">
-                    <div className="absolute -inset-0.5 bg-red-400/20 opacity-75 group-hover:opacity-100 blur transition duration-300" />
-                    <div className="relative flex items-center justify-center gap-3 bg-black px-6 py-4 border border-red-400/30">
-                      <SiBandcamp className="text-xl text-red-400" />
-                      <span className="font-mono text-red-400">Bandcamp</span>
+                     className="group relative transform hover:scale-105 transition-all duration-300">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-red-600 to-red-800 opacity-80 group-hover:opacity-100 blur transition duration-500 animate-pulse-slow" />
+                    <div className="relative flex items-center justify-center gap-4 bg-black px-8 py-6 border-2 border-red-500/50 group-hover:border-red-400/70 transition-all duration-300">
+                      <SiBandcamp className="text-3xl text-red-500 group-hover:text-red-400 transition-colors duration-300" />
+                      <span className="font-mono text-red-500 group-hover:text-red-400 transition-colors duration-300 text-lg font-semibold tracking-wider">Bandcamp</span>
+                      <div className="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                     </div>
                   </a>
                 )}
+              </div>
+
+              {/* Info Section */}
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-red-900/30 to-red-700/30 opacity-60 blur" />
+                <div className="relative bg-black/80 p-6 border border-red-800/40 backdrop-blur-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="relative">
+                        <div className="absolute -inset-1 bg-red-500/20 blur" />
+                        <FaHeadphones className="relative text-2xl text-red-500" />
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <h4 className="text-lg font-mono font-semibold text-red-400 tracking-wider">Download Information</h4>
+                      <div className="space-y-2 text-sm text-red-200/80">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span>High-quality WAV and MP3 formats available</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span>Purchase once, use forever in your content</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span>Proper attribution required for commercial use</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span>No copyright claims - safe for content creation</span>
+                        </div>
+                      </div>
+                      <div className="pt-2">
+                        <Link 
+                          href="/help/attribution"
+                          className="inline-flex items-center text-red-500 hover:text-red-400 transition-colors duration-300 font-mono text-sm"
+                        >
+                          Learn about attribution requirements
+                          <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
