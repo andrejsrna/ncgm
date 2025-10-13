@@ -18,7 +18,9 @@ export interface MusicData {
   iHeartRadio: string | null;
   Boomplay: string | null;
   Beatport: string | null;
-  Description: string | null;
+  Bandcamp: string | null;
+  spotify_embed: string | null;
+  Content: string | null;
   Cover: {
     name: string;
     url: string;
