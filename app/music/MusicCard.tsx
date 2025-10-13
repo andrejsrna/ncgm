@@ -46,8 +46,8 @@ export default function MusicCard({ track }: MusicCardProps) {
             </h2>
           </Link>
 
-          {track.Description && (
-            <p className="text-red-200/70 mb-4 font-light tracking-wide line-clamp-2 text-sm">{track.Description}</p>
+          {track.Content && (
+            <p className="text-red-200/70 mb-4 font-light tracking-wide line-clamp-2 text-sm">{track.Content}</p>
           )}
 
           {track.genre && (

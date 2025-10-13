@@ -90,7 +90,7 @@ export default function TrackHero({ track, coverUrl }: TrackHeroProps) {
           </h1>
 
           <p className="max-w-xl text-base text-red-100/80 sm:text-lg">
-            {track.Description ||
+            {track.Content ||
               `Listen to ${track.Title} by No Copyright Gaming Music. Download royalty-free electronic music designed for streamers, creators, and game studios.`}
           </p>
 

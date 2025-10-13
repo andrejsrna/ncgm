@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function NewsDetailPage({
   params,
-}: PageProps): Promise<JSX.Element> {
+}: PageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
