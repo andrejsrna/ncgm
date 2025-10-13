@@ -1,4 +1,5 @@
 import { getMusicBySlug, type MusicData } from "@/app/hooks/useMusicQuery";
+import { SITE_URL, getCanonicalUrl } from "@/lib/env";
 import { resolveStrapiImageUrl } from "@/lib/utils";
 import TrackHero from "@/app/music/[slug]/TrackHero";
 import LicensingInfoSection from "@/app/music/[slug]/LicensingInfoSection";
@@ -36,7 +37,7 @@ export async function generateMetadata({
       : `Listen to ${track.Title} - No copyright ${track.genre?.Genres || "music"} track perfect for gaming content, streams, and videos.`;
 
     const title = `${track.Title} - No Copyright ${track.genre?.Genres || "Music"} | NCGM`;
-    const url = `https://nocopyrightgamingmusic.com/music/${slug}`;
+    const canonical = getCanonicalUrl(`/music/${slug}`);
 
     return {
       title,
@@ -56,11 +57,11 @@ export async function generateMetadata({
       openGraph: {
         title,
         description: plainDescription,
-        url,
+        url: canonical,
         siteName: "No Copyright Gaming Music",
         images: [
           {
-            url: coverUrl || "https://nocopyrightgamingmusic.com/og-image.jpg",
+            url: coverUrl || `${SITE_URL}/og-image.jpg`,
             width: 1200,
             height: 630,
             alt: `${track.Title} - Album Cover`,
@@ -73,10 +74,10 @@ export async function generateMetadata({
         card: "summary_large_image",
         title,
         description: plainDescription,
-        images: [coverUrl || "https://nocopyrightgamingmusic.com/og-image.jpg"],
+        images: [coverUrl || `${SITE_URL}/og-image.jpg`],
       },
       alternates: {
-        canonical: url,
+        canonical,
       },
       robots: {
         index: true,
@@ -120,12 +121,12 @@ export default async function MusicDetailPage({
     description: track.Content
       ? track.Content.replace(/<[^>]*>/g, "").substring(0, 200)
       : `${track.Title} - No copyright ${track.genre?.Genres || "music"} for content creators`,
-    url: `https://nocopyrightgamingmusic.com/music/${slug}`,
-    license: "https://nocopyrightgamingmusic.com/license",
+    url: getCanonicalUrl(`/music/${slug}`),
+    license: `${SITE_URL}/license`,
     author: {
       "@type": "Organization",
       name: "No Copyright Gaming Music",
-      url: "https://nocopyrightgamingmusic.com",
+      url: SITE_URL,
     },
     offers:
       track.Beatport || track.Bandcamp
@@ -154,19 +155,19 @@ export default async function MusicDetailPage({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://nocopyrightgamingmusic.com",
+        item: SITE_URL,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Music",
-        item: "https://nocopyrightgamingmusic.com/music",
+        item: getCanonicalUrl("/music"),
       },
       {
         "@type": "ListItem",
         position: 3,
         name: track.Title,
-        item: `https://nocopyrightgamingmusic.com/music/${slug}`,
+        item: getCanonicalUrl(`/music/${slug}`),
       },
     ],
   };

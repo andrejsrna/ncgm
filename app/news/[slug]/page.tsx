@@ -1,156 +1,244 @@
-import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { getPostBySlug } from '@/app/lib/posts';
-import ShareButtons from '@/app/components/sharebuttons';
-import { Remarkable } from 'remarkable';
-import { FaArrowLeft } from 'react-icons/fa';
-import { resolveStrapiImageUrl } from '@/lib/utils';
+import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Remarkable } from "remarkable";
+import { FaArrowLeft, FaClock } from "react-icons/fa";
+import ShareButtons from "@/app/components/sharebuttons";
+import { getPostBySlug, type Post } from "@/app/lib/posts";
+import { SITE_URL, getCanonicalUrl } from "@/lib/env";
+import { resolveStrapiImageUrl } from "@/lib/utils";
 
-type Params = Promise<{
-  slug: string;
-  searchParams: { [key: string]: string | string[] | undefined };
-}>;
+const markdown = new Remarkable({ breaks: true, html: true });
 
-interface Props {
-  params: Params;
+interface PageProps {
+  params: Promise<{ slug: string }>;
 }
 
-// Generate metadata for each post
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+const fallbackMetadata: Metadata = {
+  title: "Article Not Found | No Copyright Gaming Music",
+  description: "The requested news article could not be located.",
+};
+
+const formatPlainText = (html: string) =>
+  html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+
+const buildDescription = (post: Post, plainText: string) => {
+  if (post.description?.length) {
+    return post.description;
+  }
+  return plainText.slice(0, 160);
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
   if (!post) {
-    return {
-      title: 'Data Not Found | No Copyright Gaming Music',
-    };
+    return fallbackMetadata;
   }
- 
+
+  const imageUrl = resolveStrapiImageUrl(post.image);
+  const htmlContent = markdown.render(post.content || "");
+  const plainText = formatPlainText(htmlContent);
+  const description = buildDescription(post, plainText);
+  const canonical = getCanonicalUrl(`/news/${slug}`);
+  const publishedTime = post.publishedAt || post.pubDate;
+
   return {
     title: `${post.title} | Neural Feed`,
-    description: post.description,
+    description,
+    keywords: [
+      post.title,
+      post.category,
+      "gaming music news",
+      "nocopyrightgamingmusic",
+    ].filter(Boolean) as string[],
+    alternates: {
+      canonical,
+    },
     openGraph: {
       title: post.title,
-      description: post.description,
-      images: post.image ? [resolveStrapiImageUrl(post.image)] : [],
+      description,
+      url: canonical,
+      siteName: "No Copyright Gaming Music",
+      type: "article",
+      publishedTime,
+      modifiedTime: post.updatedAt,
+      images: imageUrl
+        ? [
+            {
+              url: imageUrl,
+              alt: post.title,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
     },
   };
 }
 
-export default async function NewsDetailPage({ params }: Props): Promise<React.ReactNode> {
+export default async function NewsDetailPage({
+  params,
+}: PageProps): Promise<JSX.Element> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
-  const modContent = new Remarkable().render(post?.content || '');
 
   if (!post) {
     notFound();
   }
 
+  const imageUrl = resolveStrapiImageUrl(post.image);
+  const htmlContent = markdown.render(post.content || "");
+  const plainText = formatPlainText(htmlContent);
+  const description = buildDescription(post, plainText);
+  const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+  const readingTime = Math.max(1, Math.round(wordCount / 225));
+  const publishedDate = post.publishedAt || post.pubDate;
+  const publishedIso = publishedDate ? new Date(publishedDate).toISOString() : undefined;
+  const updatedIso = post.updatedAt
+    ? new Date(post.updatedAt).toISOString()
+    : publishedIso;
+  const formattedDate = publishedDate
+    ? new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }).format(new Date(publishedDate))
+    : post.pubDate;
+  const canonical = `${SITE_URL}/news/${slug}`;
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: post.title,
+    description,
+    datePublished: publishedIso,
+    dateModified: updatedIso,
+    mainEntityOfPage: canonical,
+    image: imageUrl ? [imageUrl] : undefined,
+    author: {
+      "@type": "Organization",
+      name: "No Copyright Gaming Music",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "No Copyright Gaming Music",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+  };
+
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
-            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-          `,
-          backgroundSize: '24px 24px, 24px 24px',
-          backgroundPosition: '0 0, 12px 12px'
-        }}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <article className="relative py-32">
-        {/* Hero Section with Cover Image */}
-        {post.image && (
-          <div className="absolute top-0 left-0 w-full h-[500px] overflow-hidden">
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur" />
-            <div className="relative h-full">
+      <div className="relative min-h-screen bg-black text-red-100">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.08]"
+          aria-hidden
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.6) 1px, transparent 1px),
+              radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.6) 1px, transparent 1px)
+            `,
+            backgroundSize: "24px 24px, 24px 24px",
+            backgroundPosition: "0 0, 12px 12px",
+          }}
+        />
+
+        <article className="relative mx-auto max-w-4xl px-4 pb-24 pt-28 sm:px-6 sm:pt-32 lg:px-8">
+          <nav aria-label="Breadcrumb">
+            <Link
+              href="/news"
+              className="inline-flex items-center gap-2 rounded-full border border-red-900/40 bg-black/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-red-300 transition hover:border-red-600 hover:text-white"
+            >
+              <FaArrowLeft className="text-red-400" aria-hidden />
+              Back to Neural Feed
+            </Link>
+          </nav>
+
+          <header className="mt-10 space-y-6">
+            <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.35em] text-red-300">
+              {post.category && (
+                <span className="rounded-full border border-red-900/40 bg-red-950/40 px-3 py-1">
+                  {post.category}
+                </span>
+              )}
+              {formattedDate && (
+                <time
+                  dateTime={publishedIso}
+                  className="rounded-full border border-red-900/40 bg-red-950/40 px-3 py-1"
+                >
+                  {formattedDate}
+                </time>
+              )}
+              <span className="flex items-center gap-2 rounded-full border border-red-900/40 bg-red-950/40 px-3 py-1 text-red-200">
+                <FaClock aria-hidden />
+                {readingTime} min read
+              </span>
+            </div>
+
+            <div>
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                {post.title}
+              </h1>
+              <p className="mt-4 max-w-2xl text-base text-red-200/80 sm:text-lg">
+                {description}
+              </p>
+            </div>
+          </header>
+
+          {imageUrl && (
+            <figure className="relative mt-12 overflow-hidden rounded-3xl border border-red-900/40 bg-black/40">
               <Image
-                src={resolveStrapiImageUrl(post.image)}
+                src={imageUrl}
                 alt={post.title}
-                fill
-                className="object-cover"
+                width={1600}
+                height={900}
+                className="h-full w-full object-cover"
                 priority
               />
-              {/* Scanline effect */}
-              <div className="absolute inset-0 bg-scanline opacity-10 pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
-            </div>
-          </div>
-        )}
+              <figcaption className="sr-only">{post.title}</figcaption>
+            </figure>
+          )}
 
-        {/* Content */}
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Back Button */}
-          <Link 
-            href="/news"
-            className="inline-flex items-center text-red-500 hover:text-red-400 mb-16 group transition-all duration-300 font-mono"
-          >
-            <div className="relative">
-              <div className="absolute -inset-1 bg-red-500/20 blur group-hover:bg-red-500/30 transition-all duration-300" />
-              <div className="relative flex items-center">
-                <FaArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
-                <span>Return to Neural Feed</span>
-              </div>
-            </div>
-          </Link>
-
-          {/* Meta info */}
-          <div className="flex items-center gap-4 mb-6">
-            <time 
-              dateTime={post.pubDate}
-              className="px-3 py-1 text-red-400 text-sm font-mono tracking-wider border border-red-800/50 bg-red-950/30"
+          <section className="mt-12 space-y-12">
+            <div
+              className="prose prose-invert max-w-none text-base leading-relaxed tracking-wide
+                prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
+                prose-p:text-red-200/80 prose-a:text-red-300 prose-a:no-underline hover:prose-a:text-white
+                prose-strong:text-red-100 prose-em:text-red-200/90 prose-code:text-red-200
+                prose-code:bg-red-950/60 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+                prose-blockquote:border-l-2 prose-blockquote:border-red-500/40 prose-blockquote:bg-red-950/30 prose-blockquote:py-4 prose-blockquote:px-6
+                prose-ul:my-6 prose-ol:my-6 prose-li:marker:text-red-400
+                prose-hr:border-red-900/50"
             >
-              {post.pubDate}
-            </time>
-            {post.category && (
-              <span className="px-3 py-1 text-red-400 text-sm font-mono tracking-wider border border-red-800/50 bg-red-950/30">
-                {post.category}
-              </span>
-            )}
-          </div>
-
-          {/* Title */}
-          <h1 className="relative inline-block mb-12">
-            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
-            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
-              {post.title}
-            </span>
-          </h1>
- 
-          {/* Main content */}
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-red-900 to-red-800 opacity-5 blur" />
-            <div 
-              className="relative prose prose-invert max-w-none animate-fade-in-up delay-200
-                prose-headings:font-mono prose-headings:text-red-500 prose-headings:tracking-wider
-                prose-p:text-red-200/70 prose-p:tracking-wide prose-p:leading-relaxed
-                prose-a:text-red-500 prose-a:no-underline hover:prose-a:text-red-400
-                prose-strong:text-red-400 prose-strong:font-normal
-                prose-code:text-red-300 prose-code:bg-red-900/20 prose-code:px-1 prose-code:rounded
-                prose-blockquote:border-red-800 prose-blockquote:bg-red-950/30 prose-blockquote:px-6 prose-blockquote:py-4
-                prose-li:text-red-200/70"
-            >
-              <div dangerouslySetInnerHTML={{ __html: modContent }} />
+              <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
             </div>
-          </div>
 
-          {/* Share buttons */}
-          <div className="mt-16 pt-8 border-t border-red-900/30">
-            <ShareButtons post={post} />
-          </div>
+            <aside className="border-t border-red-900/30 pt-8">
+              <ShareButtons post={post} />
+            </aside>
+          </section>
+        </article>
+
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-30" />
         </div>
-      </article>
-
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
       </div>
-    </div>
+    </>
   );
 }
