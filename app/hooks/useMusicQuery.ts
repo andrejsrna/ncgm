@@ -13,6 +13,7 @@ export interface MusicData {
   Amazon: string | null;
   Pandora: string | null;
   slug: string;
+  Description?: string | null;
   Deezer: string | null;
   Tidal: string | null;
   iHeartRadio: string | null;
