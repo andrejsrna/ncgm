@@ -100,74 +100,68 @@ export default async function LabelPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="relative min-h-screen bg-black text-red-100">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage: `
-              radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.6) 1px, transparent 1px),
-              radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.6) 1px, transparent 1px)
-            `,
-            backgroundSize: "24px 24px, 24px 24px",
-            backgroundPosition: "0 0, 12px 12px",
-          }}
-        />
-
-        <article className="relative mx-auto max-w-6xl px-4 pb-24 pt-28 sm:px-6 lg:px-8">
-          <header className="grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-center">
-            <div className="space-y-6">
+      <div className="min-h-screen bg-slate-50 py-16">
+        <article className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <header className="grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start">
+            <div className="space-y-8">
               <Link
-                href="/music"
-                className="inline-flex items-center gap-2 rounded-full border border-red-900/40 bg-black/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-red-300 transition hover:border-red-600 hover:text-white"
+                href="/labels"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-slate-600 transition hover:bg-slate-100"
               >
-                Back to Music Library
+                Back to Labels
               </Link>
-              <div className="space-y-4">
-                <span className="inline-flex items-center gap-2 rounded-full border border-red-900/40 bg-red-950/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-red-200">
+
+              <div className="space-y-5 rounded-3xl border border-border bg-white p-8 shadow-sm">
+                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600">
                   NJK Music Label
                 </span>
-                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  {label.name}
-                </h1>
-                <p className="text-lg text-red-200/80 sm:text-xl">{label.tagline}</p>
+                <div className="space-y-3">
+                  <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                    {label.name}
+                  </h1>
+                  <p className="text-base uppercase tracking-[0.3em] text-slate-500 sm:text-sm">
+                    {label.tagline}
+                  </p>
+                </div>
+                <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+                  {label.description}
+                </p>
+                <ul className="grid gap-4 rounded-2xl border border-dashed border-border/80 bg-slate-50 px-4 py-5 text-sm text-slate-600 sm:grid-cols-2 sm:text-base">
+                  {label.highlights.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-1 h-2.5 w-2.5 rounded-full bg-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="max-w-2xl text-sm leading-relaxed text-red-200/80 sm:text-base">
-                {label.description}
-              </p>
-              <ul className="space-y-3 text-sm leading-relaxed text-red-100/80">
-                {label.highlights.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-red-500" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
 
-            <aside className="relative">
-              <div className="rounded-3xl border border-red-900/40 bg-black/70 p-6 shadow-[0_0_45px_-20px_rgba(248,113,113,0.6)]">
-                <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-red-200">
+            <aside className="space-y-6">
+              <div className="rounded-3xl border border-border bg-white p-6 shadow-sm">
+                <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">
                   Label Snapshot
                 </h2>
-                <dl className="mt-6 space-y-4 text-sm text-red-100/80 sm:text-base">
+                <dl className="mt-6 grid gap-6 text-sm text-slate-600 sm:text-base">
                   {label.callouts.map((callout) => (
-                    <div key={callout.title}>
-                      <dt className="uppercase tracking-[0.35em] text-red-400/80">
+                    <div key={callout.title} className="rounded-2xl border border-border/60 bg-slate-50 px-4 py-3">
+                      <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
                         {callout.title}
                       </dt>
-                      <dd className="text-lg font-semibold text-white">{callout.detail}</dd>
+                      <dd className="text-lg font-semibold text-slate-900">{callout.detail}</dd>
                     </div>
                   ))}
-                  <div>
-                    <dt className="uppercase tracking-[0.35em] text-red-400/80">Catalogue</dt>
-                    <dd className="text-lg font-semibold text-white">
+                  <div className="rounded-2xl border border-border/60 bg-slate-50 px-4 py-3">
+                    <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Catalogue</dt>
+                    <dd className="text-lg font-semibold text-slate-900">
                       {releaseCount} release{releaseCount === 1 ? "" : "s"}
                     </dd>
                   </div>
                 </dl>
               </div>
+
               {label.heroImage && (
-                <div className="mt-6 overflow-hidden rounded-3xl border border-red-900/40 bg-black">
+                <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
                   <Image
                     src={label.heroImage}
                     alt={`${label.name} artwork`}
@@ -180,12 +174,17 @@ export default async function LabelPage({ params }: PageProps) {
             </aside>
           </header>
 
-          <section className="mt-20">
-            <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                Latest Releases
-              </h2>
-              <p className="text-sm uppercase tracking-[0.35em] text-red-300">
+          <section className="mt-16">
+            <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+                  Latest Releases
+                </h2>
+                <p className="text-sm text-slate-500">
+                  Stream-safe drops crafted for the {label.name} community.
+                </p>
+              </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
                 {releaseCount} creator-ready drop{releaseCount === 1 ? "" : "s"}
               </p>
             </div>
@@ -196,15 +195,15 @@ export default async function LabelPage({ params }: PageProps) {
                 ))}
               </div>
             ) : (
-              <p className="rounded-2xl border border-red-900/40 bg-black/70 p-8 text-sm text-red-200/80">
+              <p className="rounded-3xl border border-dashed border-border/80 bg-white p-8 text-sm text-slate-600 sm:text-base">
                 Releases from this label are loading soon. Check back for fresh drops or explore other NJK Music
                 catalogues.
               </p>
             )}
           </section>
 
-          <section className="mt-20 rounded-3xl border border-red-900/40 bg-black/70 p-8">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-red-200">
+          <section className="mt-16 rounded-3xl border border-border bg-white p-8 shadow-sm">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">
               Explore More Labels
             </h2>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -212,14 +211,14 @@ export default async function LabelPage({ params }: PageProps) {
                 <Link
                   key={item.slug}
                   href={`/labels/${item.slug}`}
-                  className="group inline-flex items-center gap-2 rounded-full border border-red-900/40 bg-black/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-red-200/80 transition hover:border-red-600 hover:text-white"
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-slate-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-600 transition hover:bg-slate-100"
                 >
                   <span>{item.name}</span>
-                  <span className="text-red-500/60 group-hover:text-red-400">→</span>
+                  <span className="text-primary group-hover:translate-x-0.5 transition">→</span>
                 </Link>
               ))}
               {LABEL_LIST.length <= 1 && (
-                <span className="text-sm text-red-200/70">
+                <span className="text-sm text-slate-500">
                   New labels are coming soon to the NJK Music roster.
                 </span>
               )}

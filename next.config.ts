@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'cdn.nocopyrightgamingmusic.com', pathname: '**' },
       { protocol: 'https', hostname: 'i.ytimg.com', pathname: '**' },
       { protocol: 'https', hostname: 'img.youtube.com', pathname: '**' },
+      { protocol: 'https', hostname: 's3.amazonaws.com', pathname: '**' },
     ],
     domains: ['admin.nocopyrightgamingmusic.com', 'localhost', 'cdn.nocopyrightgamingmusic.com', 'i.ytimg.com', 'img.youtube.com'],
     unoptimized: false,

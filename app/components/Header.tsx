@@ -9,6 +9,7 @@ const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Music', href: '/music' },
+  { name: 'Labels', href: '/labels' },
   { name: 'News', href: '/news' },
   { name: 'Mixes', href: '/mixes' },
   { name: 'Help', href: '/help' },
@@ -19,7 +20,12 @@ export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === href;
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/80 bg-white/70 backdrop-blur">
@@ -42,12 +48,6 @@ export default function Header() {
               {item.name}
             </Link>
           ))}
-          <Link
-            href="/labels/no-copyright-gaming-music"
-            className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition hover:bg-primary/90"
-          >
-            View NCGM Label
-          </Link>
         </nav>
 
         <button
@@ -77,13 +77,6 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/labels/no-copyright-gaming-music"
-              className="block rounded-md px-3 py-2 text-sm font-medium text-primary hover:bg-primary/10"
-              onClick={() => setOpen(false)}
-            >
-              View NCGM Label
-            </Link>
           </nav>
         </div>
       )}

@@ -54,6 +54,36 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       { title: "Focus", detail: "Gaming, Esports, Streaming" },
     ],
   },
+  "calm-spirit-music": {
+    slug: "calm-spirit-music",
+    name: "Calm Spirit Music",
+    short: "CSM",
+    tagline: "Mindful soundscapes for meditation, yoga, and deep focus",
+    description:
+      "Calm Spirit Music delivers serene, restorative compositions for meditation guides, wellness studios, and creators who need soothing background scores. Each release balances ambient textures with gentle rhythms to help audiences disconnect from stress and reconnect with calm.",
+    seo: {
+      title: "Calm Spirit Music Label | NJK Music",
+      description:
+        "Explore Calm Spirit Music releases—soothing, stream-safe ambient and meditation tracks for wellness creators, spas, and mindfulness apps.",
+      keywords: [
+        "calm spirit music",
+        "meditation music label",
+        "relaxing ambient music",
+        "yoga background music",
+        "wellness soundtrack",
+      ],
+    },
+    highlights: [
+      "Guided-meditation ready beds crafted for wellness studios and mindfulness apps",
+      "Gentle ambient textures ideal for yoga flows, breathwork, and deep focus sessions",
+      "Stream-safe licensing for creators, therapists, and live wellness broadcasts",
+    ],
+    callouts: [
+      { title: "Launch Year", detail: "2025" },
+      { title: "Releases", detail: "1st healing drop" },
+      { title: "Focus", detail: "Meditation, Wellness, Relaxation" },
+    ],
+  },
 };
 
 export const PRIMARY_LABEL = LABEL_DEFINITIONS["no-copyright-gaming-music"];
