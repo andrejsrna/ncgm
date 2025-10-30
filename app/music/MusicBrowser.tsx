@@ -3,66 +3,102 @@
 import { useMemo, useState } from "react";
 import MusicCard from "@/app/music/MusicCard";
 import type { MusicData } from "@/app/hooks/useMusicQuery";
-import { cn } from "@/lib/utils";
+import { slugify } from "@/lib/utils";
 
 interface GenreFilter {
   label: string;
   count: number;
 }
 
+interface LabelFilter {
+  label: string;
+  slug: string;
+  count: number;
+}
+
 interface MusicBrowserProps {
   tracks: MusicData[];
   genres: GenreFilter[];
+  labels: LabelFilter[];
 }
 
-export default function MusicBrowser({ tracks, genres }: MusicBrowserProps) {
+export default function MusicBrowser({ tracks, genres, labels }: MusicBrowserProps) {
   const [selectedGenre, setSelectedGenre] = useState<string>("all");
+  const [selectedLabel, setSelectedLabel] = useState<string>("all");
 
   const filteredTracks = useMemo(() => {
-    if (selectedGenre === "all") {
-      return tracks;
-    }
-    return tracks.filter((track) => track.genre?.Genres?.trim() === selectedGenre);
-  }, [selectedGenre, tracks]);
+    return tracks.filter((track) => {
+      const genreName = track.genre?.Genres?.trim();
+      const matchesGenre = selectedGenre === "all" || genreName === selectedGenre;
+
+      const trackLabelSlug =
+        track.label?.slug ?? (track.label?.name ? slugify(track.label.name) : "");
+      const matchesLabel = selectedLabel === "all" || trackLabelSlug === selectedLabel;
+
+      return matchesGenre && matchesLabel;
+    });
+  }, [selectedGenre, selectedLabel, tracks]);
 
   return (
-    <section aria-label="Browse tracks" className="space-y-10">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-4 flex items-center justify-between gap-4">
-          <span className="text-xs uppercase tracking-[0.35em] text-red-300">
-            Browse by genre
-          </span>
-          <span className="text-xs text-red-200/70">
-            {filteredTracks.length} track{filteredTracks.length === 1 ? "" : "s"} ready to download
-          </span>
-        </div>
-
-        <div className="flex flex-wrap gap-3">
-          <GenreChip
-            label="All downloads"
-            count={tracks.length}
-            active={selectedGenre === "all"}
-            onSelect={() => setSelectedGenre("all")}
+    <section className="space-y-10">
+      <div className="space-y-8">
+        {labels.length > 0 && (
+          <FilterGroup
+            title="Browse by label"
+            subtitle={
+              selectedLabel === "all"
+                ? `${tracks.length} total releases`
+                : `${filteredTracks.length} release${filteredTracks.length === 1 ? "" : "s"} selected`
+            }
+            chips={[
+              {
+                key: "all",
+                label: "All labels",
+                count: tracks.length,
+                active: selectedLabel === "all",
+                onSelect: () => setSelectedLabel("all"),
+              },
+              ...labels.map((label) => ({
+                key: label.slug,
+                label: label.label,
+                count: label.count,
+                active: selectedLabel === label.slug,
+                onSelect: () => setSelectedLabel(label.slug),
+              })),
+            ]}
           />
-          {genres.map((genre) => (
-            <GenreChip
-              key={genre.label}
-              label={genre.label}
-              count={genre.count}
-              active={selectedGenre === genre.label}
-              onSelect={() => setSelectedGenre(genre.label)}
-            />
-          ))}
-        </div>
+        )}
+
+        <FilterGroup
+          title="Browse by genre"
+          subtitle={`${filteredTracks.length} track${filteredTracks.length === 1 ? "" : "s"} ready to download`}
+          chips={[
+            {
+              key: "all",
+              label: "All genres",
+              count: tracks.length,
+              active: selectedGenre === "all",
+              onSelect: () => setSelectedGenre("all"),
+            },
+            ...genres.map((genre) => ({
+              key: genre.label,
+              label: genre.label,
+              count: genre.count,
+              active: selectedGenre === genre.label,
+              onSelect: () => setSelectedGenre(genre.label),
+            })),
+          ]}
+        />
       </div>
 
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredTracks.map((track) => (
-          <MusicCard key={track.documentId} track={track} />
-        ))}
-        {filteredTracks.length === 0 && (
-          <p className="col-span-full rounded-xl border border-red-900/40 bg-black/60 p-8 text-center text-sm text-red-200/70">
-            No tracks found for this genre yet. Try another filter or check back after the next release.
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {filteredTracks.length > 0 ? (
+          filteredTracks.map((track) => (
+            <MusicCard key={track.documentId ?? track.slug} track={track} />
+          ))
+        ) : (
+          <p className="col-span-full rounded-2xl border border-border bg-white p-8 text-center text-sm text-slate-500 shadow-sm">
+            No tracks found for this combination yet. Try adjusting your filters or check back soon.
           </p>
         )}
       </div>
@@ -70,33 +106,57 @@ export default function MusicBrowser({ tracks, genres }: MusicBrowserProps) {
   );
 }
 
-interface GenreChipProps {
+interface FilterGroupProps {
+  title: string;
+  subtitle?: string;
+  chips: Array<{
+    key: string;
+    label: string;
+    count: number;
+    active: boolean;
+    onSelect: () => void;
+  }>;
+}
+
+function FilterGroup({ title, subtitle, chips }: FilterGroupProps) {
+  return (
+    <div className="space-y-3">
+      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <span className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+          {title}
+        </span>
+        {subtitle && <span className="text-xs text-slate-500">{subtitle}</span>}
+      </div>
+      <div className="flex flex-wrap gap-3">
+        {chips.map((chip) => (
+          <FilterChip key={chip.key} {...chip} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+interface FilterChipProps {
   label: string;
   count: number;
   active: boolean;
   onSelect: () => void;
 }
 
-function GenreChip({ label, count, active, onSelect }: GenreChipProps) {
+function FilterChip({ label, count, active, onSelect }: FilterChipProps) {
   return (
     <button
       type="button"
       onClick={onSelect}
       aria-pressed={active}
-      className={cn(
-        "group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] transition",
+      className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition ${
         active
-          ? "border-red-500/70 bg-red-500 text-black shadow-[0_0_25px_rgba(248,113,113,0.45)]"
-          : "border-red-900/60 bg-black/60 text-red-200/80 hover:border-red-600 hover:text-white"
-      )}
+          ? "border-primary bg-primary text-primary-foreground"
+          : "border-border bg-white text-slate-600 hover:border-primary hover:text-primary"
+      }`}
     >
       <span>{label}</span>
-      <span
-        className={cn(
-          "rounded-full px-2 py-0.5 text-[10px]",
-          active ? "bg-black/20 text-black" : "bg-red-900/60 text-red-200/80"
-        )}
-      >
+      <span className={`rounded-full px-2 py-0.5 text-[10px] ${active ? "bg-white/20" : "bg-slate-100 text-slate-500"}`}>
         {count}
       </span>
     </button>

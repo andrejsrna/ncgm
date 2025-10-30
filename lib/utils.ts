@@ -16,8 +16,19 @@ export function resolveStrapiImageUrl(file?: { url?: string; formats?: Record<st
   return ''
 
   function prefix(u: string): string {
-    if (u.startsWith('http')) return u
+    if (u.startsWith('http') || u.startsWith('/')) return u
     const base = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') || ''
     return `${base}${u}`
   }
+}
+
+export function slugify(value: string): string {
+  if (!value) return ''
+  return value
+    .toString()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
 }

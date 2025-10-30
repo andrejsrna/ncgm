@@ -251,8 +251,8 @@ export default function TermsPage() {
                 <div className="space-y-4">
                   <p className="text-red-200/70 tracking-wide flex items-center gap-3">
                     <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                    Neural Link: <a href="mailto:terms@nocopyrightgamingmusic.com" className="text-red-400 hover:text-red-300 transition-colors">
-                      terms@nocopyrightgamingmusic.com
+                    Neural Link: <a href="mailto:terms@njkmusic.com" className="text-red-400 hover:text-red-300 transition-colors">
+                      terms@njkmusic.com
                     </a>
                   </p>
                   <p className="text-red-200/70 tracking-wide flex items-center gap-3">

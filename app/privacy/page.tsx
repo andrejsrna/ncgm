@@ -280,8 +280,8 @@ export default function PrivacyPage() {
                 <div className="space-y-4">
                   <p className="text-red-200/70 tracking-wide flex items-center gap-2">
                     <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                    Neural Link: <a href="mailto:privacy@nocopyrightgamingmusic.com" className="text-red-400 hover:text-red-300 transition-colors">
-                      privacy@nocopyrightgamingmusic.com
+                    Neural Link: <a href="mailto:privacy@njkmusic.com" className="text-red-400 hover:text-red-300 transition-colors">
+                      privacy@njkmusic.com
                     </a>
                   </p>
                   <p className="text-red-200/70 tracking-wide flex items-center gap-2">

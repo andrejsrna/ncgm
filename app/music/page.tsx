@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getMusicData } from "@/app/hooks/useMusicQuery";
 import { SITE_URL, getCanonicalUrl } from "@/lib/env";
 import MusicBrowser from "@/app/music/MusicBrowser";
+import { slugify } from "@/lib/utils";
+import { PRIMARY_LABEL, SITE_NAME } from "@/lib/site";
 
-const pageTitle = "No Copyright Gaming Music Download Library";
+const pageTitle = `${SITE_NAME} Label Library`;
 const pageDescription =
-  "Download no copyright gaming music instantly. Explore high-energy background tracks for Twitch, YouTube, and game projects without worrying about claims.";
+  "Explore NJK Music's label ecosystem. Start with the No Copyright Gaming Music catalog for stream-safe, creator-ready releases.";
 
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
   keywords: [
-    "no copyright gaming music download",
-    "download free gaming music",
-    "royalty free gaming tracks",
-    "stream safe music downloads",
+    "njk music",
+    "label catalog",
+    "royalty-free music",
+    "stream safe music",
   ],
   alternates: {
     canonical: getCanonicalUrl("/music"),
@@ -23,14 +26,14 @@ export const metadata: Metadata = {
     title: pageTitle,
     description: pageDescription,
     url: getCanonicalUrl("/music"),
-    siteName: "No Copyright Gaming Music",
+    siteName: SITE_NAME,
     type: "website",
     images: [
       {
         url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "No Copyright Gaming Music Download Library",
+        alt: "NJK Music Label Library",
       },
     ],
   },
@@ -62,21 +65,41 @@ export default async function MusicPage() {
     .map(([label, count]) => ({ label, count }))
     .sort((a, b) => a.label.localeCompare(b.label));
 
+  const labelMap = sortedMusic.reduce<Record<
+    string,
+    { label: string; slug: string; count: number }
+  >>((acc, track) => {
+    const name = track.label?.name?.trim();
+    if (!name) {
+      return acc;
+    }
+    const slug = track.label?.slug ?? slugify(name);
+    const existing = acc[slug] ?? { label: name, slug, count: 0 };
+    existing.count += 1;
+    existing.label = name;
+    acc[slug] = existing;
+    return acc;
+  }, {});
+
+  const labels = Object.values(labelMap).sort((a, b) =>
+    a.label.localeCompare(b.label)
+  );
+
   const faqs = [
     {
       question: "Can I download and use these gaming tracks on Twitch and YouTube?",
       answer:
-        "Yes. Every track in our library is cleared for Twitch, YouTube, Kick, and other streaming platforms. You can monetize your content as long as you credit No Copyright Gaming Music where possible.",
+        `Yes. Every release across NJK Music labels is cleared for Twitch, YouTube, Kick, and other streaming platforms. You can monetize your content as long as you follow the No Copyright Gaming Music attribution guidelines where applicable.`,
     },
     {
       question: "How do I download no copyright gaming music from this page?",
       answer:
-        "Browse the grid below and click into a track. Each detail page includes direct download links plus streaming access so you can grab the format that works best for your workflow.",
+        `Browse the grid below and click into a track. Each detail page includes direct download links plus streaming access so you can grab the format that works best for your workflow.`,
     },
     {
       question: "Are commercial or client projects allowed?",
       answer:
-        "Absolutely. Our license covers podcasts, indie games, trailers, and agency work. Just make sure your clients include the proper attribution outlined in our license guide.",
+        "Absolutely. The NJK Music license covers podcasts, indie games, trailers, and agency work. Just make sure your clients include the proper attribution outlined in our license guide.",
     },
   ];
 
@@ -96,66 +119,49 @@ export default async function MusicPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <div className="min-h-screen bg-black relative">
-        {/* Background Pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
-            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-          `,
-            backgroundSize: "24px 24px, 24px 24px",
-            backgroundPosition: "0 0, 12px 12px",
-          }}
-        />
-
-        {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 py-32">
-          {/* Page Title */}
-          <div className="mb-12 text-center">
-            <h1 className="relative inline-block text-balance">
-              <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur" />
-              <span className="relative text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                No Copyright Gaming Music Download Hub
-              </span>
+      <div className="min-h-screen bg-slate-50 py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 space-y-4 text-center">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              NJK Music Label Library
             </h1>
-            <p className="mt-4 text-balance text-red-200/80 sm:text-lg">
-              Grab stream-safe, royalty-free downloads crafted for gamers, streamers, and creators. Filter through our
-              latest releases to find the perfect soundtrack for Twitch, YouTube, or your next indie build&mdash;no claims,
-              no headaches.
+            <p className="text-base text-slate-600 sm:text-lg">
+              Discover NJK Music&apos;s growing collective of labels. Start with the {PRIMARY_LABEL.name} catalog for
+              stream-safe releases built for gamers, streamers, and studios.
             </p>
+            <div className="flex justify-center">
+              <Link
+                href={`/labels/${PRIMARY_LABEL.slug}`}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-slate-600 transition hover:bg-slate-100"
+              >
+                Explore {PRIMARY_LABEL.short ?? PRIMARY_LABEL.name} Label →
+              </Link>
+            </div>
           </div>
 
-          <div className="mx-auto mb-10 max-w-3xl rounded-2xl border border-red-900/40 bg-black/60 p-6 text-left">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-red-300">
+          <div className="mx-auto mb-14 max-w-3xl rounded-2xl border border-border bg-white p-6 text-left shadow-sm">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">
               Why choose our downloads?
             </h2>
-            <ul className="mt-4 space-y-2 text-sm text-red-200/80 sm:text-base">
+            <ul className="mt-4 space-y-2 text-sm text-slate-600 sm:text-base">
               <li>⚡ Unlimited use across streams, videos, and game demos.</li>
               <li>🎮 Curated by gamers for high-energy, looping-friendly vibes.</li>
               <li>✅ Cleared for monetization with attribution-friendly licensing.</li>
             </ul>
           </div>
 
-          <MusicBrowser tracks={sortedMusic} genres={genres} />
+          <MusicBrowser tracks={sortedMusic} genres={genres} labels={labels} />
 
-          <section className="mx-auto mt-14 grid gap-6 rounded-2xl border border-red-900/40 bg-black/60 p-6 text-left sm:grid-cols-2">
+          <section className="mx-auto mt-16 grid gap-6 rounded-2xl border border-border bg-white p-6 text-left shadow-sm sm:grid-cols-2">
             {faqs.map((faq) => (
               <div key={faq.question} className="space-y-2">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-red-200">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">
                   {faq.question}
                 </h3>
-                <p className="text-sm leading-relaxed text-red-200/80 sm:text-base">{faq.answer}</p>
+                <p className="text-sm leading-relaxed text-slate-600 sm:text-base">{faq.answer}</p>
               </div>
             ))}
           </section>
-        </div>
-
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
         </div>
       </div>
     </>

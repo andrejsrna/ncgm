@@ -2,27 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
-import { FaPlay, FaDownload } from "react-icons/fa";
+import { FiArrowLeft, FiHeadphones, FiDownload } from "react-icons/fi";
 import type { MusicData } from "@/app/hooks/useMusicQuery";
 import dynamic from "next/dynamic";
-
-const SectionSkeleton = () => (
-  <div className="relative rounded-lg border border-red-900/30 bg-black/80 p-6">
-    <div className="h-4 w-1/3 bg-red-900/20 animate-pulse rounded mb-4" />
-    <div className="h-8 w-full bg-red-900/10 animate-pulse rounded" />
-  </div>
-);
+import { PRIMARY_LABEL } from "@/lib/site";
 
 const StreamingPlatformsSection = dynamic(
   () => import("./StreamingPlatformsSection"),
-  { loading: () => <SectionSkeleton /> }
+  { ssr: false }
 );
 
-const DownloadSection = dynamic(
-  () => import("./DownloadSection"),
-  { loading: () => <SectionSkeleton /> }
-);
+const DownloadSection = dynamic(() => import("./DownloadSection"), {
+  ssr: false,
+});
 
 interface TrackHeroProps {
   track: MusicData;
@@ -40,70 +32,57 @@ export default function TrackHero({ track, coverUrl }: TrackHeroProps) {
     "";
 
   const primaryDownload = track.Beatport || track.Bandcamp || "";
+  const labelName = track.label?.name ?? PRIMARY_LABEL.name;
+  const labelShort = track.label?.short ?? PRIMARY_LABEL.short;
+  const publishedDate = track.publishedAt || track.createdAt;
 
   return (
-    <header className="mb-20">
+    <header className="mb-16">
       <nav aria-label="Breadcrumb" className="mb-6">
         <Link
           href="/music"
-          className="inline-flex items-center gap-2 rounded-full border border-red-900/40 bg-black/60 px-4 py-2 text-xs font-mono uppercase tracking-wider text-red-400 transition-colors duration-200 hover:border-red-700 hover:text-red-300"
+          className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition hover:text-primary"
         >
-          <FaArrowLeft className="text-red-400" />
-          Back to Music Library
+          <FiArrowLeft className="h-4 w-4" />
+          Back to music
         </Link>
       </nav>
 
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,4fr)] lg:items-center">
-        <aside className="order-2 lg:order-1">
-          <div className="relative mx-auto flex max-w-[420px] flex-col items-center text-center">
-            <div className="absolute -inset-x-6 inset-y-12 rounded-full bg-red-900/10 blur-3xl" />
-            <div className="relative w-full overflow-hidden rounded-3xl border border-red-900/40 bg-black/80 shadow-[0_0_80px_-20px_rgba(248,113,113,0.4)]">
-              {coverUrl ? (
-                <Image
-                  src={coverUrl}
-                  alt={`${track.Title} cover art`}
-                  width={720}
-                  height={720}
-                  className="h-full w-full object-cover"
-                  priority
-                />
-              ) : (
-                <div className="flex h-full min-h-[360px] w-full items-center justify-center bg-gradient-to-br from-red-950 via-black to-red-900">
-                  <span className="text-sm font-mono uppercase tracking-[0.4em] text-red-200/60">
-                    No Artwork
-                  </span>
-                </div>
-              )}
-            </div>
+      <div className="grid gap-10 rounded-3xl border border-border bg-white p-8 shadow-soft lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:p-10">
+        <section className="order-2 flex flex-col gap-6 lg:order-1">
+          <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+            {labelName && (
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-primary">
+                {labelShort ?? labelName} Label
+              </span>
+            )}
+            {track.genre?.Genres && (
+              <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-slate-600">
+                {track.genre.Genres}
+              </span>
+            )}
           </div>
-        </aside>
 
-        <section className="order-1 space-y-6 text-left lg:order-2">
-          {track.genre?.Genres && (
-            <p className="inline-flex items-center gap-2 rounded-full border border-red-900/40 bg-red-950/40 px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-red-300">
-              {track.genre.Genres}
+          <div className="space-y-4">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              {track.Title}
+            </h1>
+            <p className="max-w-2xl text-base text-slate-600 sm:text-lg">
+              {track.Description ||
+                `Listen to ${track.Title} from the ${labelName} label. Download royalty-free music engineered for streamers, creators, and studios.`}
             </p>
-          )}
+          </div>
 
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            {track.Title}
-          </h1>
-
-          <p className="max-w-xl text-base text-red-100/80 sm:text-lg">
-            {track.Description ||
-              `Listen to ${track.Title} by No Copyright Gaming Music. Download royalty-free electronic music designed for streamers, creators, and game studios.`}
-          </p>
-
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3">
             {primaryStream && (
               <a
                 href={primaryStream}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="inline-flex items-center gap-3 rounded-full bg-red-500 px-6 py-3 font-semibold text-black transition hover:bg-red-400"
+                className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
               >
-                <FaPlay />
-                Stream Instantly
+                <FiHeadphones className="h-4 w-4" />
+                Stream
               </a>
             )}
             {primaryDownload && (
@@ -111,19 +90,19 @@ export default function TrackHero({ track, coverUrl }: TrackHeroProps) {
                 href={primaryDownload}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="inline-flex items-center gap-3 rounded-full border border-red-500/60 px-6 py-3 font-semibold text-red-200 transition hover:border-red-400 hover:text-white"
+                className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-medium text-slate-600 transition hover:border-primary hover:text-primary"
               >
-                <FaDownload />
-                Buy & Download
+                <FiDownload className="h-4 w-4" />
+                Download
               </a>
             )}
           </div>
 
-          {track.createdAt && (
-            <p className="text-xs uppercase tracking-[0.35em] text-red-400/70">
+          {publishedDate && (
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
               Released{" "}
-              <time dateTime={track.createdAt}>
-                {new Date(track.createdAt).toLocaleDateString("en-US", {
+              <time dateTime={publishedDate}>
+                {new Date(publishedDate).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -135,6 +114,25 @@ export default function TrackHero({ track, coverUrl }: TrackHeroProps) {
           <StreamingPlatformsSection track={track} />
           <DownloadSection track={track} />
         </section>
+
+        <aside className="order-1 lg:order-2">
+          <div className="relative mx-auto max-w-md overflow-hidden rounded-3xl border border-border bg-slate-100 shadow-soft">
+            {coverUrl ? (
+              <Image
+                src={coverUrl}
+                alt={`${track.Title} cover art`}
+                width={720}
+                height={720}
+                className="h-full w-full object-cover"
+                priority
+              />
+            ) : (
+              <div className="flex h-full min-h-[320px] w-full items-center justify-center bg-slate-200 text-sm font-medium uppercase tracking-[0.3em] text-slate-500">
+                No artwork
+              </div>
+            )}
+          </div>
+        </aside>
       </div>
     </header>
   );

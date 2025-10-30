@@ -8,9 +8,10 @@ import ReleaseDescriptionSection from "@/app/music/[slug]/ReleaseDescriptionSect
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { marked } from "marked";
+import { PRIMARY_LABEL, SITE_NAME } from "@/lib/site";
 
 const notFoundMetadata = {
-  title: "Track Not Found - No Copyright Gaming Music",
+  title: `Track Not Found - ${SITE_NAME}`,
   description: "The requested music track could not be found.",
 };
 
@@ -30,13 +31,15 @@ export async function generateMetadata({
     }
 
     const coverUrl = resolveStrapiImageUrl(track.Cover);
+    const labelName = track.label?.name ?? PRIMARY_LABEL.name;
 
     // Extract plain text from HTML description
-    const plainDescription = track.Content
-      ? track.Content.replace(/<[^>]*>/g, "").substring(0, 160)
-      : `Listen to ${track.Title} - No copyright ${track.genre?.Genres || "music"} track perfect for gaming content, streams, and videos.`;
+    const descriptionSource = track.Description ?? track.Content ?? "";
+    const plainDescription = descriptionSource
+      ? descriptionSource.replace(/<[^>]*>/g, "").substring(0, 160)
+      : `Listen to ${track.Title} from the ${labelName} label on ${SITE_NAME}. Crafted for creators seeking stream-safe ${track.genre?.Genres || "music"}.`;
 
-    const title = `${track.Title} - No Copyright ${track.genre?.Genres || "Music"} | NCGM`;
+    const title = `${track.Title} – ${labelName} | ${SITE_NAME}`;
     const canonical = getCanonicalUrl(`/music/${slug}`);
 
     return {
@@ -45,20 +48,23 @@ export async function generateMetadata({
       keywords: [
         track.Title,
         "no copyright music",
-        "royalty free music",
+        "royalty-free music",
         track.genre?.Genres || "music",
         "gaming music",
         "stream music",
         "youtube music",
         "content creator music",
         "copyright free",
+        labelName,
+        SITE_NAME,
       ],
-      authors: [{ name: "No Copyright Gaming Music" }],
+      authors: [{ name: labelName }],
       openGraph: {
         title,
         description: plainDescription,
         url: canonical,
-        siteName: "No Copyright Gaming Music",
+        siteName: SITE_NAME,
+        section: labelName,
         images: [
           {
             url: coverUrl || `${SITE_URL}/og-image.jpg`,
@@ -109,6 +115,7 @@ export default async function MusicDetailPage({
 
   const coverUrl = resolveStrapiImageUrl(track.Cover);
   const contentHtml = track.Content ? await marked(track.Content) : "";
+  const labelName = track.label?.name ?? PRIMARY_LABEL.name;
 
   // Generate structured data (JSON-LD) for rich snippets
   const structuredData = {
@@ -125,7 +132,7 @@ export default async function MusicDetailPage({
     license: `${SITE_URL}/license`,
     author: {
       "@type": "Organization",
-      name: "No Copyright Gaming Music",
+      name: labelName,
       url: SITE_URL,
     },
     offers:
@@ -178,31 +185,12 @@ export default async function MusicDetailPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }} />
 
-      <article className="min-h-screen bg-black relative">
-        {/* Background Pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
-            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-          `,
-            backgroundSize: "24px 24px, 24px 24px",
-            backgroundPosition: "0 0, 12px 12px",
-          }}
-        />
-
-        <div className="relative max-w-7xl mx-auto px-4 py-32">
+      <article className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-5xl space-y-12 px-4 sm:px-6 lg:px-8">
           <TrackHero track={track} coverUrl={coverUrl} />
           <LicensingInfoSection />
           <SpotifyEmbedSection embedHtml={track.spotify_embed ?? ""} />
           <ReleaseDescriptionSection contentHtml={contentHtml} />
-        </div>
-
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
         </div>
       </article>
     </>

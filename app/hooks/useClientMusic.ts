@@ -2,69 +2,27 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { resolveStrapiImageUrl } from '@/lib/utils';
-
-interface Track {
-  id: number;
-  Title: string;
-  Genre: string;
-  Spotify: string;
-  spotify_embed: string;
-  Cover: {
-    name: string;
-    url: string;
-    formats: {
-      large: {
-        url: string;
-      };
-    };
-  };
-  createdAt: string;
-  updatedAt: string;
-  slug: string;
-  Beatport: string;
-}
-
-interface StrapiResponse {
-  data: Track[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
-}
-
-// removed unused post fetching code
+import type { MusicData } from '@/app/hooks/useMusicQuery';
 
 export function useClientMusic(count: number = 3) {
-  const [tracks, setTracks] = useState<Track[]>([]);
+  const [tracks, setTracks] = useState<MusicData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchTracks = useCallback(async () => {
     try {
-      const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/musicm?pagination[pageSize]=${count}&pagination[page]=1&populate=*`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`/api/music?count=${count}`, {
+        cache: 'no-store',
+      });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch music data');
+        throw new Error(`Failed to fetch music data: ${response.status}`);
       }
 
-      const data: StrapiResponse = await response.json();
-      const shuffledTracks = [...data.data]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, count);
+      const data: { tracks: MusicData[] } = await response.json();
+      const selected = Array.isArray(data.tracks) ? data.tracks : [];
 
-      setTracks(shuffledTracks);
+      setTracks(selected);
       setLoading(false);
     } catch (err) {
       setError(`Failed to load tracks: ${err}`);
@@ -78,12 +36,19 @@ export function useClientMusic(count: number = 3) {
 
   const formattedTracks = tracks.map(track => ({
     title: track.Title,
-    genre: track.Genre,
+    label: track.label
+      ? {
+          name: track.label.name,
+          short: track.label.short,
+          slug: track.label.slug,
+        }
+      : undefined,
+    genre: track.genre?.Genres,
     trackUrl: track.Spotify,
     embedUrl: track.spotify_embed,
     imageUrl: resolveStrapiImageUrl(track.Cover),
     slug: track.slug,
-    beatportUrl: track.Beatport
+    beatportUrl: track.Beatport ?? undefined,
   }));
 
   return {

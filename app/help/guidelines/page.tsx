@@ -41,7 +41,7 @@ const protocols = [
         title: "Required Neural Markers",
         items: [
           "Signal pattern designation",
-          "Core matrix link (nocopyrightgamingmusic.com)",
+          "Core matrix link (njkmusic.com)",
           "Acquisition node reference",
           "Protocol-compliant formatting",
           "High-visibility placement"

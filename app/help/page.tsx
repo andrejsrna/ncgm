@@ -193,7 +193,7 @@ export default function HelpPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <a
-                  href="mailto:support@nocopyrightgamingmusic.com"
+                  href="mailto:support@njkmusic.com"
                   className="group relative inline-flex"
                 >
                   <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>

@@ -1,10 +1,52 @@
-// components/Accordion.jsx
-'use client';
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import AccordionItem from "./AccordionItem";
-import { FaTerminal, FaArrowRight } from "react-icons/fa";
+
+const accordions = [
+  {
+    title: "Why choose NJK Music releases?",
+    content: (
+      <div className="space-y-3 text-sm text-slate-600">
+        <p>
+          Every track is designed for creators who need dependable, stream-safe audio across multiple platforms.
+          You get high-quality masters, transparent licensing, and a catalogue curated by producers.
+        </p>
+        <ul className="list-disc space-y-1 pl-5">
+          <li>Royalty-free usage across live streams, video content, and client projects</li>
+          <li>Fast access to high-quality WAV and MP3 downloads</li>
+          <li>Regular updates with new genres and label drops</li>
+        </ul>
+      </div>
+    ),
+  },
+  {
+    title: "How do I credit the No Copyright Gaming Music label?",
+    content: (
+      <div className="space-y-3 text-sm text-slate-600">
+        <p>
+          Simply include the label name and link back to NJK Music whenever your format allows.
+          Detailed examples are available in our attribution guide.
+        </p>
+        <Link href="/help/attribution" className="text-primary transition hover:underline">
+          Review attribution examples
+        </Link>
+      </div>
+    ),
+  },
+  {
+    title: "What formats and stems are included?",
+    content: (
+      <div className="space-y-3 text-sm text-slate-600">
+        <p>
+          Releases include WAV and MP3 files by default. Some tracks offer extended assets such as loops or stems.
+          Check each release page for specific download options.
+        </p>
+      </div>
+    ),
+  },
+];
 
 export default function Accordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -13,172 +55,34 @@ export default function Accordion() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const accordions = [
-    {
-      title: "Why Trust Our Neural Audio Network?",
-      content: (
-        <>
-          <p className="text-red-200/70 mb-6 font-mono">
-            Our decentralized audio distribution system ensures maximum security and creative freedom in the digital realm:
-          </p>
-          <ul className="space-y-4">
-            <li className="flex items-start">
-              <span className="text-red-500 font-mono mr-3">[01]</span>
-              <div>
-                <strong className="text-red-400 font-mono">Neural Protection Protocol</strong>
-                <p className="text-gray-400 mt-1">Advanced algorithms prevent content strikes and system corruption</p>
-              </div>
-            </li>
-            <li className="flex items-start">
-              <span className="text-red-500 font-mono mr-3">[02]</span>
-              <div>
-                <strong className="text-red-400 font-mono">Quantum Revenue Stream</strong>
-                <p className="text-gray-400 mt-1">100% secure profit flow with zero data interference</p>
-              </div>
-            </li>
-            <li className="flex items-start">
-              <span className="text-red-500 font-mono mr-3">[03]</span>
-              <div>
-                <strong className="text-red-400 font-mono">High-Fidelity Neural Codec</strong>
-                <p className="text-gray-400 mt-1">Military-grade audio compression for maximum impact</p>
-              </div>
-            </li>
-          </ul>
-        </>
-      ),
-    },
-    {
-      title: "How to Access the Mainframe",
-      content: (
-        <div className="space-y-6">
-          <p className="text-red-200/70 font-mono">
-            Connect to our secure data nodes through verified channels:
-          </p>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <a
-              href="https://www.amazon.com/music/player/artists/B0CD2BDVWG/no-copyright-gaming-music"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex items-center p-4 bg-black/30 border border-red-900/30 hover:border-red-600/50 transition-all duration-300"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-red-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="text-red-500 font-mono mr-3">[AMZ]</span>
-              <div>
-                <div className="font-mono text-red-400 group-hover:text-red-300 transition-colors">Amazon Protocol</div>
-                <div className="text-sm text-gray-500">High-bandwidth data transfer</div>
-              </div>
-            </a>
-            <a
-              href="https://music.apple.com/us/artist/no-copyright-gaming-music/1699748922"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex items-center p-4 bg-black/30 border border-red-900/30 hover:border-red-600/50 transition-all duration-300"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-red-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="text-red-500 font-mono mr-3">[APL]</span>
-              <div>
-                <div className="font-mono text-red-400 group-hover:text-red-300 transition-colors">Apple Matrix</div>
-                <div className="text-sm text-gray-500">Quantum-encrypted audio</div>
-              </div>
-            </a>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "System Security Protocols",
-      content: (
-        <div className="space-y-4">
-          <p className="text-red-200/70 font-mono">
-            Our neural network maintains 100% system integrity across all nodes:
-          </p>
-          <ul className="space-y-3">
-            <li className="flex items-center">
-              <span className="text-red-500 font-mono mr-3">&gt;</span>
-              <span className="text-gray-400">Zero-day exploit protection</span>
-            </li>
-            <li className="flex items-center">
-              <span className="text-red-500 font-mono mr-3">&gt;</span>
-              <span className="text-gray-400">Quantum encryption protocols</span>
-            </li>
-            <li className="flex items-center">
-              <span className="text-red-500 font-mono mr-3">&gt;</span>
-              <span className="text-gray-400">Neural blockchain verification</span>
-            </li>
-          </ul>
-        </div>
-      ),
-    }
-  ];
-
   return (
-    <section className="relative py-24 bg-black overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-b from-red-900/10 via-black to-black" />
-        <div 
-          className="absolute inset-0 mix-blend-color-burn opacity-20"
-          style={{
-            backgroundImage: `
-              radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-            `,
-            backgroundSize: '24px 24px'
-          }}
-        />
-      </div>
-
-      <div className="relative max-w-4xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-block p-3 rounded-full bg-red-950/30 mb-4 border border-red-900/30">
-            <FaTerminal className="w-6 h-6 text-red-500" />
-          </div>
-          <h2 className="text-4xl font-bold font-mono text-white mb-4 relative inline-block">
-            <span className="absolute -left-0.5 -top-0.5 text-red-600 opacity-80 blur-[1px]">
-              System Protocols
-            </span>
-            System Protocols
-          </h2>
-          <p className="text-red-200/70 max-w-2xl mx-auto font-mono">
-            Access critical information about our neural audio network
+    <section className="bg-white py-20">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl font-semibold text-slate-900">Frequently asked questions</h2>
+          <p className="mt-3 text-sm text-slate-600 sm:text-base">
+            Still have questions? Explore the FAQ or reach out to our team for personalised help.
           </p>
         </div>
 
-        {/* Accordion Items */}
-        <div className="relative mb-16">
-          <div className="absolute -inset-px bg-gradient-to-r from-red-900/50 via-red-800/30 to-red-900/50 blur" />
-          <div className="relative bg-black/80 backdrop-blur-sm border border-red-900/30">
-            {accordions.map((accordion, index) => (
-              <AccordionItem
-                key={index}
-                id={index}
-                title={accordion.title}
-                isOpen={openIndex === index}
-                onClick={() => toggleAccordion(index)}
-                content={accordion.content}
-              />
-            ))}
-          </div>
+        <div className="rounded-2xl border border-border bg-white shadow-sm">
+          {accordions.map((accordion, index) => (
+            <AccordionItem
+              key={accordion.title}
+              id={index}
+              title={accordion.title}
+              isOpen={openIndex === index}
+              onClick={() => toggleAccordion(index)}
+              content={accordion.content}
+            />
+          ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center">
-          <Link
-            href="/faq"
-            className="group relative inline-flex items-center px-8 py-4 overflow-hidden"
-          >
-            <div className="absolute -inset-px bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-70 group-hover:opacity-100 blur transition-opacity duration-500" />
-            <div className="relative flex items-center bg-black px-6 py-3 font-mono text-red-400 group-hover:text-red-300 transition-colors">
-              <span>Access Full Database</span>
-              <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </div>
+        <div className="mt-8 text-center text-sm text-slate-600">
+          Need a direct answer?{" "}
+          <Link href="/contact" className="text-primary transition hover:underline">
+            Contact support
           </Link>
-          <p className="mt-6 text-gray-500 font-mono text-sm">
-            Need to establish direct contact?{' '}
-            <Link href="/contact" className="text-red-500 hover:text-red-400 transition-colors">
-              Initialize communication
-            </Link>
-          </p>
         </div>
       </div>
     </section>

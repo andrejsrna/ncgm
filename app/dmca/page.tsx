@@ -149,10 +149,10 @@ export default function DmcaPage() {
                     <div className="relative bg-black/60 p-4 rounded-lg border border-red-800/30">
                       <h3 className="text-red-400 font-medium mb-2 font-mono">Neural Uplink</h3>
                       <a 
-                        href="mailto:dmca@nocopyrightgamingmusic.com" 
+                        href="mailto:dmca@njkmusic.com" 
                         className="text-red-400 hover:text-red-300 transition-colors font-mono"
                       >
-                        dmca@nocopyrightgamingmusic.com
+                        dmca@njkmusic.com
                       </a>
                     </div>
                   </div>

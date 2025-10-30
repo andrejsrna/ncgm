@@ -4,20 +4,32 @@ import { resolveStrapiImageUrl } from '@/lib/utils';
 
 interface TrackData {
   title: string;
-  genre: string;
-  trackUrl: string;
-  embedUrl: string;
+  genre?: string;
+  label?: string;
+  trackUrl?: string | null;
+  embedUrl?: string | null;
   imageUrl: string;
 }
 
-const transformMusicData = (musicData: MusicData): TrackData => ({
-  title: musicData.Title,
-  genre: musicData.genre?.Genres || 'Unknown',
-  trackUrl: musicData.Spotify || '#',
-  embedUrl: musicData.Spotify ? 
-    `https://open.spotify.com/embed/track/${musicData.Spotify.split('/').pop()}` : '#',
-  imageUrl: resolveStrapiImageUrl(musicData.Cover) || '/images/default-track.jpg'
-});
+const transformMusicData = (musicData: MusicData): TrackData => {
+  const spotifyId = musicData.Spotify
+    ? musicData.Spotify.split("/").pop()?.split("?")[0]
+    : undefined;
+
+  return {
+    title: musicData.Title,
+    genre: musicData.genre?.Genres || undefined,
+    label: musicData.label?.name || undefined,
+    trackUrl: musicData.Spotify,
+    embedUrl:
+      musicData.spotify_embed ||
+      (spotifyId
+        ? `https://open.spotify.com/embed/track/${spotifyId}`
+        : undefined),
+    imageUrl:
+      resolveStrapiImageUrl(musicData.Cover) || "/images/default-track.jpg",
+  };
+};
 
 export async function GET(request: Request) {
   try {

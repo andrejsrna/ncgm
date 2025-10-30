@@ -67,7 +67,7 @@ const faqs = [
       },
       {
         q: "Attribution Protocol Specifications?",
-        a: "Embed the following in your transmission metadata: 'Signal: [Pattern ID] via No Copyright Gaming Music (nocopyrightgamingmusic.com) - Acquired via [Node ID]'"
+        a: "Embed the following in your transmission metadata: 'Signal: [Pattern ID] via No Copyright Gaming Music (njkmusic.com) - Acquired via [Node ID]'"
       },
       {
         q: "Authentication Conflict Resolution?",
@@ -194,7 +194,7 @@ export default function FaqPage() {
                   </div>
                 </a>
                 <a
-                  href="mailto:support@nocopyrightgamingmusic.com"
+                  href="mailto:support@njkmusic.com"
                   className="group relative inline-flex"
                 >
                   <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>

@@ -136,7 +136,7 @@ export default function LicensePage() {
                   <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 blur"></div>
                   <div className="relative bg-black border border-red-500/30 p-6">
                     <code className="text-sm font-mono text-red-300">
-                      Signal: [Track ID] via No Copyright Gaming Music (nocopyrightgamingmusic.com)
+                      Signal: [Track ID] via No Copyright Gaming Music (njkmusic.com)
                     </code>
                   </div>
                 </div>
@@ -191,7 +191,7 @@ export default function LicensePage() {
                   </div>
                 </a>
                 <a
-                  href="mailto:support@nocopyrightgamingmusic.com"
+                  href="mailto:support@njkmusic.com"
                   className="group relative inline-flex"
                 >
                   <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>

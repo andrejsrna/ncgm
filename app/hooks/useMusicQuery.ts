@@ -1,91 +1,144 @@
+import path from "path";
+import { readMarkdownDirectory, readMarkdownFile } from "@/lib/markdown";
+import { PRIMARY_LABEL } from "@/lib/site";
+import { slugify } from "@/lib/utils";
 
-
-// Define the type for your music data
 export interface MusicData {
-  pubDate: string | number | Date;
-  id: number;
-  documentId: string;
+  pubDate?: string;
+  id?: number;
+  documentId?: string;
   Title: string;
-  Spotify: string | null;
-  AppleMusic: string | null;
-  iTunes: string | null;
-  YouTubeMusic: string | null;
-  Amazon: string | null;
-  Pandora: string | null;
+  Spotify?: string | null;
+  AppleMusic?: string | null;
+  iTunes?: string | null;
+  YouTubeMusic?: string | null;
+  Amazon?: string | null;
+  Pandora?: string | null;
   slug: string;
   Description?: string | null;
-  Deezer: string | null;
-  Tidal: string | null;
-  iHeartRadio: string | null;
-  Boomplay: string | null;
-  Beatport: string | null;
-  Bandcamp: string | null;
-  spotify_embed: string | null;
-  Content: string | null;
-  Cover: {
-    name: string;
-    url: string;
-    formats: {
-      large: {
-        url: string;
+  Deezer?: string | null;
+  Tidal?: string | null;
+  iHeartRadio?: string | null;
+  Boomplay?: string | null;
+  Beatport?: string | null;
+  Bandcamp?: string | null;
+  spotify_embed?: string | null;
+  Content: string;
+  Cover?: {
+    url?: string;
+    formats?: {
+      large?: {
+        url?: string;
       };
     };
   };
-  genre: {
-    Genres: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
+  genre?: {
+    Genres?: string;
+  } | null;
+  label?: {
+    name?: string;
+    slug?: string;
+    short?: string;
+  } | null;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
 }
 
-interface ApiResponse {
-  data: MusicData[];
-  meta: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
-}
+type MusicFrontmatter = Omit<MusicData, "Content">;
 
-export const getMusicData = async () => {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/musicm?populate=*`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    cache: 'no-store',
-  });
+const MUSIC_DIR = path.join(process.cwd(), "content", "music");
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch music data');
-  }
-
-  const responseData: ApiResponse = await response.json();
-  
-  return responseData.data || [];
-};
-
-export const getMusicBySlug = async (slug: string) => {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/musicm?filters[slug][$eq]=${slug}&populate=*`, 
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      cache: 'no-store',
-    }
+export const getMusicData = async (): Promise<MusicData[]> => {
+  const entries = await readMarkdownDirectory<MusicFrontmatter>(MUSIC_DIR);
+  const tracks = entries.map(({ metadata, body, slug }) =>
+    hydrateTrack(metadata, body, slug)
   );
 
-  if (!response.ok) {
-    console.error('API Error:', await response.text());
-    throw new Error('Failed to fetch music data', { cause: response.status });
+  return tracks.sort((a, b) => {
+    const dateA = getComparableDate(a);
+    const dateB = getComparableDate(b);
+    return dateB - dateA;
+  });
+};
+
+export const getMusicBySlug = async (
+  slug: string
+): Promise<MusicData | null> => {
+  const filePath = path.join(MUSIC_DIR, `${slug}.md`);
+
+  try {
+    const { metadata, body } = await readMarkdownFile<MusicFrontmatter>(
+      filePath
+    );
+    return hydrateTrack(metadata, body, slug);
+  } catch (error) {
+    if (isNotFound(error)) {
+      return null;
+    }
+    throw error;
+  }
+};
+
+function hydrateTrack(
+  metadata: MusicFrontmatter,
+  body: string,
+  fallbackSlug: string
+): MusicData {
+  const slug = metadata.slug ?? fallbackSlug;
+  const label = ensureLabel(metadata.label);
+
+  return {
+    ...metadata,
+    label,
+    slug,
+    documentId: metadata.documentId ?? slug,
+    Content: body,
+    publishedAt:
+      metadata.publishedAt ?? metadata.pubDate ?? metadata.updatedAt,
+    updatedAt: metadata.updatedAt ?? metadata.publishedAt,
+  };
+}
+
+function getComparableDate(track: MusicData): number {
+  const reference =
+    track.publishedAt ??
+    track.pubDate ??
+    track.updatedAt ??
+    new Date().toISOString();
+  const timestamp = new Date(reference).getTime();
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+}
+
+function isNotFound(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    error.code === "ENOENT"
+  );
+}
+
+function ensureLabel(
+  label: MusicFrontmatter["label"]
+): MusicData["label"] {
+  if (!label) {
+    return { ...PRIMARY_LABEL };
   }
 
-  const responseData = await response.json();
-  return responseData.data[0]; // Return first matching item since slug should be unique
-};
+  if (typeof label === "string") {
+    return {
+      name: label,
+      slug: slugify(label),
+      short: label === PRIMARY_LABEL.name ? PRIMARY_LABEL.short : undefined,
+    };
+  }
+
+  const name = label.name ?? PRIMARY_LABEL.name;
+  return {
+    ...label,
+    name,
+    slug: label.slug ?? slugify(name),
+    short: label.short ?? (name === PRIMARY_LABEL.name ? PRIMARY_LABEL.short : undefined),
+  };
+}

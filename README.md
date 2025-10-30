@@ -1,12 +1,12 @@
-# NoCopyrightGamingMusic (NCGM)
+# NJK Music
 
-![NCGM Logo](public/logo.png)
+![NJK Music Logo](public/logo.png)
 
 ## 📄 Project Description
 
-Welcome to the **NoCopyrightGamingMusic (NCGM)** repository! This project powers the [nocopyrightgamingmusic.com](https://nocopyrightgamingmusic.com) website, which serves as a platform for our music label dedicated to providing free, high-quality tracks for gamers and content creators. 
+Welcome to the **NJK Music** repository! This project powers [njkmusic.com](https://njkmusic.com), a hub for our label collective. The current catalog spotlights the **No Copyright Gaming Music** imprint, delivering free, high-quality tracks for gamers, streamers, and content creators.
 
-NCGM is a static website built with **Next.js**, **Tailwind CSS**, and **Shadcn** components, offering a seamless and visually appealing experience. The site integrates the **Spotify API** to feature a randomly selected track from our Spotify profile, ensuring that visitors always discover new music tailored for their gaming sessions.
+NJK Music is a static website built with **Next.js**, **Tailwind CSS**, and **Shadcn** components, offering a seamless and visually appealing experience. The site integrates the **Spotify API** to feature a randomly selected track from our Spotify profile, ensuring that visitors always discover new music tailored for their gaming sessions.
 
 ## 🚀 Features
 
@@ -28,6 +28,24 @@ NCGM is a static website built with **Next.js**, **Tailwind CSS**, and **Shadcn*
 - **[Framer Motion](https://www.framer.com/motion/):** For smooth animations and transitions.
 - **[React Icons](https://react-icons.github.io/react-icons/):** Icon library for React applications.
 - **[next-sitemap](https://github.com/iamvishnusankar/next-sitemap):** Generates sitemap for Next.js projects.
+
+## 🗂️ Migrating Content From Strapi
+
+The site now runs entirely on local markdown content. A helper script is included to export existing Strapi entries into the new `content/` directory structure:
+
+```bash
+NEXT_PUBLIC_API_URL="https://your-strapi-instance" \
+NEXT_PUBLIC_STRAPI_API_TOKEN="your-token" \
+npm run export:content
+```
+
+The script will:
+
+- Download every post and music entry (including cover art) into `content/posts` and `content/music`
+- Store associated images under `public/images/posts` and `public/images/music`
+- Preserve metadata inside the markdown frontmatter so the app can render it without Strapi
+
+> Tip: the generated `data/newsletter-subscribers.json` file is ignored by git to keep local signups private.
 
 ## 📥 Installation
 

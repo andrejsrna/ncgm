@@ -1,99 +1,119 @@
 'use client';
 
 import Link from "next/link";
-import { MusicData } from "@/app/hooks/useMusicQuery";
 import Image from "next/image";
-import { FaSpotify, FaApple, FaYoutube, FaAmazon } from 'react-icons/fa';
-import { resolveStrapiImageUrl } from "@/lib/utils";
+import { FaSpotify, FaApple, FaYoutube, FaAmazon } from "react-icons/fa";
+import type { MusicData } from "@/app/hooks/useMusicQuery";
+import { resolveStrapiImageUrl, slugify } from "@/lib/utils";
 
 interface MusicCardProps {
   track: MusicData;
 }
 
 export default function MusicCard({ track }: MusicCardProps) {
-  const imageUrl = resolveStrapiImageUrl(track?.Cover)
+  const imageUrl = resolveStrapiImageUrl(track?.Cover);
+  const labelSlug =
+    track.label?.slug ?? (track.label?.name ? slugify(track.label.name) : undefined);
+  const summary = track.Description ?? track.Content;
+
   return (
-    <div className="group relative h-full">
-      {/* Glowing border effect */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500 animate-pulse-slow"></div>
-      
-      {/* Main card */}
-      <div className="relative bg-black border border-red-900/30 overflow-hidden h-full flex flex-col">
-        {/* Cover Image with Effects */}
-        {imageUrl && (
-          <div className="relative h-72 w-full overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black z-10" />
-            <Image
-              src={imageUrl}
-              alt={track.Title || 'Music cover'}
-              fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:saturate-150"
-            />
-            {/* Scanline effect */}
-            <div className="absolute inset-0 bg-scanline opacity-10 pointer-events-none" />
-          </div>
-        )}
-        
-        {/* Content */}
-        <div className="relative flex-1 flex flex-col p-6 bg-gradient-to-t from-black via-black/95 to-transparent">
-          <Link href={`/music/${track.slug}`} className="block group/title">
-            <h2 className="text-xl font-mono font-bold text-red-500 mb-3 tracking-wider group-hover/title:text-red-400 transition-colors duration-300 line-clamp-2">
-              <span className="relative">
-                <span className="absolute -inset-0.5 text-red-600 opacity-80 blur-[1px]">{track.Title}</span>
-                {track.Title}
-              </span>
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition hover:shadow-md">
+      {imageUrl && (
+        <div className="relative h-48 w-full">
+          <Image
+            src={imageUrl}
+            alt={track.Title}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+      )}
+
+      <div className="flex flex-1 flex-col gap-4 p-5">
+        <div className="space-y-2">
+          <Link href={`/music/${track.slug}`} className="block">
+            <h2 className="text-lg font-semibold text-slate-900 transition hover:text-primary">
+              {track.Title}
             </h2>
           </Link>
 
-          {track.Content && (
-            <p className="text-red-200/70 mb-4 font-light tracking-wide line-clamp-2 text-sm">{track.Content}</p>
-          )}
+          <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500">
+            {labelSlug && track.label?.name && (
+              <Link
+                href={`/labels/${labelSlug}`}
+                className="rounded-full bg-primary/10 px-2.5 py-1 text-primary transition hover:bg-primary/20"
+              >
+                {track.label.short ?? track.label.name}
+              </Link>
+            )}
 
-          {track.genre && (
-            <div className="mb-4">
-              <span className="inline-block px-3 py-1 text-sm text-red-400 border border-red-800/50 bg-red-950/30 rounded-sm">
+            {track.genre?.Genres && (
+              <span className="rounded-full bg-slate-100 px-2.5 py-1">
                 {track.genre.Genres}
               </span>
-            </div>
-          )}
-          
-          {/* Push streaming links to bottom */}
-          <div className="mt-auto space-y-3">
-            <h3 className="text-red-300 font-medium font-mono tracking-wider text-sm">Access Points:</h3>
-            <div className="grid grid-cols-2 gap-3">
-              {track.Spotify && (
-                <a href={track.Spotify} target="_blank" rel="noopener noreferrer" 
-                   className="flex items-center gap-2 text-green-500 hover:text-green-400 transition-colors duration-300">
-                  <FaSpotify className="w-4 h-4" />
-                  <span className="font-mono text-sm">Spotify</span>
-                </a>
-              )}
-              {track.AppleMusic && (
-                <a href={track.AppleMusic} target="_blank" rel="noopener noreferrer"
-                   className="flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors duration-300">
-                  <FaApple className="w-4 h-4" />
-                  <span className="font-mono text-sm">Apple Music</span>
-                </a>
-              )}
-              {track.YouTubeMusic && (
-                <a href={track.YouTubeMusic} target="_blank" rel="noopener noreferrer"
-                   className="flex items-center gap-2 text-red-500 hover:text-red-400 transition-colors duration-300">
-                  <FaYoutube className="w-4 h-4" />
-                  <span className="font-mono text-sm">YouTube</span>
-                </a>
-              )}
-              {track.Amazon && (
-                <a href={track.Amazon} target="_blank" rel="noopener noreferrer"
-                   className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-300">
-                  <FaAmazon className="w-4 h-4" />
-                  <span className="font-mono text-sm">Amazon</span>
-                </a>
-              )}
-            </div>
+            )}
+          </div>
+        </div>
+
+        {summary && (
+          <p className="line-clamp-3 text-sm text-slate-600">
+            {summary.replace(/<[^>]+>/g, "")}
+          </p>
+        )}
+
+        <div className="mt-auto space-y-2">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+            Available on
+          </p>
+          <div className="grid grid-cols-2 gap-3 text-sm text-slate-600">
+            {track.Spotify && (
+              <a
+                href={track.Spotify}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition hover:text-primary"
+              >
+                <FaSpotify className="h-4 w-4 text-emerald-500" />
+                Spotify
+              </a>
+            )}
+            {track.AppleMusic && (
+              <a
+                href={track.AppleMusic}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition hover:text-primary"
+              >
+                <FaApple className="h-4 w-4 text-slate-700" />
+                Apple Music
+              </a>
+            )}
+            {track.YouTubeMusic && (
+              <a
+                href={track.YouTubeMusic}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition hover:text-primary"
+              >
+                <FaYoutube className="h-4 w-4 text-rose-600" />
+                YouTube
+              </a>
+            )}
+            {track.Amazon && (
+              <a
+                href={track.Amazon}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition hover:text-primary"
+              >
+                <FaAmazon className="h-4 w-4 text-amber-500" />
+                Amazon
+              </a>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
-} 
+}

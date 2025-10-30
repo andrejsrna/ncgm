@@ -1,32 +1,13 @@
 import { NextResponse } from 'next/server';
+import path from 'path';
+import fs from 'fs/promises';
 
 const validateEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
 
-const createNewsletterSubscription = async (email: string) => {
-  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  
-  const response = await fetch(`${apiUrl}/api/newsletters`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      data: { email },
-    }),
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Newsletter subscription failed: ${response.status} ${errorText}`);
-  }
-
-  return response;
-};
+const subscribersFile = path.join(process.cwd(), 'data', 'newsletter-subscribers.json');
 
 export async function POST(request: Request) {
   try {
@@ -39,7 +20,7 @@ export async function POST(request: Request) {
       );
     }
 
-    await createNewsletterSubscription(email);
+    await appendSubscriber(email);
 
     return NextResponse.json(
       { message: 'Successfully subscribed to newsletter' },
@@ -52,4 +33,64 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
+}
+
+interface SubscriberRecord {
+  email: string;
+  subscribedAt: string;
+}
+
+async function appendSubscriber(email: string): Promise<void> {
+  const record: SubscriberRecord = {
+    email,
+    subscribedAt: new Date().toISOString(),
+  };
+
+  await fs.mkdir(path.dirname(subscribersFile), { recursive: true });
+
+  const subscribers = await readSubscribers();
+  const alreadySubscribed = subscribers.some(
+    (subscriber) => subscriber.email.toLowerCase() === email.toLowerCase()
+  );
+
+  if (alreadySubscribed) {
+    return;
+  }
+
+  subscribers.push(record);
+  await fs.writeFile(
+    subscribersFile,
+    JSON.stringify(subscribers, null, 2),
+    'utf8'
+  );
+}
+
+async function readSubscribers(): Promise<SubscriberRecord[]> {
+  try {
+    const raw = await fs.readFile(subscribersFile, 'utf8');
+    const parsed = JSON.parse(raw);
+
+    if (Array.isArray(parsed)) {
+      return parsed.filter(
+        (item): item is SubscriberRecord =>
+          typeof item?.email === 'string' && typeof item?.subscribedAt === 'string'
+      );
+    }
+
+    return [];
+  } catch (error) {
+    if (isNotFound(error)) {
+      return [];
+    }
+    throw error;
+  }
+}
+
+function isNotFound(error: unknown): boolean {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'code' in error &&
+    error.code === 'ENOENT'
+  );
 }

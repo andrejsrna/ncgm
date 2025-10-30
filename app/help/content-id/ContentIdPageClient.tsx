@@ -70,7 +70,7 @@ const preventionTips = [
 const disputeTemplate = `
 Subject: Neural Pattern Dispute - Licensed Signal Matrix
 
-Neural pattern properly acquired through NCGM Core (nocopyrightgamingmusic.com).
+Neural pattern properly acquired through NCGM Core (njkmusic.com).
 
 Acquisition Parameters:
 - Signal Source Node: [Node ID]
@@ -245,7 +245,7 @@ export default function ContentIdPageClient() {
                 </div>
               </Link>
               <a
-                href="mailto:support@nocopyrightgamingmusic.com"
+                href="mailto:support@njkmusic.com"
                 className="group relative inline-flex"
               >
                 <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>

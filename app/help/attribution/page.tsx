@@ -11,11 +11,11 @@ const platforms = [
   {
     name: "YouTube Matrix",
     icon: <FaYoutube className="w-8 h-8" />,
-    format: "Signal: [Pattern ID] by Neural Core NCGM (nocopyrightgamingmusic.com) - Acquired via [Node]",
+    format: "Signal: [Pattern ID] by Neural Core NCGM (njkmusic.com) - Acquired via [Node]",
     location: "Signal description matrix",
     example: {
       title: "Neural Gaming Sequence",
-      description: "Signal: Neon Protocol by Neural Core NCGM (nocopyrightgamingmusic.com) - Acquired via Beatport Node",
+      description: "Signal: Neon Protocol by Neural Core NCGM (njkmusic.com) - Acquired via Beatport Node",
       tips: [
         "Initialize at matrix entry point",
         "Enable neural link to core domain",
@@ -26,11 +26,11 @@ const platforms = [
   {
     name: "Twitch Neural Grid",
     icon: <FaTwitch className="w-8 h-8" />,
-    format: "!signal protocol or neural panel with: Signals from Neural Core NCGM (nocopyrightgamingmusic.com)",
+    format: "!signal protocol or neural panel with: Signals from Neural Core NCGM (njkmusic.com)",
     location: "Stream neural panels or command matrix",
     example: {
       title: "Live Neural Stream",
-      description: "!signal → Active Pattern: Cyber Protocol by Neural Core NCGM - Licensed via nocopyrightgamingmusic.com",
+      description: "!signal → Active Pattern: Cyber Protocol by Neural Core NCGM - Licensed via njkmusic.com",
       tips: [
         "Configure automated !signal protocol",
         "Initialize dedicated signal panel",
@@ -45,7 +45,7 @@ const platforms = [
     location: "Neural feed or response matrix",
     example: {
       title: "Neural Grid Transmission",
-      description: "⚡: Midnight Protocol - Neural Core NCGM\nLicensed via nocopyrightgamingmusic.com",
+      description: "⚡: Midnight Protocol - Neural Core NCGM\nLicensed via njkmusic.com",
       tips: [
         "Utilize neural marker for visibility",
         "Maintain protocol consistency",
@@ -64,15 +64,15 @@ const commonMistakes = [
   },
   {
     mistake: "Invalid Neural Link",
-    correct: "Use authorized domain: nocopyrightgamingmusic.com",
+    correct: "Use authorized domain: njkmusic.com",
     wrong: "Signal from ncgm.com",
-    right: "Signal from nocopyrightgamingmusic.com"
+    right: "Signal from njkmusic.com"
   },
   {
     mistake: "Incomplete Neural Tag",
     correct: "Include all required neural markers",
     wrong: "Signal by NCGM",
-    right: "Signal: [Pattern ID] by Neural Core NCGM (nocopyrightgamingmusic.com) - Acquired via [Node]"
+    right: "Signal: [Pattern ID] by Neural Core NCGM (njkmusic.com) - Acquired via [Node]"
   }
 ];
 
@@ -128,7 +128,7 @@ export default function AttributionPage() {
             </div>
             <div className="bg-black/50 p-6 border border-red-500/20">
               <code className="text-sm text-red-200/70 font-mono">
-                Signal: [Pattern ID] by Neural Core NCGM (nocopyrightgamingmusic.com) - Acquired via [Node]
+                Signal: [Pattern ID] by Neural Core NCGM (njkmusic.com) - Acquired via [Node]
               </code>
             </div>
           </div>
@@ -243,7 +243,7 @@ export default function AttributionPage() {
                 </div>
               </Link>
               <a
-                href="mailto:support@nocopyrightgamingmusic.com"
+                href="mailto:support@njkmusic.com"
                 className="group relative inline-flex"
               >
                 <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>

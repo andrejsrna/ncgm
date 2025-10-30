@@ -1,37 +1,38 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { FaEnvelope, FaFileContract, FaCog, FaBolt, FaBuilding, FaClock, FaChevronRight } from 'react-icons/fa';
+import { SITE_NAME } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Neural Link Hub | No Copyright Gaming Music',
-  description: 'Establish neural connection with the NCGM network. Access support protocols for licensing, technical anomalies, or general system inquiries.',
+  title: `Neural Link Hub | ${SITE_NAME}`,
+  description: `Establish neural connection with the ${SITE_NAME} network. Access support protocols for licensing, technical anomalies, or general system inquiries.`,
 };
 
 const contactMethods = [
   {
     title: "Core Support Matrix",
-    email: "support@nocopyrightgamingmusic.com",
+    email: "support@njkmusic.com",
     description: "Neural link for general protocol inquiries",
     response: "24-48 cycles",
     icon: <FaEnvelope className="w-8 h-8" />
   },
   {
     title: "Protocol Authorization",
-    email: "licensing@nocopyrightgamingmusic.com",
+    email: "licensing@njkmusic.com",
     description: "Access matrix for licensing protocols",
     response: "1-2 orbital cycles",
     icon: <FaFileContract className="w-8 h-8" />
   },
   {
     title: "Technical Matrix",
-    email: "tech@nocopyrightgamingmusic.com",
+    email: "tech@njkmusic.com",
     description: "Debug protocol anomalies and data corruption",
     response: "24-48 cycles",
     icon: <FaCog className="w-8 h-8" />
   },
   {
     title: "Signal Authentication",
-    email: "claims@nocopyrightgamingmusic.com",
+    email: "claims@njkmusic.com",
     description: "Priority channel for signal verification",
     response: "Priority bandwidth",
     icon: <FaBolt className="w-8 h-8" />

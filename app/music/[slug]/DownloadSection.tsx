@@ -1,7 +1,4 @@
-'use client';
-
 import { SiBeatport, SiBandcamp } from "react-icons/si";
-import { FaDownload } from "react-icons/fa";
 import type { MusicData } from "@/app/hooks/useMusicQuery";
 
 interface DownloadSectionProps {
@@ -13,58 +10,49 @@ export default function DownloadSection({ track }: DownloadSectionProps) {
     return null;
   }
 
+  const links = [
+    track.Beatport && {
+      name: "Beatport",
+      description: "Download extended mixes and stems.",
+      url: track.Beatport,
+      icon: <SiBeatport className="h-5 w-5 text-emerald-500" />,
+    },
+    track.Bandcamp && {
+      name: "Bandcamp",
+      description: "Support the label directly with lossless downloads.",
+      url: track.Bandcamp,
+      icon: <SiBandcamp className="h-5 w-5 text-primary" />,
+    },
+  ].filter(Boolean) as Array<{ name: string; description: string; url: string; icon: React.ReactNode }>;
+
   return (
-    <section aria-labelledby="download-options" className="space-y-4">
-      <div className="flex items-center gap-3">
-        <FaDownload className="text-red-400" aria-hidden />
-        <h2 id="download-options" className="text-sm font-semibold uppercase tracking-[0.35em] text-red-300">
-          Purchase & Download
-        </h2>
-      </div>
-      <p className="max-w-md text-sm text-red-200/70">
-        Secure high-resolution WAV and MP3 files ready for streaming overlays, trailers, and monetized content.
+    <section
+      aria-labelledby="download-options"
+      className="rounded-3xl border border-border bg-white p-6 shadow-soft"
+    >
+      <h2 id="download-options" className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">
+        Purchase & download
+      </h2>
+      <p className="mt-2 text-xs text-slate-500">
+        Unlock high-resolution files and stems ready for editing, mastering, and deployment.
       </p>
 
-      <div className="flex flex-col gap-3 sm:flex-row">
-        {track.Beatport && (
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        {links.map((link) => (
           <a
-            href={track.Beatport}
+            key={link.name}
+            href={link.url}
             target="_blank"
-            rel="noopener noreferrer nofollow"
-            className="group flex-1 rounded-2xl border border-red-700/60 bg-red-950/50 px-5 py-4 text-left transition hover:border-red-400 hover:bg-red-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            rel="noopener noreferrer"
+            className="flex items-start gap-3 rounded-2xl border border-border bg-slate-50 p-4 transition hover:border-primary hover:bg-white"
           >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 text-red-200">
-                <SiBeatport className="text-2xl" aria-hidden />
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.4em]">Beatport</p>
-                  <p className="text-xs text-red-200/70">Royalty-free licensing & stems</p>
-                </div>
-              </div>
-              <span className="text-xs uppercase tracking-[0.3em] text-red-300/80">Shop</span>
+            <div className="mt-1">{link.icon}</div>
+            <div>
+              <p className="text-sm font-semibold text-slate-900">{link.name}</p>
+              <p className="mt-1 text-xs text-slate-600">{link.description}</p>
             </div>
           </a>
-        )}
-
-        {track.Bandcamp && (
-          <a
-            href={track.Bandcamp}
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            className="group flex-1 rounded-2xl border border-red-700/60 bg-red-950/50 px-5 py-4 text-left transition hover:border-red-400 hover:bg-red-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 text-red-200">
-                <SiBandcamp className="text-2xl" aria-hidden />
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.4em]">Bandcamp</p>
-                  <p className="text-xs text-red-200/70">Support the artist directly</p>
-                </div>
-              </div>
-              <span className="text-xs uppercase tracking-[0.3em] text-red-300/80">Explore</span>
-            </div>
-          </a>
-        )}
+        ))}
       </div>
     </section>
   );

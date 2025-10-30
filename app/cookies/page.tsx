@@ -148,7 +148,7 @@ export default function CookiesPage() {
                   For questions regarding our neural tracking implementation, establish direct contact with our security division.
                 </p>
                 <Link
-                  href="mailto:privacy@nocopyrightgamingmusic.com"
+                  href="mailto:privacy@njkmusic.com"
                   className="group relative inline-flex"
                 >
                   <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
