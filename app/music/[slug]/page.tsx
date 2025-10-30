@@ -64,7 +64,6 @@ export async function generateMetadata({
         description: plainDescription,
         url: canonical,
         siteName: SITE_NAME,
-        section: labelName,
         images: [
           {
             url: coverUrl || `${SITE_URL}/og-image.jpg`,

@@ -128,8 +128,8 @@ function FilterGroup({ title, subtitle, chips }: FilterGroupProps) {
         {subtitle && <span className="text-xs text-slate-500">{subtitle}</span>}
       </div>
       <div className="flex flex-wrap gap-3">
-        {chips.map((chip) => (
-          <FilterChip key={chip.key} {...chip} />
+        {chips.map(({ key, ...chip }) => (
+          <FilterChip key={key} {...chip} />
         ))}
       </div>
     </div>

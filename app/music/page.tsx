@@ -48,9 +48,11 @@ export const metadata: Metadata = {
 export default async function MusicPage() {
   const music = await getMusicData();
 
-  const sortedMusic = [...music].sort(
-    (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
-  );
+  const sortedMusic = [...music].sort((a, b) => {
+    const dateA = new Date(a.pubDate ?? a.publishedAt ?? a.updatedAt ?? 0).getTime();
+    const dateB = new Date(b.pubDate ?? b.publishedAt ?? b.updatedAt ?? 0).getTime();
+    return dateB - dateA;
+  });
 
   const genreMap = sortedMusic.reduce<Record<string, number>>((acc, track) => {
     const name = track.genre?.Genres?.trim();

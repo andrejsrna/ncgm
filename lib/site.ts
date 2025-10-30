@@ -84,6 +84,37 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       { title: "Focus", detail: "Meditation, Wellness, Relaxation" },
     ],
   },
+  "jazz-and-bass": {
+    slug: "jazz-and-bass",
+    name: "Jazz & Bass",
+    short: "J&B",
+    tagline: "Funky liquid drum & bass with jazz-soaked grooves",
+    description:
+      "Jazz & Bass blends upright bass loops, brushed drums, and velvet keys with rolling liquid drum & bass percussion. These releases are licensed for traditional distribution but remain copyrighted for social media platforms, so creators must secure clearance before featuring them in monetised content.",
+    seo: {
+      title: "Jazz & Bass Label | Liquid Drum and Bass for Creators",
+      description:
+        "Discover Jazz & Bass releases—funky liquid drum & bass infused with jazz instrumentation. Rights-managed catalogue for sync, ads, and premium storytelling.",
+      keywords: [
+        "liquid drum and bass",
+        "jazz drum and bass label",
+        "jazz and bass music",
+        "funky liquid dnb",
+        "rights managed drum and bass",
+      ],
+    },
+    highlights: [
+      "Liquid DnB arrangements layered with horns, Rhodes, and upright bass motifs",
+      "Copyrighted catalogue requiring bespoke licensing for reels, shorts, and live streams",
+      "Perfect for sync deals, brand ads, nightlife recaps, and fashion reels once cleared",
+    ],
+    callouts: [
+      { title: "Launch Year", detail: "2025" },
+      { title: "Releases", detail: "Debut set dropping soon" },
+      { title: "Rights", detail: "Copyrighted / Rights-managed" },
+      { title: "Focus", detail: "Liquid DnB, Funk, Jazz Fusion" },
+    ],
+  },
 };
 
 export const PRIMARY_LABEL = LABEL_DEFINITIONS["no-copyright-gaming-music"];

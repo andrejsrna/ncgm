@@ -4,6 +4,7 @@ export interface Genre {
     name: string;
     image: string; // Path to the genre image
     spotifyLink: string; // URL to the Spotify playlist
+    description?: string;
   }
   
   export const genres: Genre[] = [

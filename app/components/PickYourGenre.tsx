@@ -36,7 +36,9 @@ const PickYourGenre: React.FC = () => {
               <div className="flex flex-1 flex-col gap-4 p-5">
                 <div>
                   <h3 className="text-lg font-semibold text-slate-900">{genre.name}</h3>
-                  <p className="mt-1 text-sm text-slate-600">{genre.description}</p>
+                  {genre.description && (
+                    <p className="mt-1 text-sm text-slate-600">{genre.description}</p>
+                  )}
                 </div>
 
                 <div className="mt-auto flex flex-wrap gap-3 text-sm font-medium text-primary">
