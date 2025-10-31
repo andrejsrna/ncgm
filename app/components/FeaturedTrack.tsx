@@ -43,7 +43,7 @@ export default function FeaturedTrack() {
               Featured releases
             </p>
             <h2 className="mt-2 text-2xl font-semibold text-slate-900 sm:text-3xl">
-              Spotlight tracks from the NCGM label
+              Spotlight tracks from our NCGM label mood
             </h2>
             <p className="mt-2 text-sm text-slate-600">
               A rotating collection of stream-safe tracks curated for modern creators.

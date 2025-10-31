@@ -16,7 +16,7 @@ const accordions = [
         <ul className="list-disc space-y-1 pl-5">
           <li>Royalty-free usage across live streams, video content, and client projects</li>
           <li>Fast access to high-quality WAV and MP3 downloads</li>
-          <li>Regular updates with new genres and label drops</li>
+          <li>Regular updates with new moods across our NJK label family</li>
         </ul>
       </div>
     ),

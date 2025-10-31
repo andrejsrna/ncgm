@@ -1,7 +1,7 @@
 export const SITE_NAME = "NJK Music";
 export const SITE_DOMAIN = "njkmusic.com";
 export const SITE_DESCRIPTION =
-  "NJK Music curates label-driven, creator-ready soundscapes for streamers, studios, and storytellers.";
+  "NJK Music curates in-house label moods with creator-ready soundscapes for streamers, studios, and storytellers.";
 
 export interface LabelDefinition {
   slug: string;

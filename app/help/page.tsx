@@ -50,7 +50,7 @@ const quickLinks: QuickLink[] = [
   },
   {
     title: "Creator FAQ",
-    description: "Answers to the questions we hear most from label partners and fans.",
+    description: "Answers to the questions we hear most from our label community and fans.",
     href: "/faq",
     icon: FaQuestionCircle,
   },
@@ -260,4 +260,3 @@ export default function HelpPage() {
     </div>
   );
 }
-

@@ -1,219 +1,221 @@
-import { Metadata } from 'next';
-import { FaQuestionCircle, FaEnvelope, FaChevronRight } from 'react-icons/fa';
+import Link from "next/link";
+import { Metadata } from "next";
+import { FaEnvelope, FaLifeRing } from "react-icons/fa";
+import { SITE_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: 'Neural FAQ Matrix | No Copyright Gaming Music',
-  description: 'Access the knowledge matrix for No Copyright Gaming Music protocol inquiries.',
+type FaqCategory = {
+  category: string;
+  description: string;
+  questions: {
+    q: string;
+    a: string;
+  }[];
 };
 
-const faqs = [
+export const metadata: Metadata = {
+  title: `Creator FAQ | ${SITE_NAME}`,
+  description:
+    "Clear answers to licensing, downloads, and support questions for NJK Music. Discover how to integrate tracks into your projects with confidence.",
+};
+
+const faqs: FaqCategory[] = [
   {
-    category: "System Core",
+    category: "Getting started",
+    description: "Understand how NJK Music fits into your workflow.",
     questions: [
       {
-        q: "What is the NCGM Protocol?",
-        a: "No Copyright Gaming Music operates as a neural hub for gaming-optimized audio signals. Our matrix curates and indexes combat-ready soundtracks through verified digital marketplaces, enabling content architects to acquire and integrate authorized audio patterns."
+        q: "What is NJK Music?",
+        a: "NJK Music is a creator-first label family releasing mood-driven collections for gamers, streamers, and studios. Each track is curated by producers so you can move fast without worrying about copyright conflicts.",
       },
       {
-        q: "Neural Interface Protocol?",
-        a: "We establish neural links to authorized digital marketplaces like Beatport, iTunes, and other data streams. Upon signal acquisition, integrate the audio patterns following our attribution matrix protocols."
+        q: "How do I begin using the catalogue?",
+        a: "Browse the music library, choose a release, and follow the marketplace link to complete your purchase. Keep your receipt so you can reference order details if a platform ever requests proof of licensing.",
       },
       {
-        q: "Signal Acquisition Requirements?",
-        a: "Affirmative. Signal patterns require acquisition through authorized marketplace nodes (Beatport, iTunes, etc.). This ensures proper resource allocation to signal architects while maintaining optimal data integrity and legal compliance matrices."
-      }
-    ]
+        q: "Do I need a subscription or account?",
+        a: "You can pick the releases you need one at a time through stores such as Beatport and iTunes. There is no separate subscription or login for NJK Music right now.",
+      },
+    ],
   },
   {
-    category: "Access Protocols",
+    category: "Licensing and usage",
+    description: "Confirm where and how you can publish NJK Music tracks.",
     questions: [
       {
-        q: "Monetization Matrix Compatibility?",
-        a: "Affirmative. Post-signal acquisition through our network nodes, integration is authorized for monetized neural broadcasts (YouTube), data streams (Twitch), and other content matrices."
+        q: "Can I monetize videos with NJK Music?",
+        a: "Monetization depends on the NJK label mood. Most of our moods unlock monetized uploads once you purchase the release, while a few rights-managed moods restrict ad-supported use. Review the notes on each release page and save your invoice so you can verify usage rights if a platform asks.",
       },
       {
-        q: "Multi-node Integration Capacity?",
-        a: "Affirmative. Post-acquisition, signal patterns can be integrated across unlimited nodes, provided proper attribution protocols are maintained."
+        q: "Is there a limit on projects or channels?",
+        a: "No. A single purchase covers use across your channels, client handoffs, and social clips as long as the audio is integrated into your own content. Selling or redistributing the raw files is not permitted.",
       },
       {
-        q: "Access Restrictions?",
-        a: "Affirmative. Signal redistribution, NFT protocol generation, and unauthorized ownership claims are prohibited. Acquisition grants content integration authorization only. Access full protocol specifications in the Neural License Matrix."
-      }
-    ]
+        q: "How should I credit the label?",
+        a: "Include a simple line such as \"Music by NJK Music\" with a link to njkmusic.com whenever the format allows. Sponsorships or client deliverables should mention the track title and label when possible.",
+      },
+    ],
   },
   {
-    category: "Data Acquisition",
+    category: "Downloads and formats",
+    description: "Understand how your files are delivered and what to expect.",
     questions: [
       {
-        q: "Signal Acquisition Protocols?",
-        a: "Each signal pattern in our matrix includes direct acquisition links to various digital marketplaces. Initialize the acquisition sequence through your preferred marketplace node."
+        q: "Where do downloads come from?",
+        a: "Every release links to an authorized storefront like Beatport or Bandcamp. Complete checkout on the storefront and download the files directly from your account with that retailer.",
       },
       {
-        q: "Data Format Specifications?",
-        a: "Format specifications vary by acquisition node. Beatport provides high-fidelity WAV and MP3 data streams. Other nodes may offer different format protocols."
+        q: "Which formats are included?",
+        a: "Most storefronts supply high resolution WAV and MP3 files immediately after purchase. Some stores also include additional formats or extended mixes depending on the release.",
       },
       {
-        q: "Signal Storage Architecture?",
-        a: "Negative. Our systems do not maintain signal storage protocols. We operate as a neural hub, providing curated indices and marketplace node links for direct signal acquisition."
-      }
-    ]
+        q: "Can I request stems or loop packs?",
+        a: "Select releases include stems or loop packs as a bonus download. If you need something specific for editing, send the track details to support and we will let you know what is available.",
+      },
+    ],
   },
   {
-    category: "Neural Rights Matrix",
+    category: "Claims and support",
+    description: "Resolve Content ID matches and connect with the team.",
     questions: [
       {
-        q: "Signal Authentication Protocols?",
-        a: "Negative. Acquired signals through authorized nodes with proper attribution protocols are cleared for content matrix integration. Maintain proper attribution to prevent system conflicts."
+        q: "What if I receive a Content ID claim?",
+        a: "Gather the claim ID, video link, and purchase receipt, then email support@njkmusic.com. Our team will verify the release and work with the platform to clear the claim.",
       },
       {
-        q: "Attribution Protocol Specifications?",
-        a: "Embed the following in your transmission metadata: 'Signal: [Pattern ID] via No Copyright Gaming Music (njkmusic.com) - Acquired via [Node ID]'"
+        q: "Can clients use the music I deliver?",
+        a: "Yes. Clients can publish the finished project that features NJK Music as long as they are not redistributing the audio on its own. Share your receipt with the client so they have proof of licensing.",
       },
       {
-        q: "Authentication Conflict Resolution?",
-        a: "Maintain acquisition verification data and establish contact with our support matrix. Provide transmission details and acquisition proof for conflict resolution protocols."
-      }
-    ]
-  }
+        q: "How fast does support respond?",
+        a: "Most questions are answered within one to two business days. Include links, timestamps, and any platform notices in your message so we can resolve the request quickly.",
+      },
+    ],
+  },
 ];
+
+const anchorFor = (label: string) =>
+  label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 export default function FaqPage() {
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
-            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-          `,
-          backgroundSize: '24px 24px, 24px 24px',
-          backgroundPosition: '0 0, 12px 12px'
-        }}
-      />
-
-      {/* Hero section */}
-      <div className="relative border-b border-red-900/30">
-        <div className="max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-          <h1 className="relative inline-block mb-6 mx-auto text-center w-full">
-            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
-            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
-              Neural FAQ Matrix
-            </span>
-          </h1>
-          <p className="text-red-200/70 text-center max-w-2xl mx-auto font-light tracking-wider">
-            Access the knowledge base for protocol inquiries and system specifications.
-          </p>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div className="relative max-w-4xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-        {/* Quick links */}
-        <div className="relative mb-24">
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-          <div className="relative bg-black border border-red-900/30 p-12">
-            <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-8">Access Nodes</h2>
-            <div className="flex flex-wrap gap-6">
-              {faqs.map((category) => (
-                <a
-                  key={category.category}
-                  href={`#${category.category.toLowerCase()}`}
-                  className="group relative"
-                >
-                  <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-                  <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                    <FaChevronRight className="w-4 h-4 text-red-500" />
-                    <span className="font-mono text-red-500">{category.category}</span>
-                  </div>
-                </a>
-              ))}
-            </div>
+    <div id="top" className="min-h-screen bg-slate-50">
+      <section className="bg-gradient-to-b from-white to-slate-50">
+        <div className="mx-auto flex min-h-[40vh] max-w-6xl flex-col justify-center gap-6 px-4 py-24 sm:px-6 lg:px-8">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+            Creator FAQ
+          </span>
+          <div className="max-w-2xl space-y-4">
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+              Answers built for producers, streamers, and studios
+            </h1>
+            <p className="text-base text-slate-600 sm:text-lg">
+              Explore the most common questions about our label moods, licensing, downloads, and claims when you work with NJK Music releases. Use the quick links, jump to a topic, or contact the team for tailored help.
+            </p>
           </div>
-        </div>
-
-        {/* FAQ sections */}
-        <div className="space-y-24">
-          {faqs.map((category) => (
-            <section
-              key={category.category}
-              id={category.category.toLowerCase()}
-              className="scroll-mt-20"
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
             >
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-25 blur"></div>
-                <div className="relative bg-black border border-red-900/30 p-12">
-                  <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-12">
-                    {category.category} Protocols
-                  </h2>
-                  <div className="space-y-8">
-                    {category.questions.map((faq, index) => (
-                      <div
-                        key={index}
-                        className="group relative"
-                      >
-                        <div className="absolute -inset-0.5 bg-red-500/20 opacity-0 group-hover:opacity-100 blur transition duration-500"></div>
-                        <div className="relative bg-black border border-red-900/30 p-8">
-                          <h3 className="text-lg font-mono font-bold text-red-500 mb-4">
-                            {faq.q}
-                          </h3>
-                          <p className="text-red-200/70 tracking-wide font-light">
-                            {faq.a}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </section>
-          ))}
+              <FaEnvelope className="h-4 w-4" />
+              Contact support
+            </Link>
+          </div>
         </div>
+      </section>
 
-        {/* Contact section */}
-        <div className="mt-32 relative">
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-          <div className="relative bg-black border border-red-900/30 p-12">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-6">
-                Additional Protocol Inquiries?
-              </h2>
-              <p className="text-red-200/70 mb-12 font-light tracking-wide">
-                Unable to locate required data? Our neural support network awaits your signal.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <a
-                  href="/contact"
-                  className="group relative inline-flex"
-                >
-                  <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-                  <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                    <FaQuestionCircle className="w-5 h-5 text-red-500" />
-                    <span className="font-mono text-red-500">Access Support Matrix</span>
-                  </div>
-                </a>
-                <a
-                  href="mailto:support@njkmusic.com"
-                  className="group relative inline-flex"
-                >
-                  <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-                  <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                    <FaEnvelope className="w-5 h-5 text-red-500" />
-                    <span className="font-mono text-red-500">Neural Link</span>
-                  </div>
-                </a>
+      <div className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
+        <section aria-label="FAQ navigation" className="-mt-12">
+          <div className="rounded-3xl border border-border bg-white p-6 shadow-soft sm:p-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div className="space-y-1">
+                <h2 className="text-xl font-semibold text-slate-900">Browse by topic</h2>
+                <p className="text-sm text-slate-600">
+                  Jump straight to the answers you need most.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {faqs.map((category) => (
+                  <a
+                    key={category.category}
+                    href={`#${anchorFor(category.category)}`}
+                    className="inline-flex items-center justify-center rounded-full border border-border bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-primary hover:bg-primary/10 hover:text-primary"
+                  >
+                    {category.category}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
-        </div>
+        <section className="mt-16 space-y-16">
+          {faqs.map((category) => (
+            <article
+              key={category.category}
+              id={anchorFor(category.category)}
+              className="scroll-mt-24"
+            >
+              <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div className="max-w-2xl space-y-2">
+                  <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+                    {category.category}
+                  </h2>
+                  <p className="text-sm text-slate-600">{category.description}</p>
+                </div>
+                <a
+                  href="#top"
+                  className="text-xs font-medium uppercase tracking-[0.3em] text-slate-500 transition hover:text-primary"
+                >
+                  Back to top
+                </a>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2">
+                {category.questions.map((faq) => (
+                  <div
+                    key={faq.q}
+                    className="flex h-full flex-col rounded-3xl border border-border bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-md"
+                  >
+                    <h3 className="text-lg font-semibold text-slate-900">{faq.q}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-600">{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-20 rounded-3xl border border-transparent bg-slate-900 p-8 text-white shadow-soft sm:p-12">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+              <FaLifeRing className="h-6 w-6" />
+            </span>
+            <div className="space-y-3">
+              <h2 className="text-2xl font-semibold tracking-tight">
+                Need a hand from the team?
+              </h2>
+              <p className="text-sm text-slate-200 sm:text-base">
+                Share links, timestamps, and any platform notices so we can review your case quickly. We respond to most requests within one to two business days.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <a
+                href="mailto:support@njkmusic.com"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+              >
+                <FaEnvelope className="h-4 w-4" />
+                Email support
+              </a>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold tracking-[0.2em] text-white transition hover:border-white hover:bg-white/10"
+              >
+                Contact form
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
-} 
+}

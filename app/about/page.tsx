@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 
 export const metadata: Metadata = {
-  title: "About NJK Music | Creator-Ready Labels & Licensing",
+  title: "About NJK Music | Creator-Ready Label Moods & Licensing",
   description:
     "Meet the NJK Music team crafting stream-safe releases for gamers, studios, and storytellers across the globe.",
 };
@@ -19,7 +19,7 @@ const missionHighlights = [
   {
     title: "Creator-First Music",
     description:
-      "We build label experiences and releases designed to clear straight into streams, broadcasts, and client work.",
+      "We build in-house label moods and releases designed to clear straight into streams, broadcasts, and client work.",
     icon: FaHeadphones,
   },
   {
@@ -40,7 +40,7 @@ const pillars = [
   {
     title: "Label Craft",
     points: [
-      "Genre-focused labels with distinctive identities",
+      "Genre-focused label moods with distinctive identities",
       "Release roadmaps planned months in advance",
       "Sonic direction guided by creator feedback",
     ],
@@ -64,7 +64,7 @@ const pillars = [
 ];
 
 const stats = [
-  { label: "Labels in the roster", value: "3+" },
+  { label: "Label moods in the roster", value: "3+" },
   { label: "Creator-friendly releases", value: "75+" },
   { label: "Global markets reached", value: "190+" },
   { label: "Licensing partners", value: "40+" },
@@ -132,7 +132,7 @@ export default function AboutPage() {
                 From gaming beats to rights-managed jazz, we soundtrack creators.
               </h1>
               <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                NJK Music curates label experiences tailored to streamers, studios, and storytellers. Our catalogue
+                NJK Music curates label moods tailored to streamers, studios, and storytellers. Our catalogue
                 combines stream-safe releases with rights-managed drops, so you can find the right fit for highlights,
                 campaigns, or long-form productions—without guesswork.
               </p>
@@ -193,7 +193,7 @@ export default function AboutPage() {
                 What Guides Us
               </span>
               <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-                Labels built on clarity, creativity, and community.
+                Label moods built on clarity, creativity, and community.
               </h2>
               <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
                 Our team blends music supervision, production, and creator success know-how. We obsess over how a track

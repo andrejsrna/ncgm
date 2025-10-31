@@ -8,7 +8,7 @@ import { PRIMARY_LABEL, SITE_NAME } from "@/lib/site";
 
 const pageTitle = `${SITE_NAME} Label Library`;
 const pageDescription =
-  "Explore NJK Music's label ecosystem. Start with the No Copyright Gaming Music catalog for stream-safe, creator-ready releases.";
+  "Explore NJK Music's in-house label moods. Start with the No Copyright Gaming Music catalog for stream-safe, creator-ready releases.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -91,7 +91,7 @@ export default async function MusicPage() {
     {
       question: "Can I download and use these gaming tracks on Twitch and YouTube?",
       answer:
-        `Yes. Every release across NJK Music labels is cleared for Twitch, YouTube, Kick, and other streaming platforms. You can monetize your content as long as you follow the No Copyright Gaming Music attribution guidelines where applicable.`,
+        `Yes. Every release across our NJK label moods is cleared for Twitch, YouTube, Kick, and other streaming platforms unless we flag a rights-managed mood on the track page. You can monetize your content as long as you follow the No Copyright Gaming Music attribution guidelines where applicable.`,
     },
     {
       question: "How do I download no copyright gaming music from this page?",
@@ -128,7 +128,7 @@ export default async function MusicPage() {
               NJK Music Label Library
             </h1>
             <p className="text-base text-slate-600 sm:text-lg">
-              Discover NJK Music&apos;s growing collective of labels. Start with the {PRIMARY_LABEL.name} catalog for
+              Discover NJK Music&apos;s growing set of label moods. Start with the {PRIMARY_LABEL.name} catalog for
               stream-safe releases built for gamers, streamers, and studios.
             </p>
             <div className="flex justify-center">

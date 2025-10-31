@@ -11,10 +11,10 @@ export default function Hero() {
             Creator-first music
           </span>
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            Creator-ready labels for every project
+            Creator-ready label moods for every project
           </h1>
           <p className="text-base text-slate-600 sm:text-lg">
-            NJK Music curates label-driven releases tailored for gamers, streamers, and creative teams.
+            NJK Music releases under our own label moods tuned for gamers, streamers, and creative teams.
             Discover high-quality tracks with clear licensing and instant access.
           </p>
 
@@ -46,7 +46,7 @@ export default function Hero() {
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
-                Diverse labels and genres curated by producers and sound designers.
+                Diverse in-house label moods curated by producers and sound designers.
               </li>
               <li className="flex gap-3">
                 <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
