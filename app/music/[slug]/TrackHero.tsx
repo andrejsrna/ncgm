@@ -4,17 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiArrowLeft, FiHeadphones, FiDownload } from "react-icons/fi";
 import type { MusicData } from "@/app/hooks/useMusicQuery";
-import dynamic from "next/dynamic";
 import { PRIMARY_LABEL } from "@/lib/site";
-
-const StreamingPlatformsSection = dynamic(
-  () => import("./StreamingPlatformsSection"),
-  { ssr: false }
-);
-
-const DownloadSection = dynamic(() => import("./DownloadSection"), {
-  ssr: false,
-});
 
 interface TrackHeroProps {
   track: MusicData;
@@ -111,8 +101,6 @@ export default function TrackHero({ track, coverUrl }: TrackHeroProps) {
             </p>
           )}
 
-          <StreamingPlatformsSection track={track} />
-          <DownloadSection track={track} />
         </section>
 
         <aside className="order-1 lg:order-2">

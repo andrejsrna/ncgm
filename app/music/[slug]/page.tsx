@@ -5,6 +5,9 @@ import TrackHero from "@/app/music/[slug]/TrackHero";
 import LicensingInfoSection from "@/app/music/[slug]/LicensingInfoSection";
 import SpotifyEmbedSection from "@/app/music/[slug]/SpotifyEmbedSection";
 import ReleaseDescriptionSection from "@/app/music/[slug]/ReleaseDescriptionSection";
+import StreamingPlatformsSection from "@/app/music/[slug]/StreamingPlatformsSection";
+import DownloadSection from "@/app/music/[slug]/DownloadSection";
+import LabelInfoSection from "@/app/music/[slug]/LabelInfoSection";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { marked } from "marked";
@@ -187,6 +190,9 @@ export default async function MusicDetailPage({
       <article className="bg-slate-50 py-16">
         <div className="mx-auto max-w-5xl space-y-12 px-4 sm:px-6 lg:px-8">
           <TrackHero track={track} coverUrl={coverUrl} />
+          <LabelInfoSection label={track.label} />
+          <StreamingPlatformsSection track={track} />
+          <DownloadSection track={track} />
           <LicensingInfoSection />
           <SpotifyEmbedSection embedHtml={track.spotify_embed ?? ""} />
           <ReleaseDescriptionSection contentHtml={contentHtml} />
