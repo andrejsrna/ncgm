@@ -1,240 +1,251 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { FaEnvelope, FaFileContract, FaCog, FaBolt, FaBuilding, FaClock, FaChevronRight } from 'react-icons/fa';
-import { SITE_NAME } from '@/lib/site';
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  FaBolt,
+  FaBuilding,
+  FaChevronRight,
+  FaClock,
+  FaCog,
+  FaEnvelope,
+  FaFileContract,
+} from "react-icons/fa";
+import type { IconType } from "react-icons";
+import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Neural Link Hub | ${SITE_NAME}`,
-  description: `Establish neural connection with the ${SITE_NAME} network. Access support protocols for licensing, technical anomalies, or general system inquiries.`,
+  title: `Contact NJK Music | ${SITE_NAME}`,
+  description:
+    "Reach the NJK Music team for support, licensing guidance, or partnership opportunities. We respond quickly and keep creators moving.",
 };
 
-const contactMethods = [
+type ContactMethod = {
+  title: string;
+  email: string;
+  description: string;
+  responseTime: string;
+  icon: IconType;
+};
+
+const contactMethods: ContactMethod[] = [
   {
-    title: "Core Support Matrix",
+    title: "Creator support",
     email: "support@njkmusic.com",
-    description: "Neural link for general protocol inquiries",
-    response: "24-48 cycles",
-    icon: <FaEnvelope className="w-8 h-8" />
+    description: "Help with downloads, subscriptions, or account access.",
+    responseTime: "Replies within 1-2 business days",
+    icon: FaEnvelope,
   },
   {
-    title: "Protocol Authorization",
+    title: "Licensing requests",
     email: "licensing@njkmusic.com",
-    description: "Access matrix for licensing protocols",
-    response: "1-2 orbital cycles",
-    icon: <FaFileContract className="w-8 h-8" />
+    description: "Custom clearances, sync requests, or commercial usage questions.",
+    responseTime: "Typically answers within 1 business day",
+    icon: FaFileContract,
   },
   {
-    title: "Technical Matrix",
+    title: "Technical assistance",
     email: "tech@njkmusic.com",
-    description: "Debug protocol anomalies and data corruption",
-    response: "24-48 cycles",
-    icon: <FaCog className="w-8 h-8" />
+    description: "Issues with stems, downloads, or integration with your tools.",
+    responseTime: "Replies within 1-2 business days",
+    icon: FaCog,
   },
   {
-    title: "Signal Authentication",
+    title: "Content claims",
     email: "claims@njkmusic.com",
-    description: "Priority channel for signal verification",
-    response: "Priority bandwidth",
-    icon: <FaBolt className="w-8 h-8" />
-  }
+    description: "Report Content ID matches or platform strikes for NJK releases.",
+    responseTime: "Priority responses within 24 hours",
+    icon: FaBolt,
+  },
 ];
 
 const officeInfo = {
   company: "Enhold s.r.o.",
-  address: [
-    "Drobného 1900/2",
-    "841 02 Bratislava",
-    "mestská časť Dúbravka",
-    "Slovakia"
-  ],
-  hours: [
-    "Cycle: 001-005",
-    "0900-1700 CET"
-  ]
+  address: ["Drobneho 1900/2", "841 02 Bratislava", "Dubravka district", "Slovakia"],
+  hours: ["Monday to Friday", "09:00-17:00 CET"],
 };
 
 const commonTopics = [
   {
-    title: "Protocol Access",
+    title: "Licensing & usage",
     links: [
-      { text: "Neural License Matrix", href: "/license" },
-      { text: "Attribution Protocols", href: "/help/attribution" },
-      { text: "Network Guidelines", href: "/help/platforms" }
-    ]
+      { text: "Music licensing overview", href: "/license" },
+      { text: "Attribution guidelines", href: "/help/attribution" },
+      { text: "Platform policies", href: "/help/platforms" },
+    ],
   },
   {
-    title: "System Maintenance",
+    title: "Technical help",
     links: [
-      { text: "Technical Matrix", href: "/help/technical" },
-      { text: "Acquisition Debug", href: "/help/purchase-issues" },
-      { text: "Signal Authentication", href: "/help/content-id" }
-    ]
+      { text: "Troubleshooting guide", href: "/help/technical" },
+      { text: "Purchase questions", href: "/help/purchase-issues" },
+      { text: "Content ID support", href: "/help/content-id" },
+    ],
   },
   {
-    title: "Quick Access Nodes",
+    title: "Get to know NJK",
     links: [
-      { text: "Neural FAQ", href: "/faq" },
-      { text: "Core Protocol", href: "/about" },
-      { text: "Support Matrix", href: "/help" }
-    ]
-  }
+      { text: "About the team", href: "/about" },
+      { text: "Creator FAQ", href: "/faq" },
+      { text: "Support centre", href: "/help" },
+    ],
+  },
 ];
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
-            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-          `,
-          backgroundSize: '24px 24px, 24px 24px',
-          backgroundPosition: '0 0, 12px 12px'
-        }}
-      />
-
-      {/* Hero section */}
-      <div className="relative border-b border-red-900/30">
-        <div className="max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-          <h1 className="relative inline-block mb-6 mx-auto text-center w-full">
-            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
-            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
-              Neural Link Hub
-            </span>
-          </h1>
-          <p className="text-red-200/70 text-center max-w-2xl mx-auto font-light tracking-wider">
-            Initialize connection with our network. Our neural support matrix stands ready.
-          </p>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div className="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-        {/* Contact Methods */}
-        <div className="mb-32">
-          <h2 className="text-3xl font-mono font-bold text-red-500 text-center tracking-wider mb-16">Neural Access Points</h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
-            {contactMethods.map((method) => (
-              <div
-                key={method.title}
-                className="group relative"
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                <div className="relative h-full bg-black border border-red-900/30 p-8">
-                  <div className="text-red-500 mb-6">{method.icon}</div>
-                  <h3 className="text-xl font-mono font-bold text-red-500 mb-3">{method.title}</h3>
-                  <p className="text-red-200/70 text-sm tracking-wide mb-4">{method.description}</p>
-                  <a
-                    href={`mailto:${method.email}`}
-                    className="text-red-400 hover:text-red-300 transition-colors text-sm break-all font-mono"
-                  >
-                    {method.email}
-                  </a>
-                  <p className="text-red-200/50 text-sm mt-3 font-light">
-                    Response latency: {method.response}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Office Information */}
-        <div className="mb-32">
-          <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-            <div className="relative bg-black border border-red-900/30 p-12">
-              <div className="max-w-3xl mx-auto">
-                <div className="grid gap-12 md:grid-cols-2">
-                  <div>
-                    <div className="flex items-center gap-3 mb-6">
-                      <FaBuilding className="w-6 h-6 text-red-500" />
-                      <h3 className="text-xl font-mono font-bold text-red-500">Physical Node</h3>
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-red-200/70 font-mono">{officeInfo.company}</p>
-                      {officeInfo.address.map((line, index) => (
-                        <p key={index} className="text-red-200/70 font-light tracking-wide">{line}</p>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-3 mb-6">
-                      <FaClock className="w-6 h-6 text-red-500" />
-                      <h3 className="text-xl font-mono font-bold text-red-500">Operational Cycles</h3>
-                    </div>
-                    <div className="space-y-3">
-                      {officeInfo.hours.map((line, index) => (
-                        <p key={index} className="text-red-200/70 font-light tracking-wide">{line}</p>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Common Topics */}
-        <div>
-          <h2 className="text-3xl font-mono font-bold text-red-500 text-center tracking-wider mb-16">Quick Access Matrix</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {commonTopics.map((topic) => (
-              <div
-                key={topic.title}
-                className="group relative"
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                <div className="relative h-full bg-black border border-red-900/30 p-8">
-                  <h3 className="text-xl font-mono font-bold text-red-500 mb-6">{topic.title}</h3>
-                  <ul className="space-y-4">
-                    {topic.links.map((link) => (
-                      <li key={link.text}>
-                        <Link
-                          href={link.href}
-                          className="group/link flex items-center gap-2 text-red-200/70 hover:text-red-300 transition-colors text-sm tracking-wide"
-                        >
-                          <FaChevronRight className="w-3 h-3 transition-transform group-hover/link:translate-x-1" />
-                          {link.text}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Support Note */}
-        <div className="mt-32 relative">
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-          <div className="relative bg-black border border-red-900/30 p-12 text-center">
-            <p className="text-red-200/70 mb-12 font-light tracking-wide max-w-2xl mx-auto">
-              For optimal bandwidth utilization, access our neural documentation before establishing direct contact.
-              Common protocol inquiries are indexed in our knowledge matrix.
+    <div className="min-h-screen bg-slate-50">
+      <section className="bg-gradient-to-b from-white to-slate-50">
+        <div className="mx-auto flex min-h-[40vh] max-w-6xl flex-col justify-center gap-6 px-4 py-24 sm:px-6 lg:px-8">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+            Get in touch
+          </span>
+          <div className="space-y-4 max-w-2xl">
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+              Contact NJK Music
+            </h1>
+            <p className="text-base text-slate-600 sm:text-lg">
+              Reach out for licensing support, partnerships, creator questions, or anything else. We'll guide you to the
+              right label specialist and keep your projects moving.
             </p>
-            <Link
-              href="/help"
-              className="group relative inline-flex"
-            >
-              <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-              <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                <span className="font-mono text-red-500">Access Support Matrix</span>
-              </div>
-            </Link>
           </div>
         </div>
+      </section>
 
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+          <div className="space-y-8">
+            <section>
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+                  Email the right team
+                </h2>
+                <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-500">
+                  Responsive within 24-48 hrs
+                </span>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {contactMethods.map((method) => {
+                  const Icon = method.icon;
+                  return (
+                    <div
+                      key={method.title}
+                      className="flex h-full flex-col gap-4 rounded-3xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                    >
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-semibold text-slate-900">{method.title}</h3>
+                        <p className="mt-2 text-sm text-slate-600">{method.description}</p>
+                      </div>
+                      <div className="mt-auto space-y-2 text-sm">
+                        <a
+                          href={`mailto:${method.email}`}
+                          className="font-medium text-primary transition hover:text-primary/80"
+                        >
+                          {method.email}
+                        </a>
+                        <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+                          {method.responseTime}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+
+            <section className="rounded-3xl border border-dashed border-border bg-white p-6 shadow-sm sm:p-8">
+              <h2 className="text-xl font-semibold text-slate-900">Need something else?</h2>
+              <p className="mt-3 text-sm text-slate-600">
+                Share as much detail as you can, including links to the platforms or videos affected. Our team routes
+                every message to the right specialist and will follow up with next steps.
+              </p>
+              <Link
+                href="mailto:support@njkmusic.com"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary bg-primary px-5 py-2 text-sm font-semibold text-white transition hover:bg-primary/90"
+              >
+                Email support@njkmusic.com
+              </Link>
+            </section>
+          </div>
+
+          <aside className="space-y-6">
+            <section className="rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+                  <FaBuilding className="h-5 w-5" />
+                </span>
+                <h2 className="text-lg font-semibold text-slate-900">Registered office</h2>
+              </div>
+              <div className="mt-6 space-y-2 text-sm text-slate-600">
+                <p className="font-medium text-slate-900">{officeInfo.company}</p>
+                {officeInfo.address.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
+              <div className="mt-6 flex items-center gap-3 text-sm text-slate-600">
+                <FaClock className="h-4 w-4 text-slate-500" />
+                <div>
+                  {officeInfo.hours.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section className="rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
+              <h2 className="text-lg font-semibold text-slate-900">Press & partnerships</h2>
+              <p className="mt-3 text-sm text-slate-600">
+                For media features, distribution opportunities, or collaborative releases, reach us directly at{" "}
+                <a href="mailto:partnerships@njkmusic.com" className="font-medium text-primary hover:text-primary/80">
+                  partnerships@njkmusic.com
+                </a>
+                .
+              </p>
+            </section>
+          </aside>
         </div>
+
+        <section className="mt-20">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Quick links</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            Start with these resources if you&apos;re looking for immediate answers.
+          </p>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {commonTopics.map((topic) => (
+              <div key={topic.title} className="rounded-3xl border border-border bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-slate-900">{topic.title}</h3>
+                <ul className="mt-4 space-y-3 text-sm">
+                  {topic.links.map((link) => (
+                    <li key={link.text}>
+                      <Link
+                        href={link.href}
+                        className="group/link inline-flex items-center gap-2 text-primary transition hover:text-primary/80"
+                      >
+                        <FaChevronRight className="h-3 w-3 text-slate-400 transition-transform group-hover/link:translate-x-1" />
+                        {link.text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-20 rounded-3xl border border-border bg-white p-8 text-center shadow-sm sm:p-12">
+          <p className="mx-auto max-w-2xl text-sm text-slate-600 sm:text-base">
+            We partner closely with creators, agencies, and studios around the world. If you need something specific,
+            we're here to help you clear music quickly and confidently.
+          </p>
+          <Link
+            href="/help"
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-slate-900 px-6 py-3 text-sm font-semibold tracking-[0.2em] text-white transition hover:bg-slate-800"
+          >
+            Explore help centre
+          </Link>
+        </section>
       </div>
     </div>
   );
-} 
+}

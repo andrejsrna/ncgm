@@ -11,7 +11,6 @@ const navigation = [
   { name: 'Music', href: '/music' },
   { name: 'Labels', href: '/labels' },
   { name: 'News', href: '/news' },
-  { name: 'Mixes', href: '/mixes' },
   { name: 'Help', href: '/help' },
   { name: 'Contact', href: '/contact' },
 ];

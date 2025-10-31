@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,6 +8,9 @@ import MusicCard from "@/app/music/MusicCard";
 import { getLabelDefinition, LABEL_LIST } from "@/lib/site";
 import { getCanonicalUrl } from "@/lib/env";
 import { slugify } from "@/lib/utils";
+
+const PickYourGenre = dynamic(() => import("@/app/components/PickYourGenre"));
+const MusicProfile = dynamic(() => import("@/app/components/MusicProfile"));
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -201,6 +205,13 @@ export default async function LabelPage({ params }: PageProps) {
               </p>
             )}
           </section>
+
+          {label.slug === "no-copyright-gaming-music" && (
+            <div className="mt-16 flex flex-col gap-16">
+              <PickYourGenre />
+              <MusicProfile />
+            </div>
+          )}
 
           <section className="mt-16 rounded-3xl border border-border bg-white p-8 shadow-sm">
             <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">

@@ -11,7 +11,7 @@ export default function Hero() {
             Creator-first music
           </span>
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            Stream-safe music for every project
+            Creator-ready labels for every project
           </h1>
           <p className="text-base text-slate-600 sm:text-lg">
             NJK Music curates label-driven releases tailored for gamers, streamers, and creative teams.

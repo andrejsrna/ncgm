@@ -13,15 +13,7 @@ const FeaturedTrack = dynamic(() => import("@/app/components/FeaturedTrack"), {
   loading: () => <SectionSkeleton />,
 });
 
-const PickYourGenre = dynamic(() => import("@/app/components/PickYourGenre"), {
-  loading: () => <SectionSkeleton />,
-});
-
 const WhoIsBehind = dynamic(() => import("@/app/components/WhoIsBehind"), {
-  loading: () => <SectionSkeleton />,
-});
-
-const MusicProfile = dynamic(() => import("@/app/components/MusicProfile"), {
   loading: () => <SectionSkeleton />,
 });
 
@@ -46,9 +38,7 @@ export default function Home() {
     <div>
       <Hero />
       <FeaturedTrack />
-      <PickYourGenre />
       <WhoIsBehind />
-      <MusicProfile />
       <HowItWorks />
       <Accordion />
       <CallToAction />

@@ -121,11 +121,6 @@ export default function Footer() {
                   NCGM Label
                 </Link>
               </li>
-              <li>
-                <Link href="/mixes" className="transition hover:text-slate-900">
-                  Mixes
-                </Link>
-              </li>
             </ul>
           </div>
 
