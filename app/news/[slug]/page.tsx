@@ -144,64 +144,52 @@ export default async function NewsDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <div className="relative min-h-screen bg-black text-red-100">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.08]"
-          aria-hidden
-          style={{
-            backgroundImage: `
-              radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.6) 1px, transparent 1px),
-              radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.6) 1px, transparent 1px)
-            `,
-            backgroundSize: "24px 24px, 24px 24px",
-            backgroundPosition: "0 0, 12px 12px",
-          }}
-        />
-
-        <article className="relative mx-auto max-w-4xl px-4 pb-24 pt-28 sm:px-6 sm:pt-32 lg:px-8">
-          <nav aria-label="Breadcrumb">
+      <div className="min-h-screen bg-slate-50">
+        <section className="bg-gradient-to-b from-white to-slate-50">
+          <div className="mx-auto flex min-h-[30vh] max-w-4xl flex-col justify-center gap-6 px-4 py-16 sm:px-6 lg:px-8">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 rounded-full border border-red-900/40 bg-black/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-red-300 transition hover:border-red-600 hover:text-white"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-600 transition hover:bg-slate-100"
+              aria-label="Back to news index"
             >
-              <FaArrowLeft className="text-red-400" aria-hidden />
-              Back to Neural Feed
+              <FaArrowLeft className="h-4 w-4 text-primary" aria-hidden />
+              Back to News
             </Link>
-          </nav>
 
-          <header className="mt-10 space-y-6">
-            <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.35em] text-red-300">
-              {post.category && (
-                <span className="rounded-full border border-red-900/40 bg-red-950/40 px-3 py-1">
-                  {post.category}
+            <div className="space-y-6">
+              <div className="flex flex-wrap gap-3 text-xs font-medium uppercase tracking-[0.3em] text-slate-500">
+                {post.category && (
+                  <span className="inline-flex items-center rounded-full border border-border bg-white px-3 py-1">
+                    {post.category}
+                  </span>
+                )}
+                {formattedDate && (
+                  <time
+                    dateTime={publishedIso}
+                    className="inline-flex items-center rounded-full border border-border bg-white px-3 py-1"
+                  >
+                    {formattedDate}
+                  </time>
+                )}
+                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1 text-slate-600">
+                  <FaClock aria-hidden className="h-3.5 w-3.5 text-primary" />
+                  {readingTime} min read
                 </span>
-              )}
-              {formattedDate && (
-                <time
-                  dateTime={publishedIso}
-                  className="rounded-full border border-red-900/40 bg-red-950/40 px-3 py-1"
-                >
-                  {formattedDate}
-                </time>
-              )}
-              <span className="flex items-center gap-2 rounded-full border border-red-900/40 bg-red-950/40 px-3 py-1 text-red-200">
-                <FaClock aria-hidden />
-                {readingTime} min read
-              </span>
-            </div>
+              </div>
 
-            <div>
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                {post.title}
-              </h1>
-              <p className="mt-4 max-w-2xl text-base text-red-200/80 sm:text-lg">
-                {description}
-              </p>
+              <div className="space-y-4">
+                <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                  {post.title}
+                </h1>
+                <p className="max-w-2xl text-base text-slate-600 sm:text-lg">{description}</p>
+              </div>
             </div>
-          </header>
+          </div>
+        </section>
 
+        <article className="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
           {imageUrl && (
-            <figure className="relative mt-12 overflow-hidden rounded-3xl border border-red-900/40 bg-black/40">
+            <figure className="relative -mt-16 overflow-hidden rounded-3xl border border-border bg-white shadow-sm sm:-mt-20">
               <Image
                 src={imageUrl}
                 alt={post.title}
@@ -214,30 +202,24 @@ export default async function NewsDetailPage({
             </figure>
           )}
 
-          <section className="mt-12 space-y-12">
+          <div className="mt-16 space-y-12 rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-10">
             <div
-              className="prose prose-invert max-w-none text-base leading-relaxed tracking-wide
-                prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
-                prose-p:text-red-200/80 prose-a:text-red-300 prose-a:no-underline hover:prose-a:text-white
-                prose-strong:text-red-100 prose-em:text-red-200/90 prose-code:text-red-200
-                prose-code:bg-red-950/60 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-                prose-blockquote:border-l-2 prose-blockquote:border-red-500/40 prose-blockquote:bg-red-950/30 prose-blockquote:py-4 prose-blockquote:px-6
-                prose-ul:my-6 prose-ol:my-6 prose-li:marker:text-red-400
-                prose-hr:border-red-900/50"
+              className="prose max-w-none text-base leading-relaxed text-slate-700
+                prose-headings:text-slate-900 prose-headings:font-semibold prose-headings:tracking-tight
+                prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary/80
+                prose-strong:text-slate-900 prose-em:text-slate-700 prose-code:text-primary prose-code:bg-primary/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+                prose-blockquote:border-l-4 prose-blockquote:border-primary/40 prose-blockquote:bg-slate-50 prose-blockquote:py-4 prose-blockquote:px-6
+                prose-ul:my-6 prose-ol:my-6 prose-li:marker:text-primary
+                prose-hr:border-border"
             >
               <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
             </div>
 
-            <aside className="border-t border-red-900/30 pt-8">
+            <aside className="rounded-2xl border border-dashed border-border/70 bg-slate-50 px-6 py-8">
               <ShareButtons post={post} />
             </aside>
-          </section>
+          </div>
         </article>
-
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-50" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-30" />
-        </div>
       </div>
     </>
   );
