@@ -4,6 +4,7 @@ import { resolveStrapiImageUrl } from "@/lib/utils";
 import TrackHero from "@/app/music/[slug]/TrackHero";
 import LicensingInfoSection from "@/app/music/[slug]/LicensingInfoSection";
 import SpotifyEmbedSection from "@/app/music/[slug]/SpotifyEmbedSection";
+import YouTubeEmbedSection from "@/app/music/[slug]/YouTubeEmbedSection";
 import ReleaseDescriptionSection from "@/app/music/[slug]/ReleaseDescriptionSection";
 import StreamingPlatformsSection from "@/app/music/[slug]/StreamingPlatformsSection";
 import DownloadSection from "@/app/music/[slug]/DownloadSection";
@@ -195,6 +196,7 @@ export default async function MusicDetailPage({
           <DownloadSection track={track} />
           <LicensingInfoSection />
           <SpotifyEmbedSection embedHtml={track.spotify_embed ?? ""} />
+          <YouTubeEmbedSection embedHtml={track.youtube_embed ?? ""} />
           <ReleaseDescriptionSection contentHtml={contentHtml} />
         </div>
       </article>

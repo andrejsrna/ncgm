@@ -23,6 +23,7 @@ export interface MusicData {
   Beatport?: string | null;
   Bandcamp?: string | null;
   spotify_embed?: string | null;
+  youtube_embed?: string | null;
   Content: string;
   Cover?: {
     url?: string;
