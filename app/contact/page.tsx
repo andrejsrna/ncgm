@@ -103,7 +103,7 @@ export default function ContactPage() {
               Contact NJK Music
             </h1>
             <p className="text-base text-slate-600 sm:text-lg">
-              Reach out for licensing support, partnerships, creator questions, or anything else. We'll guide you to the
+              Reach out for licensing support, partnerships, creator questions, or anything else. We&apos;ll guide you to the
               right label specialist and keep your projects moving.
             </p>
           </div>
@@ -236,7 +236,7 @@ export default function ContactPage() {
         <section className="mt-20 rounded-3xl border border-border bg-white p-8 text-center shadow-sm sm:p-12">
           <p className="mx-auto max-w-2xl text-sm text-slate-600 sm:text-base">
             We partner closely with creators, agencies, and studios around the world. If you need something specific,
-            we're here to help you clear music quickly and confidently.
+            we&apos;re here to help you clear music quickly and confidently.
           </p>
           <Link
             href="/help"
