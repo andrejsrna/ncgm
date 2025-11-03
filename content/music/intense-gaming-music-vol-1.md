@@ -22,7 +22,7 @@
   "iHeartRadio": "https://www.iheart.com/artist/no-copyright-gaming-music-40920862/albums/ncgm-presents-intense-gaming-music-vol-355367930/",
   "Boomplay": "https://www.boomplay.com/albums/117985016?from=search",
   "Beatport": "https://www.beatport.com/release/ncgm-presents-intense-gaming-music-vol-1/5509652",
-  "Bandcamp": "https://nocopyrightgamingmusic.bandcamp.com/album/ncgm-presents-intense-gaming-music-vol-1",
+  "Bandcamp": "https://njk-music.bandcamp.com/album/ncgm-presents-intense-gaming-music-vol-1",
   "spotify_embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/1XzXi9HnahbA1OUYFcNvNi?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
   "youtube_embed": "<iframe src=\"https://www.youtube.com/embed/dKKpDIbbQVc?si=OkH5EM2uBlg3HV72\" title=\"NCGM Presents: Intense Gaming Music, Vol. 1\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen referrerpolicy=\"strict-origin-when-cross-origin\" style=\"width:100%;height:100%;border:0;\"></iframe>",
   "Cover": {
