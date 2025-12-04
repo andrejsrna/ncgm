@@ -23,6 +23,37 @@ export interface LabelDefinition {
 }
 
 export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
+  "chill-music-motif": {
+    slug: "chill-music-motif",
+    name: "Chill Music Motif",
+    short: "CMM",
+    tagline: "Lo-fi focus motifs for late-night study and deep work",
+    description:
+      "Chill Music Motif curates downtempo lo-fi, chillhop, and mellow electronica designed for focus, journaling, and ambient streaming. The label keeps melodies soft, textures warm, and mixes clean so creators can loop tracks for hours without listener fatigue.",
+    seo: {
+      title: "Chill Music Motif Label | LoFi & Study Beats",
+      description:
+        "Discover Chill Music Motif—creator-safe lo-fi study beats and chillhop instrumentals built for late-night focus, cozy streams, and ambient storytelling.",
+      keywords: [
+        "chill music motif",
+        "lofi study beats label",
+        "lofi focus music",
+        "chillhop for creators",
+        "royalty free lofi label",
+      ],
+    },
+    highlights: [
+      "Lo-fi and chillhop cues crafted for long-form focus, journaling, and coding streams",
+      "Mixes engineered to sit under dialogue, voiceovers, and ASMR without masking",
+      "Creator-friendly licensing for YouTube, Twitch, podcasts, and branded content",
+    ],
+    callouts: [
+      { title: "Launch Year", detail: "2025" },
+      { title: "Releases", detail: "Debut drop" },
+      { title: "Focus", detail: "LoFi, Chillhop, Study Beats" },
+      { title: "Rights", detail: "Royalty-free for creators" },
+    ],
+  },
   "no-copyright-gaming-music": {
     slug: "no-copyright-gaming-music",
     name: "No Copyright Gaming Music",
