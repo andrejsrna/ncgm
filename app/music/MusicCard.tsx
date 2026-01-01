@@ -19,7 +19,7 @@ export default function MusicCard({ track }: MusicCardProps) {
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition hover:shadow-md">
       {imageUrl && (
-        <div className="relative h-48 w-full">
+        <div className="relative aspect-square w-full">
           <Image
             src={imageUrl}
             alt={track.Title}

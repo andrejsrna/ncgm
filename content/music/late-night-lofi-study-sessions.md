@@ -23,7 +23,7 @@
   "Boomplay": null,
   "Beatport": "https://www.beatport.com/release/late-night-lofi-study-sessions/5645944",
   "Bandcamp": null,
-  "spotify_embed": '<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/4bYQKSgVbkbpqmdDq2Ou9V?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
+  "spotify_embed": "<iframe data-testid='embed-iframe' style='border-radius:12px' src='https://open.spotify.com/embed/album/4bYQKSgVbkbpqmdDq2Ou9V?utm_source=generator' width='100%' height='352' frameBorder='0' allowfullscreen='' allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture' loading='lazy'></iframe>",
   "Cover": {
     "url": "/images/music/late-night-lofi-study-sessions.jpg"
   },
