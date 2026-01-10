@@ -1,11 +1,13 @@
-import { Metadata } from 'next';
-import ContentIdPageClient from './ContentIdPageClient';
+import type { Metadata } from "next";
+import ContentIdPageClient from "./ContentIdPageClient";
+import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: 'Neural Pattern Protection Matrix | No Copyright Gaming Music',
-  description: 'Protocol guide for handling neural pattern protection claims and securing your digital signal matrix.',
+  title: `Content ID | ${SITE_NAME}`,
+  description:
+    "Learn how Content ID works, why claims happen, how to request a whitelist for licensed creators, and what to send us to resolve a claim quickly.",
 };
 
 export default function ContentIdPage() {
   return <ContentIdPageClient />;
-} 
+}

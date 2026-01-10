@@ -8,7 +8,7 @@ import { PRIMARY_LABEL, SITE_NAME } from "@/lib/site";
 
 const pageTitle = `${SITE_NAME} Label Library`;
 const pageDescription =
-  "Explore NJK Music's in-house label moods. Start with the No Copyright Gaming Music catalog for stream-safe, creator-ready releases.";
+  "Browse NJK Music releases across our labels and genres. Explore the roster, filter by mood, and find your next track.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -89,19 +89,19 @@ export default async function MusicPage() {
 
   const faqs = [
     {
-      question: "Can I download and use these gaming tracks on Twitch and YouTube?",
+      question: "What is included in a release?",
       answer:
-        `Yes. Every release across our NJK label moods is cleared for Twitch, YouTube, Kick, and other streaming platforms unless we flag a rights-managed mood on the track page. You can monetize your content as long as you follow the No Copyright Gaming Music attribution guidelines where applicable.`,
+        "Each release page includes streaming links and, when available, downloads and licensing notes. Details can vary by label and release, so check the track page for the most accurate info.",
     },
     {
-      question: "How do I download no copyright gaming music from this page?",
+      question: "Can I use NJK Music in monetized content?",
       answer:
-        `Browse the grid below and click into a track. Each detail page includes direct download links plus streaming access so you can grab the format that works best for your workflow.`,
+        "In most cases, yes. Usage depends on the release and platform. Always follow the licensing/attribution guidance shown on the track page and in our help centre.",
     },
     {
-      question: "Are commercial or client projects allowed?",
+      question: "How do I find the right label mood?",
       answer:
-        "Absolutely. The NJK Music license covers podcasts, indie games, trailers, and agency work. Just make sure your clients include the proper attribution outlined in our license guide.",
+        "Use the label and genre filters to narrow down the vibe. If you’re not sure, start with our primary label and explore from there.",
     },
   ];
 
@@ -121,46 +121,37 @@ export default async function MusicPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <div className="min-h-screen bg-slate-50 py-16">
+      <div className="min-h-screen bg-transparent py-16 text-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 space-y-4 text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              NJK Music Label Library
+          <header className="mb-12 space-y-5 text-center">
+            <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
+              Music Library
+            </span>
+            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              NJK Music releases across our labels
             </h1>
-            <p className="text-base text-slate-600 sm:text-lg">
-              Discover NJK Music&apos;s growing set of label moods. Start with the {PRIMARY_LABEL.name} catalog for
-              stream-safe releases built for gamers, streamers, and studios.
+            <p className="mx-auto max-w-3xl text-base text-slate-300 sm:text-lg">
+              Browse our multi-label catalog by mood, label, or genre.
             </p>
             <div className="flex justify-center">
               <Link
                 href={`/labels/${PRIMARY_LABEL.slug}`}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-slate-600 transition hover:bg-slate-100"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-slate-950 transition hover:opacity-90"
               >
-                Explore {PRIMARY_LABEL.short ?? PRIMARY_LABEL.name} Label →
+                Browse our music →
               </Link>
             </div>
-          </div>
-
-          <div className="mx-auto mb-14 max-w-3xl rounded-2xl border border-border bg-white p-6 text-left shadow-sm">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">
-              Why choose our downloads?
-            </h2>
-            <ul className="mt-4 space-y-2 text-sm text-slate-600 sm:text-base">
-              <li>⚡ Unlimited use across streams, videos, and game demos.</li>
-              <li>🎮 Curated by gamers for high-energy, looping-friendly vibes.</li>
-              <li>✅ Cleared for monetization with attribution-friendly licensing.</li>
-            </ul>
-          </div>
+          </header>
 
           <MusicBrowser tracks={sortedMusic} genres={genres} labels={labels} />
 
-          <section className="mx-auto mt-16 grid gap-6 rounded-2xl border border-border bg-white p-6 text-left shadow-sm sm:grid-cols-2">
+          <section className="mx-auto mt-16 grid gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-soft backdrop-blur sm:grid-cols-2">
             {faqs.map((faq) => (
               <div key={faq.question} className="space-y-2">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-200">
                   {faq.question}
                 </h3>
-                <p className="text-sm leading-relaxed text-slate-600 sm:text-base">{faq.answer}</p>
+                <p className="text-sm leading-relaxed text-slate-300 sm:text-base">{faq.answer}</p>
               </div>
             ))}
           </section>

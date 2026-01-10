@@ -1,58 +1,32 @@
 'use client';
 
 import Link from 'next/link';
+import { pressStart2P } from '@/lib/fonts';
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-b from-white to-slate-50">
-      <div className="mx-auto flex min-h-[60vh] max-w-6xl flex-col justify-center gap-10 px-4 py-24 sm:px-6 lg:px-8 lg:flex-row lg:items-center">
-        <div className="flex-1 space-y-6 text-center lg:text-left">
-          <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-            Creator-first music
+    <section className="relative">
+      <div className="mx-auto flex min-h-[70vh] max-w-3xl flex-col justify-center gap-10 px-4 py-24 text-center sm:px-6 lg:px-8">
+        <div className="space-y-7">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-200 backdrop-blur">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-fuchsia-400 shadow-[0_0_16px_rgba(232,121,249,0.65)]" />
+            Creator-safe music for streams, edits, and drops
           </span>
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            Creator-ready label moods for every project
+          <h1 className={`${pressStart2P.className} text-4xl leading-tight tracking-tight text-white sm:text-5xl`}>
+            Your next track starts here.
           </h1>
-          <p className="text-base text-slate-600 sm:text-lg">
-            NJK Music releases under our own label moods tuned for gamers, streamers, and creative teams.
-            Discover high-quality tracks with clear licensing and instant access.
+          <p className="mx-auto max-w-2xl text-base text-slate-300 sm:text-lg">
+            High-energy, modern releases built for gaming culture and creator workflows—clean licensing, fast downloads,
+            and a catalog that feels alive.
           </p>
 
-          <div className="flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href="/music"
-              className="inline-flex w-full items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-soft transition hover:bg-primary/90 sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-md bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-soft transition hover:opacity-90 sm:w-auto"
             >
-              Browse music
+              Browse releases
             </Link>
-            <Link
-              href="/labels/no-copyright-gaming-music"
-              className="inline-flex w-full items-center justify-center rounded-md border border-border px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 sm:w-auto"
-            >
-              Explore NCGM label
-            </Link>
-          </div>
-        </div>
-
-        <div className="flex-1 rounded-3xl border border-border bg-white p-6 shadow-soft">
-          <div className="space-y-4">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-              Why creators choose NJK Music
-            </h2>
-            <ul className="space-y-3 text-sm text-slate-600">
-              <li className="flex gap-3">
-                <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
-                Royalty-free catalog cleared for Twitch, YouTube, and client work.
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
-                Diverse in-house label moods curated by producers and sound designers.
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
-                Simple licensing with transparent attribution guidance.
-              </li>
-            </ul>
           </div>
         </div>
       </div>

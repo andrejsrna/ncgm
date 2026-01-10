@@ -1,265 +1,346 @@
-'use client';
+import Link from "next/link";
+import type { IconType } from "react-icons";
+import {
+  FaChevronLeft,
+  FaCheckCircle,
+  FaEnvelope,
+  FaExclamationTriangle,
+  FaFilm,
+  FaLock,
+  FaPodcast,
+} from "react-icons/fa";
+import { SiInstagram, SiTiktok, SiTwitch, SiYoutube } from "react-icons/si";
 
-import Link from 'next/link';
-import { FaChevronLeft, FaCheck, FaCircle, FaShieldAlt, FaLock } from 'react-icons/fa';
-import { SiYoutube, SiTwitch, SiTiktok, SiInstagram } from 'react-icons/si';
-import { RiShieldKeyholeFill, RiFileShieldLine, RiAlertFill } from 'react-icons/ri';
+type PlatformCard = {
+  name: string;
+  description: string;
+  status: "Approved" | "Approved with notes";
+  icon: IconType;
+  goodFor: string[];
+  doThis: string[];
+};
 
-const neuralNodes = [
+type RestrictedUse = {
+  title: string;
+  description: string;
+  icon: IconType;
+  action: string;
+};
+
+const platforms: PlatformCard[] = [
   {
-    name: "Neural Stream Protocol",
-    icon: <SiYoutube className="w-8 h-8" />,
-    status: "Full Neural Integration",
-    features: [
-      "Signal amplification enabled",
-      "Pattern recognition cleared",
-      "Neural background sync",
-      "Gaming matrix integration",
-      "Knowledge transfer protocols",
-      "Neural stream sync"
+    name: "YouTube",
+    description:
+      "Long-form videos, shorts, livestream VODs, and highlight edits. Content ID can still match audio, so keep receipts and request whitelisting when needed.",
+    status: "Approved with notes",
+    icon: SiYoutube,
+    goodFor: [
+      "Livestream VODs and highlights",
+      "Monetized long-form uploads",
+      "Shorts and reels-style edits",
     ],
-    requirements: [
-      "Neural attribution markers",
-      "Valid signal acquisition proof",
-      "No raw data redistribution"
-    ]
+    doThis: [
+      "Add attribution in the description when possible",
+      "Keep your purchase/licence proof (order ID / receipt)",
+      "If you’re licensed and get a claim, request a whitelist",
+    ],
   },
   {
-    name: "Neural Broadcast Matrix",
-    icon: <SiTwitch className="w-8 h-8" />,
-    status: "Full Neural Integration",
-    features: [
-      "Real-time signal streaming",
-      "Temporal archives",
-      "Neural fragments",
-      "Credit matrix rewards",
-      "Signal transition protocols",
-      "Background neural sync"
+    name: "Twitch",
+    description:
+      "Livestreams, VOD replays, and clips. Use a panel or chatbot command so attribution stays visible across clips and VODs.",
+    status: "Approved",
+    icon: SiTwitch,
+    goodFor: ["Live streams", "Clips and highlights", "VOD archives"],
+    doThis: [
+      "Use a stream panel or `!music` command for attribution",
+      "Keep receipts for rights-managed releases",
+      "If Content ID affects exports, follow the claim steps",
     ],
-    requirements: [
-      "Attribution in neural panels",
-      "Signal verification",
-      "Regular matrix updates"
-    ]
   },
   {
-    name: "Quantum Signal Grid",
-    icon: <SiTiktok className="w-8 h-8" />,
-    status: "Conditional Integration",
-    features: [
-      "Quantum-form signals",
-      "Neural streams",
-      "Gaming fragments",
-      "Signal transitions",
-      "Background neural sync"
+    name: "TikTok",
+    description:
+      "Short-form edits and teasers. Caption space is limited—keep attribution short and use the domain when you can’t link.",
+    status: "Approved with notes",
+    icon: SiTiktok,
+    goodFor: ["Short-form edits", "Teasers and snippets", "Behind-the-scenes clips"],
+    doThis: [
+      "Use a short credit in caption or pinned comment",
+      "Keep a copy of your proof of licence for brand work",
+      "If a claim happens, send us the post URL + claim details",
     ],
-    requirements: [
-      "Neural attribution markers",
-      "No signal extraction",
-      "Original acquisition proof"
-    ]
   },
   {
-    name: "Visual Neural Matrix",
-    icon: <SiInstagram className="w-8 h-8" />,
-    status: "Neural Integration Active",
-    features: [
-      "Neural reels",
-      "Temporal fragments",
-      "Extended neural grid",
-      "Signal-enhanced posts",
-      "Real-time neural streams"
+    name: "Instagram",
+    description:
+      "Reels, stories, and posts. For campaigns and sponsored work, confirm the release’s license model (royalty-free vs rights-managed).",
+    status: "Approved with notes",
+    icon: SiInstagram,
+    goodFor: ["Reels and stories", "Lifestyle edits", "Brand recaps"],
+    doThis: [
+      "Add a short credit in caption when possible",
+      "For sponsored/paid distribution, request clearance if needed",
+      "If you’re licensed and a claim happens, request whitelisting",
     ],
-    requirements: [
-      "Neural credits in signal",
-      "Acquisition verification",
-      "Grid protocol compliance"
-    ]
-  }
+  },
+  {
+    name: "Podcasts",
+    description:
+      "Intros, beds, and transitions for show episodes. Make sure the track is licensed appropriately for distribution and sponsorships.",
+    status: "Approved with notes",
+    icon: FaPodcast,
+    goodFor: ["Podcast intros/outros", "Background beds", "Episode transitions"],
+    doThis: [
+      "Keep a record of the episode + timestamp where music appears",
+      "Use attribution in show notes when possible",
+      "For broad distribution/sync questions, contact us",
+    ],
+  },
+  {
+    name: "Client deliverables",
+    description:
+      "Edits and campaign assets delivered to a client are typically OK when the music stays embedded. Redistribution of raw audio files is not allowed.",
+    status: "Approved with notes",
+    icon: FaFilm,
+    goodFor: ["Agency edits", "Brand content", "In-house marketing deliverables"],
+    doThis: [
+      "Keep your invoice/receipt and share proof with the client if needed",
+      "Don’t share raw audio files as standalone deliverables",
+      "For broadcast/paid ads, request clearance first",
+    ],
+  },
 ];
 
-const restrictedProtocols = [
+const restrictedUses: RestrictedUse[] = [
   {
-    type: "Commercial Signal Boost",
-    status: "Enhanced Protocol Required",
-    description: "Signal amplification in paid neural broadcasts requires advanced licensing protocols.",
-    contact: "Interface with our licensing matrix for commercial signal permissions.",
-    icon: <RiShieldKeyholeFill className="w-8 h-8" />
+    title: "Paid ads & broadcast",
+    description:
+      "Large paid distribution (national campaigns, broadcast, TV/radio) often requires custom clearance—especially for rights-managed catalogs.",
+    icon: FaLock,
+    action: "Request clearance via the contact page.",
   },
   {
-    type: "Signal Distribution",
-    status: "Protocol Violation",
-    description: "Redistributing neural patterns as standalone signals or in pattern compilations is prohibited.",
-    contact: "This includes uploads to signal streaming matrices or data-sharing networks.",
-    icon: <RiFileShieldLine className="w-8 h-8" />
+    title: "Redistribution of audio",
+    description:
+      "Uploading our tracks as standalone audio, reselling them, or bundling them into another library is prohibited.",
+    icon: FaExclamationTriangle,
+    action: "Use the music only as part of your own content/edit.",
   },
   {
-    type: "Digital Asset Integration",
-    status: "Protocol Violation",
-    description: "Creating digital assets using our neural patterns is not permitted under standard protocol.",
-    contact: "Enhanced permissions are not currently available for digital asset projects.",
-    icon: <RiAlertFill className="w-8 h-8" />
-  }
+    title: "Unsure which license model applies?",
+    description:
+      "Some labels are royalty-free, others are rights-managed and monetized. If you’re not sure, don’t guess.",
+    icon: FaExclamationTriangle,
+    action: "Check the release page notes or contact us with the track link.",
+  },
 ];
 
 export default function PlatformsPage() {
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
-            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-          `,
-          backgroundSize: '24px 24px, 24px 24px',
-          backgroundPosition: '0 0, 12px 12px'
-        }}
-      />
-
-      {/* Hero section */}
-      <div className="relative border-b border-red-900/30">
-        <div className="max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center mb-12">
+    <div className="min-h-screen bg-transparent text-white">
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
             <Link
               href="/help"
-              className="group relative inline-flex items-center gap-2 text-red-500 hover:text-red-400 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-200 hover:text-cyan-100"
             >
-              <FaChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-              <span className="font-mono">Return to Support Matrix</span>
+              <FaChevronLeft className="h-4 w-4" aria-hidden />
+              Back to Help Centre
             </Link>
-          </div>
-          <h1 className="relative inline-block mb-6 mx-auto text-center w-full">
-            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
-            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
-              Neural Network Compatibility Matrix
-            </span>
-          </h1>
-          <p className="text-red-200/70 text-center max-w-2xl mx-auto font-light tracking-wider">
-            Access the neural network compatibility matrix for signal distribution across digital nodes.
-          </p>
-        </div>
-      </div>
 
-      {/* Main content */}
-      <div className="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-        {/* Neural Nodes */}
-        <div className="mb-32">
-          <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider mb-12">Neural Integration Nodes</h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            {neuralNodes.map((node) => (
-              <div
-                key={node.name}
-                className="group relative"
+            <div className="mt-8 max-w-3xl space-y-4">
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                Platform usage
+              </h1>
+              <p className="text-base text-slate-300 sm:text-lg">
+                Where you can use NJK Music releases—and what to do for attribution, receipts, Content ID claims, and
+                rights-managed catalogs.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/license"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                <div className="relative h-full bg-black border border-red-900/30 p-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="text-red-500">{node.icon}</div>
-                    <div>
-                      <h3 className="text-xl font-mono font-bold text-red-500">{node.name}</h3>
-                      <span className="text-red-400/70 text-sm font-mono">{node.status}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-8">
-                    <div>
-                      <h4 className="text-lg font-mono font-bold text-red-500 mb-4">Neural Features</h4>
-                      <ul className="grid grid-cols-2 gap-3">
-                        {node.features.map((feature, index) => (
-                          <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
-                            <FaCheck className="w-4 h-4 text-red-500 flex-shrink-0" />
-                            <span className="tracking-wide">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-lg font-mono font-bold text-red-500 mb-4">Protocol Requirements</h4>
-                      <ul className="space-y-2">
-                        {node.requirements.map((req, index) => (
-                          <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
-                            <FaCircle className="w-2 h-2 text-red-500 flex-shrink-0" />
-                            <span className="tracking-wide">{req}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Restricted Protocols */}
-        <div className="mb-32">
-          <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider mb-12">Restricted Neural Protocols</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {restrictedProtocols.map((protocol) => (
-              <div
-                key={protocol.type}
-                className="group relative"
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                <div className="relative h-full bg-black border border-red-900/30 p-8">
-                  <div className="text-red-500 mb-6">{protocol.icon}</div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <FaLock className="w-4 h-4 text-red-500" />
-                    <h3 className="text-xl font-mono font-bold text-red-500">{protocol.type}</h3>
-                  </div>
-                  <div className="text-red-400/70 text-sm font-mono mb-4">{protocol.status}</div>
-                  <p className="text-red-200/70 text-sm mb-4 tracking-wide">{protocol.description}</p>
-                  <p className="text-red-300/50 text-sm tracking-wide">{protocol.contact}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Support Matrix */}
-        <div className="relative">
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-          <div className="relative bg-black border border-red-900/30 p-12 text-center">
-            <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-6">
-              Neural Protocol Support
-            </h2>
-            <p className="text-red-200/70 mb-12 font-light tracking-wide max-w-2xl mx-auto">
-              Our neural support matrix stands ready to assist with protocol optimization and anomaly resolution.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                Licensing overview
+              </Link>
               <Link
                 href="/help/attribution"
-                className="group relative inline-flex"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
               >
-                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                  <RiShieldKeyholeFill className="w-5 h-5 text-red-500" />
-                  <span className="font-mono text-red-500">Attribution Matrix</span>
-                </div>
+                Attribution templates
+              </Link>
+              <Link
+                href="/help/content-id"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Content ID guide
               </Link>
               <Link
                 href="/contact"
-                className="group relative inline-flex"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
               >
-                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                  <FaShieldAlt className="w-5 h-5 text-red-500" />
-                  <span className="font-mono text-red-500">Neural Support</span>
-                </div>
+                Contact support
               </Link>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
-        </div>
+      <div className="mx-auto max-w-6xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
+        <section aria-labelledby="supported-platforms">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 id="supported-platforms" className="text-2xl font-semibold tracking-tight text-white">
+                Supported platforms
+              </h2>
+              <p className="mt-2 text-sm text-slate-300">
+                Most releases are safe for common creator workflows. Always follow release notes for label-specific
+                rules.
+              </p>
+            </div>
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-300">
+              Quick reference
+            </span>
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {platforms.map((platform) => {
+              const Icon = platform.icon;
+              return (
+                <div
+                  key={platform.name}
+                  className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                      <Icon className="h-6 w-6" aria-hidden />
+                    </span>
+                    <span
+                      className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] ${
+                        platform.status === "Approved"
+                          ? "border-emerald-300/30 bg-emerald-500/10 text-emerald-200"
+                          : "border-white/10 bg-white/5 text-slate-200"
+                      }`}
+                    >
+                      {platform.status}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 text-lg font-semibold text-white">{platform.name}</h3>
+                  <p className="mt-2 text-sm text-slate-300">{platform.description}</p>
+
+                  <div className="mt-5 space-y-4">
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
+                        Good for
+                      </div>
+                      <ul className="mt-3 space-y-2 text-sm text-slate-300">
+                        {platform.goodFor.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <FaCheckCircle className="mt-0.5 h-4 w-4 text-cyan-200" aria-hidden />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
+                        Do this
+                      </div>
+                      <ul className="mt-3 space-y-2 text-sm text-slate-300">
+                        {platform.doThis.map((item) => (
+                          <li key={item} className="flex items-start gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-fuchsia-200" aria-hidden />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section aria-labelledby="restrictions">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-rose-500/10 text-rose-200">
+                <FaLock className="h-5 w-5" aria-hidden />
+              </span>
+              <div className="space-y-2">
+                <h2 id="restrictions" className="text-xl font-semibold text-white">
+                  Restrictions &amp; when to contact us
+                </h2>
+                <p className="max-w-3xl text-sm text-slate-300">
+                  If your use case looks like one of these, don’t guess—reach out and we’ll confirm the correct path.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {restrictedUses.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className="rounded-2xl border border-white/10 bg-black/20 p-5">
+                    <div className="flex items-start gap-3">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-rose-200 backdrop-blur">
+                        <Icon className="h-5 w-5" aria-hidden />
+                      </span>
+                      <div>
+                        <div className="text-sm font-semibold text-white">{item.title}</div>
+                        <p className="mt-2 text-sm text-slate-300">{item.description}</p>
+                        <p className="mt-3 text-sm font-medium text-cyan-200">{item.action}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="support">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                <FaEnvelope className="h-6 w-6" aria-hidden />
+              </span>
+              <div className="space-y-3">
+                <h2 id="support" className="text-2xl font-semibold tracking-tight text-white">
+                  Need help with a platform decision?
+                </h2>
+                <p className="text-sm text-slate-300 sm:text-base">
+                  Send us the release link, your platform, and how you plan to use the music (monetized channel, client
+                  work, ads, etc.). We’ll point you to the right license model and next steps.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                >
+                  Open contact page
+                </Link>
+                <a
+                  href="mailto:support@njkmusic.com"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/5"
+                >
+                  <FaEnvelope className="h-4 w-4" aria-hidden />
+                  Email support@njkmusic.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
-} 
+}
+

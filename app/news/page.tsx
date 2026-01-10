@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { getPosts, type Post } from '@/app/lib/posts';
 
 export const metadata: Metadata = {
-  title: 'Neural Feed | No Copyright Gaming Music',
-  description: 'Access the latest data streams, system updates, and network broadcasts from No Copyright Gaming Music.',
+  title: 'News | NJK Music',
+  description: 'Latest updates, releases, and announcements from across the NJK Music network.',
 };
 
 export default async function NewsPage() {
@@ -26,37 +26,37 @@ export default async function NewsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-16">
+    <div className="min-h-screen bg-transparent py-16 text-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <header className="mb-14">
-          <div className="rounded-3xl border border-border bg-white p-10 shadow-sm">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600">
-              NJK Music Updates
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
+              News
             </span>
-            <h1 className="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Neural Feed
+            <h1 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Updates from NJK Music
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              Stay in sync with label launches, catalogue news, and creator-ready resources from across the NJK Music network. New dispatches drop weekly with tips, behind-the-scenes spotlights, and release strategies.
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              New releases, label announcements, and behind-the-scenes notes from across the NJK Music roster.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-2xl border border-dashed border-border/80 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-                <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-                  Creator Insights
+              <div className="rounded-2xl border border-dashed border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-300 backdrop-blur">
+                <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-200">
+                  Release Notes
                 </span>
-                Weekly tips, platform updates, and monetisation guidance.
+                What&apos;s new across labels and moods.
               </div>
-              <div className="rounded-2xl border border-dashed border-border/80 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-                <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-                  Label Dispatches
+              <div className="rounded-2xl border border-dashed border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-300 backdrop-blur">
+                <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-200">
+                  Updates
                 </span>
-                Get a first look at upcoming drops across NJK Music labels.
+                Announcements, changes, and highlights.
               </div>
-              <div className="rounded-2xl border border-dashed border-border/80 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-                <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-                  Licensing Alerts
+              <div className="rounded-2xl border border-dashed border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-300 backdrop-blur">
+                <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-200">
+                  Insights
                 </span>
-                Stay informed about rights-managed releases and new clearances.
+                Short notes from behind the scenes.
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default async function NewsPage() {
                 return (
                   <article
                     key={post.id ?? post.slug}
-                    className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition hover:shadow-md"
+                    className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
                   >
                     {imageUrl && (
                       <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -89,12 +89,12 @@ export default async function NewsPage() {
                     <div className="flex flex-1 flex-col gap-5 p-6">
                       <div className="flex flex-wrap items-center gap-3">
                         {displayDate && (
-                          <span className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-600">
+                          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur">
                             {displayDate}
                           </span>
                         )}
                         {post.category && (
-                          <span className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-600">
+                          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur">
                             {post.category}
                           </span>
                         )}
@@ -102,12 +102,12 @@ export default async function NewsPage() {
 
                       <div className="space-y-3">
                         <Link href={`/news/${post.slug}`} className="block">
-                          <h2 className="text-xl font-semibold tracking-tight text-slate-900 transition group-hover:text-primary">
+                          <h2 className="text-xl font-semibold tracking-tight text-white transition group-hover:text-cyan-200">
                             {post.title}
                           </h2>
                         </Link>
                         {post.description && (
-                          <p className="text-sm leading-relaxed text-slate-600 line-clamp-3">
+                          <p className="text-sm leading-relaxed text-slate-300 line-clamp-3">
                             {post.description}
                           </p>
                         )}
@@ -116,9 +116,9 @@ export default async function NewsPage() {
                       <div className="mt-auto">
                         <Link
                           href={`/news/${post.slug}`}
-                          className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.3em] text-primary transition hover:text-primary/80"
+                          className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200 transition hover:text-cyan-100"
                         >
-                          Read Update
+                          Read
                           <span aria-hidden className="transition group-hover:translate-x-0.5">→</span>
                         </Link>
                       </div>
@@ -128,10 +128,10 @@ export default async function NewsPage() {
               })}
             </div>
           ) : (
-            <div className="rounded-3xl border border-dashed border-border/80 bg-white p-12 text-center">
-              <h2 className="text-lg font-semibold text-slate-900">No posts yet</h2>
-              <p className="mt-2 text-sm text-slate-500">
-                Publishing tools are deploying. Check back soon for label news, creator case studies, and release notes.
+            <div className="rounded-3xl border border-dashed border-white/15 bg-white/5 p-12 text-center shadow-soft backdrop-blur">
+              <h2 className="text-lg font-semibold text-white">No posts yet</h2>
+              <p className="mt-2 text-sm text-slate-300">
+                Check back soon for NJK Music updates, releases, and announcements.
               </p>
             </div>
           )}

@@ -139,31 +139,33 @@ const helpCategories: HelpCategory[] = [
 
 export default function HelpPage() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <section className="bg-gradient-to-b from-white to-slate-50">
-        <div className="mx-auto flex min-h-[40vh] max-w-6xl flex-col justify-center gap-6 px-4 py-24 sm:px-6 lg:px-8">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-            Help centre
-          </span>
-          <div className="space-y-4 max-w-2xl">
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-              How can we help?
-            </h1>
-            <p className="text-base text-slate-600 sm:text-lg">
-              Explore guides curated by the NJK Music label team. Whether you are clearing a sponsorship, filing a claim,
-              or setting up distribution, you will find the steps to keep projects on track.
-            </p>
+    <div className="min-h-screen bg-transparent text-white">
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur">
+              Help centre
+            </span>
+            <div className="mt-6 max-w-2xl space-y-4">
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                How can we help?
+              </h1>
+              <p className="text-base text-slate-300 sm:text-lg">
+                Browse licensing guidance, troubleshooting tips, and platform playbooks for NJK Music. Find answers fast
+                or contact the team for hands-on support.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
         <section>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+            <h2 className="text-2xl font-semibold tracking-tight text-white">
               Start here
             </h2>
-            <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-500">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-300">
               Most requested resources
             </span>
           </div>
@@ -174,16 +176,16 @@ export default function HelpPage() {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="group flex h-full flex-col gap-4 rounded-3xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                  className="group flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
                 >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
                     <Icon className="h-5 w-5" />
                   </span>
                   <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-slate-900">{link.title}</h3>
-                    <p className="text-sm text-slate-600">{link.description}</p>
+                    <h3 className="text-lg font-semibold text-white">{link.title}</h3>
+                    <p className="text-sm text-slate-300">{link.description}</p>
                   </div>
-                  <span className="mt-auto text-sm font-medium text-primary transition group-hover:text-primary/80">
+                  <span className="mt-auto text-sm font-medium text-cyan-200 transition group-hover:text-cyan-100">
                     Open guide
                   </span>
                 </Link>
@@ -196,8 +198,8 @@ export default function HelpPage() {
           {helpCategories.map((category) => (
             <div key={category.title} className="space-y-8">
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{category.title}</h2>
-                <p className="mt-2 text-sm text-slate-600">{category.description}</p>
+                <h2 className="text-2xl font-semibold tracking-tight text-white">{category.title}</h2>
+                <p className="mt-2 text-sm text-slate-300">{category.description}</p>
               </div>
               <div className="grid gap-6 md:grid-cols-3">
                 {category.articles.map((article) => {
@@ -206,16 +208,16 @@ export default function HelpPage() {
                     <Link
                       key={article.title}
                       href={article.href}
-                      className="group flex h-full flex-col gap-4 rounded-3xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                      className="group flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur transition hover:border-fuchsia-300/40 hover:bg-white/10"
                     >
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
                         <Icon className="h-5 w-5" />
                       </span>
                       <div className="space-y-2">
-                        <h3 className="text-lg font-semibold text-slate-900">{article.title}</h3>
-                        <p className="text-sm text-slate-600">{article.description}</p>
+                        <h3 className="text-lg font-semibold text-white">{article.title}</h3>
+                        <p className="text-sm text-slate-300">{article.description}</p>
                       </div>
-                      <span className="mt-auto text-sm font-medium text-primary transition group-hover:text-primary/80">
+                      <span className="mt-auto text-sm font-medium text-cyan-200 transition group-hover:text-cyan-100">
                         View article
                       </span>
                     </Link>
@@ -226,16 +228,16 @@ export default function HelpPage() {
           ))}
         </section>
 
-        <section className="mt-20 rounded-3xl border border-border bg-white p-8 shadow-sm sm:p-12">
+        <section className="mt-20 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur sm:p-12">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
               <FaHeadset className="h-6 w-6" />
             </span>
             <div className="space-y-3">
-              <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+              <h2 className="text-2xl font-semibold tracking-tight text-white">
                 Prefer to talk to someone?
               </h2>
-              <p className="text-sm text-slate-600 sm:text-base">
+              <p className="text-sm text-slate-300 sm:text-base">
                 Share links, timestamps, and any claim IDs in your message so we can respond quickly. Most requests are
                 answered within 24 to 48 hours on business days.
               </p>
@@ -243,13 +245,13 @@ export default function HelpPage() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
                 href="mailto:support@njkmusic.com"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-primary bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary/90"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-90"
               >
                 Email support
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-slate-900 px-6 py-3 text-sm font-semibold tracking-[0.2em] text-white transition hover:bg-slate-800"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold tracking-[0.2em] text-slate-200 backdrop-blur transition hover:bg-white/5"
               >
                 View contact page
               </Link>

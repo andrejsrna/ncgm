@@ -92,33 +92,35 @@ const commonTopics = [
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <section className="bg-gradient-to-b from-white to-slate-50">
-        <div className="mx-auto flex min-h-[40vh] max-w-6xl flex-col justify-center gap-6 px-4 py-24 sm:px-6 lg:px-8">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-            Get in touch
-          </span>
-          <div className="space-y-4 max-w-2xl">
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-              Contact NJK Music
-            </h1>
-            <p className="text-base text-slate-600 sm:text-lg">
-              Reach out for licensing support, partnerships, creator questions, or anything else. We&apos;ll guide you to the
-              right label specialist and keep your projects moving.
-            </p>
+    <div className="min-h-screen bg-transparent text-white">
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur">
+              Get in touch
+            </span>
+            <div className="mt-6 max-w-2xl space-y-4">
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                Contact NJK Music
+              </h1>
+              <p className="text-base text-slate-300 sm:text-lg">
+                Reach out for support, licensing, partnerships, or anything else. We&apos;ll route you to the right person
+                and keep things moving.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           <div className="space-y-8">
             <section>
               <div className="mb-6 flex items-center justify-between gap-4">
-                <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+                <h2 className="text-2xl font-semibold tracking-tight text-white">
                   Email the right team
                 </h2>
-                <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-500">
+                <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-300">
                   Responsive within 24-48 hrs
                 </span>
               </div>
@@ -128,19 +130,19 @@ export default function ContactPage() {
                   return (
                     <div
                       key={method.title}
-                      className="flex h-full flex-col gap-4 rounded-3xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                      className="flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
                     >
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
                         <Icon className="h-5 w-5" />
                       </span>
                       <div>
-                        <h3 className="text-lg font-semibold text-slate-900">{method.title}</h3>
-                        <p className="mt-2 text-sm text-slate-600">{method.description}</p>
+                        <h3 className="text-lg font-semibold text-white">{method.title}</h3>
+                        <p className="mt-2 text-sm text-slate-300">{method.description}</p>
                       </div>
                       <div className="mt-auto space-y-2 text-sm">
                         <a
                           href={`mailto:${method.email}`}
-                          className="font-medium text-primary transition hover:text-primary/80"
+                          className="font-medium text-cyan-200 transition hover:text-cyan-100"
                         >
                           {method.email}
                         </a>
@@ -154,15 +156,15 @@ export default function ContactPage() {
               </div>
             </section>
 
-            <section className="rounded-3xl border border-dashed border-border bg-white p-6 shadow-sm sm:p-8">
-              <h2 className="text-xl font-semibold text-slate-900">Need something else?</h2>
-              <p className="mt-3 text-sm text-slate-600">
+            <section className="rounded-3xl border border-dashed border-white/15 bg-white/5 p-6 shadow-soft backdrop-blur sm:p-8">
+              <h2 className="text-xl font-semibold text-white">Need something else?</h2>
+              <p className="mt-3 text-sm text-slate-300">
                 Share as much detail as you can, including links to the platforms or videos affected. Our team routes
                 every message to the right specialist and will follow up with next steps.
               </p>
               <Link
                 href="mailto:support@njkmusic.com"
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary bg-primary px-5 py-2 text-sm font-semibold text-white transition hover:bg-primary/90"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:opacity-90"
               >
                 Email support@njkmusic.com
               </Link>
@@ -170,21 +172,21 @@ export default function ContactPage() {
           </div>
 
           <aside className="space-y-6">
-            <section className="rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
+            <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur sm:p-8">
               <div className="flex items-center gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
                   <FaBuilding className="h-5 w-5" />
                 </span>
-                <h2 className="text-lg font-semibold text-slate-900">Registered office</h2>
+                <h2 className="text-lg font-semibold text-white">Registered office</h2>
               </div>
-              <div className="mt-6 space-y-2 text-sm text-slate-600">
-                <p className="font-medium text-slate-900">{officeInfo.company}</p>
+              <div className="mt-6 space-y-2 text-sm text-slate-300">
+                <p className="font-medium text-white">{officeInfo.company}</p>
                 {officeInfo.address.map((line) => (
                   <p key={line}>{line}</p>
                 ))}
               </div>
-              <div className="mt-6 flex items-center gap-3 text-sm text-slate-600">
-                <FaClock className="h-4 w-4 text-slate-500" />
+              <div className="mt-6 flex items-center gap-3 text-sm text-slate-300">
+                <FaClock className="h-4 w-4 text-slate-400" />
                 <div>
                   {officeInfo.hours.map((line) => (
                     <p key={line}>{line}</p>
@@ -193,11 +195,11 @@ export default function ContactPage() {
               </div>
             </section>
 
-            <section className="rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
-              <h2 className="text-lg font-semibold text-slate-900">Press & partnerships</h2>
-              <p className="mt-3 text-sm text-slate-600">
+            <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur sm:p-8">
+              <h2 className="text-lg font-semibold text-white">Press & partnerships</h2>
+              <p className="mt-3 text-sm text-slate-300">
                 For media features, distribution opportunities, or collaborative releases, reach us directly at{" "}
-                <a href="mailto:partnerships@njkmusic.com" className="font-medium text-primary hover:text-primary/80">
+                <a href="mailto:partnerships@njkmusic.com" className="font-medium text-cyan-200 hover:text-cyan-100">
                   partnerships@njkmusic.com
                 </a>
                 .
@@ -207,20 +209,20 @@ export default function ContactPage() {
         </div>
 
         <section className="mt-20">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Quick links</h2>
-          <p className="mt-2 text-sm text-slate-600">
+          <h2 className="text-2xl font-semibold tracking-tight text-white">Quick links</h2>
+          <p className="mt-2 text-sm text-slate-300">
             Start with these resources if you&apos;re looking for immediate answers.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {commonTopics.map((topic) => (
-              <div key={topic.title} className="rounded-3xl border border-border bg-white p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-900">{topic.title}</h3>
+              <div key={topic.title} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur">
+                <h3 className="text-lg font-semibold text-white">{topic.title}</h3>
                 <ul className="mt-4 space-y-3 text-sm">
                   {topic.links.map((link) => (
                     <li key={link.text}>
                       <Link
                         href={link.href}
-                        className="group/link inline-flex items-center gap-2 text-primary transition hover:text-primary/80"
+                        className="group/link inline-flex items-center gap-2 text-cyan-200 transition hover:text-cyan-100"
                       >
                         <FaChevronRight className="h-3 w-3 text-slate-400 transition-transform group-hover/link:translate-x-1" />
                         {link.text}
@@ -233,14 +235,14 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="mt-20 rounded-3xl border border-border bg-white p-8 text-center shadow-sm sm:p-12">
-          <p className="mx-auto max-w-2xl text-sm text-slate-600 sm:text-base">
+        <section className="mt-20 rounded-3xl border border-white/10 bg-white/5 p-8 text-center shadow-soft backdrop-blur sm:p-12">
+          <p className="mx-auto max-w-2xl text-sm text-slate-300 sm:text-base">
             We partner closely with creators, agencies, and studios around the world. If you need something specific,
             we&apos;re here to help you clear music quickly and confidently.
           </p>
           <Link
             href="/help"
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-slate-900 px-6 py-3 text-sm font-semibold tracking-[0.2em] text-white transition hover:bg-slate-800"
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold tracking-[0.2em] text-slate-200 backdrop-blur transition hover:bg-white/5"
           >
             Explore help centre
           </Link>

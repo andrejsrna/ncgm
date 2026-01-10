@@ -24,7 +24,14 @@
   "Beatport": null,
   "Bandcamp": null,
   "spotify_embed": null,
-  "Cover": null,
+  "Cover": {
+    "url": "/images/music/jazz-kung-fu.webp",
+    "formats": {
+      "large": {
+        "url": "/images/music/jazz-kung-fu.webp"
+      }
+    }
+  },
   "createdAt": "2025-03-07T00:00:00.000Z",
   "updatedAt": "2025-03-07T00:00:00.000Z",
   "publishedAt": "2025-03-07T00:00:00.000Z",

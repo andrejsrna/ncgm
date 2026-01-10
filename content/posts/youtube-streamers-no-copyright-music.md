@@ -74,10 +74,10 @@ There are many platforms offering **free, high-quality tracks**, including **njk
 
 If you're looking for high-quality, copyright-free music, here are some of the best sources:
 
-- 🎧 **[njkmusic.com](https://njkmusic.com)** – Best for gaming & energetic beats.
-- 🎵 **[YouTube Audio Library](https://www.youtube.com/audiolibrary)** – Free tracks provided by YouTube.
-- 🔊 **[Free Music Archive](https://freemusicarchive.org/)** – A vast collection of free-to-use music.
-- 🎶 **[SoundCloud](https://soundcloud.com/)** – Look for tracks with a Creative Commons license.
+- **[njkmusic.com](/music)** – Best for gaming & energetic beats.
+- **[YouTube Audio Library](https://www.youtube.com/audiolibrary)** – Free tracks provided by YouTube.
+- **[Free Music Archive](https://freemusicarchive.org/)** – A vast collection of free-to-use music.
+- **[SoundCloud](https://soundcloud.com/)** – Look for tracks with a Creative Commons license.
 
 Each of these platforms provides a variety of tracks suitable for YouTubers, streamers, and content creators who want to enhance their videos without copyright concerns.
 
@@ -89,7 +89,7 @@ Not all no copyright music is completely free of restrictions. Some tracks requi
 ### Giving Proper Credit (If Required)
 If the track requires attribution, make sure to include a credit line in your video description or stream overlay. A proper credit example would be:
 
-> *Music by [Artist Name] - [njkmusic.com](https://njkmusic.com)*
+> *Music by [Artist Name] - [njkmusic.com](/)*
 
 Providing correct attribution helps support the artists who create free music and ensures compliance with licensing agreements.
 
@@ -103,6 +103,6 @@ Using no copyright music ensures that YouTubers and streamers can create content
 At **njkmusic.com**, we provide a vast selection of **high-quality, royalty-free tracks** perfect for gaming, streaming, and video creation.
 
 ### Call to Action
-**🎧 Browse Free Tracks Now:** [njkmusic.com](https://njkmusic.com)
+**Browse Free Tracks Now:** [njkmusic.com](/music)
 
 Start enhancing your content with **safe, high-energy, and copyright-free music today!**

@@ -13,7 +13,7 @@ const musicServices = [
   {
     name: 'Apple Music',
     url: 'https://music.apple.com/sk/artist/no-copyright-gaming-music/1699748922',
-    icon: <FaApple className="h-5 w-5 text-slate-700" />,
+    icon: <FaApple className="h-5 w-5 text-slate-200" />,
     description: 'Access releases on Apple Music.',
   },
   {
@@ -44,11 +44,11 @@ const musicServices = [
 
 export default function MusicProfile() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-transparent py-20 text-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 space-y-4 text-center">
-          <h2 className="text-3xl font-semibold text-slate-900">Listen on your platform</h2>
-          <p className="text-sm text-slate-600 sm:text-base">
+          <h2 className="text-3xl font-semibold text-white">Listen on your platform</h2>
+          <p className="text-sm text-slate-300 sm:text-base">
             The No Copyright Gaming Music catalogue is available wherever you publish or discover music.
           </p>
         </div>
@@ -60,14 +60,14 @@ export default function MusicProfile() {
               href={service.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-4 rounded-2xl border border-border bg-slate-50 p-5 transition hover:border-primary hover:bg-white hover:shadow-sm"
+              className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 shadow-soft backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-primary shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200 shadow-soft backdrop-blur">
                 {service.icon}
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-slate-900">{service.name}</h3>
-                <p className="mt-1 text-xs text-slate-600">{service.description}</p>
+                <h3 className="text-sm font-semibold text-white">{service.name}</h3>
+                <p className="mt-1 text-xs text-slate-300">{service.description}</p>
               </div>
             </a>
           ))}

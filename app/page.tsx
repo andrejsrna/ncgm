@@ -4,7 +4,7 @@ import Hero from "@/app/components/hero";
 const SectionSkeleton = () => (
   <section className="py-24">
     <div className="mx-auto max-w-6xl px-4">
-      <div className="h-48 rounded-xl border border-red-900/30 bg-red-900/10 animate-pulse" />
+      <div className="h-48 rounded-xl border border-white/10 bg-white/5 animate-pulse" />
     </div>
   </section>
 );
@@ -35,7 +35,7 @@ const Support = dynamic(() => import("@/app/components/Support"), {
 
 export default function Home() {
   return (
-    <div>
+    <main className="relative overflow-hidden bg-transparent text-white">
       <Hero />
       <FeaturedTrack />
       <WhoIsBehind />
@@ -43,6 +43,6 @@ export default function Home() {
       <Accordion />
       <CallToAction />
       <Support />
-    </div>
+    </main>
   );
 }

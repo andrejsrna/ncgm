@@ -8,11 +8,11 @@ import { genres, Genre } from '@/data/genres';
 
 const PickYourGenre: React.FC = () => {
   return (
-    <section className="bg-slate-50 py-20">
+    <section className="bg-transparent py-20 text-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 space-y-4 text-center">
-          <h2 className="text-3xl font-semibold text-slate-900">Explore by genre</h2>
-          <p className="text-sm text-slate-600 sm:text-base">
+          <h2 className="text-3xl font-semibold text-white">Explore by genre</h2>
+          <p className="text-sm text-slate-300 sm:text-base">
             Browse curated playlists spanning electronic, hip hop, lofi, and cinematic styles.
           </p>
         </div>
@@ -21,7 +21,7 @@ const PickYourGenre: React.FC = () => {
           {genres.map((genre: Genre) => (
             <article
               key={genre.name}
-              className="flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition hover:shadow-md"
+              className="flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-soft backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
             >
               <div className="relative h-44 w-full">
                 <Image
@@ -35,24 +35,24 @@ const PickYourGenre: React.FC = () => {
 
               <div className="flex flex-1 flex-col gap-4 p-5">
                 <div>
-                  <h3 className="text-lg font-semibold text-slate-900">{genre.name}</h3>
+                  <h3 className="text-lg font-semibold text-white">{genre.name}</h3>
                   {genre.description && (
-                    <p className="mt-1 text-sm text-slate-600">{genre.description}</p>
+                    <p className="mt-1 text-sm text-slate-300">{genre.description}</p>
                   )}
                 </div>
 
-                <div className="mt-auto flex flex-wrap gap-3 text-sm font-medium text-primary">
+                <div className="mt-auto flex flex-wrap gap-3 text-sm font-medium text-slate-200">
                   <Link
                     href={genre.spotifyLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-slate-600 transition hover:border-primary hover:text-primary"
+                    className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/0 px-3 py-2 text-slate-200 backdrop-blur transition hover:bg-white/5"
                   >
                     Listen
                   </Link>
                   <Link
                     href={`/music?genre=${encodeURIComponent(genre.name.toLowerCase())}`}
-                    className="inline-flex items-center gap-2 rounded-md bg-primary/10 px-3 py-2 text-primary transition hover:bg-primary/20"
+                    className="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-3 py-2 text-slate-950 transition hover:opacity-90"
                   >
                     Browse tracks
                   </Link>

@@ -3,21 +3,21 @@ import Link from "next/link";
 import {
   FaBan,
   FaCheckCircle,
+  FaChevronLeft,
   FaEnvelope,
   FaFileSignature,
   FaFolderOpen,
   FaInfoCircle,
   FaListUl,
-  FaMapMarkedAlt,
-  FaShareAlt,
+  FaShieldAlt,
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Licensing Overview | ${SITE_NAME}`,
+  title: `Licensing | ${SITE_NAME}`,
   description:
-    "Understand how NJK Music licenses cover streamers, studios, and creative teams. Review approved uses, attribution guidance, and when to request custom clearance.",
+    "Understand how NJK Music licensing works across our labels, including royalty-free releases, rights-managed catalogs, attribution, and Content ID whitelisting.",
 };
 
 type HighlightCard = {
@@ -27,64 +27,39 @@ type HighlightCard = {
   icon: IconType;
 };
 
-type PolicySection = {
-  title: string;
-  description: string;
-  points: string[];
-  icon: IconType;
-};
-
-const highlights: HighlightCard[] = [
+const licenseModels: HighlightCard[] = [
   {
-    title: "Creator-ready coverage",
-    description: "Use NJK tracks on livestreams, VODs, and edited content across major platforms.",
-    bullets: ["YouTube, Twitch, Kick, Facebook Gaming", "Monetized VODs and shorts", "Personal and branded channels"],
+    title: "Royalty-free labels",
+    description:
+      "Use these releases in streams, videos, and client work with clear, creator-friendly terms.",
+    bullets: [
+      "Great for YouTube, Twitch, TikTok, reels, podcasts, and long-form content",
+      "Designed for creators, studios, and editors working for clients",
+      "Follow attribution guidance where required (when the platform allows)",
+    ],
     icon: FaCheckCircle,
   },
   {
-    title: "Client and agency friendly",
-    description: "Deliver projects to your clients with the same protections you rely on for your own channels.",
-    bullets: ["Freelance creators and editors", "Agencies producing for brands", "In-house marketing teams"],
-    icon: FaShareAlt,
+    title: "Rights-managed labels",
+    description:
+      "Some catalogs require a purchase/licence before use and may run Content ID monetization.",
+    bullets: [
+      "A purchase/licence is required before any commercial or monetized use",
+      "Creators should request a whitelist after licensing (to prevent/resolve claims)",
+      "Contact us if you need a bespoke agreement (ads, sync, distribution) or invoicing help",
+    ],
+    icon: FaShieldAlt,
   },
   {
-    title: "Distribution support",
-    description: "Need mechanical or sync clearance? Work with our licensing team for bespoke approvals.",
-    bullets: ["Sync for advertising and trailers", "Apps, games, VR experiences", "Releases on DSPs or compilations"],
+    title: "Custom clearance",
+    description:
+      "Need sync, distribution, or something outside standard usage? We’ll scope it and confirm approvals.",
+    bullets: [
+      "Ads, trailers, broadcast, and brand campaigns",
+      "Apps, games, and interactive experiences",
+      "DSP releases and compilations",
+    ],
     icon: FaFileSignature,
-  },
-];
-
-const policySections: PolicySection[] = [
-  {
-    title: "What is included",
-    description: "Every download or subscription covers standard creator activity.",
-    points: [
-      "Stream background music and highlight reels on Twitch, YouTube, or similar platforms.",
-      "Publish edited content, shorts, reels, and TikTok videos with monetization enabled.",
-      "Embed tracks in podcasts, presentations, course material, and community updates.",
-    ],
-    icon: FaFolderOpen,
-  },
-  {
-    title: "Attribution guidance",
-    description: "Credit the track whenever the platform allows a description or metadata field.",
-    points: [
-      "Include track title and artist or label name (example: Track Title - NJK Music).",
-      "Link back to njkmusic.com or the release page when space permits.",
-      "For livestream overlays, a rotating credit panel or chatbot command is preferred.",
-    ],
-    icon: FaListUl,
-  },
-  {
-    title: "Working with clients",
-    description: "You may deliver NJK music inside projects for paying clients as long as they keep the original use.",
-    points: [
-      "Share finished videos, edits, or campaign assets where you maintain the relationship to NJK Music.",
-      "If clients need raw stems or plan to redistribute assets to third parties, contact licensing first.",
-      "Agencies may use the catalog for multiple clients, provided each project includes proper attribution.",
-    ],
-    icon: FaMapMarkedAlt,
   },
 ];
 
@@ -98,133 +73,363 @@ const restrictedUses = [
 
 export default function LicensePage() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <section className="bg-gradient-to-b from-white to-slate-50">
-        <div className="mx-auto flex min-h-[40vh] max-w-6xl flex-col justify-center gap-6 px-4 py-24 sm:px-6 lg:px-8">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-            Licensing overview
-          </span>
-          <div className="space-y-4 max-w-3xl">
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">How NJK Music licensing works</h1>
-            <p className="text-base text-slate-600 sm:text-lg">
-              Our labels clear music for creators, studios, and agencies across today&apos;s platforms. Use this guide to
-              confirm where you are covered, how to credit tracks, and when to reach out for a custom agreement.
-            </p>
+    <div className="min-h-screen bg-transparent text-white">
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <Link
+              href="/help"
+              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-200 hover:text-cyan-100"
+            >
+              <FaChevronLeft className="h-4 w-4" aria-hidden />
+              Back to Help Centre
+            </Link>
+
+            <div className="mt-6 max-w-3xl space-y-4">
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                How NJK Music licensing works
+              </h1>
+              <p className="text-base text-slate-300 sm:text-lg">
+                Our catalog includes both <span className="text-white">royalty-free</span> releases (creator-ready) and{" "}
+                <span className="text-white">rights-managed</span> catalogs (purchase/licence + Content ID workflows).
+                Use this page to confirm what’s allowed, how to credit, and when to reach out for clearance.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/help/attribution"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Attribution guide
+              </Link>
+              <Link
+                href="/help/purchase-guide"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Purchase guide
+              </Link>
+              <Link
+                href="/help/content-id"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Content ID guide
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+              >
+                Contact licensing
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <section>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Key takeaways</h2>
-            <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-500">What you can expect</span>
+      <div className="mx-auto max-w-6xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
+        <section aria-labelledby="license-models">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 id="license-models" className="text-2xl font-semibold tracking-tight text-white">
+                Licensing models
+              </h2>
+              <p className="mt-2 text-sm text-slate-300">
+                The right workflow depends on which label a release belongs to.
+              </p>
+            </div>
+            <Link
+              href="/music"
+              className="text-xs font-medium uppercase tracking-[0.3em] text-slate-300 hover:text-slate-200"
+            >
+              Browse music
+            </Link>
           </div>
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {highlights.map((item) => {
+
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {licenseModels.map((item) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.title}
-                  className="flex h-full flex-col gap-4 rounded-3xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                  className="flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
                 >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                    <Icon className="h-5 w-5" aria-hidden />
                   </span>
                   <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-                    <p className="text-sm text-slate-600">{item.description}</p>
+                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                    <p className="text-sm text-slate-300">{item.description}</p>
                   </div>
-                  <ul className="mt-2 space-y-2 text-sm text-slate-600">
+                  <ul className="mt-2 space-y-2 text-sm text-slate-300">
                     {item.bullets.map((bullet) => (
                       <li key={bullet} className="flex items-start gap-2">
-                        <FaCheckCircle className="mt-1 h-3.5 w-3.5 text-primary" />
+                        <FaCheckCircle className="mt-1 h-3.5 w-3.5 text-cyan-200" aria-hidden />
                         <span>{bullet}</span>
                       </li>
                     ))}
                   </ul>
+
+                  {item.title === "Rights-managed labels" ? (
+                    <div className="mt-auto flex flex-wrap gap-3 pt-2">
+                      <Link
+                        href="/help/purchase-guide"
+                        className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+                      >
+                        Purchase guide
+                      </Link>
+                      <Link
+                        href="/labels/jazz-and-bass"
+                        className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+                      >
+                        Jazz &amp; Bass
+                      </Link>
+                    </div>
+                  ) : null}
                 </div>
               );
             })}
           </div>
         </section>
 
-        <section className="mt-20 space-y-16">
-          {policySections.map((section) => {
-            const Icon = section.icon;
-            return (
-              <div key={section.title} className="rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
-                <div className="flex items-start gap-4">
-                  <span className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div className="space-y-3">
-                    <div>
-                      <h2 className="text-xl font-semibold text-slate-900">{section.title}</h2>
-                      <p className="mt-1 text-sm text-slate-600">{section.description}</p>
-                    </div>
-                    <ul className="space-y-2 text-sm text-slate-600">
-                      {section.points.map((point) => (
-                        <li key={point} className="flex items-start gap-2">
-                          <FaInfoCircle className="mt-1 h-3.5 w-3.5 text-slate-400" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+        <section aria-labelledby="how-to-check">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                <FaInfoCircle className="h-5 w-5" aria-hidden />
+              </span>
+              <div className="space-y-2">
+                <h2 id="how-to-check" className="text-xl font-semibold text-white">
+                  How to know which model applies
+                </h2>
+                <p className="max-w-3xl text-sm text-slate-300">
+                  The license model depends on the label. Check the label name on the release page (or open the label
+                  page) before you publish monetized content.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
+                  1) Open the release
+                </div>
+                <p className="mt-2 text-sm text-slate-300">
+                  Go to the track page and confirm the label shown under the title.
+                </p>
+                <div className="mt-4">
+                  <Link
+                    href="/music"
+                    className="text-sm font-medium text-cyan-200 hover:text-cyan-100"
+                  >
+                    Browse music →
+                  </Link>
                 </div>
               </div>
-            );
-          })}
-        </section>
 
-        <section className="mt-20 rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="space-y-2">
-              <h2 className="text-2xl font-semibold tracking-tight text-slate-900">What is not allowed</h2>
-              <p className="text-sm text-slate-600">
-                These use cases require a separate agreement or are prohibited entirely.
-              </p>
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
+                  2) Check the label page
+                </div>
+                <p className="mt-2 text-sm text-slate-300">
+                  Label pages summarize whether a catalog is creator-ready or rights-managed.
+                </p>
+                <div className="mt-4">
+                  <Link
+                    href="/labels"
+                    className="text-sm font-medium text-cyan-200 hover:text-cyan-100"
+                  >
+                    Browse labels →
+                  </Link>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
+                  3) Monetized catalog?
+                </div>
+                <p className="mt-2 text-sm text-slate-300">
+                  If the release is monetized via Content ID, licensed creators should request a whitelist.
+                </p>
+                <div className="mt-4">
+                  <Link
+                    href="/help/content-id"
+                    className="text-sm font-medium text-cyan-200 hover:text-cyan-100"
+                  >
+                    Content ID steps →
+                  </Link>
+                </div>
+              </div>
             </div>
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-rose-100 text-rose-500">
-              <FaBan className="h-5 w-5" />
-            </span>
           </div>
-          <ul className="mt-6 space-y-3 text-sm text-slate-600">
-            {restrictedUses.map((item) => (
-              <li key={item} className="flex items-start gap-3 rounded-2xl border border-dashed border-border/70 bg-slate-50 px-4 py-3">
-                <FaBan className="mt-1 h-3.5 w-3.5 text-rose-400" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
         </section>
 
-        <section className="mt-20 rounded-3xl border border-border bg-white p-8 text-center shadow-sm sm:p-12">
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <FaEnvelope className="h-6 w-6" />
-            </span>
-            <div className="space-y-3">
-              <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Need a custom license?</h2>
-              <p className="text-sm text-slate-600 sm:text-base">
-                Provide project details, platforms, timelines, and any distribution plans. Our licensing team will review
-                the scope and respond with next steps or a quote.
+        <section aria-labelledby="included">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                <FaFolderOpen className="h-5 w-5" aria-hidden />
+              </span>
+              <div className="space-y-2">
+                <h2 id="included" className="text-xl font-semibold text-white">
+                  What’s typically included (royalty-free releases)
+                </h2>
+                <p className="max-w-2xl text-sm text-slate-300">
+                  Most creator-ready releases are cleared for common platform usage. Always follow any label-specific
+                  notes on the track page.
+                </p>
+              </div>
+            </div>
+
+            <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
+              {[
+                "Streams, VODs, highlight reels, shorts, and reels (with monetization enabled)",
+                "YouTube, Twitch, Kick, Instagram, TikTok, podcasts, and community clips",
+                "Client deliverables (edits, campaigns, and social cutdowns) with proper credit where required",
+                "Internal projects (presentations, courses, product demos, prototypes)",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-fuchsia-200" aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section aria-labelledby="attribution">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+            <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+              <div className="flex items-start gap-4">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                  <FaListUl className="h-5 w-5" aria-hidden />
+                </span>
+                <div className="space-y-2">
+                  <h2 id="attribution" className="text-xl font-semibold text-white">
+                    Attribution
+                  </h2>
+                  <p className="max-w-2xl text-sm text-slate-300">
+                    When a platform gives you a description or metadata field, credit the release and link back when
+                    possible.
+                  </p>
+                </div>
+              </div>
+
+              <Link
+                href="/help/attribution"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Open attribution guide
+              </Link>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-white/10 bg-black/20 p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
+                Example format
+              </div>
+              <p className="mt-2 text-sm text-slate-300">
+                Track: <span className="text-white">[Title]</span> —{" "}
+                <span className="text-white">[Label / NJK Music]</span> · Licensed via{" "}
+                <span className="text-white">njkmusic.com</span>
               </p>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <a
-                href="mailto:licensing@njkmusic.com"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-primary bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary/90"
-              >
-                Email licensing@njkmusic.com
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-slate-900 px-6 py-3 text-sm font-semibold tracking-[0.2em] text-white transition hover:bg-slate-800"
-              >
-                Visit contact page
-              </Link>
+          </div>
+        </section>
+
+        <section aria-labelledby="content-id">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+            <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+              <div className="flex items-start gap-4">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                  <FaInfoCircle className="h-5 w-5" aria-hidden />
+                </span>
+                <div className="space-y-2">
+                  <h2 id="content-id" className="text-xl font-semibold text-white">
+                    Content ID &amp; whitelisting
+                  </h2>
+                  <p className="max-w-2xl text-sm text-slate-300">
+                    Some catalogs are monetized with Content ID. If you’re licensed and you still get a claim, follow
+                    the guide and contact us with the claim details so we can whitelist or resolve it.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/help/content-id"
+                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+                >
+                  Content ID guide
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                >
+                  Request whitelist
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="restricted">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-2">
+                <h2 id="restricted" className="text-2xl font-semibold tracking-tight text-white">
+                  What’s not allowed
+                </h2>
+                <p className="text-sm text-slate-300">
+                  These use cases require a separate agreement or are prohibited entirely.
+                </p>
+              </div>
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-rose-500/10 text-rose-300">
+                <FaBan className="h-5 w-5" aria-hidden />
+              </span>
+            </div>
+
+            <ul className="mt-6 space-y-3 text-sm text-slate-300">
+              {restrictedUses.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 rounded-2xl border border-dashed border-white/15 bg-black/20 px-4 py-3"
+                >
+                  <FaBan className="mt-1 h-3.5 w-3.5 text-rose-300" aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section aria-labelledby="custom">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                <FaEnvelope className="h-6 w-6" aria-hidden />
+              </span>
+              <div className="space-y-3">
+                <h2 id="custom" className="text-2xl font-semibold tracking-tight text-white">
+                  Need a custom license?
+                </h2>
+                <p className="text-sm text-slate-300 sm:text-base">
+                  Share project details (platforms, scope, timeline, distribution plans) and we’ll confirm what’s
+                  needed—clearance, whitelisting, or a bespoke agreement.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="mailto:licensing@njkmusic.com"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                >
+                  Email licensing@njkmusic.com
+                </a>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/5"
+                >
+                  Visit contact page
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -232,4 +437,3 @@ export default function LicensePage() {
     </div>
   );
 }
-

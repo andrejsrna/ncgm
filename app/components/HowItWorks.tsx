@@ -23,11 +23,11 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-transparent py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 space-y-4 text-center">
-          <h2 className="text-3xl font-semibold text-slate-900">How it works</h2>
-          <p className="text-sm text-slate-600 sm:text-base">
+          <h2 className="text-3xl font-semibold text-white">How it works</h2>
+          <p className="text-sm text-slate-300 sm:text-base">
             A simple workflow designed for creators who need dependable, stream-safe audio.
           </p>
         </div>
@@ -36,13 +36,13 @@ export default function HowItWorks() {
           {steps.map((step) => (
             <article
               key={step.title}
-              className="rounded-2xl border border-border bg-slate-50 p-6 text-left shadow-sm"
+              className="rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-sm backdrop-blur"
             >
-              <div className="mb-4 inline-flex items-center justify-center rounded-full bg-primary/10 p-3 text-primary">
+              <div className="mb-4 inline-flex items-center justify-center rounded-full bg-white/5 p-3 text-cyan-200">
                 {step.icon}
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">{step.title}</h3>
-              <p className="mt-2 text-sm text-slate-600">{step.description}</p>
+              <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+              <p className="mt-2 text-sm text-slate-300">{step.description}</p>
             </article>
           ))}
         </div>
@@ -50,7 +50,7 @@ export default function HowItWorks() {
         <div className="mt-12 text-center">
           <Link
             href="/help"
-            className="inline-flex items-center justify-center rounded-md border border-border px-5 py-3 text-sm font-medium text-slate-700 transition hover:border-primary hover:text-primary"
+            className="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/0 px-5 py-3 text-sm font-medium text-slate-200 backdrop-blur transition hover:border-cyan-300/60 hover:bg-white/5"
           >
             View licensing details
           </Link>

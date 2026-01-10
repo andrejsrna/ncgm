@@ -1,4 +1,4 @@
-import { getMusicBySlug, type MusicData } from "@/app/hooks/useMusicQuery";
+import { getMusicBySlug, getMusicData, type MusicData } from "@/app/hooks/useMusicQuery";
 import { SITE_URL, getCanonicalUrl } from "@/lib/env";
 import { resolveStrapiImageUrl } from "@/lib/utils";
 import TrackHero from "@/app/music/[slug]/TrackHero";
@@ -9,6 +9,9 @@ import ReleaseDescriptionSection from "@/app/music/[slug]/ReleaseDescriptionSect
 import StreamingPlatformsSection from "@/app/music/[slug]/StreamingPlatformsSection";
 import DownloadSection from "@/app/music/[slug]/DownloadSection";
 import LabelInfoSection from "@/app/music/[slug]/LabelInfoSection";
+import RelatedTracksSection, {
+  type RelatedTrackItem,
+} from "@/app/music/[slug]/RelatedTracksSection";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { marked } from "marked";
@@ -119,6 +122,15 @@ export default async function MusicDetailPage({
   const coverUrl = resolveStrapiImageUrl(track.Cover);
   const contentHtml = track.Content ? await marked(track.Content) : "";
   const labelName = track.label?.name ?? PRIMARY_LABEL.name;
+  const labelSlug = track.label?.slug ?? PRIMARY_LABEL.slug;
+  const genreName = track.genre?.Genres ?? null;
+
+  const relatedTracks = await getRelatedTracks({
+    currentSlug: slug,
+    labelSlug,
+    genreName,
+    limit: 6,
+  });
 
   // Generate structured data (JSON-LD) for rich snippets
   const structuredData = {
@@ -188,18 +200,61 @@ export default async function MusicDetailPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }} />
 
-      <article className="bg-slate-50 py-16">
-        <div className="mx-auto max-w-5xl space-y-12 px-4 sm:px-6 lg:px-8">
+      <article className="bg-transparent py-16 text-white">
+        <div className="mx-auto max-w-6xl space-y-12 px-4 sm:px-6 lg:px-8">
           <TrackHero track={track} coverUrl={coverUrl} />
           <LabelInfoSection label={track.label} />
           <StreamingPlatformsSection track={track} />
           <DownloadSection track={track} />
-          <LicensingInfoSection />
+          <LicensingInfoSection
+            labelSlug={track.label?.slug}
+            labelName={labelName}
+            trackTitle={track.Title}
+          />
           <SpotifyEmbedSection embedHtml={track.spotify_embed ?? ""} />
           <YouTubeEmbedSection embedHtml={track.youtube_embed ?? ""} />
           <ReleaseDescriptionSection contentHtml={contentHtml} />
+          <RelatedTracksSection tracks={relatedTracks} />
         </div>
       </article>
     </>
   );
+}
+
+async function getRelatedTracks({
+  currentSlug,
+  labelSlug,
+  genreName,
+  limit,
+}: {
+  currentSlug: string;
+  labelSlug: string;
+  genreName: string | null;
+  limit: number;
+}): Promise<RelatedTrackItem[]> {
+  const all = await getMusicData();
+  const candidates = all
+    .filter((candidate) => candidate.slug !== currentSlug)
+    .map((candidate) => {
+      const cover = resolveStrapiImageUrl(candidate.Cover);
+      const candidateLabelSlug = candidate.label?.slug ?? PRIMARY_LABEL.slug;
+      const candidateLabelName = candidate.label?.name ?? PRIMARY_LABEL.name;
+
+      return {
+        slug: candidate.slug,
+        title: candidate.Title,
+        labelSlug: candidateLabelSlug,
+        labelName: candidateLabelName,
+        genre: candidate.genre?.Genres ?? null,
+        coverUrl: cover ?? "",
+        score:
+          (candidateLabelSlug === labelSlug ? 100 : 0) +
+          (genreName && candidate.genre?.Genres === genreName ? 50 : 0),
+      };
+    })
+    .filter((candidate) => Boolean(candidate.coverUrl));
+
+  candidates.sort((a, b) => b.score - a.score);
+
+  return candidates.slice(0, limit).map(({ score: _score, ...rest }) => rest);
 }

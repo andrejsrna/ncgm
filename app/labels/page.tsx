@@ -71,15 +71,17 @@ export default async function LabelsIndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
-      <div className="min-h-screen bg-slate-50 py-16">
+      <div className="min-h-screen bg-transparent py-16 text-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <header className="mb-12 space-y-4 text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              NJK Music Labels
+          <header className="mb-12 space-y-5 text-center">
+            <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
+              Labels
+            </span>
+            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              NJK Music label roster
             </h1>
-            <p className="mx-auto max-w-3xl text-base text-slate-600 sm:text-lg">
-              Meet the labels shaping the NJK Music catalog. Each roster delivers stream-safe, royalty-free releases
-              designed for creators, agencies, and production teams.
+            <p className="mx-auto max-w-3xl text-base text-slate-300 sm:text-lg">
+              Explore each label mood in the NJK Music ecosystem and jump into its latest releases.
             </p>
           </header>
 
@@ -90,64 +92,43 @@ export default async function LabelsIndexPage() {
               return (
                 <article
                   key={label.slug}
-                  className="flex flex-col overflow-hidden rounded-3xl border border-border bg-white shadow-sm"
+                  className="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
                 >
-                  {label.heroImage && (
-                    <div className="relative h-48 w-full border-b border-border/60 bg-slate-900/30">
-                      <Image
-                        src={label.heroImage}
-                        alt={`${label.name} artwork`}
-                        fill
-                        className="object-cover"
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                      />
-                    </div>
-                  )}
                   <div className="flex flex-1 flex-col gap-6 p-8">
                     <div className="space-y-3">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-border bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
                         {label.short ?? label.name}
                       </span>
                       <div className="space-y-2">
-                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-                          {label.name}
-                        </h2>
-                        <p className="text-sm uppercase tracking-[0.3em] text-slate-500">
+                        <div className="flex items-center gap-3">
+                          {label.heroImage && (
+                            <Image
+                              src={label.heroImage}
+                              alt={`${label.name} icon`}
+                              width={40}
+                              height={40}
+                              className="h-10 w-10 rounded-xl border border-white/10 object-cover"
+                            />
+                          )}
+                          <h2 className="text-2xl font-semibold tracking-tight text-white">
+                            {label.name}
+                          </h2>
+                        </div>
+                        <p className="text-sm uppercase tracking-[0.3em] text-slate-300">
                           {label.tagline}
                         </p>
                       </div>
-                      <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+                      <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
                         {label.description}
                       </p>
                     </div>
 
-                    <dl className="grid gap-4 rounded-2xl border border-dashed border-border/80 bg-slate-50 px-4 py-5 text-sm text-slate-600 sm:grid-cols-3 sm:text-base">
-                      {label.callouts.map((callout) => (
-                        <div key={callout.title}>
-                          <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-                            {callout.title}
-                          </dt>
-                          <dd className="text-base font-semibold text-slate-900 sm:text-lg">
-                            {callout.detail}
-                          </dd>
-                        </div>
-                      ))}
-                      <div>
-                        <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-                          Releases
-                        </dt>
-                        <dd className="text-base font-semibold text-slate-900 sm:text-lg">
-                          {count} {count === 1 ? "release" : "releases"}
-                        </dd>
-                      </div>
-                    </dl>
-
                     <div className="mt-auto">
                       <Link
                         href={`/labels/${label.slug}`}
-                        className="inline-flex items-center gap-2 rounded-full border border-slate-900 bg-slate-900 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-slate-800"
+                        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-950 transition hover:opacity-90"
                       >
-                        View Label Catalog →
+                        View label ({count}) →
                       </Link>
                     </div>
                   </div>
@@ -156,7 +137,7 @@ export default async function LabelsIndexPage() {
             })}
 
             {labels.length === 0 && (
-              <p className="rounded-3xl border border-dashed border-border/80 bg-white p-8 text-center text-sm text-slate-500 sm:text-base">
+              <p className="rounded-3xl border border-dashed border-white/15 bg-white/5 p-8 text-center text-sm text-slate-300 shadow-soft backdrop-blur sm:text-base">
                 Label roster updates are coming soon. Check back shortly to explore the NJK Music ecosystem.
               </p>
             )}

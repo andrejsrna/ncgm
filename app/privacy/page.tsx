@@ -1,332 +1,222 @@
-'use client';
+import Link from "next/link";
+import {
+  FaChevronLeft,
+  FaEnvelope,
+  FaLock,
+  FaShieldAlt,
+  FaUserShield,
+} from "react-icons/fa";
 
-import Link from 'next/link';
-import { FaCheck, FaCircle, FaUserShield, FaDatabase, FaKey } from 'react-icons/fa';
-import { RiShieldKeyholeFill, RiLockPasswordFill, RiFingerprint2Fill } from 'react-icons/ri';
-import { MdSecurity, MdPrivacyTip } from 'react-icons/md';
+type Section = {
+  id: string;
+  title: string;
+  description: string;
+  bullets: string[];
+};
+
+const sections: Section[] = [
+  {
+    id: "what-we-collect",
+    title: "What we collect",
+    description: "We collect only what we need to run and improve the site.",
+    bullets: [
+      "Basic usage data (pages visited, device/browser info) for performance and troubleshooting",
+      "Email address if you subscribe to the newsletter",
+      "Support messages you send us (and any details you include, like order IDs or URLs)",
+    ],
+  },
+  {
+    id: "how-we-use",
+    title: "How we use it",
+    description: "We use data to operate the service, respond to requests, and improve the experience.",
+    bullets: [
+      "Operate and secure the website",
+      "Send newsletter updates if you opted in",
+      "Handle licensing, whitelisting, and claim support when you contact us",
+      "Understand what pages are useful so we can improve navigation and content",
+    ],
+  },
+  {
+    id: "sharing",
+    title: "Sharing",
+    description: "We don’t sell personal data. We share only when necessary to operate the service.",
+    bullets: [
+      "Service providers that help run the site (hosting, email, analytics) where applicable",
+      "Legal or enforcement requests when required by law",
+      "Store/platform support flows when you request help and provide details to share",
+    ],
+  },
+  {
+    id: "your-rights",
+    title: "Your rights",
+    description: "You can reach out to access, correct, or request deletion of your personal data.",
+    bullets: [
+      "Request access to the personal data we hold about you",
+      "Request correction of inaccurate data",
+      "Request deletion where applicable",
+      "Opt out of newsletters at any time (unsubscribe links where available)",
+    ],
+  },
+];
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
-            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-          `,
-          backgroundSize: '24px 24px, 24px 24px',
-          backgroundPosition: '0 0, 12px 12px'
-        }}
-      />
-
-      {/* Hero section */}
-      <div className="relative border-b border-red-900/30">
-        <div className="max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-          <h1 className="relative inline-block mb-6 mx-auto text-center w-full">
-            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
-            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
-              Neural Data Protection Protocol
-            </span>
-          </h1>
-          <p className="text-red-200/70 text-center max-w-2xl mx-auto font-light tracking-wider">
-            Our advanced neural protocols ensure maximum security for your digital identity matrix.
-            Discover how we encrypt, process, and safeguard your neural patterns.
-          </p>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div className="relative max-w-4xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-        {/* Last updated notice */}
-        <div className="text-sm text-red-300/50 mb-12 font-mono">
-          Neural Protocol Version: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-        </div>
-
-        {/* Quick navigation */}
-        <div className="group relative mb-12">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75"></div>
-          <div className="relative bg-black border border-red-900/30 p-8">
-            <h2 className="text-xl font-mono font-bold text-red-500 mb-6">Neural Protocol Index</h2>
-            <div className="grid gap-4 md:grid-cols-2">
-              <Link href="#information-collection" className="group flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors">
-                <FaCircle className="w-1.5 h-1.5" />
-                <span className="font-mono">01. Neural Data Collection</span>
-              </Link>
-              <Link href="#information-usage" className="group flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors">
-                <FaCircle className="w-1.5 h-1.5" />
-                <span className="font-mono">02. Neural Processing Matrix</span>
-              </Link>
-              <Link href="#information-sharing" className="group flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors">
-                <FaCircle className="w-1.5 h-1.5" />
-                <span className="font-mono">03. Data Distribution Grid</span>
-              </Link>
-              <Link href="#data-security" className="group flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors">
-                <FaCircle className="w-1.5 h-1.5" />
-                <span className="font-mono">04. Security Protocols</span>
-              </Link>
-              <Link href="#your-rights" className="group flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors">
-                <FaCircle className="w-1.5 h-1.5" />
-                <span className="font-mono">05. User Access Rights</span>
-              </Link>
-              <Link href="#contact-us" className="group flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors">
-                <FaCircle className="w-1.5 h-1.5" />
-                <span className="font-mono">06. Neural Support Link</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Privacy content sections */}
-        <div className="space-y-32">
-          <section id="information-collection" className="relative">
-            <div className="flex items-center gap-4 mb-8">
-              <FaDatabase className="w-8 h-8 text-red-500" />
-              <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider">01. Neural Data Collection</h2>
-            </div>
-            <div className="prose prose-invert max-w-none">
-              <p className="text-red-200/70 mb-6 tracking-wide">
-                Our neural matrix collects the following identity patterns:
-              </p>
-              <ul className="text-red-200/70 space-y-3">
-                <li className="flex items-center gap-3">
-                  <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                  <span>Neural signature (name) and quantum address (email)</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                  <span>Neural profile configuration and preferences</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                  <span>Usage patterns and neural interface interactions</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                  <span>Technical neural signatures (IP matrix, browser configuration)</span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="information-usage" className="relative">
-            <div className="flex items-center gap-4 mb-8">
-              <RiFingerprint2Fill className="w-8 h-8 text-red-500" />
-              <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider">02. Neural Processing Matrix</h2>
-            </div>
-            <div className="prose prose-invert max-w-none">
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="group relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                  <div className="relative h-full bg-black border border-red-900/30 p-6">
-                    <h3 className="text-lg font-mono font-bold text-red-500 mb-3">Service Matrix</h3>
-                    <p className="text-sm text-red-200/70 tracking-wide">
-                      Neural pattern maintenance, transaction processing, and notification distribution
-                    </p>
-                  </div>
-                </div>
-                <div className="group relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                  <div className="relative h-full bg-black border border-red-900/30 p-6">
-                    <h3 className="text-lg font-mono font-bold text-red-500 mb-3">Neural Link</h3>
-                    <p className="text-sm text-red-200/70 tracking-wide">
-                      Updates, support protocols, and promotional signal transmission
-                    </p>
-                  </div>
-                </div>
-                <div className="group relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                  <div className="relative h-full bg-black border border-red-900/30 p-6">
-                    <h3 className="text-lg font-mono font-bold text-red-500 mb-3">Enhancement Protocol</h3>
-                    <p className="text-sm text-red-200/70 tracking-wide">
-                      Service optimization, feature development, and neural interface enhancement
-                    </p>
-                  </div>
-                </div>
-                <div className="group relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                  <div className="relative h-full bg-black border border-red-900/30 p-6">
-                    <h3 className="text-lg font-mono font-bold text-red-500 mb-3">Security Matrix</h3>
-                    <p className="text-sm text-red-200/70 tracking-wide">
-                      Anomaly detection, threat prevention, and security protocol enforcement
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="information-sharing" className="relative">
-            <div className="flex items-center gap-4 mb-8">
-              <FaUserShield className="w-8 h-8 text-red-500" />
-              <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider">03. Data Distribution Grid</h2>
-            </div>
-            <div className="prose prose-invert max-w-none">
-              <p className="text-red-200/70 mb-6 tracking-wide">
-                Your neural patterns remain encrypted. Limited distribution to:
-              </p>
-              <ul className="text-red-200/70 space-y-3">
-                <li className="flex items-center gap-3">
-                  <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                  <span>Authorized service matrix operators</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                  <span>Neural enforcement protocols when required</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                  <span>Third-party nodes with explicit authorization</span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="data-security" className="relative">
-            <div className="flex items-center gap-4 mb-8">
-              <RiLockPasswordFill className="w-8 h-8 text-red-500" />
-              <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider">04. Security Protocols</h2>
-            </div>
-            <div className="prose prose-invert max-w-none">
-              <div className="group relative">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-                <div className="relative bg-black border border-red-900/30 p-8">
-                  <h3 className="text-xl font-mono font-bold text-red-500 mb-6">Neural Security Matrix</h3>
-                  <ul className="text-red-200/70 space-y-3">
-                    <li className="flex items-center gap-3">
-                      <FaCheck className="w-4 h-4 text-red-500 flex-shrink-0" />
-                      <span>Quantum encryption protocols</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <FaCheck className="w-4 h-4 text-red-500 flex-shrink-0" />
-                      <span>Regular security grid scans</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <FaCheck className="w-4 h-4 text-red-500 flex-shrink-0" />
-                      <span>Neural data vault protocols</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <FaCheck className="w-4 h-4 text-red-500 flex-shrink-0" />
-                      <span>Access matrix control system</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="your-rights" className="relative">
-            <div className="flex items-center gap-4 mb-8">
-              <FaKey className="w-8 h-8 text-red-500" />
-              <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider">05. User Access Rights</h2>
-            </div>
-            <div className="prose prose-invert max-w-none">
-              <p className="text-red-200/70 mb-6 tracking-wide">
-                Your neural access protocols include:
-              </p>
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="group relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                  <div className="relative bg-black border border-red-900/30 p-6">
-                    <div className="flex items-center gap-3">
-                      <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                      <p className="text-red-200/70 tracking-wide">Neural data access</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="group relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                  <div className="relative bg-black border border-red-900/30 p-6">
-                    <div className="flex items-center gap-3">
-                      <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                      <p className="text-red-200/70 tracking-wide">Pattern correction</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="group relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                  <div className="relative bg-black border border-red-900/30 p-6">
-                    <div className="flex items-center gap-3">
-                      <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                      <p className="text-red-200/70 tracking-wide">Data purge request</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="group relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                  <div className="relative bg-black border border-red-900/30 p-6">
-                    <div className="flex items-center gap-3">
-                      <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                      <p className="text-red-200/70 tracking-wide">Processing override</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="contact-us" className="relative">
-            <div className="flex items-center gap-4 mb-8">
-              <MdSecurity className="w-8 h-8 text-red-500" />
-              <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider">06. Neural Support Link</h2>
-            </div>
-            <div className="group relative">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-              <div className="relative bg-black border border-red-900/30 p-8">
-                <p className="text-red-200/70 mb-6 tracking-wide">
-                  For neural protocol inquiries, establish contact through:
-                </p>
-                <div className="space-y-4">
-                  <p className="text-red-200/70 tracking-wide flex items-center gap-2">
-                    <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                    Neural Link: <a href="mailto:privacy@njkmusic.com" className="text-red-400 hover:text-red-300 transition-colors">
-                      privacy@njkmusic.com
-                    </a>
-                  </p>
-                  <p className="text-red-200/70 tracking-wide flex items-center gap-2">
-                    <FaCircle className="w-1.5 h-1.5 text-red-500 flex-shrink-0" />
-                    Neural Hub: Enhold s.r.o., Drobného 1900/2 841 02 Bratislava - mestská časť Dúbravka
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        {/* Neural Cookie Protocol */}
-        <div className="relative mt-32">
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-          <div className="relative bg-black border border-red-900/30 p-12 text-center">
-            <div className="flex justify-center mb-6">
-              <RiShieldKeyholeFill className="w-8 h-8 text-red-500" />
-            </div>
-            <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-6">
-              Neural Cookie Protocol
-            </h2>
-            <p className="text-red-200/70 mb-12 font-light tracking-wide max-w-2xl mx-auto">
-              Our neural interface utilizes encrypted cookies to enhance your digital experience.
-              By continuing to interface with our neural grid, you accept our cookie protocols.
-            </p>
+    <div className="min-h-screen bg-transparent text-white">
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
             <Link
-              href="/cookies"
-              className="group relative inline-flex"
+              href="/"
+              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-200 hover:text-cyan-100"
             >
-              <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-              <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                <MdPrivacyTip className="w-5 h-5 text-red-500" />
-                <span className="font-mono text-red-500">Access Cookie Matrix</span>
-              </div>
+              <FaChevronLeft className="h-4 w-4" aria-hidden />
+              Back to home
             </Link>
+
+            <div className="mt-8 max-w-3xl space-y-4">
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                Privacy policy
+              </h1>
+              <p className="text-base text-slate-300 sm:text-lg">
+                This policy explains how NJK Music collects and uses information when you visit njkmusic.com or contact
+                us for support.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/cookies"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Cookies
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+              >
+                Contact
+              </Link>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
-        </div>
+      <div className="mx-auto max-w-6xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
+        <section aria-labelledby="highlights">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                <FaShieldAlt className="h-5 w-5" aria-hidden />
+              </span>
+              <div className="space-y-2">
+                <h2 id="highlights" className="text-xl font-semibold text-white">
+                  Key points
+                </h2>
+                <p className="max-w-3xl text-sm text-slate-300">
+                  We keep data collection minimal and use it to run the site, provide support, and improve the catalog
+                  experience.
+                </p>
+              </div>
+            </div>
+
+            <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
+              {[
+                "We don’t sell your personal data.",
+                "Newsletter signups store your email address and timestamp.",
+                "You can request deletion or correction by emailing us.",
+                "Some providers (hosting/email) may process data on our behalf.",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section aria-label="Privacy policy sections">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur sm:p-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div className="space-y-1">
+                <h2 className="text-xl font-semibold text-white">Jump to</h2>
+                <p className="text-sm text-slate-300">
+                  Quick links to each section of the policy.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {sections.map((section) => (
+                  <a
+                    key={section.id}
+                    href={`#${section.id}`}
+                    className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur transition hover:bg-white/5"
+                  >
+                    {section.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 space-y-12">
+            {sections.map((section) => (
+              <article
+                key={section.id}
+                id={section.id}
+                className="scroll-mt-24 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur"
+              >
+                <h2 className="text-2xl font-semibold tracking-tight text-white">
+                  {section.title}
+                </h2>
+                <p className="mt-2 text-sm text-slate-300">{section.description}</p>
+                <ul className="mt-6 space-y-2 text-sm text-slate-300">
+                  {section.bullets.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-fuchsia-200" aria-hidden />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="contact">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                <FaUserShield className="h-6 w-6" aria-hidden />
+              </span>
+              <div className="space-y-3">
+                <h2 id="contact" className="text-2xl font-semibold tracking-tight text-white">
+                  Contact for privacy requests
+                </h2>
+                <p className="text-sm text-slate-300 sm:text-base">
+                  For access, correction, or deletion requests, email us with enough detail to identify your request.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="mailto:privacy@njkmusic.com"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                >
+                  <FaEnvelope className="h-4 w-4" aria-hidden />
+                  Email privacy@njkmusic.com
+                </a>
+                <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold text-slate-200 backdrop-blur">
+                  <FaLock className="h-4 w-4" aria-hidden />
+                  Please don’t send passwords
+                </span>
+              </div>
+              <p className="text-xs text-slate-400">
+                This page is provided for informational purposes and does not constitute legal advice.
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
-} 
+}
+

@@ -14,6 +14,7 @@
     "export:content": "node scripts/strapi-to-markdown.js"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.966.0",
     "@radix-ui/react-slot": "^1.2.4",
     "@strapi/blocks-react-renderer": "^1.0.2",
     "@tailwindcss/typography": "^0.5.19",

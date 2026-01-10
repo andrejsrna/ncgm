@@ -22,21 +22,21 @@ export default function LabelInfoSection({ label }: LabelInfoSectionProps) {
   return (
     <section
       aria-labelledby="label-info"
-      className="rounded-3xl border border-border bg-white p-6 shadow-soft"
+      className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex items-start gap-3">
-          <span className="rounded-2xl bg-primary/10 p-3 text-primary">
+          <span className="rounded-2xl border border-white/10 bg-white/5 p-3 text-cyan-200 backdrop-blur">
             <FiTag className="h-5 w-5" aria-hidden />
           </span>
           <div>
             <h2
               id="label-info"
-              className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500"
+              className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300"
             >
               Released under {labelShort}
             </h2>
-            <p className="mt-2 max-w-2xl text-sm text-slate-600">
+            <p className="mt-2 max-w-2xl text-sm text-slate-300">
               This drop is part of the {labelName} roster — {definition.tagline}.
             </p>
           </div>
@@ -44,17 +44,17 @@ export default function LabelInfoSection({ label }: LabelInfoSectionProps) {
 
         <Link
           href={`/labels/${labelSlug}`}
-          className="inline-flex items-center rounded-full border border-border bg-slate-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-600 transition hover:border-primary hover:text-primary"
+          className="inline-flex items-center rounded-full border border-white/15 bg-white/0 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
         >
           Explore label catalog
         </Link>
       </div>
 
       {highlights && highlights.length > 0 && (
-        <ul className="mt-6 grid gap-3 text-sm text-slate-600 sm:grid-cols-2">
+        <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
           {highlights.map((item) => (
             <li key={item} className="flex items-start gap-2">
-              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-cyan-300" aria-hidden />
               <span>{item}</span>
             </li>
           ))}

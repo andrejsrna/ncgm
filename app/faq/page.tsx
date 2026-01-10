@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { Metadata } from "next";
-import { FaEnvelope, FaLifeRing } from "react-icons/fa";
+import { FaChevronLeft, FaEnvelope, FaLifeRing } from "react-icons/fa";
 import { SITE_NAME } from "@/lib/site";
 
 type FaqCategory = {
@@ -13,81 +13,99 @@ type FaqCategory = {
 };
 
 export const metadata: Metadata = {
-  title: `Creator FAQ | ${SITE_NAME}`,
+  title: `FAQ | ${SITE_NAME}`,
   description:
-    "Clear answers to licensing, downloads, and support questions for NJK Music. Discover how to integrate tracks into your projects with confidence.",
+    "Answers to the questions we hear most from creators, listeners, and partners—licensing models, Content ID, downloads, and how to reach the NJK Music team.",
 };
 
 const faqs: FaqCategory[] = [
   {
     category: "Getting started",
-    description: "Understand how NJK Music fits into your workflow.",
+    description: "Quick orientation for listeners, creators, and teams.",
     questions: [
       {
         q: "What is NJK Music?",
-        a: "NJK Music is a creator-first label family releasing mood-driven collections for gamers, streamers, and studios. Each track is curated by producers so you can move fast without worrying about copyright conflicts.",
+        a: "NJK Music is a label collective and release hub. We publish music across multiple imprints—from creator-ready drops to rights-managed catalogs—so listeners can discover new records and creators can license tracks with confidence.",
       },
       {
-        q: "How do I begin using the catalogue?",
-        a: "Browse the music library, choose a release, and follow the marketplace link to complete your purchase. Keep your receipt so you can reference order details if a platform ever requests proof of licensing.",
+        q: "Where should I start?",
+        a: "Start on the Music page, pick a release you like, and open the label page if you want to explore the full roster. If you’re using music in content, also review the Licensing and Content ID guides.",
       },
       {
-        q: "Do I need a subscription or account?",
-        a: "You can pick the releases you need one at a time through stores such as Beatport and iTunes. There is no separate subscription or login for NJK Music right now.",
+        q: "Do I need an account on njkmusic.com?",
+        a: "No. The site is a catalog and guidance hub. Purchases happen on the linked stores (Beatport, Apple/iTunes, Amazon, etc.).",
       },
     ],
   },
   {
-    category: "Licensing and usage",
-    description: "Confirm where and how you can publish NJK Music tracks.",
+    category: "Listening & discovery",
+    description: "Questions for normal listeners and fans.",
     questions: [
       {
-        q: "Can I monetize videos with NJK Music?",
-        a: "Monetization depends on the NJK label mood. Most of our moods unlock monetized uploads once you purchase the release, while a few rights-managed moods restrict ad-supported use. Review the notes on each release page and save your invoice so you can verify usage rights if a platform asks.",
+        q: "Can I just listen without downloading anything?",
+        a: "Yes. Use the streaming links on each release page (when available), or follow the label pages to browse the full catalog.",
       },
       {
-        q: "Is there a limit on projects or channels?",
-        a: "No. A single purchase covers use across your channels, client handoffs, and social clips as long as the audio is integrated into your own content. Selling or redistributing the raw files is not permitted.",
+        q: "How do I find more tracks like this one?",
+        a: "Open the label page from any release and browse similar drops. On release pages, we also show related tracks based on label/genre.",
       },
       {
-        q: "How should I credit the label?",
-        a: "Include a simple line such as \"Music by NJK Music\" with a link to njkmusic.com whenever the format allows. Sponsorships or client deliverables should mention the track title and label when possible.",
+        q: "Do you have multiple labels?",
+        a: "Yes. NJK Music groups releases by imprint/label so each catalog can keep a consistent mood and licensing approach.",
       },
     ],
   },
   {
-    category: "Downloads and formats",
-    description: "Understand how your files are delivered and what to expect.",
+    category: "Licensing & usage",
+    description: "What’s allowed and when you need clearance.",
+    questions: [
+      {
+        q: "Are all tracks royalty-free?",
+        a: "Not always. Some labels are creator-ready (royalty-free workflows), while others are rights-managed and require a purchase/licence before use. Always check the label notes on the release page and the Licensing overview.",
+      },
+      {
+        q: "Can I use NJK Music in client work?",
+        a: "In most cases, yes—finished edits and campaign deliverables are fine as long as the music stays embedded in the project and you’re not redistributing the raw audio files. If a client needs broader redistribution or broadcast usage, contact us for clearance.",
+      },
+      {
+        q: "What’s not allowed?",
+        a: "You can’t reupload our tracks as your own music, resell the audio, or redistribute the raw files (including as part of another library). For large-scale advertising, broadcast, or distribution, request custom clearance first.",
+      },
+    ],
+  },
+  {
+    category: "Content ID & claims",
+    description: "How claims happen and how we resolve them.",
+    questions: [
+      {
+        q: "Why did I get a Content ID claim?",
+        a: "Content ID is automated and can match audio even when you’re properly licensed. Some catalogs are monetized, and licensed creators may need a whitelist to prevent claims.",
+      },
+      {
+        q: "What should I send to get whitelisted?",
+        a: "Send your channel/profile URL, the claimed video URL, and your proof of purchase/licence (receipt or order ID). If possible, include a screenshot of the claim details (claimant + claim ID).",
+      },
+      {
+        q: "Should I dispute the claim myself?",
+        a: "If you’re unsure whether the release is royalty-free or rights-managed, contact us first. We’ll tell you the safest and fastest path and can whitelist/clear when applicable.",
+      },
+    ],
+  },
+  {
+    category: "Purchases & downloads",
+    description: "Where files come from and what to do when something breaks.",
     questions: [
       {
         q: "Where do downloads come from?",
-        a: "Every release links to an authorized storefront like Beatport or Bandcamp. Complete checkout on the storefront and download the files directly from your account with that retailer.",
+        a: "Downloads and receipts come from the linked stores on the release page (Beatport, Apple/iTunes, Amazon, etc.). After purchase, download from your store account’s Purchases/Library section.",
       },
       {
-        q: "Which formats are included?",
-        a: "Most storefronts supply high resolution WAV and MP3 files immediately after purchase. Some stores also include additional formats or extended mixes depending on the release.",
+        q: "Which formats do I get?",
+        a: "It depends on the store and the release. Many stores offer WAV/MP3 (or equivalent) for purchased downloads. Streaming-only listings may not include downloadable files.",
       },
       {
-        q: "Can I request stems or loop packs?",
-        a: "Select releases include stems or loop packs as a bonus download. If you need something specific for editing, send the track details to support and we will let you know what is available.",
-      },
-    ],
-  },
-  {
-    category: "Claims and support",
-    description: "Resolve Content ID matches and connect with the team.",
-    questions: [
-      {
-        q: "What if I receive a Content ID claim?",
-        a: "Gather the claim ID, video link, and purchase receipt, then email support@njkmusic.com. Our team will verify the release and work with the platform to clear the claim.",
-      },
-      {
-        q: "Can clients use the music I deliver?",
-        a: "Yes. Clients can publish the finished project that features NJK Music as long as they are not redistributing the audio on its own. Share your receipt with the client so they have proof of licensing.",
-      },
-      {
-        q: "How fast does support respond?",
-        a: "Most questions are answered within one to two business days. Include links, timestamps, and any platform notices in your message so we can resolve the request quickly.",
+        q: "What if I can’t download or I need an invoice?",
+        a: "Start with the Purchase Guide and Purchase Issues pages. If you’re still stuck, contact us with your order ID and the store you used.",
       },
     ],
   },
@@ -96,42 +114,81 @@ const faqs: FaqCategory[] = [
 const anchorFor = (label: string) =>
   label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
+function FaqItem({ q, a }: { q: string; a: string }) {
+  return (
+    <details className="group rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur">
+      <summary className="cursor-pointer list-none select-none text-lg font-semibold text-white">
+        <span className="inline-flex items-start gap-3">
+          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" aria-hidden />
+          <span>{q}</span>
+        </span>
+      </summary>
+      <p className="mt-4 text-sm leading-relaxed text-slate-300">{a}</p>
+      <div className="mt-4 text-xs font-medium uppercase tracking-[0.3em] text-slate-400">
+        <a className="hover:text-slate-200" href="#top">
+          Back to top
+        </a>
+      </div>
+    </details>
+  );
+}
+
 export default function FaqPage() {
   return (
-    <div id="top" className="min-h-screen bg-slate-50">
-      <section className="bg-gradient-to-b from-white to-slate-50">
-        <div className="mx-auto flex min-h-[40vh] max-w-6xl flex-col justify-center gap-6 px-4 py-24 sm:px-6 lg:px-8">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-            Creator FAQ
-          </span>
-          <div className="max-w-2xl space-y-4">
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-              Answers built for producers, streamers, and studios
-            </h1>
-            <p className="text-base text-slate-600 sm:text-lg">
-              Explore the most common questions about our label moods, licensing, downloads, and claims when you work with NJK Music releases. Use the quick links, jump to a topic, or contact the team for tailored help.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
+    <div id="top" className="min-h-screen bg-transparent text-white">
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
             <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+              href="/help"
+              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-200 hover:text-cyan-100"
             >
-              <FaEnvelope className="h-4 w-4" />
-              Contact support
+              <FaChevronLeft className="h-4 w-4" aria-hidden />
+              Back to Help Centre
             </Link>
+
+            <div className="mt-8 max-w-3xl space-y-4">
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                FAQ
+              </h1>
+              <p className="text-base text-slate-300 sm:text-lg">
+                Answers for creators, listeners, and partners—how our labels work, what licensing model applies, and how
+                to resolve Content ID claims fast.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/license"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Licensing overview
+              </Link>
+              <Link
+                href="/help/content-id"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Content ID guide
+              </Link>
+              <Link
+                href="/music"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+              >
+                Explore music
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
-        <section aria-label="FAQ navigation" className="-mt-12">
-          <div className="rounded-3xl border border-border bg-white p-6 shadow-soft sm:p-8">
+      <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
+        <section aria-label="FAQ navigation">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur sm:p-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div className="space-y-1">
-                <h2 className="text-xl font-semibold text-slate-900">Browse by topic</h2>
-                <p className="text-sm text-slate-600">
-                  Jump straight to the answers you need most.
+                <h2 className="text-xl font-semibold text-white">Browse by topic</h2>
+                <p className="text-sm text-slate-300">
+                  Jump straight to the topic you need.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -139,7 +196,7 @@ export default function FaqPage() {
                   <a
                     key={category.category}
                     href={`#${anchorFor(category.category)}`}
-                    className="inline-flex items-center justify-center rounded-full border border-border bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-primary hover:bg-primary/10 hover:text-primary"
+                    className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur transition hover:bg-white/5"
                   >
                     {category.category}
                   </a>
@@ -158,57 +215,46 @@ export default function FaqPage() {
             >
               <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="max-w-2xl space-y-2">
-                  <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+                  <h2 className="text-2xl font-semibold tracking-tight text-white">
                     {category.category}
                   </h2>
-                  <p className="text-sm text-slate-600">{category.description}</p>
+                  <p className="text-sm text-slate-300">{category.description}</p>
                 </div>
-                <a
-                  href="#top"
-                  className="text-xs font-medium uppercase tracking-[0.3em] text-slate-500 transition hover:text-primary"
-                >
-                  Back to top
-                </a>
               </div>
               <div className="grid gap-6 md:grid-cols-2">
                 {category.questions.map((faq) => (
-                  <div
-                    key={faq.q}
-                    className="flex h-full flex-col rounded-3xl border border-border bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-md"
-                  >
-                    <h3 className="text-lg font-semibold text-slate-900">{faq.q}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-slate-600">{faq.a}</p>
-                  </div>
+                  <FaqItem key={faq.q} q={faq.q} a={faq.a} />
                 ))}
               </div>
             </article>
           ))}
         </section>
 
-        <section className="mt-20 rounded-3xl border border-transparent bg-slate-900 p-8 text-white shadow-soft sm:p-12">
+        <section className="mt-20 rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
-              <FaLifeRing className="h-6 w-6" />
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+              <FaLifeRing className="h-6 w-6" aria-hidden />
             </span>
             <div className="space-y-3">
-              <h2 className="text-2xl font-semibold tracking-tight">
-                Need a hand from the team?
+              <h2 className="text-2xl font-semibold tracking-tight text-white">
+                Still stuck?
               </h2>
-              <p className="text-sm text-slate-200 sm:text-base">
-                Share links, timestamps, and any platform notices so we can review your case quickly. We respond to most requests within one to two business days.
+              <p className="text-sm text-slate-300 sm:text-base">
+                Send us your links and details (release, platform, claim ID, order ID). We’ll point you to the right
+                path—royalty-free usage, licensing, or whitelisting.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
                 href="mailto:support@njkmusic.com"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
               >
-                <FaEnvelope className="h-4 w-4" />
+                <FaEnvelope className="h-4 w-4" aria-hidden />
                 Email support
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold tracking-[0.2em] text-white transition hover:border-white hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/5"
               >
                 Contact form
               </Link>
@@ -219,3 +265,4 @@ export default function FaqPage() {
     </div>
   );
 }
+

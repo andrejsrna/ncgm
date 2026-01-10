@@ -28,11 +28,11 @@ const quickLinks = [
 
 export default function Support() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-transparent py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 space-y-4 text-center">
-          <h2 className="text-3xl font-semibold text-slate-900">Support when you need it</h2>
-          <p className="text-sm text-slate-600 sm:text-base">
+          <h2 className="text-3xl font-semibold text-white">Support when you need it</h2>
+          <p className="text-sm text-slate-300 sm:text-base">
             Whether you&apos;re planning a release or need a quick clarification, our team is here to help.
           </p>
         </div>
@@ -42,30 +42,30 @@ export default function Support() {
             <Link
               key={option.title}
               href={option.href}
-              className="group rounded-2xl border border-border bg-slate-50 p-6 text-left shadow-sm transition hover:border-primary hover:bg-white hover:shadow-md"
+              className="group rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-sm backdrop-blur transition hover:border-cyan-300/60 hover:bg-white/10 hover:shadow-md"
             >
               <div className="flex items-center justify-between">
-                <div className="rounded-full bg-primary/10 p-3 text-primary">
+                <div className="rounded-full bg-white/5 p-3 text-cyan-200">
                   {option.icon}
                 </div>
-                <span className="text-sm font-medium text-primary/70 group-hover:text-primary">View</span>
+                <span className="text-sm font-medium text-slate-300 group-hover:text-cyan-200">View</span>
               </div>
-              <h3 className="mt-6 text-lg font-semibold text-slate-900">{option.title}</h3>
-              <p className="mt-2 text-sm text-slate-600">{option.description}</p>
+              <h3 className="mt-6 text-lg font-semibold text-white">{option.title}</h3>
+              <p className="mt-2 text-sm text-slate-300">{option.description}</p>
             </Link>
           ))}
         </div>
 
-        <div className="mt-10 rounded-2xl border border-border bg-white p-6 shadow-sm">
-          <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">
+        <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur">
+          <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300">
             Quick contact
           </h3>
-          <ul className="mt-4 space-y-3 text-sm text-slate-600">
+          <ul className="mt-4 space-y-3 text-sm text-slate-300">
             {quickLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="inline-flex items-center gap-2 text-primary transition hover:text-primary/80"
+                  className="inline-flex items-center gap-2 text-cyan-300 transition hover:text-cyan-200"
                 >
                   {link.icon}
                   {link.title}

@@ -35,7 +35,9 @@
 ---
 
 
-`Liquid Flow` is a smooth drum & bass journey from [Jazz & Bass](/labels/jazz-and-bass)—liquid grooves, clean low-end, and melodic atmosphere that stays uplifting without losing the drive.
+`Liquid Flow` is a smooth drum & bass release from [Jazz & Bass](/labels/jazz-and-bass) under **NJK Music**. It sits in the sweet spot of **liquid drum and bass (Liquid DnB)**: rolling momentum, clean low-end, and melodic atmosphere that stays uplifting without losing the drive.
+
+If you’re looking for **jazzy liquid DnB** that works both for normal listening (commutes, focus, late-night sessions) and polished edits, `Liquid Flow` is designed to loop naturally and keep energy steady.
 
 ### What you’ll hear
 
@@ -43,3 +45,22 @@
 - Warm basslines that glue the mix together
 - Airy pads and subtle jazz touches for late-night depth
 
+### Where it fits (SEO / use cases)
+
+- Smooth drum & bass background for cafés, lounges, and late-night playlists
+- Liquid DnB for focus, studying, coding, and long-form listening sessions
+- Clean, melodic drum and bass for travel edits, city reels, and recap videos
+- Modern jazzy DnB flavor that complements fashion, lifestyle, and brand cuts
+
+### Licensing & Content ID (important)
+
+Jazz & Bass releases are **rights-managed** and the catalog is **monetized with Content ID**. That means:
+
+- Please **purchase/license the track** before using it in any monetized content, ads, or campaigns.
+- After licensing, creators should **request a whitelist** to avoid claims (or to resolve them fast).
+
+Useful links:
+
+- Purchase guide: [/help/purchase-guide](/help/purchase-guide)
+- Content ID guide: [/help/content-id](/help/content-id)
+- Contact / whitelist request: [/contact](/contact)

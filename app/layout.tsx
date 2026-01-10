@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { shareTechMono } from "@/lib/fonts";
+import { inter } from "@/lib/fonts";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/footer";
+import RouteBackdrop from "@/app/components/RouteBackdrop";
 import { SITE_URL } from "@/lib/env";
 import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
@@ -64,8 +65,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={shareTechMono.className}
+        className={inter.className}
       >
+        <RouteBackdrop />
         <Header />
           {children}
         <Footer />

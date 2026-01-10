@@ -10,6 +10,10 @@ export interface LabelDefinition {
   tagline: string;
   description: string;
   heroImage?: string;
+  socialLinks?: {
+    label: string;
+    href: string;
+  }[];
   seo: {
     title: string;
     description: string;
@@ -48,7 +52,6 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       "Creator-friendly licensing for YouTube, Twitch, podcasts, and branded content",
     ],
     callouts: [
-      { title: "Launch Year", detail: "2025" },
       { title: "Releases", detail: "Debut drop" },
       { title: "Focus", detail: "LoFi, Chillhop, Study Beats" },
       { title: "Rights", detail: "Royalty-free for creators" },
@@ -80,7 +83,6 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       "Creator-friendly licensing with lifetime usage and monetisation approved worldwide",
     ],
     callouts: [
-      { title: "Launch Year", detail: "2018" },
       { title: "Releases", detail: "40+ curated drops" },
       { title: "Focus", detail: "Gaming, Esports, Streaming" },
     ],
@@ -110,7 +112,6 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       "Stream-safe licensing for creators, therapists, and live wellness broadcasts",
     ],
     callouts: [
-      { title: "Launch Year", detail: "2025" },
       { title: "Releases", detail: "1st healing drop" },
       { title: "Focus", detail: "Meditation, Wellness, Relaxation" },
     ],
@@ -121,7 +122,17 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
     short: "J&B",
     tagline: "Funky liquid drum & bass with jazz-soaked grooves",
     description:
-      "Jazz & Bass blends upright bass loops, brushed drums, and velvet keys with rolling liquid drum & bass percussion. These releases are licensed for traditional distribution but remain copyrighted for social media platforms, so creators must secure clearance before featuring them in monetised content.",
+      "Jazz & Bass blends rolling liquid drum & bass grooves with jazz-soaked chords, warm basslines, and late-night swing. It’s built for listeners who want something smooth but energetic—perfect for drives, focus sessions, and chill club moments. For commercial/social usage, check licensing or contact our team for clearance.",
+    socialLinks: [
+      {
+        label: "YouTube",
+        href: "https://www.youtube.com/channel/UCk3HfyyqI8Zwd326DIuaTHw/",
+      },
+      {
+        label: "Facebook",
+        href: "https://www.facebook.com/bassandjazz",
+      },
+    ],
     seo: {
       title: "Jazz & Bass Label | Liquid Drum and Bass for Creators",
       description:
@@ -135,12 +146,8 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
       ],
     },
     highlights: [
-      "Liquid DnB arrangements layered with horns, Rhodes, and upright bass motifs",
-      "Copyrighted catalogue requiring bespoke licensing for reels, shorts, and live streams",
-      "Perfect for sync deals, brand ads, nightlife recaps, and fashion reels once cleared",
     ],
     callouts: [
-      { title: "Launch Year", detail: "2025" },
       { title: "Releases", detail: "Debut set dropping soon" },
       { title: "Rights", detail: "Copyrighted / Rights-managed" },
       { title: "Focus", detail: "Liquid DnB, Funk, Jazz Fusion" },

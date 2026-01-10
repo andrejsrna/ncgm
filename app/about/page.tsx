@@ -12,54 +12,27 @@ import {
 export const metadata: Metadata = {
   title: "About NJK Music | Creator-Ready Label Moods & Licensing",
   description:
-    "Meet the NJK Music team crafting stream-safe releases for gamers, studios, and storytellers across the globe.",
+    "Meet NJK Music — a multi-label music brand releasing across genres for listeners worldwide, with clear licensing and hands-on support.",
 };
 
 const missionHighlights = [
   {
     title: "Creator-First Music",
     description:
-      "We build in-house label moods and releases designed to clear straight into streams, broadcasts, and client work.",
+      "We release across multiple label moods designed to fit real projects — from content and campaigns to studios and live experiences.",
     icon: FaHeadphones,
+  },
+  {
+    title: "Built for listeners",
+    description:
+      "We produce and release music for everyday listeners too — delivering label-led drops that stand on their own beyond any brief.",
+    icon: FaSpotify,
   },
   {
     title: "Trusted Licensing",
     description:
-      "Clear, transparent usage rights give partners and creators confidence to publish without takedowns.",
+      "Clear, transparent usage rights help teams move fast — whether you’re publishing content, running a campaign, or shipping a product.",
     icon: FaShieldAlt,
-  },
-  {
-    title: "Collaborative Roster",
-    description:
-      "Producers, sound designers, and curators collaborate on every release so the catalogue stays versatile.",
-    icon: FaHandshake,
-  },
-];
-
-const pillars = [
-  {
-    title: "Label Craft",
-    points: [
-      "Genre-focused label moods with distinctive identities",
-      "Release roadmaps planned months in advance",
-      "Sonic direction guided by creator feedback",
-    ],
-  },
-  {
-    title: "Distribution & Support",
-    points: [
-      "Streaming platform delivery and metadata management",
-      "Self-serve downloads for quick creator workflows",
-      "Direct support for bespoke licensing requests",
-    ],
-  },
-  {
-    title: "Growth Partnerships",
-    points: [
-      "Sync-ready releases for agencies and studios",
-      "Co-branded campaigns with creators and esports orgs",
-      "Custom score production and sound design",
-    ],
   },
 ];
 
@@ -101,67 +74,58 @@ const values = [
   {
     title: "Curate with care",
     description:
-      "Every release is vetted for quality, metadata accuracy, and clarity of use before it hits the catalogue.",
+      "Every release is checked for quality, clean metadata, and clear usage info.",
     icon: FaRegLightbulb,
   },
   {
-    title: "Support the creator",
+    title: "Support every project",
     description:
-      "From quick answers about licensing to bespoke stems, our support team speaks creator workflow.",
+      "Fast answers on licensing plus help with assets when you need something bespoke.",
     icon: FaUsers,
   },
   {
     title: "Protect the catalogue",
     description:
-      "Whether stream-safe or rights-managed, our contracts and systems protect artists and partners equally.",
+      "Clear agreements and systems that protect artists, partners, and releases.",
     icon: FaShieldAlt,
   },
 ];
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-slate-50 py-16">
+    <div className="min-h-screen bg-transparent py-16 text-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <header className="mb-16 rounded-3xl border border-border bg-white p-10 shadow-sm">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600">
+        <header className="mb-16 rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
             About NJK Music
           </span>
-          <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:items-start">
+          <div className="mt-6">
             <div className="space-y-5">
-              <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                From gaming beats to rights-managed jazz, we soundtrack creators.
+              <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                A multi-label music brand built for modern projects.
               </h1>
-              <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                NJK Music curates label moods tailored to streamers, studios, and storytellers. Our catalogue
-                combines stream-safe releases with rights-managed drops, so you can find the right fit for highlights,
-                campaigns, or long-form productions—without guesswork.
+              <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
+                NJK Music curates label moods across genres for creators, studios, agencies, and brands. Our catalogue
+                spans stream-safe releases and rights-managed drops, so you can choose the right fit for content,
+                campaigns, venues, or long-form productions—without guesswork. We also produce and release music for
+                normal listeners on streaming platforms, building label identities that fans can follow.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-900 bg-slate-900 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-slate-800"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-950 transition hover:opacity-90"
                 >
                   Connect with us
                   <span aria-hidden>→</span>
                 </Link>
                 <Link
                   href="/music"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-600 transition hover:bg-slate-100"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/0 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
                 >
                   Explore releases
                   <span aria-hidden>→</span>
                 </Link>
               </div>
-            </div>
-            <div className="grid gap-4 rounded-2xl border border-dashed border-border/80 bg-slate-50 p-6 text-sm text-slate-600 sm:grid-cols-2">
-              {stats.map((item) => (
-                <div key={item.label} className="space-y-1">
-                  <span className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-                    {item.label}
-                  </span>
-                  <span className="block text-2xl font-bold text-slate-900">{item.value}</span>
-                </div>
-              ))}
             </div>
           </div>
         </header>
@@ -173,143 +137,117 @@ export default function AboutPage() {
               return (
                 <article
                   key={item.title}
-                  className="rounded-3xl border border-border bg-white p-6 shadow-sm transition hover:border-primary/40 hover:shadow-md"
+                  className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur transition hover:border-cyan-300/40 hover:bg-white/10"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-cyan-200">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h2 className="mt-4 text-lg font-semibold text-slate-900">{item.title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                  <h2 className="mt-4 text-lg font-semibold text-white">{item.title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300">{item.description}</p>
                 </article>
               );
             })}
           </div>
         </section>
 
-        <section className="mb-16 rounded-3xl border border-border bg-white p-10 shadow-sm">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-start">
-            <div className="space-y-7">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600">
+        <section className="mb-16 rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+          <div className="space-y-7">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
                 What Guides Us
               </span>
-              <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-                Label moods built on clarity, creativity, and community.
+              <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                Built on clarity and craft.
               </h2>
-              <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                Our team blends music supervision, production, and creator success know-how. We obsess over how a track
-                feels in a highlight reel, how quickly a streamer can clear usage, and how to keep our roster inspired.
-                It’s why NJK Music sits at the intersection of creator culture and professional audio production.
+              <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
+                We focus on strong releases, clear licensing, and fast support—so listeners and teams can move with confidence.
               </p>
-              <ul className="grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
+              <div className="grid gap-6 sm:grid-cols-3">
                 {values.map((value) => {
                   const Icon = value.icon;
                   return (
-                    <li key={value.title} className="rounded-2xl border border-dashed border-border/80 bg-slate-50 p-4">
-                      <div className="flex items-center gap-3">
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-primary">
+                    <article
+                      key={value.title}
+                      className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
+                    >
+                      <div className="inline-flex items-center gap-3">
+                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cyan-200">
                           <Icon className="h-4 w-4" />
                         </span>
-                        <p className="font-semibold text-slate-900">{value.title}</p>
+                        <h3 className="text-sm font-semibold text-white">{value.title}</h3>
                       </div>
-                      <p className="mt-2 text-xs leading-relaxed text-slate-600 sm:text-sm">{value.description}</p>
-                    </li>
+                      <p className="mt-3 text-sm leading-relaxed text-slate-300">{value.description}</p>
+                    </article>
                   );
                 })}
-              </ul>
-            </div>
-
-            <div className="space-y-6">
-              {pillars.map((pillar) => (
-                <article key={pillar.title} className="rounded-2xl border border-border bg-white/80 p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold text-slate-900">{pillar.title}</h3>
-                  <ul className="mt-4 space-y-3 text-sm text-slate-600">
-                    {pillar.points.map((point) => (
-                      <li key={point} className="flex items-start gap-2">
-                        <span className="mt-1 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
+              </div>
           </div>
         </section>
 
-        <section className="mb-16 rounded-3xl border border-border bg-white p-10 shadow-sm">
+        <section className="mb-16 rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
                 Our Story
               </span>
-              <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                 Built in Bratislava, broadcasting worldwide.
               </h2>
-              <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                NJK Music started in 2018 with a simple goal: help gamers soundtrack their content without copyright
-                claims. Since then, we’ve grown into a studio working with curators, producers, and partners across
-                Europe and North America. Today our mission extends beyond gaming—we develop labels for mindfulness,
-                liquid jazz, and more, always with the same commitment to licensing clarity.
+              <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
+                NJK Music began in 2018 and grew into a multi-label studio releasing across different moods and genres.
+                We work with producers and partners worldwide, with a focus on quality, consistency, and clear usage.
               </p>
-              <p className="text-sm leading-relaxed text-slate-600">
-                From our HQ in Bratislava, we manage releases across DSPs, deliver stems to studios, and support creators
-                who need reliable music they can publish anywhere. If you need something bespoke, our team is ready to
-                collaborate.
+              <p className="text-sm leading-relaxed text-slate-300">
+                Based in Bratislava, we ship releases to streaming platforms, support licensing requests, and help teams
+                get the right music quickly.
               </p>
             </div>
-            <div className="grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
+            <div className="grid gap-4 text-sm text-slate-300 sm:grid-cols-2">
               {timeline.map((entry) => (
-                <div key={entry.year} className="rounded-2xl border border-dashed border-border/80 bg-slate-50 p-5">
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">{entry.year}</span>
-                  <h3 className="mt-2 text-base font-semibold text-slate-900">{entry.title}</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600 sm:text-sm">{entry.description}</p>
+                <div key={entry.year} className="rounded-2xl border border-dashed border-white/15 bg-white/5 p-5 backdrop-blur">
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">{entry.year}</span>
+                  <h3 className="mt-2 text-base font-semibold text-white">{entry.title}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-300 sm:text-sm">{entry.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="rounded-3xl border border-border bg-white p-10 shadow-sm">
+        <section className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-600">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200 backdrop-blur">
                 Get in touch
               </span>
-              <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                 Let’s build the soundtrack for your next story.
               </h2>
-              <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                Whether you’re launching a Twitch channel, producing a documentary, or planning a brand activation, we
-                can help you find the right label match and licensing path. Reach out for bespoke stems, custom music
-                briefs, or to join our roster of creators and partners.
+              <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
+                Whether you’re producing content, building a product, planning a campaign, or scoring a film, we can
+                help you find the right label match and licensing path. Reach out for bespoke assets, custom music
+                briefs, or partnership opportunities.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-slate-900 bg-slate-900 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-slate-800"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-slate-950 transition hover:opacity-90"
               >
                 Contact team
               </Link>
-              <Link
-                href="/help"
-                className="inline-flex items-center justify-center rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-slate-600 transition hover:bg-slate-100"
-              >
-                Visit help centre
-              </Link>
             </div>
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-slate-500">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-slate-100 px-3 py-1">
+          <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-slate-300">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 backdrop-blur">
               <FaSpotify className="h-4 w-4 text-emerald-500" />
               Streaming ready
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-slate-100 px-3 py-1">
-              <FaShieldAlt className="h-4 w-4 text-primary" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 backdrop-blur">
+              <FaShieldAlt className="h-4 w-4 text-cyan-200" />
               Licensing support
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-slate-100 px-3 py-1">
-              <FaUsers className="h-4 w-4 text-primary/70" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 backdrop-blur">
+              <FaUsers className="h-4 w-4 text-fuchsia-200" />
               Creator community
             </span>
           </div>

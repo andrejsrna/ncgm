@@ -1,6 +1,8 @@
-import { Metadata } from 'next';
+import type { Metadata } from "next";
+import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: 'Neural Data Protection Protocol | No Copyright Gaming Music',
-  description: 'Learn how our advanced neural protocols safeguard your digital identity matrix.',
-}; 
+  title: `Privacy policy | ${SITE_NAME}`,
+  description:
+    "How NJK Music collects and uses information when you visit njkmusic.com, subscribe to updates, or contact support.",
+};

@@ -1,37 +1,77 @@
-# NJK Music
+# NJK Music (ncgm)
 
-![NJK Music Logo](public/logo.png)
+Projekt pre web `njkmusic.com` – label kolektív + katalóg releasov a článkov. Projekt je postavený na Next.js (App Router) a obsah je primárne lokálny markdown v `content/`.
 
-## 📄 Project Description
+Tento README je “session summary” a orientácia pre ďalšiu prácu (čo sme riešili a kde to je v kóde).
 
-Welcome to the **NJK Music** repository! This project powers [njkmusic.com](https://njkmusic.com), a hub for our label collective. The current catalog spotlights the **No Copyright Gaming Music** imprint, delivering free, high-quality tracks for gamers, streamers, and content creators.
+## Tech stack
 
-NJK Music is a static website built with **Next.js**, **Tailwind CSS**, and **Shadcn** components, offering a seamless and visually appealing experience. The site integrates the **Spotify API** to feature a randomly selected track from our Spotify profile, ensuring that visitors always discover new music tailored for their gaming sessions.
+- Next.js App Router (Next 16) + React 19
+- Tailwind CSS + `@tailwindcss/typography`
+- shadcn/ui + Radix + react-icons
+- Markdown obsah v `content/` (bez Strapi počas runtime)
+- Cloudflare R2 (S3 kompatibilné) pre persistenciu newsletter signupov
 
-## 🚀 Features
+## Lokálny vývoj
 
-- **Static Website:** Fast and reliable performance with pre-rendered pages.
-- **Music Label Presentation:** Showcases our label, mission, and available free tracks.
-- **Free Tracks:** Access and download a curated selection of royalty-free music.
-- **Spotify API Integration:** Automatically selects and displays a featured track randomly from our Spotify profile.
-- **Responsive Design:** Optimized for all devices, ensuring a great user experience on mobile, tablet, and desktop.
-- **Modern UI Components:** Utilizes **Shadcn** components for a clean and intuitive interface.
-- **SEO Optimization:** Implemented best practices to enhance visibility on search engines.
-- **Animations:** Smooth animations and transitions using **Framer Motion** for an engaging user experience.
+Požiadavky: Node `>=20.19.0 <21`, npm `10.x`.
 
-## 🛠️ Technologies Used
+```bash
+npm install
+npm run dev
+```
 
-- **[Next.js](https://nextjs.org/):** A React framework for building static and server-rendered applications.
-- **[Tailwind CSS](https://tailwindcss.com/):** Utility-first CSS framework for rapid UI development.
-- **[Shadcn Components](https://ui.shadcn.com/):** A collection of beautifully designed React components.
-- **[Spotify API](https://developer.spotify.com/documentation/web-api/):** For fetching and displaying featured tracks.
-- **[Framer Motion](https://www.framer.com/motion/):** For smooth animations and transitions.
-- **[React Icons](https://react-icons.github.io/react-icons/):** Icon library for React applications.
-- **[next-sitemap](https://github.com/iamvishnusankar/next-sitemap):** Generates sitemap for Next.js projects.
+Ďalšie príkazy:
 
-## 🗂️ Migrating Content From Strapi
+```bash
+npm run lint
+npm run build
+```
 
-The site now runs entirely on local markdown content. A helper script is included to export existing Strapi entries into the new `content/` directory structure:
+## Environment variables
+
+- `NEXT_PUBLIC_SITE_URL` – base URL pre canonical/OG linky (fallback je `https://njkmusic.com`)
+- `.env.local` – lokálne secrets (R2/Strapi); necommitovať
+
+## Ako je projekt postavený
+
+### Routing (hlavné stránky)
+
+- `/` – homepage
+- `/music` – prehliadač releasov (dropdown filtre + paging 12/page)
+- `/music/[slug]` – detail release (single music)
+- `/labels` a `/labels/[slug]` – labely a ich releasy (paging 12/page na detaile labelu)
+- `/news` a `/news/[slug]` – články
+- `/help`, `/contact`, `/about` – info stránky
+
+### Dizajn (dark neon/glass)
+
+- Väčšina “hlavných” stránok používa tmavý neon/glass štýl s layout-level backdropom.
+- Sticky header je “transparentný” a spolieha sa na backdrop z layoutu (aby nevznikal biely blok za headrom).
+- Backdrop routing je v `app/components/RouteBackdrop.tsx`.
+- Logo ikonka vedľa title v headri: `public/njk.jpg` + `app/components/Header.tsx`.
+
+### Obsah (markdown)
+
+- Music releasy: `content/music/*.md` (JSON frontmatter `---json ... ---`)
+- News/posts: `content/posts/*.md`
+- Obrázky: `public/images/music` a `public/images/posts`
+
+Obsahové pravidlá, ktoré sme upravovali:
+
+- Odstránené emoji z článkov.
+- Opravy interných linkov v článkoch: preferuj interné cesty typu `/music`, `/labels/<slug>`, `/news/<slug>` (nie staré, neexistujúce odkazy).
+- “Spotlight tracks” zobrazujú cover v štvorcovom formáte a len releasy, ktoré majú obrázok.
+
+### Labels (konfigurácia)
+
+- Label dáta sú v `lib/site.ts` (názvy, popisy, social links).
+- Z card komponentov sme odstránili “launch year” a podobné meta callouts.
+- Na detail stránke labelu: ak label má obrázok, zobrazuje sa ako ikonka vľavo pri názve.
+
+## Migrácia obsahu zo Strapi (jednorazovo)
+
+Aj keď runtime je lokálny markdown, je tu export script:
 
 ```bash
 NEXT_PUBLIC_API_URL="https://your-strapi-instance" \
@@ -39,18 +79,79 @@ NEXT_PUBLIC_STRAPI_API_TOKEN="your-token" \
 npm run export:content
 ```
 
-The script will:
+Script `scripts/strapi-to-markdown.js`:
 
-- Download every post and music entry (including cover art) into `content/posts` and `content/music`
-- Store associated images under `public/images/posts` and `public/images/music`
-- Preserve metadata inside the markdown frontmatter so the app can render it without Strapi
+- stiahne music + posts do `content/music` a `content/posts`
+- stiahne obrázky do `public/images/music` a `public/images/posts`
+- uloží metadáta do JSON frontmatter (Strapi-like tvar, aby fungoval existujúci rendering)
 
-> Tip: the generated `data/newsletter-subscribers.json` file is ignored by git to keep local signups private.
+## Newsletter (footer “Stay loop”) – persist do Cloudflare R2
 
-## 📥 Installation
+Form v footri posiela request na `POST /api/newsletters`.
 
-### 1. Clone the Repository
+Implementácia:
+
+- Endpoint: `app/api/newsletters/route.ts`
+- Primárne ukladanie: Cloudflare R2 object v bucket-e (default `newsletter-subscribers.json`)
+- Fallback: lokálny `data/newsletter-subscribers.json` (gitignored), ak chýbajú R2 env vars
+
+Env vars (nedávaj do Gitu; používaj `.env.local`):
+
+- `R2_ENDPOINT`
+- `R2_BUCKET`
+- `R2_ACCESS_KEY_ID`
+- `R2_SECRET_ACCESS_KEY`
+- voliteľné: `R2_NEWSLETTER_OBJECT_KEY` (default `newsletter-subscribers.json`)
+
+Poznámka: zápis do R2 používa S3 preconditions (`IfMatch`/`IfNoneMatch`) + retry, aby bol odolnejší voči paralelným subscribom.
+
+## Ako pridať obrázok (cover) pre release + R2 upload
+
+V praxi robíme 2 veci:
+
+1) lokálna kópia pre web (Next public assets)  
+2) voliteľne upload do R2 (archív/asset storage)
+
+### 1) Ulož cover lokálne
+
+- Ulož súbor do `public/images/music/<slug>.<ext>`
+- V `content/music/<slug>.md` nastav `Cover` v frontmatter (Strapi-like objekt), napr.:
+
+```json
+"Cover": {
+  "url": "/images/music/jazz-kung-fu.webp",
+  "formats": { "large": { "url": "/images/music/jazz-kung-fu.webp" } }
+}
+```
+
+### 2) Upload do R2 (voliteľné)
+
+Odporúčaný key pattern: `images/music/<slug>.<ext>`.
+
+Ak máš AWS CLI:
 
 ```bash
-git clone https://github.com/yourusername/ncgm.git
-cd ncgm
+aws s3 cp public/images/music/jazz-kung-fu.webp s3://$R2_BUCKET/images/music/jazz-kung-fu.webp \
+  --endpoint-url "$R2_ENDPOINT"
+```
+
+Alternatívne je v repozitári jednoduchý upload script (nižšie).
+
+## Utility script: R2 upload (voliteľné)
+
+`scripts/r2-upload.js` umožní nahrať ľubovoľný lokálny súbor do R2 cez S3 API:
+
+```bash
+node scripts/r2-upload.js public/images/music/jazz-kung-fu.webp images/music/jazz-kung-fu.webp
+```
+
+Používa rovnaké env vars ako newsletter.
+
+## Kľúčové súbory (orientácia)
+
+- Header + logo: `app/components/Header.tsx`
+- Backdrops (dark routes): `app/components/RouteBackdrop.tsx`
+- Music listing (dropdown filtre + paging 12/page): `app/music/MusicBrowser.tsx`
+- Label releases paging (12/page): `app/labels/[slug]/LabelReleasesGrid.tsx`
+- Single music page: `app/music/[slug]/page.tsx` + komponenty v `app/music/[slug]/*Section.tsx`
+- Newsletter API (R2 persist): `app/api/newsletters/route.ts`

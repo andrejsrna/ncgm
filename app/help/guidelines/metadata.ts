@@ -1,6 +1,8 @@
-import { Metadata } from 'next';
+import type { Metadata } from "next";
+import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: 'Neural Signal Protocol Matrix | No Copyright Gaming Music',
-  description: 'Core protocols and neural signal requirements for integrating NCGM patterns across digital matrices.',
-}; 
+  title: `Usage guidelines | ${SITE_NAME}`,
+  description:
+    "Practical usage guidelines for NJK Music releases—what’s allowed, what’s not, safe edits, client work notes, and Content ID/whitelisting reminders.",
+};

@@ -1,318 +1,301 @@
-'use client';
+import Link from "next/link";
+import type { IconType } from "react-icons";
+import {
+  FaChevronLeft,
+  FaCheckCircle,
+  FaEnvelope,
+  FaExclamationTriangle,
+  FaMoneyBillWave,
+  FaShieldAlt,
+} from "react-icons/fa";
+import { SiYoutube, SiTwitch, SiTiktok, SiInstagram } from "react-icons/si";
 
-import Link from 'next/link';
-import { FaChevronLeft, FaCheck, FaCircle, FaBolt, FaShieldAlt, FaExclamationTriangle } from 'react-icons/fa';
-import { SiYoutube, SiTwitch, SiFacebookgaming } from 'react-icons/si';
-import { RiMoneyDollarCircleFill, RiShieldKeyholeFill, RiFileList3Fill } from 'react-icons/ri';
+type Platform = {
+  name: string;
+  icon: IconType;
+  summary: string;
+  checklist: string[];
+};
 
-const nodes = [
+type BestPractice = {
+  title: string;
+  description: string;
+  icon: IconType;
+  steps: string[];
+};
+
+const monetizedPlatforms: Platform[] = [
   {
-    name: "Neural Stream Protocol",
-    icon: <SiYoutube className="w-8 h-8" />,
-    status: "Full Signal Amplification",
-    features: [
-      "Neural revenue streams",
-      "Node membership protocols",
-      "Enhanced signal boost",
-      "Digital asset matrix",
-      "Premium signal revenue"
+    name: "YouTube",
+    icon: SiYoutube,
+    summary:
+      "Monetized uploads and channels are possible, but Content ID may still match audio. Keep receipts and request whitelisting when needed.",
+    checklist: [
+      "Add attribution in the description when possible",
+      "Keep your order ID/receipt (proof of licence)",
+      "If a claim happens, follow the Content ID steps and request a whitelist",
     ],
-    requirements: [
-      "Valid signal acquisition",
-      "Neural attribution markers",
-      "Revenue protocol eligibility",
-      "Clean interference scan"
-    ],
-    tips: [
-      "Maintain acquisition logs",
-      "Update signal descriptors",
-      "Monitor pattern recognition",
-      "Execute node protocols"
-    ]
   },
   {
-    name: "Neural Broadcast Matrix",
-    icon: <SiTwitch className="w-8 h-8" />,
-    status: "Full Signal Amplification",
-    features: [
-      "Quantum bit streams",
-      "Node subscriptions",
-      "Signal amplification",
-      "Neural credit system",
-      "Direct transfers"
+    name: "Twitch",
+    icon: SiTwitch,
+    summary:
+      "Live monetization (subs/ads) is generally fine when the release is licensed appropriately. Use panels/commands so credit survives clips and VODs.",
+    checklist: [
+      "Use a stream panel or `!music` command for attribution",
+      "Keep receipts for rights-managed catalogs",
+      "If your VOD export gets claimed, request whitelisting with details",
     ],
-    requirements: [
-      "Node elevation status",
-      "Neural attribution",
-      "Acquisition verification",
-      "Temporal archive compliance"
-    ],
-    tips: [
-      "Initialize pattern command",
-      "Display neural credits",
-      "Maintain stream matrix",
-      "Archive acquisition data"
-    ]
   },
   {
-    name: "Social Neural Grid",
-    icon: <SiFacebookgaming className="w-8 h-8" />,
-    status: "Protocol Active",
-    features: [
-      "Neural star streams",
-      "Node subscription matrix",
-      "Signal boost protocols",
-      "Support node markers"
+    name: "TikTok",
+    icon: SiTiktok,
+    summary:
+      "Short-form monetized content varies by region and program. Keep credits short and keep proof of licence for sponsored posts.",
+    checklist: [
+      "Use short caption credit or pinned comment when possible",
+      "For brand/sponsored work, keep order ID/receipt",
+      "If a claim happens, send us the post URL + claim details",
     ],
-    requirements: [
-      "Grid elevation status",
-      "Neural credits active",
-      "Valid protocol verification",
-      "Node compliance active"
+  },
+  {
+    name: "Instagram",
+    icon: SiInstagram,
+    summary:
+      "Reels and brand campaigns are possible, but paid distribution and rights-managed releases may need clearance.",
+    checklist: [
+      "Add credit in caption when possible",
+      "For paid ads/broadcast distribution, request clearance first",
+      "If Content ID/claims occur, request whitelisting (licensed creators)",
     ],
-    tips: [
-      "Integrate signal data",
-      "Maintain neural logs",
-      "Execute node protocols",
-      "Regular matrix sync"
-    ]
-  }
+  },
 ];
 
-const coreProtocols = [
+const bestPractices: BestPractice[] = [
   {
-    title: "Neural Documentation",
-    description: "Maintain organized archives of all signal acquisition and protocol verification data",
-    icon: <RiFileList3Fill className="w-8 h-8" />,
+    title: "Keep proof of licence",
+    description:
+      "If a platform asks for verification (or a claim happens), proof of purchase/licence is the fastest way to resolve it.",
+    icon: FaShieldAlt,
     steps: [
-      "Archive acquisition confirmations",
-      "Store node-specific protocols",
-      "Maintain attribution records",
-      "Log neural transmissions"
-    ]
+      "Save the receipt/order ID from the store you used",
+      "Keep the release link from njkmusic.com",
+      "If you deliver to a client, keep the proof attached to the project files",
+    ],
   },
   {
-    title: "Signal Attribution",
-    description: "Ensure neural credit markers maintain optimal visibility across all matrices",
-    icon: <RiShieldKeyholeFill className="w-8 h-8" />,
+    title: "Use consistent attribution",
+    description:
+      "Attribution helps both compliance and support. It also reduces confusion when multiple versions of a track exist online.",
+    icon: FaCheckCircle,
     steps: [
-      "Execute attribution protocols",
-      "Update signal descriptors",
-      "Integrate stream data",
-      "Maintain protocol format"
-    ]
+      "Credit: Track title + Label / NJK Music",
+      "Link to the release page when possible",
+      "If you used multiple tracks, list them line by line",
+    ],
   },
   {
-    title: "Protocol Compliance",
-    description: "Maintain strict adherence to node-specific revenue protocols",
-    icon: <FaShieldAlt className="w-8 h-8" />,
+    title: "Content ID workflow (when applicable)",
+    description:
+      "Some catalogs are monetized via Content ID. Licensed creators should request a whitelist to prevent repeated claims.",
+    icon: FaMoneyBillWave,
     steps: [
-      "Scan node protocols",
-      "Monitor matrix updates",
-      "Sync signal data",
-      "Resolve anomalies"
-    ]
-  }
+      "If claimed: collect claim ID + video URL + channel URL",
+      "Include proof of licence (receipt/order ID)",
+      "Contact us to whitelist/clear the claim and confirm resolution",
+    ],
+  },
 ];
 
 export default function MonetizationPage() {
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
-            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-          `,
-          backgroundSize: '24px 24px, 24px 24px',
-          backgroundPosition: '0 0, 12px 12px'
-        }}
-      />
-
-      {/* Hero section */}
-      <div className="relative border-b border-red-900/30">
-        <div className="max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center mb-12">
+    <div className="min-h-screen bg-transparent text-white">
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
             <Link
               href="/help"
-              className="group relative inline-flex items-center gap-2 text-red-500 hover:text-red-400 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-200 hover:text-cyan-100"
             >
-              <FaChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-              <span className="font-mono">Return to Support Matrix</span>
+              <FaChevronLeft className="h-4 w-4" aria-hidden />
+              Back to Help Centre
             </Link>
-          </div>
-          <h1 className="relative inline-block mb-6 mx-auto text-center w-full">
-            <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
-            <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
-              Neural Signal Monetization Matrix
-            </span>
-          </h1>
-          <p className="text-red-200/70 text-center max-w-2xl mx-auto font-light tracking-wider">
-            Protocol guide for optimizing neural signal revenue streams across digital nodes.
-          </p>
-        </div>
-      </div>
 
-      {/* Main content */}
-      <div className="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
-        {/* Node Protocols */}
-        <div className="mb-32">
-          <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider mb-12">Node-Specific Protocols</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {nodes.map((node) => (
-              <div
-                key={node.name}
-                className="group relative"
+            <div className="mt-8 max-w-3xl space-y-4">
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                Monetization
+              </h1>
+              <p className="text-base text-slate-300 sm:text-lg">
+                How to stay monetized while using NJK Music releases. The key is to know the label’s license model, keep
+                proof of licence, and follow the Content ID workflow when required.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/license"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                <div className="relative h-full bg-black border border-red-900/30 p-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="text-red-500">{node.icon}</div>
-                    <div>
-                      <h3 className="text-xl font-mono font-bold text-red-500">{node.name}</h3>
-                      <span className="text-red-400/70 text-sm font-mono">{node.status}</span>
+                Licensing overview
+              </Link>
+              <Link
+                href="/help/content-id"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Content ID guide
+              </Link>
+              <Link
+                href="/help/attribution"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Attribution templates
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+              >
+                Contact support
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
+        <section aria-labelledby="platforms">
+          <div>
+            <h2 id="platforms" className="text-2xl font-semibold tracking-tight text-white">
+              Platforms & checklists
+            </h2>
+            <p className="mt-2 text-sm text-slate-300">
+              Use these checklists to keep monetization smooth and resolve claims quickly.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            {monetizedPlatforms.map((platform) => {
+              const Icon = platform.icon;
+              return (
+                <div
+                  key={platform.name}
+                  className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                      <Icon className="h-6 w-6" aria-hidden />
+                    </span>
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-semibold text-white">{platform.name}</h3>
+                      <p className="text-sm text-slate-300">{platform.summary}</p>
                     </div>
                   </div>
 
-                  <div className="space-y-8">
-                    <div>
-                      <h4 className="text-lg font-mono font-bold text-red-500 mb-4">Revenue Protocols</h4>
-                      <ul className="space-y-2">
-                        {node.features.map((feature, index) => (
-                          <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
-                            <FaCheck className="w-4 h-4 text-red-500 flex-shrink-0" />
-                            <span className="tracking-wide">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="text-lg font-mono font-bold text-red-500 mb-4">Core Requirements</h4>
-                      <ul className="space-y-2">
-                        {node.requirements.map((req, index) => (
-                          <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
-                            <FaCircle className="w-2 h-2 text-red-500 flex-shrink-0" />
-                            <span className="tracking-wide">{req}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="text-lg font-mono font-bold text-red-500 mb-4">Neural Tips</h4>
-                      <ul className="space-y-2">
-                        {node.tips.map((tip, index) => (
-                          <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
-                            <FaBolt className="w-4 h-4 text-red-500 flex-shrink-0" />
-                            <span className="tracking-wide">{tip}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Core Protocols */}
-        <div className="mb-32">
-          <h2 className="text-3xl font-mono font-bold text-red-500 tracking-wider mb-12">Core Revenue Protocols</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {coreProtocols.map((protocol) => (
-              <div
-                key={protocol.title}
-                className="group relative"
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                <div className="relative h-full bg-black border border-red-900/30 p-8">
-                  <div className="text-red-500 mb-6">{protocol.icon}</div>
-                  <h3 className="text-xl font-mono font-bold text-red-500 mb-4">{protocol.title}</h3>
-                  <p className="text-red-200/70 text-sm mb-6 tracking-wide">{protocol.description}</p>
-                  <ul className="space-y-3">
-                    {protocol.steps.map((step, index) => (
-                      <li key={index} className="text-red-200/70 text-sm flex items-center gap-3">
-                        <span className="text-red-500 font-mono">{(index + 1).toString().padStart(2, '0')}</span>
-                        <span className="tracking-wide">{step}</span>
+                  <ul className="mt-5 space-y-2 text-sm text-slate-300">
+                    {platform.checklist.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" aria-hidden />
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
-        </div>
+        </section>
 
-        {/* Critical Notice */}
-        <div className="relative mb-32">
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-          <div className="relative bg-black border border-red-900/30 p-12">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="flex justify-center mb-6">
-                <FaExclamationTriangle className="w-8 h-8 text-red-500" />
-              </div>
-              <h2 className="text-2xl font-mono font-bold text-red-500 mb-6">
-                Critical Revenue Protocol Notice
-              </h2>
-              <div className="space-y-4 text-red-200/70 tracking-wide">
-                <p>
-                  While our neural patterns are cleared for revenue amplification, each node maintains unique 
-                  protocol requirements. Always verify node eligibility criteria before initializing revenue streams.
-                </p>
-                <p>
-                  Maintain immediate access to protocol verification data and acquisition logs for rapid 
-                  response to revenue-related anomalies.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Support Section */}
-        <div className="relative">
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-          <div className="relative bg-black border border-red-900/30 p-12 text-center">
-            <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-6">
-              Revenue Protocol Support
+        <section aria-labelledby="best-practices">
+          <div>
+            <h2 id="best-practices" className="text-2xl font-semibold tracking-tight text-white">
+              Best practices
             </h2>
-            <p className="text-red-200/70 mb-12 font-light tracking-wide max-w-2xl mx-auto">
-              Our neural support matrix stands ready to assist with revenue protocol optimization.
+            <p className="mt-2 text-sm text-slate-300">
+              These steps reduce claim risk and make support fast when a platform flags your video.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link
-                href="/help/attribution"
-                className="group relative inline-flex"
-              >
-                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                  <RiShieldKeyholeFill className="w-5 h-5 text-red-500" />
-                  <span className="font-mono text-red-500">Attribution Matrix</span>
+          </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {bestPractices.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
+                >
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </span>
+                  <h3 className="mt-5 text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="mt-2 text-sm text-slate-300">{item.description}</p>
+                  <ul className="mt-5 space-y-2 text-sm text-slate-300">
+                    {item.steps.map((step) => (
+                      <li key={step} className="flex items-start gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-fuchsia-200" aria-hidden />
+                        <span>{step}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </Link>
-              <Link
-                href="/contact"
-                className="group relative inline-flex"
-              >
-                <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-                <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                  <RiMoneyDollarCircleFill className="w-5 h-5 text-red-500" />
-                  <span className="font-mono text-red-500">Revenue Support</span>
-                </div>
-              </Link>
+              );
+            })}
+          </div>
+        </section>
+
+        <section aria-labelledby="warning">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-rose-500/10 text-rose-200">
+                <FaExclamationTriangle className="h-5 w-5" aria-hidden />
+              </span>
+              <div className="space-y-2">
+                <h2 id="warning" className="text-xl font-semibold text-white">
+                  Important
+                </h2>
+                <p className="max-w-3xl text-sm text-slate-300">
+                  Monetization depends on the label’s license model. If you’re running paid ads, broadcast distribution,
+                  or a rights-managed catalog, contact us before publishing so we can confirm the correct clearance and
+                  whitelist steps.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
-        </div>
+        <section aria-labelledby="support">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                <FaEnvelope className="h-6 w-6" aria-hidden />
+              </span>
+              <div className="space-y-3">
+                <h2 id="support" className="text-2xl font-semibold tracking-tight text-white">
+                  Need help staying monetized?
+                </h2>
+                <p className="text-sm text-slate-300 sm:text-base">
+                  Send us your release link, your channel URL, the video URL (if claimed), and your order ID/receipt. We
+                  can whitelist you (when applicable) and guide the fastest resolution.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+                >
+                  Open contact page
+                </Link>
+                <a
+                  href="mailto:support@njkmusic.com"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/5"
+                >
+                  <FaEnvelope className="h-4 w-4" aria-hidden />
+                  Email support@njkmusic.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
-} 
+}
+

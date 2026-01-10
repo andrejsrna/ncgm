@@ -25,6 +25,8 @@ interface MusicBrowserProps {
 export default function MusicBrowser({ tracks, genres, labels }: MusicBrowserProps) {
   const [selectedGenre, setSelectedGenre] = useState<string>("all");
   const [selectedLabel, setSelectedLabel] = useState<string>("all");
+  const [page, setPage] = useState(1);
+  const perPage = 12;
 
   const filteredTracks = useMemo(() => {
     return tracks.filter((track) => {
@@ -39,126 +41,110 @@ export default function MusicBrowser({ tracks, genres, labels }: MusicBrowserPro
     });
   }, [selectedGenre, selectedLabel, tracks]);
 
+  const totalPages = Math.max(1, Math.ceil(filteredTracks.length / perPage));
+  const currentPage = Math.min(page, totalPages);
+
+  const pagedTracks = useMemo(() => {
+    const startIndex = (currentPage - 1) * perPage;
+    return filteredTracks.slice(startIndex, startIndex + perPage);
+  }, [filteredTracks, currentPage]);
+
   return (
     <section className="space-y-10">
-      <div className="space-y-8">
-        {labels.length > 0 && (
-          <FilterGroup
-            title="Browse by label"
-            subtitle={
-              selectedLabel === "all"
-                ? `${tracks.length} total releases`
-                : `${filteredTracks.length} release${filteredTracks.length === 1 ? "" : "s"} selected`
-            }
-            chips={[
-              {
-                key: "all",
-                label: "All labels",
-                count: tracks.length,
-                active: selectedLabel === "all",
-                onSelect: () => setSelectedLabel("all"),
-              },
-              ...labels.map((label) => ({
-                key: label.slug,
-                label: label.label,
-                count: label.count,
-                active: selectedLabel === label.slug,
-                onSelect: () => setSelectedLabel(label.slug),
-              })),
-            ]}
-          />
-        )}
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-soft backdrop-blur">
+        <div className="grid gap-4 sm:grid-cols-2">
+          {labels.length > 0 && (
+            <div className="space-y-2">
+              <label className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-200">
+                Label
+              </label>
+              <select
+                value={selectedLabel}
+                onChange={(event) => {
+                  setSelectedLabel(event.target.value);
+                  setPage(1);
+                }}
+                className="w-full rounded-md border border-white/15 bg-slate-950/40 px-3 py-2 text-sm text-slate-200 outline-none transition focus:border-cyan-300/60 focus:ring-2 focus:ring-cyan-300/20"
+              >
+                <option value="all">All labels ({tracks.length})</option>
+                {labels.map((label) => (
+                  <option key={label.slug} value={label.slug}>
+                    {label.label} ({label.count})
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
 
-        <FilterGroup
-          title="Browse by genre"
-          subtitle={`${filteredTracks.length} track${filteredTracks.length === 1 ? "" : "s"} ready to download`}
-          chips={[
-            {
-              key: "all",
-              label: "All genres",
-              count: tracks.length,
-              active: selectedGenre === "all",
-              onSelect: () => setSelectedGenre("all"),
-            },
-            ...genres.map((genre) => ({
-              key: genre.label,
-              label: genre.label,
-              count: genre.count,
-              active: selectedGenre === genre.label,
-              onSelect: () => setSelectedGenre(genre.label),
-            })),
-          ]}
-        />
+          <div className="space-y-2">
+            <label className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-200">
+              Genre
+            </label>
+            <select
+              value={selectedGenre}
+              onChange={(event) => {
+                setSelectedGenre(event.target.value);
+                setPage(1);
+              }}
+              className="w-full rounded-md border border-white/15 bg-slate-950/40 px-3 py-2 text-sm text-slate-200 outline-none transition focus:border-cyan-300/60 focus:ring-2 focus:ring-cyan-300/20"
+            >
+              <option value="all">All genres ({tracks.length})</option>
+              {genres.map((genre) => (
+                <option key={genre.label} value={genre.label}>
+                  {genre.label} ({genre.count})
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="mt-4 text-xs text-slate-300">
+          {filteredTracks.length === 0 ? (
+            <>Showing 0 releases.</>
+          ) : (
+            <>
+              Showing {(currentPage - 1) * perPage + 1}-{Math.min(currentPage * perPage, filteredTracks.length)} of{" "}
+              {filteredTracks.length} release{filteredTracks.length === 1 ? "" : "s"}.
+            </>
+          )}
+        </div>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filteredTracks.length > 0 ? (
-          filteredTracks.map((track) => (
+          pagedTracks.map((track) => (
             <MusicCard key={track.documentId ?? track.slug} track={track} />
           ))
         ) : (
-          <p className="col-span-full rounded-2xl border border-border bg-white p-8 text-center text-sm text-slate-500 shadow-sm">
+          <p className="col-span-full rounded-2xl border border-white/10 bg-white/5 p-8 text-center text-sm text-slate-300 shadow-soft backdrop-blur">
             No tracks found for this combination yet. Try adjusting your filters or check back soon.
           </p>
         )}
       </div>
+
+      {filteredTracks.length > perPage && (
+        <div className="flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => setPage((current) => Math.max(1, current - 1))}
+            disabled={currentPage === 1}
+            className="rounded-full border border-white/15 bg-white/0 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 shadow-soft backdrop-blur transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Prev
+          </button>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">
+            Page {currentPage} / {totalPages}
+          </span>
+          <button
+            type="button"
+            onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+            disabled={currentPage === totalPages}
+            className="rounded-full border border-white/15 bg-white/0 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 shadow-soft backdrop-blur transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </section>
-  );
-}
-
-interface FilterGroupProps {
-  title: string;
-  subtitle?: string;
-  chips: Array<{
-    key: string;
-    label: string;
-    count: number;
-    active: boolean;
-    onSelect: () => void;
-  }>;
-}
-
-function FilterGroup({ title, subtitle, chips }: FilterGroupProps) {
-  return (
-    <div className="space-y-3">
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-        <span className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-          {title}
-        </span>
-        {subtitle && <span className="text-xs text-slate-500">{subtitle}</span>}
-      </div>
-      <div className="flex flex-wrap gap-3">
-        {chips.map(({ key, ...chip }) => (
-          <FilterChip key={key} {...chip} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-interface FilterChipProps {
-  label: string;
-  count: number;
-  active: boolean;
-  onSelect: () => void;
-}
-
-function FilterChip({ label, count, active, onSelect }: FilterChipProps) {
-  return (
-    <button
-      type="button"
-      onClick={onSelect}
-      aria-pressed={active}
-      className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition ${
-        active
-          ? "border-primary bg-primary text-primary-foreground"
-          : "border-border bg-white text-slate-600 hover:border-primary hover:text-primary"
-      }`}
-    >
-      <span>{label}</span>
-      <span className={`rounded-full px-2 py-0.5 text-[10px] ${active ? "bg-white/20" : "bg-slate-100 text-slate-500"}`}>
-        {count}
-      </span>
-    </button>
   );
 }

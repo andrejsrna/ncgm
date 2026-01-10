@@ -6,42 +6,56 @@ import AccordionItem from "./AccordionItem";
 
 const accordions = [
   {
-    title: "Why choose NJK Music releases?",
+    title: "What is NJK Music?",
     content: (
-      <div className="space-y-3 text-sm text-slate-600">
+      <div className="space-y-3 text-sm text-slate-300">
         <p>
-          Every track is designed for creators who need dependable, stream-safe audio across multiple platforms.
-          You get high-quality masters, transparent licensing, and a catalogue curated by producers.
+          NJK Music is a multi-label music brand built for creators. We release across different label moods and genres,
+          so you can find the right energy for streams, edits, and client work.
         </p>
         <ul className="list-disc space-y-1 pl-5">
-          <li>Royalty-free usage across live streams, video content, and client projects</li>
-          <li>Fast access to high-quality WAV and MP3 downloads</li>
-          <li>Regular updates with new moods across our NJK label family</li>
+          <li>Multiple labels and curated moods under one roof</li>
+          <li>Clear licensing guidance for modern content workflows</li>
+          <li>Regular updates with new releases across the roster</li>
         </ul>
       </div>
     ),
   },
   {
-    title: "How do I credit the No Copyright Gaming Music label?",
+    title: "Can I use NJK Music in monetized videos and streams?",
     content: (
-      <div className="space-y-3 text-sm text-slate-600">
+      <div className="space-y-3 text-sm text-slate-300">
         <p>
-          Simply include the label name and link back to NJK Music whenever your format allows.
-          Detailed examples are available in our attribution guide.
+          In most cases, yes. Our releases are designed for creator use cases, but rules can vary by label, track, and
+          platform. Always check the release page and our guidelines for the most accurate usage details.
         </p>
-        <Link href="/help/attribution" className="text-primary transition hover:underline">
-          Review attribution examples
+        <Link href="/help/monetization" className="text-cyan-300 transition hover:text-cyan-200">
+          Review monetization guidelines
         </Link>
       </div>
     ),
   },
   {
-    title: "What formats and stems are included?",
+    title: "Do I need to credit NJK Music or the label?",
     content: (
-      <div className="space-y-3 text-sm text-slate-600">
+      <div className="space-y-3 text-sm text-slate-300">
         <p>
-          Releases include WAV and MP3 files by default. Some tracks offer extended assets such as loops or stems.
-          Check each release page for specific download options.
+          If attribution is required, include the artist/label name and link back to NJK Music whenever possible.
+          The exact wording can differ by release, so use the template from our attribution guide.
+        </p>
+        <Link href="/help/attribution" className="text-cyan-300 transition hover:text-cyan-200">
+          See attribution templates
+        </Link>
+      </div>
+    ),
+  },
+  {
+    title: "What formats are available for downloads?",
+    content: (
+      <div className="space-y-3 text-sm text-slate-300">
+        <p>
+          Releases include WAV and MP3 by default. Some tracks include extended assets like loops or stems.
+          Check each release page for what&apos;s included.
         </p>
       </div>
     ),
@@ -56,16 +70,16 @@ export default function Accordion() {
   };
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-transparent py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
-          <h2 className="text-3xl font-semibold text-slate-900">Frequently asked questions</h2>
-          <p className="mt-3 text-sm text-slate-600 sm:text-base">
+          <h2 className="text-3xl font-semibold text-white">Frequently asked questions</h2>
+          <p className="mt-3 text-sm text-slate-300 sm:text-base">
             Still have questions? Explore the FAQ or reach out to our team for personalised help.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-border bg-white shadow-sm">
+        <div className="rounded-2xl border border-white/10 bg-white/5 shadow-sm backdrop-blur">
           {accordions.map((accordion, index) => (
             <AccordionItem
               key={accordion.title}
@@ -78,9 +92,9 @@ export default function Accordion() {
           ))}
         </div>
 
-        <div className="mt-8 text-center text-sm text-slate-600">
+        <div className="mt-8 text-center text-sm text-slate-300">
           Need a direct answer?{" "}
-          <Link href="/contact" className="text-primary transition hover:underline">
+          <Link href="/contact" className="text-cyan-300 transition hover:text-cyan-200">
             Contact support
           </Link>
         </div>

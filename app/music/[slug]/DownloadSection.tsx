@@ -21,19 +21,19 @@ export default function DownloadSection({ track }: DownloadSectionProps) {
       name: "Bandcamp",
       description: "Support the label directly with lossless downloads.",
       url: track.Bandcamp,
-      icon: <SiBandcamp className="h-5 w-5 text-primary" />,
+      icon: <SiBandcamp className="h-5 w-5 text-slate-200" />,
     },
   ].filter(Boolean) as Array<{ name: string; description: string; url: string; icon: React.ReactNode }>;
 
   return (
     <section
       aria-labelledby="download-options"
-      className="rounded-3xl border border-border bg-white p-6 shadow-soft"
+      className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
     >
-      <h2 id="download-options" className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">
+      <h2 id="download-options" className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300">
         Purchase & download
       </h2>
-      <p className="mt-2 text-xs text-slate-500">
+      <p className="mt-2 text-xs text-slate-300">
         Unlock high-resolution files and stems ready for editing, mastering, and deployment.
       </p>
 
@@ -44,12 +44,12 @@ export default function DownloadSection({ track }: DownloadSectionProps) {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-start gap-3 rounded-2xl border border-border bg-slate-50 p-4 transition hover:border-primary hover:bg-white"
+            className="flex items-start gap-3 rounded-2xl border border-white/15 bg-white/0 p-4 backdrop-blur transition hover:bg-white/5"
           >
             <div className="mt-1">{link.icon}</div>
             <div>
-              <p className="text-sm font-semibold text-slate-900">{link.name}</p>
-              <p className="mt-1 text-xs text-slate-600">{link.description}</p>
+              <p className="text-sm font-semibold text-white">{link.name}</p>
+              <p className="mt-1 text-xs text-slate-300">{link.description}</p>
             </div>
           </a>
         ))}

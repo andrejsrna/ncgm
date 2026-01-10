@@ -1,173 +1,199 @@
-'use client';
+import Link from "next/link";
+import { FaChevronLeft, FaCookieBite, FaEnvelope, FaInfoCircle, FaLock } from "react-icons/fa";
 
-import Link from 'next/link';
-import { FaCircle, FaServer } from 'react-icons/fa';
-import { RiShieldKeyholeFill, RiFingerprint2Fill, RiRadarFill } from 'react-icons/ri';
-import { MdMemory } from 'react-icons/md';
+type CookieCategory = {
+  title: string;
+  description: string;
+  required: boolean;
+  examples: string[];
+};
 
-const trackingProtocols = [
+const categories: CookieCategory[] = [
   {
-    icon: <RiFingerprint2Fill className="w-6 h-6 text-red-500" />,
-    title: "Core Neural Protocols",
-    description: "Essential neural tracking patterns required for matrix navigation and secure zone access within the digital grid.",
-    required: true
+    title: "Essential cookies",
+    description:
+      "These help the site function reliably (navigation, security, and basic preferences).",
+    required: true,
+    examples: [
+      "Load balancing / security protections",
+      "Remembering basic UI preferences (when applicable)",
+      "Preventing abuse and spam",
+    ],
   },
   {
-    icon: <RiRadarFill className="w-6 h-6 text-red-500" />,
-    title: "Neural Performance Matrix",
-    description: "Anonymous neural pattern analysis to optimize user interface dynamics and digital pathways.",
-    required: false
+    title: "Analytics cookies",
+    description:
+      "These help us understand how the site is used so we can improve pages and navigation.",
+    required: false,
+    examples: [
+      "Anonymous page view counts",
+      "Performance and error monitoring",
+      "Feature usage metrics",
+    ],
   },
   {
-    icon: <MdMemory className="w-6 h-6 text-red-500" />,
-    title: "Neural Memory Patterns",
-    description: "Digital synapse configuration storage for enhanced neural interface customization (identity matrix, language protocols, regional nodes).",
-    required: false
-  }
-];
-
-const protocolInfo = [
-  {
-    title: "Neural Tracking Definition",
-    content: "Neural tracking protocols are quantum-state data fragments embedded in your local neural interface matrix. These digital synapses enhance your connection to our grid by maintaining neural pattern recognition and interface preferences."
+    title: "Preference cookies",
+    description:
+      "These remember optional choices (for example language or display preferences) to improve your experience.",
+    required: false,
+    examples: ["Language preference", "UI settings", "Remembering dismissed notices"],
   },
-  {
-    title: "Implementation Protocol",
-    content: "Our neural grid utilizes tracking protocols to optimize your digital consciousness stream, analyze neural traffic patterns, and map user origin nodes. This data synthesis enables continuous service enhancement and targeted content delivery."
-  },
-  {
-    title: "Neural Override Options",
-    content: "You maintain sovereign control over neural tracking acceptance or rejection. While most neural interfaces default to protocol acceptance, you can modify your interface settings to override specific tracking patterns."
-  }
 ];
 
 export default function CookiesPage() {
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(185, 28, 28, 0.7) 1px, transparent 1px),
-            radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.7) 1px, transparent 1px)
-          `,
-          backgroundSize: '24px 24px, 24px 24px',
-          backgroundPosition: '0 0, 12px 12px'
-        }}
-      />
+    <div className="min-h-screen bg-transparent text-white">
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-200 hover:text-cyan-100"
+            >
+              <FaChevronLeft className="h-4 w-4" aria-hidden />
+              Back to home
+            </Link>
 
-      {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-24">
-            <div className="inline-block mb-6">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur-lg"></div>
-                <div className="relative p-4 bg-black border border-red-900/30">
-                  <RiShieldKeyholeFill className="w-12 h-12 text-red-500" />
-                </div>
+            <div className="mt-8 max-w-3xl space-y-4">
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                Cookies
+              </h1>
+              <p className="text-base text-slate-300 sm:text-lg">
+                This page explains how NJK Music may use cookies and similar technologies to keep the site working and
+                improve the experience.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/privacy"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 backdrop-blur transition hover:bg-white/5"
+              >
+                Privacy policy
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl space-y-16 px-4 pb-16 sm:px-6 lg:px-8">
+        <section aria-labelledby="what">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-cyan-200 backdrop-blur">
+                <FaCookieBite className="h-5 w-5" aria-hidden />
+              </span>
+              <div className="space-y-2">
+                <h2 id="what" className="text-xl font-semibold text-white">
+                  What are cookies?
+                </h2>
+                <p className="max-w-3xl text-sm text-slate-300">
+                  Cookies are small text files stored by your browser. Sites use them for essential functionality,
+                  preferences, and (optionally) analytics.
+                </p>
               </div>
             </div>
-            <h1 className="relative inline-block mb-6">
-              <span className="absolute -inset-2 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-50 blur"></span>
-              <span className="relative text-5xl font-extrabold text-red-500 font-mono tracking-wider">
-                Neural Tracking Protocol
-              </span>
-            </h1>
-            <p className="text-xl text-red-200/70 max-w-2xl mx-auto font-light tracking-wider">
-              Maintaining transparency in our neural pattern monitoring systems.
-            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="categories">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 id="categories" className="text-2xl font-semibold tracking-tight text-white">
+                Cookie categories
+              </h2>
+              <p className="mt-2 text-sm text-slate-300">
+                Not every category is always active. Some cookies may be set by third-party services we integrate with.
+              </p>
+            </div>
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-300">
+              Overview
+            </span>
           </div>
 
-          {/* Protocol Types Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mb-24">
-            {trackingProtocols.map((type) => (
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {categories.map((category) => (
               <div
-                key={type.title}
-                className="group relative"
+                key={category.title}
+                className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                <div className="relative h-full bg-black border border-red-900/30 p-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    {type.icon}
-                    <h3 className="text-xl font-mono font-bold text-red-500">{type.title}</h3>
-                  </div>
-                  <p className="text-red-200/70 mb-6 tracking-wide">{type.description}</p>
-                  <div className="flex items-center gap-2 text-sm">
-                    {type.required ? (
-                      <div className="relative inline-flex">
-                        <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 blur"></div>
-                        <div className="relative px-3 py-1 bg-black border border-red-500/30">
-                          <span className="font-mono text-red-500">CORE PROTOCOL</span>
-                        </div>
-                      </div>
+                <div className="flex items-start justify-between gap-4">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                    {category.required ? (
+                      <FaLock className="h-5 w-5" aria-hidden />
                     ) : (
-                      <div className="relative inline-flex">
-                        <div className="absolute -inset-0.5 bg-red-900/20 opacity-75 blur"></div>
-                        <div className="relative px-3 py-1 bg-black border border-red-900/30">
-                          <span className="font-mono text-red-200/70">OPTIONAL PROTOCOL</span>
-                        </div>
-                      </div>
+                      <FaInfoCircle className="h-5 w-5" aria-hidden />
                     )}
-                  </div>
+                  </span>
+                  <span
+                    className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] ${
+                      category.required
+                        ? "border-emerald-300/30 bg-emerald-500/10 text-emerald-200"
+                        : "border-white/10 bg-white/5 text-slate-200"
+                    }`}
+                  >
+                    {category.required ? "Required" : "Optional"}
+                  </span>
                 </div>
+
+                <h3 className="mt-5 text-lg font-semibold text-white">
+                  {category.title}
+                </h3>
+                <p className="mt-2 text-sm text-slate-300">{category.description}</p>
+
+                <ul className="mt-5 space-y-2 text-sm text-slate-300">
+                  {category.examples.map((example) => (
+                    <li key={example} className="flex items-start gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" aria-hidden />
+                      <span>{example}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
+        </section>
 
-          {/* Detailed Information */}
-          <div className="space-y-24">
-            {protocolInfo.map((info) => (
-              <div key={info.title} className="max-w-3xl mx-auto">
-                <div className="flex items-center gap-4 mb-8">
-                  <FaCircle className="w-1.5 h-1.5 text-red-500" />
-                  <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider">{info.title}</h2>
-                </div>
-                <div className="group relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-                  <div className="relative bg-black border border-red-900/30 p-8">
-                    <p className="text-red-200/70 tracking-wide leading-relaxed">
-                      {info.content}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Neural Support Section */}
-          <div className="mt-24 text-center">
-            <div className="group relative">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-red-800 via-red-600 to-red-800 opacity-75 blur"></div>
-              <div className="relative bg-black border border-red-900/30 p-12">
-                <h2 className="text-2xl font-mono font-bold text-red-500 tracking-wider mb-6">
-                  Neural Protocol Inquiries
+        <section aria-labelledby="manage">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-soft backdrop-blur">
+            <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fuchsia-200 backdrop-blur">
+                <FaEnvelope className="h-6 w-6" aria-hidden />
+              </span>
+              <div className="space-y-3">
+                <h2 id="manage" className="text-2xl font-semibold tracking-tight text-white">
+                  Questions or requests?
                 </h2>
-                <p className="text-red-200/70 mb-12 tracking-wide max-w-2xl mx-auto">
-                  For questions regarding our neural tracking implementation, establish direct contact with our security division.
+                <p className="text-sm text-slate-300 sm:text-base">
+                  If you have questions about cookies or privacy on NJK Music, contact us and we’ll help.
                 </p>
-                <Link
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
                   href="mailto:privacy@njkmusic.com"
-                  className="group relative inline-flex"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:from-cyan-400 hover:to-fuchsia-400"
                 >
-                  <div className="absolute -inset-0.5 bg-red-500/20 opacity-75 group-hover:opacity-100 blur transition duration-300"></div>
-                  <div className="relative flex items-center gap-2 px-6 py-3 bg-black border border-red-500/30">
-                    <FaServer className="w-5 h-5 text-red-500" />
-                    <span className="font-mono text-red-500">Connect to Security Division</span>
-                  </div>
+                  <FaEnvelope className="h-4 w-4" aria-hidden />
+                  Email privacy@njkmusic.com
+                </a>
+                <Link
+                  href="/privacy"
+                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/0 px-6 py-3 text-sm font-semibold text-slate-200 backdrop-blur transition hover:bg-white/5"
+                >
+                  Read privacy policy
                 </Link>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40" />
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
-} 
+}
+

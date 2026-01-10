@@ -11,10 +11,10 @@ interface AccordionItemProps {
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ title, content, isOpen, onClick, id }) => {
   return (
-    <div className="border-b border-border last:border-none">
+    <div className="border-b border-white/10 last:border-none">
       <button
         onClick={onClick}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold text-slate-800 transition hover:text-primary focus:outline-none"
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold text-white transition hover:text-cyan-200 focus:outline-none"
         aria-expanded={isOpen}
         aria-controls={`accordion-content-${id}`}
         id={`accordion-header-${id}`}
@@ -22,7 +22,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, content, isOpen, o
       >
         <span>{title}</span>
         <ChevronDown
-          className={`h-5 w-5 transition-transform ${isOpen ? 'rotate-180 text-primary' : 'text-slate-400'}`}
+          className={`h-5 w-5 transition-transform ${isOpen ? 'rotate-180 text-cyan-200' : 'text-slate-400'}`}
         />
       </button>
 
@@ -34,7 +34,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, content, isOpen, o
           isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-5 pb-5 text-sm text-slate-600">{content}</div>
+        <div className="px-5 pb-5 text-sm text-slate-300">{content}</div>
       </div>
     </div>
   );

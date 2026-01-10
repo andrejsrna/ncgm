@@ -13,11 +13,11 @@ const socialLinks = [
 
 export default function WhoIsBehind() {
   return (
-    <section className="bg-slate-50 py-20">
+    <section className="bg-transparent py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 rounded-3xl border border-border bg-white p-8 shadow-soft lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+        <div className="grid gap-10 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-soft backdrop-blur lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
           <div className="flex flex-col items-center gap-6 lg:items-start">
-            <div className="relative h-40 w-40 overflow-hidden rounded-full border border-border bg-slate-100">
+            <div className="relative h-40 w-40 overflow-hidden rounded-full border border-white/10 bg-white/5">
               <Image
                 src="/asana-profile.jpeg"
                 alt="Asana profile"
@@ -27,10 +27,10 @@ export default function WhoIsBehind() {
               />
             </div>
             <div className="text-center lg:text-left">
-              <h2 className="text-2xl font-semibold text-slate-900">Andrej “Asana” Srna</h2>
-              <p className="mt-2 text-sm text-slate-600">
-                Producer, label lead, and curator of the No Copyright Gaming Music imprint. Blending drum &amp; bass,
-                cinematic textures, and gaming culture into stream-ready releases.
+              <h2 className="text-2xl font-semibold text-white">Andrej “Asana” Srna</h2>
+              <p className="mt-2 text-sm text-slate-300">
+                CEO of NJK Music, producer, and label manager across multiple imprints. Building creator-first catalogs
+                that blend drum &amp; bass energy, cinematic textures, and gaming culture into stream-ready releases.
               </p>
             </div>
             <div className="flex items-center gap-4">
@@ -40,7 +40,7 @@ export default function WhoIsBehind() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border transition hover:border-primary hover:text-primary"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/0 backdrop-blur transition hover:border-fuchsia-300/60 hover:bg-white/5"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -49,15 +49,16 @@ export default function WhoIsBehind() {
             </div>
           </div>
 
-          <div className="space-y-5 text-sm leading-relaxed text-slate-600">
+          <div className="space-y-5 text-sm leading-relaxed text-slate-300">
             <p>
-              I lead NJK Music&apos;s No Copyright Gaming Music label with the goal of giving creators reliable,
-              high-energy music they can use anywhere. Every track is produced with content workflows in mind—loopable
-              arrangements, dynamic builds, and instant clearance.
+              As CEO of NJK Music, I oversee multiple labels and shape the direction of our releases—from A&amp;R and
+              production to branding and distribution. The goal is simple: give creators reliable, high-energy music
+              they can use anywhere, with clear licensing and instant access.
             </p>
             <p>
-              Beyond the label, I produce as Asana and run DnB Doctor, crafting drum &amp; bass and cinematic soundscapes.
-              These experiences shape our catalog and keep it focused on modern storytelling.
+              I produce as Asana and build each catalog with modern content workflows in mind—loopable arrangements,
+              dynamic builds, and a sound that fits streams, edits, and campaigns. Every label under NJK Music has its
+              own mood, but the same creator-safe foundation.
             </p>
             <p>
               Looking for something specific? I&apos;m always open to collaboration or licensing conversations.
@@ -65,7 +66,7 @@ export default function WhoIsBehind() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 text-sm font-medium text-primary transition hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-medium text-cyan-300 transition hover:text-cyan-200"
             >
               Get in touch
             </Link>
