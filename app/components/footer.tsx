@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { LABEL_LIST } from '@/lib/site';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -23,6 +24,7 @@ export default function Footer() {
     pathname.startsWith('/dmca') ||
     pathname.startsWith('/privacy') ||
     pathname.startsWith('/terms') ||
+    pathname.startsWith('/ai-usage') ||
     pathname.startsWith('/contact');
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -157,10 +159,20 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/labels/no-copyright-gaming-music" className={`transition ${isDarkRoute ? 'hover:text-white' : 'hover:text-slate-900'}`}>
-                  NCGM Label
+                <Link href="/labels" className={`transition ${isDarkRoute ? 'hover:text-white' : 'hover:text-slate-900'}`}>
+                  Labels
                 </Link>
               </li>
+              {LABEL_LIST.map((label) => (
+                <li key={label.slug}>
+                  <Link
+                    href={`/labels/${label.slug}`}
+                    className={`transition ${isDarkRoute ? 'hover:text-white' : 'hover:text-slate-900'}`}
+                  >
+                    {label.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -205,6 +217,11 @@ export default function Footer() {
               <li>
                 <Link href="/cookies" className={`transition ${isDarkRoute ? 'hover:text-white' : 'hover:text-slate-900'}`}>
                   Cookies
+                </Link>
+              </li>
+              <li>
+                <Link href="/ai-usage" className={`transition ${isDarkRoute ? 'hover:text-white' : 'hover:text-slate-900'}`}>
+                  AI Usage Information
                 </Link>
               </li>
             </ul>

@@ -32,6 +32,7 @@ export default function Header() {
     pathname.startsWith('/dmca') ||
     pathname.startsWith('/privacy') ||
     pathname.startsWith('/terms') ||
+    pathname.startsWith('/ai-usage') ||
     pathname.startsWith('/contact');
 
   const isActive = (href: string) => {

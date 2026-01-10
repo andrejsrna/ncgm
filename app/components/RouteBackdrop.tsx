@@ -19,6 +19,7 @@ export default function RouteBackdrop() {
     pathname.startsWith('/dmca') ||
     pathname.startsWith('/privacy') ||
     pathname.startsWith('/terms') ||
+    pathname.startsWith('/ai-usage') ||
     pathname.startsWith('/contact');
 
   if (!shouldShow) {

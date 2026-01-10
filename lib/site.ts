@@ -132,6 +132,14 @@ export const LABEL_DEFINITIONS: Record<string, LabelDefinition> = {
         label: "Facebook",
         href: "https://www.facebook.com/bassandjazz",
       },
+      {
+        label: "SoundCloud",
+        href: "https://soundcloud.com/jazzandbassdnb",
+      },
+      {
+        label: "Instagram",
+        href: "https://www.instagram.com/jazzandbass_/",
+      },
     ],
     seo: {
       title: "Jazz & Bass Label | Liquid Drum and Bass for Creators",

@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaSoundcloud, FaYoutube } from "react-icons/fa";
 import { getMusicData } from "@/app/hooks/useMusicQuery";
 import MusicCard from "@/app/music/MusicCard";
 import { getLabelDefinition, LABEL_LIST } from "@/lib/site";
@@ -158,6 +158,8 @@ export default async function LabelPage({ params }: PageProps) {
                       >
                         {social.label === "YouTube" && <FaYoutube className="h-4 w-4 text-rose-400" />}
                         {social.label === "Facebook" && <FaFacebookF className="h-4 w-4 text-sky-300" />}
+                        {social.label === "SoundCloud" && <FaSoundcloud className="h-4 w-4 text-orange-300" />}
+                        {social.label === "Instagram" && <FaInstagram className="h-4 w-4 text-pink-300" />}
                         {social.label}
                         <span className="text-cyan-200">→</span>
                       </a>
