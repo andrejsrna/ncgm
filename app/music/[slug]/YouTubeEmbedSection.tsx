@@ -1,9 +1,13 @@
+import { getYouTubeEmbedUrl } from "@/app/lib/youtubeEmbed";
+
 interface YouTubeEmbedSectionProps {
-  embedHtml: string;
+  source: string;
 }
 
-export default function YouTubeEmbedSection({ embedHtml }: YouTubeEmbedSectionProps) {
-  if (!embedHtml) {
+export default function YouTubeEmbedSection({ source }: YouTubeEmbedSectionProps) {
+  const embedUrl = getYouTubeEmbedUrl(source);
+
+  if (!embedUrl) {
     return null;
   }
 
@@ -26,8 +30,15 @@ export default function YouTubeEmbedSection({ embedHtml }: YouTubeEmbedSectionPr
       </div>
 
       <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-black/50 shadow-xl shadow-slate-900/30">
-        <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-          <div className="absolute inset-0 h-full w-full" dangerouslySetInnerHTML={{ __html: embedHtml }} />
+        <div className="relative aspect-video w-full">
+          <iframe
+            className="absolute inset-0 h-full w-full"
+            src={embedUrl}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            loading="lazy"
+          />
         </div>
       </div>
 

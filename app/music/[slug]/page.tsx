@@ -212,7 +212,7 @@ export default async function MusicDetailPage({
             trackTitle={track.Title}
           />
           <SpotifyEmbedSection embedHtml={track.spotify_embed ?? ""} />
-          <YouTubeEmbedSection embedHtml={track.youtube_embed ?? ""} />
+          <YouTubeEmbedSection source={track.youtube_embed ?? ""} />
           <ReleaseDescriptionSection contentHtml={contentHtml} />
           <RelatedTracksSection tracks={relatedTracks} />
         </div>

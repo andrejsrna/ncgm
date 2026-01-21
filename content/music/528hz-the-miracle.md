@@ -24,7 +24,7 @@
   "Beatport": null,
   "Bandcamp": "https://njk-music.bandcamp.com/track/528hz-the-miracle",
   "spotify_embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/3iR78ucLixJ2Xjzue49PSg?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
-  "youtube_embed": null,
+  "youtube_embed": "https://www.youtube.com/watch?v=JbxqD9c6LJA",
   "Cover": {
     "url": "https://s3.amazonaws.com/gather.fandalism.com/800x800%2D5767746%2D%2DF40E3077%2D5E80%2D47B1%2DAD558F75D1813A93%2D%2D0%2D%2D1386140%2D%2Dandrej.srna528hzcalmfrequencyar11profilex7cbc5sfed5172d69d444d5b642a5d0944fbe882.jpg"
   },

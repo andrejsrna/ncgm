@@ -25,7 +25,7 @@
   "Beatport": null,
   "Bandcamp": "https://njk-music.bandcamp.com/album/meditation-journey-calm-healing-music",
   "spotify_embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/4i44pVXts79R235T9I6xGI?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
-  "youtube_embed": "<iframe src=\"https://www.youtube.com/embed/sdG9EC-Qud8?si=Qi27AiHbmzQC9apR\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen style=\"width:100%;height:100%;border:0;\"></iframe>",
+  "youtube_embed": "https://www.youtube.com/watch?v=sdG9EC-Qud8",
   "Cover": {
     "url": "https://s3.amazonaws.com/gather.fandalism.com/800x800%2D5767746%2D%2D05EEE63A%2D1B7A%2D466A%2D97F0AA8397FC2CFF%2D%2D0%2D%2D5500709%2D%2Dandrej.srnameditationjourneyminimalzennatureinspiredsoft000893dd364f47748c274afecc5aa9f5.jpg"
   },

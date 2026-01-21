@@ -24,7 +24,7 @@
   "Beatport": "https://www.beatport.com/release/ncgm-presents-intense-gaming-music-vol-1/5509652",
   "Bandcamp": "https://njk-music.bandcamp.com/album/ncgm-presents-intense-gaming-music-vol-1",
   "spotify_embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/1XzXi9HnahbA1OUYFcNvNi?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
-  "youtube_embed": "<iframe src=\"https://www.youtube.com/embed/dKKpDIbbQVc?si=OkH5EM2uBlg3HV72\" title=\"NCGM Presents: Intense Gaming Music, Vol. 1\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen referrerpolicy=\"strict-origin-when-cross-origin\" style=\"width:100%;height:100%;border:0;\"></iframe>",
+  "youtube_embed": "https://www.youtube.com/watch?v=dKKpDIbbQVc",
   "Cover": {
     "url": "https://s3.amazonaws.com/gather.fandalism.com/800x800%2D5767746%2D%2DDBE4E410%2D8FD0%2D44DB%2DA111E32D9389BB8F%2D%2D0%2D%2D7892613%2D%2Dandrej.srnaAcyberpunkbattlefieldoresportsarenaglowingwi29def93fd8724630aec5f0318864350a1.jpg"
   },

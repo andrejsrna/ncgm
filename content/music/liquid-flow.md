@@ -24,7 +24,7 @@
   "Beatport": "https://beatport.com/pt/release/liquid-flow-smooth-drum-bass-journey/5582487",
   "Bandcamp": null,
   "spotify_embed": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/3pi5UQl9a1SDJX5Sa3Sytf?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
-  "youtube_embed": "<iframe src=\"https://www.youtube.com/embed/videoseries?list=PL7GJ82VTa15kGL7O-2FnGqs9iAvD7ebjx\" title=\"Liquid Flow — YouTube playlist\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen referrerpolicy=\"strict-origin-when-cross-origin\" style=\"width:100%;height:100%;border:0;\"></iframe>",
+  "youtube_embed": "https://www.youtube.com/playlist?list=PL7GJ82VTa15kGL7O-2FnGqs9iAvD7ebjx",
   "Cover": {
     "url": "https://cdn.fitdoplnky.sk/uploads/2026/01/c0dfe819-f7be-4cc2-a356-f1b7df178af0-liquidflow.jpeg"
   },
